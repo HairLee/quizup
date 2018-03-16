@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="5dp"
+    android:background="@color/white"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:textColor="#2C3E50"
+        android:id="@+id/txt_topic_title"
+        android:textSize="20sp"
+        android:text="@string/title_of_caterogy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/recyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <View
+        android:visibility="gone"
+        android:layout_marginTop="5dp"
+        android:background="#D8D8D8"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"/>
+
+
+</LinearLayout>
+

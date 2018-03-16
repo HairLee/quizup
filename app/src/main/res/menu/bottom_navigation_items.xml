@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_item1"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Home"/>
+    <item
+        android:id="@+id/action_item2"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:title="Topic"/>
+    <item
+        android:id="@+id/action_item3"
+        android:icon="@drawable/ic_games_deep_purple_a200_24dp"
+        android:title="Info"/>
+
+    <item
+        android:id="@+id/action_item4"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:title="User"/>
+
+    <item
+        android:id="@+id/action_item5"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="Setting"/>
+</menu>

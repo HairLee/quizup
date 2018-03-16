@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="person" type="com.elcom.com.quizupapp.ui.activity.model.entity.Person"/>
+        <variable name="quizdao" type="com.elcom.com.quizupapp.ui.activity.model.entity.QuizDao"/>
+    </data>
+<RelativeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#278FB6"
+    android:id="@+id/transitions_container"
+    tools:context="com.elcom.com.quizupapp.ui.activity.QuizActivity">
+
+
+    <com.elcom.com.quizupapp.ui.custom.ProgressTimerView
+        android:id="@+id/rl_progress"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:layout_above="@+id/txt_question"
+        android:layout_width="80dp"
+        android:layout_height="80dp"/>
+
+    <TextView
+
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/rl_score"
+        android:id="@+id/txt_question"
+        android:text="@{person.userName}"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:id="@+id/rl_score"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:visibility="invisible"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+
+            android:id="@+id/txt_score"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+
+        android:id="@+id/ln_answer"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:visibility="invisible"
+            android:id="@+id/ln_answer_top"
+            android:weightSum="2"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:text="1"
+                android:id="@+id/answer_1"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="100dp" />
+            <Button
+                android:text="2"
+                android:id="@+id/answer_2"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="100dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="invisible"
+            android:id="@+id/ln_answer_bottom"
+            android:weightSum="2"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:text="3"
+                android:id="@+id/answer_3"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="100dp" />
+            <Button
+                android:text="4"
+                android:id="@+id/answer_4"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="100dp" />
+
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
+</layout>
