@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_gravity="center_horizontal"
+    android:weightSum="7"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="250dp"
+    android:layout_height="wrap_content">
+
+
+    <!--Start-->
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+
+        <RelativeLayout
+            android:id="@+id/rl1"
+            android:layout_centerInParent="true"
+            android:background="@drawable/circle_button_weak_black_layout"
+            android:layout_width="24dp"
+            android:layout_height="24dp">
+
+            <TextView
+                android:textColor="#2DDCAC"
+                android:textSize="8sp"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:text="1.5s"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:visibility="invisible"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_challenge_x"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </RelativeLayout>
+
+        <com.elcom.com.quizupapp.ui.custom.ProgressTimerView
+            android:id="@+id/ProgressTimerView1"
+            android:visibility="invisible"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/ln_coins_ex"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+
+
+    </RelativeLayout>
+    <!--End-->
+
+    <!--Start-->
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.elcom.com.quizupapp.ui.custom.ProgressTimerView
+            android:id="@+id/ProgressTimerView2"
+            android:visibility="invisible"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/ln_coins_ex"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+
+        <RelativeLayout
+            android:layout_centerInParent="true"
+            android:background="@drawable/circle_button_weak_black_layout"
+            android:layout_width="24dp"
+            android:layout_height="24dp">
+
+            <TextView
+                android:textColor="#2DDCAC"
+                android:textSize="8sp"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:text="1.5s"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:visibility="invisible"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_challenge_x"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    <!--End-->
+
+    <!--Start-->
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.elcom.com.quizupapp.ui.custom.ProgressTimerView
+            android:id="@+id/ProgressTimerView3"
+            android:visibility="invisible"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/ln_coins_ex"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+
+        <RelativeLayout
+            android:layout_centerInParent="true"
+            android:background="@drawable/circle_button_weak_black_layout"
+            android:layout_width="24dp"
+            android:layout_height="24dp">
+
+            <TextView
+                android:textColor="#2DDCAC"
+                android:textSize="8sp"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:text="1.5s"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:visibility="invisible"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_challenge_x"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    <!--End-->
+
+    <!--Start-->
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.elcom.com.quizupapp.ui.custom.ProgressTimerView
+            android:id="@+id/ProgressTimerView4"
+            android:visibility="invisible"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/ln_coins_ex"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+
+        <RelativeLayout
+            android:layout_centerInParent="true"
+            android:background="@drawable/circle_button_weak_black_layout"
+            android:layout_width="24dp"
+            android:layout_height="24dp">
+
+            <TextView
+                android:textColor="#2DDCAC"
+                android:textSize="8sp"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:text="1.5s"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:visibility="invisible"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_challenge_x"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    <!--End-->
+
+    <!--Start-->
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.elcom.com.quizupapp.ui.custom.ProgressTimerView
+            android:id="@+id/ProgressTimerView5"
+            android:visibility="invisible"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/ln_coins_ex"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+
+        <RelativeLayout
+            android:layout_centerInParent="true"
+            android:background="@drawable/circle_button_weak_black_layout"
+            android:layout_width="24dp"
+            android:layout_height="24dp">
+
+            <TextView
+                android:textColor="#2DDCAC"
+                android:textSize="8sp"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:text="1.5s"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:visibility="invisible"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_challenge_x"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    <!--End-->
+
+    <!--Start-->
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.elcom.com.quizupapp.ui.custom.ProgressTimerView
+            android:id="@+id/ProgressTimerView6"
+            android:visibility="visible"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/ln_coins_ex"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+
+        <RelativeLayout
+            android:visibility="invisible"
+            android:layout_centerInParent="true"
+            android:background="@drawable/circle_button_weak_black_layout"
+            android:layout_width="24dp"
+            android:layout_height="24dp">
+
+            <TextView
+                android:textColor="#2DDCAC"
+                android:textSize="8sp"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:text="1.5s"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:visibility="invisible"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_challenge_x"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    <!--End-->
+
+    <!--Start-->
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.elcom.com.quizupapp.ui.custom.ProgressTimerView
+            android:visibility="invisible"
+            android:id="@+id/ProgressTimerView7"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/ln_coins_ex"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+
+        <RelativeLayout
+            android:layout_centerInParent="true"
+            android:background="@drawable/circle_button_weak_black_layout"
+            android:layout_width="24dp"
+            android:layout_height="24dp">
+
+            <TextView
+                android:textColor="#2DDCAC"
+                android:textSize="8sp"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:text="1.5s"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:visibility="invisible"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_challenge_x"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    <!--End-->
+
+
+
+
+
+
+</LinearLayout>

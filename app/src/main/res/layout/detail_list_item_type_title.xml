@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<android.support.v7.widget.CardView card_view:cardCornerRadius="6dp"-->
+<!--card_view:cardElevation="3dp"-->
+<!--android:id="@+id/cv_topic"-->
+<!--xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--card_view:cardUseCompatPadding="true"-->
+<!--card_view:contentPadding="0dp"-->
+<!--xmlns:android="http://schemas.android.com/apk/res/android">-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="80dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="5dp">
+
+    <RelativeLayout
+        android:id="@+id/rl_game_icon"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_width="70dp"
+        android:layout_height="70dp">
+        <com.mikhaellopez.circularimageview.CircularImageView
+            app:civ_shadow="true"
+            app:civ_border="false"
+            app:civ_shadow_radius="10"
+            app:civ_shadow_color="@color/gray_2"
+            android:src="@drawable/icon_food"
+            android:id="@+id/imv_game_icon"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            />
+        <ImageView
+            android:visibility="gone"
+            android:padding="5dp"
+            android:id="@+id/imvFavor"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/favor_topic_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+
+
+    <TextView
+        android:gravity="center_horizontal"
+        android:textStyle="bold"
+        android:textColor="#5C5C5C"
+        android:textSize="12sp"
+        android:layout_centerHorizontal="true"
+        android:text="Test"
+        android:layout_below="@+id/rl_game_icon"
+        android:id="@+id/txt_topic_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:textColor="#5C5C5C"
+        android:textSize="10sp"
+        android:layout_centerHorizontal="true"
+        android:text="Advance"
+        android:layout_marginTop="2dp"
+        android:layout_below="@+id/txt_topic_title"
+        android:id="@+id/txt_topic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
+
+    <!--</android.support.v7.widget.CardView>-->

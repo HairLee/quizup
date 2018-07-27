@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:background="@drawable/bg"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:padding="10dp"
+        android:id="@+id/ln_top"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+
+            layout="@layout/coin_and_ex_layout" />
+        <TextView
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:id="@+id/txt_topic_title"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:gravity="center"
+            android:weightSum="3"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@drawable/radius_bg_blue_just_on_top_layout"
+                android:text="KẾT QUẢ"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="35dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:background="@drawable/radius_edittext_white_bg_white_srtoke2_layout"
+            android:layout_width="match_parent"
+            android:layout_height="320dp">
+
+            <LinearLayout
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+
+                <TextView
+                    android:textSize="19sp"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:text="Bạn đã hoàn thành toàn bộ câu hỏi của chủ đề"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                 <TextView
+                     android:id="@+id/tvTitle"
+                     android:textSize="19sp"
+                     android:textColor="#6665FF"
+                     android:text="Thể dục thể thao"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content" />
+                <RelativeLayout
+                    android:layout_marginTop="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imvTopic"
+                        android:src="@drawable/ic_home_playing"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp" />
+
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/green_1"
+                    android:text="THĂNG HẠNG MỚI"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:text="HIỂU BIẾT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+
+            <RelativeLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <View
+                    android:background="@color/gray_1"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"/>
+                <View
+                    android:layout_centerInParent="true"
+                    android:background="@color/gray_1"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="0.3dp"
+                    android:layout_height="match_parent"/>
+
+                <LinearLayout
+                    android:weightSum="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
+
+                    <LinearLayout
+                        android:id="@+id/lnStatistic"
+                        android:gravity="center"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_weight="1">
+                        <ImageView
+                            android:src="@drawable/ic_list"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+
+                        <TextView
+                            android:textColor="#2DDCAC"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="center"
+                            android:text="THỐNG KÊ"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:gravity="center"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_weight="1">
+                        <ImageView
+                            android:src="@drawable/ic_share"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+
+                        <TextView
+                            android:textColor="#FF9101"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="center"
+                            android:text="SHARE"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btnStop"
+            android:textColor="@color/white"
+            android:text="KẾT THÚC"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/radius_button_red_bg_red_srtoke_layout"
+            android:layout_width="240dp"
+            android:layout_height="45dp" />
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

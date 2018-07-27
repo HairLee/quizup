@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/lnRoot"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/challenge_invite_bg"
+    android:gravity="center_horizontal"
+    tools:context=".ui.activity.LiveChallengeInviteAndPlayGameActivity">
+
+
+
+
+    <RelativeLayout
+
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.elcom.com.quizupapp.ui.custom.LiveChallengeWaitingGameView
+            android:layout_width="match_parent"
+            android:id="@+id/lnTimer"
+            android:layout_height="wrap_content">
+
+
+        </com.elcom.com.quizupapp.ui.custom.LiveChallengeWaitingGameView>
+
+
+        <com.elcom.com.quizupapp.ui.custom.LiveChallengePlayGameView
+            android:id="@+id/lnLivePlayGame"
+            android:layout_width="match_parent"
+            android:visibility="invisible"
+            android:layout_height="wrap_content">
+
+        </com.elcom.com.quizupapp.ui.custom.LiveChallengePlayGameView>
+
+
+        <!--<include-->
+
+           <!---->
+            <!--layout="@layout/live_challenge_play_game_main_layout" />-->
+
+
+    </RelativeLayout>
+
+<RelativeLayout
+
+    android:layout_weight="1"
+    android:paddingTop="30dp"
+    android:layout_width="match_parent"
+    android:layout_height="0dp">
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/recyclerView"
+        android:background="@drawable/live_challenge_playinggame_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <View
+        android:id="@+id/viewShadow"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/challenge_invite_item_top_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="23dp" />
+
+    <ImageView
+        android:padding="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/live_challenge_chat_ic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
+
+
+
+
+
+</LinearLayout>

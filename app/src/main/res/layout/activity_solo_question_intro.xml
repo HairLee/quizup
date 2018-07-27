@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:id="@+id/lnRoot"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg"
+      >
+
+        <LinearLayout
+            android:padding="20dp"
+            android:id="@+id/ln_top"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <include layout="@layout/advertising_layout" />
+
+            <include
+                android:layout_marginTop="10dp"
+                layout="@layout/coin_and_ex_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imv_topic"
+                app:civ_border_width="8dp"
+                app:civ_border_color="@color/white"
+                android:layout_marginTop="20dp"
+                android:layout_width="110dp"
+                android:layout_height="110dp" />
+
+            <TextView
+                android:id="@+id/txt_topic"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/sizeBigTextView"
+                android:layout_marginTop="5dp"
+                tools:text="Popcorn Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:id="@+id/tvDescription"
+                android:textSize="16sp"
+                android:textColor="#729ed2"
+                android:text="New and Updated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <de.hdodenhof.circleimageview.CircleImageView
+                     android:id="@+id/imvAva"
+                    android:layout_width="40dp"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="#054187"
+                    android:layout_height="40dp" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tvLevel"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="10dp"
+                        tools:text="Level chủ đề: 13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tvJumpWins"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="10dp"
+                        tools:text="Chuỗi thắng hiện tại: 10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_marginBottom="15dp"
+
+           android:layout_above="@+id/tvDes"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/yellow"
+                android:id="@+id/tvReady"
+                android:layout_centerInParent="true"
+                android:layout_alignParentTop="true"
+                android:text="Bạn đã sẵn sàng?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Button
+                android:layout_marginBottom="20dp"
+                android:textSize="16sp"
+                android:id="@+id/btn_next"
+                android:textColor="@color/white"
+                android:text="BẮT ĐẦU CÂU 1"
+                android:layout_below="@+id/tvReady"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/radius_button_green_bg_green_srtoke_layout"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/buttonHeigh" />
+
+            <Button
+                android:visibility="gone"
+                android:layout_marginBottom="15dp"
+                android:textSize="16sp"
+                android:id="@+id/btnBack"
+                android:textColor="@color/white"
+                android:text="QUAY LẠI CHỦ ĐỀ"
+                android:layout_below="@+id/btn_next"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/radius_button_gray_bg_gray_srtoke_layout"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/buttonHeigh" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/tvDes"
+            android:textColor="#729ed2"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_alignParentBottom="true"
+            android:text="Tip 1 lorem ipsum dolor sit amet, conse adipiscing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

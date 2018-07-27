@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@drawable/challenge_finding_opponent_bg"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <ImageView
+        android:src="@drawable/back_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:textSize="26sp"
+            android:textColor="#F86868"
+            android:text="So tài"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        
+        <de.hdodenhof.circleimageview.CircleImageView
+            app:civ_border_width="5dp"
+            app:civ_border_color="@color/white"
+            android:src="@drawable/ic_home_playing"
+            android:layout_marginTop="30dp"
+            android:layout_width="115dp"
+            android:layout_height="115dp" />
+
+        <TextView
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="Địa lý"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="Kiến thức địa lý"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:textColor="#6665FF"
+            android:textSize="20sp"
+            android:text="Đang tìm đối thủ..."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

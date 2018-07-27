@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">QuizUpApp</string>
+    <string name="name">Name</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_of_caterogy">Sport - Education</string>
+    <string name="facebook_app_id">606506636367810</string>
+    <string name="coin">Coins</string>
+    <string name="experience">Ex</string>
+    <string name="can_not_get_data">Can not get data</string>
+    <string name="banner_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="get_last_question_success">get last question success</string>
+
+    <string-array name="setting_title">
+        <item>Xem hồ sơ cá nhân</item>
+        <item>Bạn bè</item>
+        <item>Chủ đề yêu thích</item>
+        <item>Giới thiệu</item>
+        <item>Hỗ trợ</item>
+        <item>Đánh giá ứng dụng</item>
+    </string-array>
+
+    <string-array name="setting_edit_title">
+        <item>ambition@gmail.com</item>
+        <item>Mật khẩu</item>
+        <item>Text tile nhân được</item>
+        <item>Ảnh đại diện</item>
+        <item>Ảnh bìa</item>
+        <item>Giới tính</item>
+    </string-array>
+</resources>

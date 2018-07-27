@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:background="@drawable/bg_result_top"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:textSize="19sp"
+        android:textColor="@color/white"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:text="THỐNG KÊ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:padding="15dp"
+        android:id="@+id/imvClose"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:text="Thể Thao"
+        android:layout_below="@+id/imvClose"
+        android:id="@+id/tvTitleTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:visibility="gone"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:text="Bong Da"
+        android:layout_below="@+id/tvTitleTopic"
+        android:id="@+id/tvTitleDetailTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/tvTitleDetailTopic"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:id="@+id/ln_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.CardView
+                android:layout_marginTop="30dp"
+                card_view:cardUseCompatPadding="true"
+                card_view:contentPadding="0dp"
+                card_view:cardCornerRadius="6dp"
+                card_view:cardElevation="3dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:paddingBottom="10dp"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvScore"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="60dp"
+                        android:text="Chuỗi Thắng : 4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tvLevel"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="5dp"
+                        android:text="Level : 12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tvComment"
+                        android:textStyle="bold"
+                        android:textColor="@color/green_1"
+                        android:layout_marginTop="10dp"
+                        android:text="RẤT TỐT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                    <LinearLayout
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <!--Start-->
+                        <LinearLayout
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent">
+
+                            <RelativeLayout
+                                android:background="@drawable/circle_button_green_layout"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp">
+
+                                <TextView
+                                    android:id="@+id/tvScoreWin"
+                                    android:textColor="@color/white"
+                                    android:layout_centerInParent="true"
+                                    android:text="50"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </RelativeLayout>
+
+                            <TextView
+                                android:layout_marginTop="5dp"
+                                android:textSize="10sp"
+                                android:textColor="@color/green_1"
+                                android:text="Điểm thắng"
+                                android:gravity="center_horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+
+
+                        </LinearLayout>
+                        <!--End-->
+
+                        <!--Start-->
+                        <LinearLayout
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent">
+
+                            <RelativeLayout
+                                android:background="@drawable/circle_button_red_layout"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp">
+
+                                <TextView
+                                    android:textColor="@color/white"
+                                    android:id="@+id/tvTotalScore"
+                                    android:layout_centerInParent="true"
+                                    android:text="10"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </RelativeLayout>
+
+                            <TextView
+                                android:layout_marginTop="5dp"
+                                android:textSize="10sp"
+                                android:textColor="#F86868"
+                                android:text="Điểm Thưởng"
+                                android:gravity="center_horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+
+
+                        </LinearLayout>
+                        <!--End-->
+
+                        <!--Start-->
+                        <LinearLayout
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent">
+
+                            <RelativeLayout
+                                android:background="@drawable/circle_button_weak_blue_layout"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp">
+
+                                <TextView
+                                    android:id="@+id/tvTotalXp"
+                                    android:textColor="@color/white"
+                                    android:layout_centerInParent="true"
+                                    android:text="120"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </RelativeLayout>
+
+                            <TextView
+                                android:layout_marginTop="5dp"
+                                android:textSize="10sp"
+                                android:textColor="#2DDCAC"
+                                android:text="Tổng Xp"
+                                android:gravity="center_horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+
+
+                        </LinearLayout>
+                        <!--End-->
+
+                        <!--Start-->
+                        <LinearLayout
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent">
+
+                            <RelativeLayout
+                                android:background="@drawable/circle_button_oringe_layout"
+                                android:layout_width="45dp"
+                                android:layout_height="45dp">
+
+                                <TextView
+                                    android:id="@+id/tvX"                                    android:textColor="@color/white"
+                                    android:layout_centerInParent="true"
+                                    android:text="1.2X"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </RelativeLayout>
+
+                            <TextView
+                                android:layout_marginTop="5dp"
+                                android:textSize="10sp"
+                                android:textColor="#FF9101"
+                                android:text="Hệ Số Nhân"
+                                android:gravity="center_horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+
+
+                        </LinearLayout>
+                        <!--End-->
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            card_view:civ_border_width="5dp"
+            card_view:civ_border_color="@color/white"
+            android:id="@+id/imvTopic"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_home_playing"
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+
+            android:gravity="center"
+            android:layout_below="@+id/ln_top"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/bn_static"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <RelativeLayout
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="#F86868"
+                    android:text="Thời gian chơi : 50s"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/bottom_navigation_bg_4"
+                    android:text="Điểm : 60XP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:background="#88BCEDFF"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <ImageView
+                    card_view:srcCompat="@drawable/ic_leaderboard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="10dp"
+                    android:text="BẢNG XẾP HẠNG"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/lnRoot"
+    android:orientation="vertical"
+    android:focusableInTouchMode="true"
+    android:descendantFocusability="beforeDescendants"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.LiveChallengeFragment">
+
+    <RelativeLayout
+        android:background="@color/colorPurple"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+
+        <TextView
+            android:textColor="#B8B8B8"
+            android:textSize="15sp"
+            android:layout_marginLeft="8dp"
+            android:id="@+id/txtSearch"
+            android:layout_toRightOf="@+id/imvSearch"
+            android:layout_centerVertical="true"
+            android:text="Tim kiem mot chu de"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1"
+            android:id="@+id/edtSearch"
+            android:paddingLeft="10dp"
+            android:background="@drawable/radius_edittext_white_bg_white_srtoke_layout"
+            android:layout_marginLeft="15dp"
+            android:layout_toLeftOf="@+id/tvSearch"
+            android:textSize="15sp"
+            android:textColor="#B8B8B8"
+            android:layout_centerInParent="true"
+
+            android:layout_width="match_parent"
+            android:layout_height="32dp" />
+
+        <TextView
+            android:textColor="@color/white"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/tvSearch"
+            android:text="HỦY"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/live_challenge_i_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/imvSearch"
+            android:layout_marginLeft="28dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_search_black_24dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp" />
+
+    </RelativeLayout>
+
+
+
+
+    <!-- TODO: Update blank fragment layout -->
+    <android.support.design.widget.TabLayout
+        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+        app:tabPaddingStart="0dp"
+        app:tabPaddingEnd="0dp"
+        android:background="@color/colorPurple"
+        android:id="@+id/tabs2"
+        app:tabIndicatorColor="@color/white"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/gray_2"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</LinearLayout>

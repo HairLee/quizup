@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_margin="5dp"
+    android:background="@drawable/radius_edittext_white_bg_white_srtoke2_layout"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="370dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_weight="1"
+        android:background="@drawable/live_challenge_youarewinner_dialog_bg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:textSize="17sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bạn thắng cuộc"
+                />
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_ava_default"
+                android:layout_width="80dp"
+                android:layout_height="80dp" />
+
+            <TextView
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ambition"
+                />
+
+
+            <TextView
+                android:textSize="17sp"
+                android:textColor="#FFFF5E"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bạn nhận được 120.000 coins"
+                />
+        </LinearLayout>
+
+
+
+        <Button
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/white"
+            android:text="Chia sẻ"
+            android:background="@drawable/radius_button_oringe_bg_none_srtoke_layout"
+            android:layout_width="128dp"
+            android:layout_height="36dp" />
+
+
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tvResult"
+        android:background="@drawable/live_challenge_youarewinner_dialog_bottom_bg"
+        android:gravity="center"
+        android:text="Xem kết quả"
+        android:layout_width="match_parent"
+        android:layout_height="70dp" />
+
+
+
+</LinearLayout>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.SettingEditAccountFragment">
+
+    <RelativeLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:src="@drawable/back_icon"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="Thiết lập tài khoản"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textColor="@color/white"
+            android:text="Lưu"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/hello_blank_fragment" />
+            <RelativeLayout
+                android:background="#EEEFEF"
+                android:layout_width="match_parent"
+                android:layout_height="126dp">
+
+                <RelativeLayout
+                    android:background="@color/white"
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="96dp">
+
+                    <TextView
+                        android:padding="10dp"
+                        android:text="Thiết lập ứng dụng"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="10dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/imv"
+                            android:src="@drawable/update_sound"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                            <TextView
+                                android:layout_weight="1"
+                                android:layout_marginLeft="10dp"
+                                android:text="Âm thanh"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                                <android.support.v7.widget.SwitchCompat
+                                    android:id="@+id/swSound"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:textSize="17sp"
+                android:textColor="#F86868"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="ĐĂNG XUẤT"
+                android:layout_width="match_parent"
+                android:layout_height="45dp" />
+            
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+
+
+</LinearLayout>

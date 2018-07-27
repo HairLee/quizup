@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@drawable/bg"
+    tools:context="com.elcom.com.quizupapp.ui.activity.SoloQuestionIntro">
+
+
+<LinearLayout
+    android:padding="20dp"
+    android:id="@+id/ln_top"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <include
+        android:visibility="gone"
+        layout="@layout/coin_and_ex_layout"/>
+
+    <include layout="@layout/advertising_layout" />
+
+    <ImageView
+        android:layout_marginTop="5dp"
+        android:layout_gravity="start"
+        android:src="@drawable/back_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="40dp"
+            android:src="@drawable/quizup_icon"
+            android:layout_height="40dp" />
+        <TextView
+            android:textColor="#09e5ff"
+            android:layout_marginLeft="10dp"
+            android:text="Your Streak: 1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        app:civ_border_width="5dp"
+        app:civ_border_color="@color/white"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/quizup_icon"
+        android:layout_width="150dp"
+        android:layout_height="150dp" />
+
+    <TextView
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="@dimen/sizeBigTextView"
+        android:layout_marginTop="10dp"
+        android:text="Popcorn Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textSize="10sp"
+        android:textColor="@color/white"
+        android:text="New and Updated"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+</LinearLayout>
+
+    <RelativeLayout
+        android:padding="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/ln_top"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/radius_bg_white_just_on_top_layout"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textSize="18sp"
+            android:textColor="@color/oringe_2"
+            android:id="@+id/tvReady"
+            android:layout_marginTop="10dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentTop="true"
+            android:text="Are you ready?"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_next"
+            android:textColor="@color/white"
+            android:text="START QUESTION1"
+           android:layout_below="@+id/tvReady"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/radius_button_purple_bg_purple_srtoke_layout"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/login_edittext_heigh" />
+
+        <TextView
+            android:id="@+id/tvDes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/btn_next"
+            android:gravity="center"
+            android:text="Tip 1 lorem ipsum dolor sit amet, consectetur adipiscing elit"
+            android:textColor="@color/gray_3"
+            android:textSize="18sp" />
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+</RelativeLayout>

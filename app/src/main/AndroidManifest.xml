@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.elcom.com.quizupapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:name=".QuizUpApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/BlueActivityTheme"
+        tools:replace="android:theme">
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity android:name=".ui.activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.TestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.HomeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.activity.SoloMatchBreakActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.SoloMatchStatisticActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.SoloMatchWithImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.SoloMatchWithTextActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".ui.activity.SoloQuestionIntro"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.TopicDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.SignUp1Acitivy"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.TestSocketActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ChallengeFindingRandomOpponentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ChallengeMatchWithTextActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ChallengeQuestionIntro"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ChallengeResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ChallengeFromFriendsActivity"
+            android:screenOrientation="portrait" />
+
+        <receiver android:name=".ui.activity.TestActivity$MyReceiver">
+            <intent-filter>
+                <action android:name="com.example.Broadcast" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".ui.activity.SoloMatchResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.RankingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.LiveChallengeInviteAndPlayGameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.LiveChallengeViewResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.LiveChallengeDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ChallengeWaitingToPlayGameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.SettingEditAccountActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.activity.SettingProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.SettingFriendActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.HistoryListActivity" />
+        <activity android:name=".ui.activity.SearchTopicActivity" />
+        <activity android:name=".ui.activity.AchievementActivity" />
+        <activity android:name=".ui.activity.OnboardingPageActivity" />
+        <activity android:name=".ui.activity.RatingTopicActivity" />
+        <activity android:name=".ui.activity.ListTopicDetailActivity" />
+        <activity android:name=".ui.activity.FavouriteTopicActivity" />
+        <activity android:name=".ui.activity.NotificationActivity" />
+        <activity android:name=".ui.activity.TopicRankActivity"></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:gravity="center_vertical"
+
+    android:transitionName="transitionString">
+
+
+
+
+
+
+
+    <TextView
+        android:textSize="15sp"
+        android:id="@+id/tvNumber"
+        android:textColor="@color/black"
+        android:layout_marginLeft="20dp"
+        android:layout_centerVertical="true"
+        android:text="12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/default_ava"
+        android:visibility="visible"
+        android:id="@+id/avatar"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginRight="15dp" />
+
+    <TextView
+        android:textSize="15sp"
+        android:id="@+id/tvName"
+        android:textColor="@color/black"
+        android:layout_centerVertical="true"
+        android:text="Ambition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:gravity="end"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="13sp"
+            android:textColor="#2DDCAC"
+            android:layout_centerVertical="true"
+            android:text="Xp "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:minWidth="80dp"
+            android:gravity="center"
+            android:layout_marginRight="5dp"
+            android:id="@+id/tvEp"
+            android:textColor="@color/gray_2"
+            android:layout_centerVertical="true"
+            android:text="54"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:weightSum="3"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="156dp">
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:weightSum="3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:src="@drawable/ic_history_market"
+                android:layout_width="72dp"
+                android:layout_height="72dp" />
+
+            <TextView
+                android:textColor="#5C5C5C"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:text="Cửa hàng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:src="@drawable/ic_history_playing_game"
+                android:layout_width="72dp"
+                android:layout_height="72dp" />
+
+            <TextView
+                android:textColor="#5C5C5C"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:text="Chơi game"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:src="@drawable/ic_history_market"
+                android:layout_width="72dp"
+                android:layout_height="72dp" />
+
+            <TextView
+                android:textColor="#5C5C5C"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:text="Nhiệm vụ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+   <View
+       android:layout_alignParentBottom="true"
+       android:background="@color/gray_2"
+       android:layout_width="match_parent"
+       android:layout_height="0.5dp" />
+
+
+
+
+</RelativeLayout>

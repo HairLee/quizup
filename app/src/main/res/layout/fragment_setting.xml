@@ -1,0 +1,118 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.elcom.com.quizupapp.ui.fragment.SettingFragment">
+
+    <RelativeLayout
+        android:background="@color/colorPrimary"
+        android:id="@+id/rlTop"
+        android:layout_width="match_parent"
+        android:layout_height="195dp">
+        
+        <View
+            android:background="#80000000"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+
+        <ImageView
+            android:scaleType="fitXY"
+            android:id="@+id/imvBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:padding="7dp"
+            android:id="@+id/tvName"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:text="Ambition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/imvSetting"
+            android:padding="10dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/setting_profile_edit_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <RelativeLayout
+            android:id="@+id/rlAva"
+            android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/tvName"
+            android:layout_width="72dp"
+            android:layout_height="72dp">
+            <com.mikhaellopez.circularimageview.CircularImageView
+                app:civ_border="true"
+
+                android:id="@+id/imvAva"
+                android:src="@drawable/ic_ava_default"
+                android:layout_width="72dp"
+                android:layout_height="72dp" />
+
+            <ImageView
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/setting_change_ava_ic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/radius_edittext_black_bg_white_srtoke_layout"
+            android:layout_below="@+id/rlAva"
+            android:layout_width="110dp"
+            android:layout_height="32dp">
+            <ImageView
+                android:layout_marginLeft="5dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/dollar_coin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="120"
+            android:textColor="@color/white"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/profile_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/imvCover"
+            android:padding="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/setting_change_cover_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <!-- TODO: Update blank fragment layout -->
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/rlTop"
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

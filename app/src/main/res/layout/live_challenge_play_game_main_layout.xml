@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp"
+    android:paddingTop="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <android.support.v7.widget.CardView
+        app:cardCornerRadius="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_xp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <TextView
+                    android:id="@+id/tvNumberOfQuestion"
+                    android:gravity="center"
+                    android:textColor="@color/green_1"
+                    android:text="1/12"
+                    android:background="@drawable/radius_edittext_trans_bg_white_srtoke_layout"
+                    android:layout_centerInParent="true"
+                    android:layout_width="130dp"
+                    android:layout_height="36dp" />
+
+
+                <ImageView
+                    android:id="@+id/imvClose"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_xp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:gravity="clip_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <ImageView
+                    android:id="@+id/imvClock"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/live_challenge_playing_timer_ic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tvTimer"
+                    android:textColor="@color/oringe_2"
+                    android:text="5"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textColor="@color/oringe_2"
+                    android:visibility="invisible"
+                    android:id="@+id/tvWarn"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <TextView
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:id="@+id/tvQuestion"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="Tài nguyên có ý nghĩa đặc biệt đối với sự phát triển kinh tế xã hội Việt Nam hiện nay là:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="HardcodedText" />
+
+            <LinearLayout
+
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:gravity="start"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/rlA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:visibility="invisible"
+                        android:id="@+id/rlViewPercentA"
+                        android:background="@drawable/radius_bg_green_just_on_left_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="54dp">
+
+
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:visibility="visible"
+                        android:id="@+id/btnA"
+                        android:paddingLeft="10dp"
+                        android:gravity="start|center_vertical"
+                        android:text="A. Tài nguyên đất"
+
+                        android:background="@drawable/radius_edittext_white_bg_gray_srtoke2_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        />
+                    <TextView
+                        android:layout_marginRight="5dp"
+                        android:layout_centerVertical="true"
+                        android:text="1234"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/rlB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:visibility="invisible"
+                        android:id="@+id/rlViewPercentB"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/radius_bg_green_just_on_left_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="54dp">
+
+
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:visibility="visible"
+                        android:id="@+id/btnB"
+                        android:paddingLeft="10dp"
+                        android:gravity="start|center_vertical"
+                        android:text="A. Tài nguyên đất"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/radius_edittext_white_bg_gray_srtoke2_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/rlC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:visibility="invisible"
+                        android:id="@+id/rlViewPercentC"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/radius_bg_green_just_on_left_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="54dp">
+
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:visibility="visible"
+                        android:id="@+id/btnC"
+                        android:paddingLeft="10dp"
+                        android:gravity="start|center_vertical"
+                        android:text="A. Tài nguyên đất"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/radius_edittext_white_bg_gray_srtoke2_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
+
+
+</RelativeLayout>

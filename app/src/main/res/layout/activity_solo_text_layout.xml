@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@drawable/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <include
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/ln_coins_ex"
+                layout="@layout/coin_and_ex_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
+
+
+
+            <com.elcom.com.quizupapp.ui.custom.ProgressTimerView
+                android:id="@+id/ptvCountDown"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/ln_coins_ex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:gravity="center"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/ptvCountDown"
+                android:text="Question"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:id="@+id/txt_question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <LinearLayout
+                android:layout_below="@+id/txt_question"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/ln_answer"
+                android:weightSum="2"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:visibility="invisible"
+                    android:id="@+id/ln_answer_top"
+                    android:weightSum="2"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+
+                    <Button
+                        android:textAllCaps="false"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:background="@drawable/button_normal_main_radius_layout"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:text="1"
+                        android:id="@+id/answer_1"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+                    <Button
+                        android:textAllCaps="false"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:background="@drawable/button_normal_main_radius_layout"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:text="2"
+                        android:id="@+id/answer_2"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="invisible"
+                    android:id="@+id/ln_answer_bottom"
+                    android:weightSum="2"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="0dp">
+
+                    <Button
+                        android:textAllCaps="false"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:background="@drawable/button_normal_main_radius_layout"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:text="3"
+                        android:id="@+id/answer_3"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+                    <Button
+                        android:textAllCaps="false"
+                        android:paddingBottom="15dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:background="@drawable/button_normal_main_radius_layout"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:text="4"
+                        android:id="@+id/answer_4"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+        </RelativeLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+
+
+
+</RelativeLayout>
+
+
+
+
+
+

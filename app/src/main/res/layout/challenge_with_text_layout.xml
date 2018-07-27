@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@drawable/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <include
+                android:visibility="gone"
+                android:id="@+id/ln_coins_ex"
+                layout="@layout/coin_and_ex_layout" />
+
+            <include
+                android:visibility="visible"
+                android:id="@+id/lnHeader"
+                layout="@layout/challenge_with_text_header_layout" />
+
+
+            <com.elcom.com.quizupapp.ui.custom.ChallengeScoreAndTimeView
+                android:layout_marginTop="5dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/lnHeader"
+                android:visibility="visible"
+                android:id="@+id/lnScoreAndTime"
+                layout="@layout/challenge_score_and_timer_item_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
+
+
+
+
+
+
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/lnScoreAndTime"
+                android:text="Question"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:id="@+id/txt_question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <LinearLayout
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_below="@+id/txt_question"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/ln_answer"
+                android:weightSum="2"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:visibility="visible"
+                    android:id="@+id/ln_answer_top"
+                    android:weightSum="2"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+
+                    <Button
+                        android:padding="10dp"
+                        android:background="@drawable/play_game_normal_button"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:text="1"
+                        android:id="@+id/answer_1"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+                    <Button
+                        android:padding="10dp"
+                        android:background="@drawable/play_game_normal_button"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:text="2"
+                        android:id="@+id/answer_2"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="visible"
+                    android:id="@+id/ln_answer_bottom"
+                    android:weightSum="2"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="0dp">
+
+                    <Button
+                        android:padding="10dp"
+                        android:background="@drawable/play_game_normal_button"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:text="3"
+                        android:id="@+id/answer_3"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+                    <Button
+                        android:padding="10dp"
+                        android:background="@drawable/play_game_normal_button"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:text="4"
+                        android:id="@+id/answer_4"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <com.elcom.com.quizupapp.ui.custom.ChallengeLineScoreItemView
+                android:id="@+id/lineScoreMe"
+                android:layout_below="@+id/txt_question"
+                android:layout_width="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_height="wrap_content">
+
+
+            </com.elcom.com.quizupapp.ui.custom.ChallengeLineScoreItemView>
+
+
+            <com.elcom.com.quizupapp.ui.custom.ChallengeLineScoreItemView
+                android:id="@+id/lineScoreOp"
+                android:layout_below="@+id/txt_question"
+                android:layout_width="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content">
+
+
+            </com.elcom.com.quizupapp.ui.custom.ChallengeLineScoreItemView>
+
+        </RelativeLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+
+
+
+</RelativeLayout>
+
+
+
+
+
+

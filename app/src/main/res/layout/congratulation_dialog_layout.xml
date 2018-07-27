@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:scaleType="fitEnd"
+            android:src="@drawable/ic_banner_inform_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="205dp">
+            <LinearLayout
+
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:background="@drawable/radius_bg_white_just_on_bottom_layout"
+                android:layout_width="350dp"
+                android:layout_height="160dp">
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/green_2"
+                    android:text="Tuyệt Vời"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Bạn đã hoàn thành 100 câu hỏi của chủ đề Thể thao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="22.5dp"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:weightSum="2"
+                android:layout_height="45dp">
+                <Button
+                    android:id="@+id/btnResult"
+                    android:textColor="@color/white"
+                    android:text="KẾT QUẢ"
+                    android:background="@drawable/radius_button_weak_blue_bg_none_srtoke_layout"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/btnShare"
+                    android:textColor="@color/white"
+                    android:text="CHIA SẺ"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/radius_button_oringe_bg_none_srtoke_layout"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+</RelativeLayout>

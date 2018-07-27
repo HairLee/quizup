@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context="com.elcom.com.quizupapp.ui.activity.SignUp1Acitivy">
+<LinearLayout
+    android:gravity="center_horizontal"
+    android:padding="40dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+        <TextView
+            android:textStyle="bold"
+            android:textColor="@color/green_1"
+            android:textSize="25sp"
+            android:text="Create New Account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    <EditText
+        android:layout_marginTop="40dp"
+        android:background="@drawable/radius_edittext_white_bg_gray_srtoke_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login_edittext_heigh" />
+    <EditText
+        android:layout_marginTop="10dp"
+        android:background="@drawable/radius_edittext_white_bg_gray_srtoke_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login_edittext_heigh" />
+    <EditText
+        android:layout_marginTop="10dp"
+        android:background="@drawable/radius_edittext_white_bg_gray_srtoke_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login_edittext_heigh" />
+    <EditText
+        android:layout_marginTop="10dp"
+        android:background="@drawable/radius_edittext_white_bg_gray_srtoke_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login_edittext_heigh" />
+
+</LinearLayout>
+
+
+
+</RelativeLayout>

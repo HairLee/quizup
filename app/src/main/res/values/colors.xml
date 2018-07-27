@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6665FF</color>
+    <color name="colorPrimaryDark">#6665FF</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorBlue">#303F9F</color>
+    <color name="colorBlue88">#80303F9F</color>
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffff</color>
+    <color name="bottom_navigation_bg_1">#2C3E50</color>
+    <color name="bottom_navigation_bg_2">#F4F6F6</color>
+    <color name="bottom_navigation_bg_3">#DC7633</color>
+    <color name="bottom_navigation_bg_4">#48C9B0</color>
+    <color name="black">#000000</color>
+    <color name="oringe_1">#EA5012</color>
+    <color name="oringe_2">#ff9024</color> // for text
+    <color name="oringe_3">#FF9101</color>
+
+
+    <color name="yellow">#fcee21</color> // for text
+
+    <color name="green_1">#3DC901</color>
+    <color name="green_2">#43AF15</color>
+
+    <color name="gray_1">#90928E</color>
+    <color name="gray_2">#b8b8b8</color>
+    <color name="gray_3">#acacac</color> // for text
+
+
+    <color name="answer_text_color">#016ee9</color>
+    <color name="ava_circle_border">#0a5998</color>
+    <color name="colorGoogle">#F86868</color>
+    <color name="colorFacebook">#0090ff</color>
+    <color name="colorPurple">#6665FF</color>
+
+    <color name="colorWrongAnswer">#F86868</color>
+
+</resources>

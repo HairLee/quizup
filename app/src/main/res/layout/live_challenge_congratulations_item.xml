@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="72dp">
+
+    <TextView
+        android:id="@+id/tvNumber"
+        android:layout_marginLeft="20dp"
+        android:layout_centerVertical="true"
+        android:text="1"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_centerVertical="true"
+        android:id="@+id/imvAva"
+        android:layout_marginLeft="60sp"
+        android:layout_width="48dp"
+        android:src="@drawable/ic_home_playing"
+        android:layout_height="48dp" />
+
+    <LinearLayout
+        android:id="@+id/lnInfo"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/imvAva"
+        android:layout_marginLeft="15dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvName"
+            android:textColor="@color/black"
+            android:text="Ambition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_toLeftOf="@id/tvCoin"
+        android:id="@+id/tvScore"
+        android:layout_centerVertical="true"
+        android:textColor="#07BE8C"
+        android:text="1240"
+        android:textSize="11sp"
+        android:layout_marginRight="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvCoin"
+        android:layout_centerVertical="true"
+        android:textColor="#FF9101"
+        android:text="160"
+        android:textSize="11sp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_marginLeft="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:background="@color/gray_2"
+        android:layout_height="0.5dp"
+        />
+
+
+
+</RelativeLayout>

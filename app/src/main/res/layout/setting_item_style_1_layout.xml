@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/rlClick"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="45dp">
+
+    <ImageView
+        android:layout_marginLeft="15dp"
+        android:id="@+id/imvAva"
+        android:layout_centerVertical="true"
+        android:src="@drawable/setting_support_ic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:layout_toRightOf="@+id/imvAva"
+        android:id="@+id/tvTitle"
+        android:text="Title"
+        android:layout_marginLeft="15dp"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <View
+        android:id="@+id/viewBottom"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="60dp"
+        android:background="@color/gray_2"
+    android:layout_width="match_parent"
+    android:layout_height="1dp" />
+
+    <LinearLayout
+        android:id="@+id/lnNumberOfTopic"
+        android:visibility="gone"
+        android:layout_marginRight="15dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvNumberOfTopic"
+            android:textColor="#6665FF"
+            android:text="180 Chủ đề"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/imvDes"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/setting_view_more_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</RelativeLayout>

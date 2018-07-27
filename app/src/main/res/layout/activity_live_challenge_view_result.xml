@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.LiveChallengeViewResultActivity">
+
+
+    <RelativeLayout
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:background="@color/colorPurple"
+        android:id="@+id/rlHeader"
+        android:layout_width="match_parent"
+        android:layout_height="105dp">
+        <ImageView
+            android:src="@drawable/live_challenge_cup_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/tvTotal"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="12/12"
+            android:layout_centerHorizontal="true"
+            android:layout_width="130dp"
+            android:layout_height="36dp" />
+
+
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:src="@drawable/live_challenge_invite_header_right_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="50dp"
+        android:id="@+id/lnCongratulation"
+        app:cardCornerRadius="5dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+
+        <TextView
+            android:textColor="@color/oringe_2"
+            android:layout_gravity="center"
+            android:text="CHÚC MỪNG CHIẾN THẮNG!"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </android.support.v7.widget.CardView>
+
+
+
+    <RelativeLayout
+        android:padding="10dp"
+        android:id="@+id/rlScore"
+        android:layout_below="@+id/lnCongratulation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="160 người chiến thắng"
+            android:layout_alignParentLeft="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginRight="60dp"
+            android:text="Điểm"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_below="@+id/rlScore"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </android.support.v7.widget.RecyclerView>
+
+
+
+
+</RelativeLayout>

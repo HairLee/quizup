@@ -1,0 +1,52 @@
+
+
+<android.support.v7.widget.CardView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    card_view:cardCornerRadius="20dp"
+    android:layout_margin="20dp"
+    card_view:cardElevation="13dp"
+    card_view:cardUseCompatPadding="true"
+    card_view:contentPadding="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+      <RelativeLayout
+          android:padding="5dp"
+          android:layout_width="match_parent"
+          android:layout_height="200dp">
+          <TextView
+              android:gravity="center"
+              android:layout_marginBottom="10dp"
+              android:layout_centerInParent="true"
+              android:text="Bạn Có muốn dừng cuộc chơi không?"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" />
+
+          <Button
+              android:textColor="@color/white"
+              android:background="@drawable/radius_button_blue_bg_blue_srtoke_layout"
+              android:text="Cancel"
+              android:layout_marginRight="10dp"
+              android:layout_toLeftOf="@+id/btn_ok"
+              android:layout_alignParentBottom="true"
+              android:layout_width="wrap_content"
+              android:id="@+id/btn_cancel"
+              android:layout_height="wrap_content" />
+
+         <Button
+             android:textColor="@color/white"
+             android:background="@drawable/radius_button_blue_bg_blue_srtoke_layout"
+             android:text="Ok"
+             android:layout_alignParentBottom="true"
+             android:layout_alignParentRight="true"
+             android:layout_width="wrap_content"
+             android:id="@+id/btn_ok"
+             android:layout_height="wrap_content" />
+
+      </RelativeLayout>
+
+
+
+   </android.support.v7.widget.CardView>
+
+
+

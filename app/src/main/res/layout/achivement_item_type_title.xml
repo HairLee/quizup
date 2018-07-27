@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<android.support.v7.widget.CardView card_view:cardCornerRadius="6dp"-->
+<!--card_view:cardElevation="3dp"-->
+<!--android:id="@+id/cv_topic"-->
+<!--xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--card_view:cardUseCompatPadding="true"-->
+<!--card_view:contentPadding="0dp"-->
+<!--xmlns:android="http://schemas.android.com/apk/res/android">-->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="85dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <View
+        android:layout_marginLeft="75dp"
+        android:id="@+id/viewTop"
+        android:background="@color/gray_2"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp" />
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:layout_marginLeft="10dp"
+        app:civ_shadow="true"
+        app:civ_border="false"
+        app:civ_shadow_radius="10"
+        android:layout_centerVertical="true"
+        app:civ_shadow_color="@color/gray_2"
+        android:src="@drawable/icon_food"
+        android:id="@+id/imvAva"
+        android:layout_width="54dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        />
+
+    <LinearLayout
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:id="@+id/ln_topic_title"
+        android:layout_toRightOf="@+id/imvAva"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+
+            android:textStyle="bold"
+            android:textColor="#5C5C5C"
+            android:textSize="15sp"
+            android:text="Test"
+            android:id="@+id/txt_topic_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/tvDes"
+            android:textSize="15sp"
+            android:text="Level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginRight="100dp"
+            android:singleLine="true"
+            android:textColor="#5C5C5C"
+            android:textSize="15sp"
+            android:text="Advance"
+            android:layout_marginTop="2dp"
+            android:id="@+id/tvLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+
+    <ImageView
+        android:layout_marginTop="15dp"
+        android:id="@+id/imvFollow"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/tvCoins"
+        android:src="@drawable/ic_history_dollar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/tvCoins"
+        android:text="5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
+
+    <!--</android.support.v7.widget.CardView>-->
