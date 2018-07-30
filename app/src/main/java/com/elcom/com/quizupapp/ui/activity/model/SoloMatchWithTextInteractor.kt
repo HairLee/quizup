@@ -29,7 +29,7 @@ class SoloMatchWithTextInteractor(pSoloMatchWithTextListener:SoloMatchWithTextLi
             }
 
             override fun onFailure(call: Call<RestData<AnswerQuestion>>?, t: Throwable?) {
-
+                mSoloMatchWithTextListener.answerTheQuestionFault()
             }
         })
     }

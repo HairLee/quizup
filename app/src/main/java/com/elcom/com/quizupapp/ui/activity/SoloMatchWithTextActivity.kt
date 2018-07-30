@@ -65,7 +65,8 @@ class SoloMatchWithTextActivity : BaseActivityQuiz(), View.OnClickListener, Solo
             for (i in 0 until answerList.size) {
                 if (answerList[i].getCorrect() == "1"){
                     mCorrectAnswer = i
-                    return
+                } else {
+                    mWrongAnswer = i;
                 }
             }
         }
@@ -233,12 +234,12 @@ class SoloMatchWithTextActivity : BaseActivityQuiz(), View.OnClickListener, Solo
 
     /*Request Api Answer the question isn't Ok. Return the response */
     override fun answerTheQuestionFault() {
-
+        ProgressDialogUtils.dismissProgressDialog()
     }
 
     /*Time's Up* 10s*/
     override fun onFinishCountDown(listDemo: Boolean) {
-        answerTheQuestion(4)
+        pSoloMatchWithTextPresenter.answerTheQuestion(PreferUtils().getUserId(this), mTopicId, mQuestion!!.answer!![mWrongAnswer].getId().toString(), mQuestion!!.id!!, mMatchId, mLastQuestion )
         mp3Manage.playSong(this,0)
     }
 

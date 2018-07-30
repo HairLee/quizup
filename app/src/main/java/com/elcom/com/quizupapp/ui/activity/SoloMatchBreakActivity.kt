@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import android.util.Log
+import android.widget.Toast
 import com.elcom.com.quizupapp.R
 import com.elcom.com.quizupapp.ui.activity.model.entity.AnswerQuestion
 import com.elcom.com.quizupapp.ui.activity.model.entity.Introduction
@@ -51,11 +52,16 @@ class SoloMatchBreakActivity : FragmentActivity() {
 
         btn_continue_to_play.setOnClickListener {
 
-            val intent = Intent()
-            intent.putExtra(ConstantsApp.KEY_MINUS_GAME, mMinus)
-            setResult(ConstantsApp.RESULT_CODE_TO_CONTINUE_TO_PLAY_GAME_FROM_QUIZUPACTIVITY,intent)
-            finish()
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+            if(txt_coins.text.toString().toInt() >= mMinus.toInt()){
+                val intent = Intent()
+                intent.putExtra(ConstantsApp.KEY_MINUS_GAME, mMinus)
+                setResult(ConstantsApp.RESULT_CODE_TO_CONTINUE_TO_PLAY_GAME_FROM_QUIZUPACTIVITY,intent)
+                finish()
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+            } else {
+                Toast.makeText(this,"Không đủ coins", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
 

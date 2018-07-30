@@ -59,7 +59,9 @@ class SoloMatchWithImageActivity : FragmentActivity(), View.OnClickListener, Sol
             for (i in 0 until answerList.size) {
                 if (answerList[i].getCorrect() == "1"){
                     mCorrectAnswer = i
-                    return
+
+                } else {
+                    mWrongAnswer = i
                 }
             }
 
@@ -242,6 +244,7 @@ class SoloMatchWithImageActivity : FragmentActivity(), View.OnClickListener, Sol
 
     /*Time's Up* 10s*/
     override fun onFinishCountDown(listDemo: Boolean) {
+        pSoloMatchWithTextPresenter.answerTheQuestion(PreferUtils().getUserId(this), mTopicId, mQuestion!!.answer!![mWrongAnswer].getId().toString(), mQuestion!!.id!!, mMatchId, mLastQuestion )
         goToBreakActivityBecauseOfWrongAnswer()
     }
 
