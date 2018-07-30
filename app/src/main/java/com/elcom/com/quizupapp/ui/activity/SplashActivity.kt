@@ -7,11 +7,13 @@ import android.support.v7.app.AppCompatActivity
 import com.elcom.com.quizupapp.R
 import com.elcom.com.quizupapp.db.MangerDB
 import com.elcom.com.quizupapp.db.model.Invention
+import com.elcom.com.quizupapp.ui.activity.model.entity.User
 import com.elcom.com.quizupapp.ui.activity.model.entity.response.ContinueMatch
 import com.elcom.com.quizupapp.ui.custom.SocketManage
 import com.elcom.com.quizupapp.ui.network.RestClient
 import com.elcom.com.quizupapp.ui.network.RestData
 import com.elcom.com.quizupapp.ui.network.RestService
+import com.elcom.com.quizupapp.ui.view.LoginView
 import com.elcom.com.quizupapp.utils.ConstantsApp
 import com.elcom.com.quizupapp.utils.LogUtils
 import com.elcom.com.quizupapp.utils.PreferUtils
@@ -85,6 +87,29 @@ class SplashActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<RestData<ContinueMatch>>?, t: Throwable?) {
                 LogUtils.e("hailpt", "SplashActivity pauseGame "+t!!.message)
+            }
+
+        })
+    }
+
+
+    fun loginWithFacebook(userId:String,tokenId:String){
+
+        LogUtils.d("hailpt", "userId "+ " tokenId")
+
+
+        RestClient().getInstance().getRestService().loginWithFacebook(userId,tokenId).enqueue(object : Callback<RestData<User>>{
+            override fun onResponse(call: Call<RestData<User>>?, response: Response<RestData<User>>?) {
+                if (response?.body() != null){
+
+
+                } else{
+
+                }
+            }
+            override fun onFailure(call: Call<RestData<User>>?, t: Throwable?) {
+
+
             }
 
         })

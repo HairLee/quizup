@@ -25,8 +25,10 @@ public class CongratuationDialog extends AlertDialog {
         super.onCreate(savedInstanceState);
         getWindow().getAttributes().windowAnimations = R.style.DialogAnimationRightLeft;
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        setCancelable(false);
+        setCanceledOnTouchOutside(false);
         setContentView(R.layout.congratulation_dialog_layout);
-        setCancelable(true);
+
 
 
 

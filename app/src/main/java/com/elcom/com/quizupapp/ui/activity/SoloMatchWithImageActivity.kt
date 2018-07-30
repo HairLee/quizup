@@ -96,6 +96,7 @@ class SoloMatchWithImageActivity : FragmentActivity(), View.OnClickListener, Sol
 
     private var mAnswer = 4
     private var mCorrectAnswer = -1
+    private var mWrongAnswer = -1
     override fun onClick(p0: View?) {
         if (p0 != null) {
             when (p0.id) {
@@ -149,7 +150,9 @@ class SoloMatchWithImageActivity : FragmentActivity(), View.OnClickListener, Sol
         ProgressDialogUtils.showProgressDialog(this, 0, 0)
         ptvCountDown.stopCountDownTimer()
         currentAnswerId = mQuestion!!.answer!![pAnswerIdPos].getId().toString()
-        mCustomButton!!.changeColorWithCorrectAnswer(mAnswer,mCorrectAnswer)
+        if (mWrongAnswer == -1){
+            mCustomButton!!.changeColorWithCorrectAnswer(mAnswer,mCorrectAnswer)
+        }
         if(mQuestion != null){
             pSoloMatchWithTextPresenter.answerTheQuestion(PreferUtils().getUserId(this), mTopicId, mQuestion!!.answer!![pAnswerIdPos].getId().toString(), mQuestion!!.id!!, mMatchId,mLastQuestion )
         }

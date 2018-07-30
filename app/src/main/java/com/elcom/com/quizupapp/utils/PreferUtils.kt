@@ -12,6 +12,7 @@ class PreferUtils {
     private val PREFER_AVATAR_MYSELF = "PREFER_AVATAR_MYSELF"
     private val USER_ID = "user_id"
     private val CHANLLENGE_TIME_TO_INTIVE = "CHANLLENGE_TIME_TO_INTIVE"
+    private val FACEBOOK_ID = "FACEBOOK_ID"
     private val KEY_ENCRYPTION = "kenc"
 
 //    private val applicationContext  = QuizUpApp().getAppContext()!!
@@ -59,6 +60,19 @@ class PreferUtils {
     fun getChallengeTimeToInviteFriend(context: Context): String {
         val preferences = context.getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE)
         return preferences.getString(CHANLLENGE_TIME_TO_INTIVE, "")
+    }
+
+
+
+    fun setFacebookId(context: Context, time: String) {
+        val editor = context.getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE).edit()
+        editor.putString(FACEBOOK_ID, time)
+        editor.commit()
+    }
+
+    fun getFacebookId(context: Context): String {
+        val preferences = context.getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE)
+        return preferences.getString(FACEBOOK_ID, "")
     }
 
 

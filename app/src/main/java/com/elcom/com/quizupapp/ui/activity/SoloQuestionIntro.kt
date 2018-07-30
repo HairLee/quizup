@@ -210,6 +210,7 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
                     }
 
                     ConstantsApp.RESULT_CODE_FROM_RIGHT_ANSWER -> {
+                        mMinus = "0"
                         mQuestionNumber++
                         mType = 1
                         btn_next.text = "START QUESTION "+ mQuestionNumber

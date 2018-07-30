@@ -95,6 +95,7 @@ class SoloMatchWithTextActivity : BaseActivityQuiz(), View.OnClickListener, Solo
 
     private var mAnswer = 4
     private var mCorrectAnswer = -1
+    private var mWrongAnswer = -1
     override fun onClick(p0: View?) {
         if (p0 != null) {
             when (p0.id) {
@@ -177,7 +178,6 @@ class SoloMatchWithTextActivity : BaseActivityQuiz(), View.OnClickListener, Solo
 
     private fun goToResultActivity(){
 
-
         val congratuationDialog = CongratuationDialog(this, mQuestionNumber.toInt(), mQuestion!!.nameTopic, object  : OnDialogYesNoListener {
 
             override fun clickNoAction() {
@@ -238,6 +238,7 @@ class SoloMatchWithTextActivity : BaseActivityQuiz(), View.OnClickListener, Solo
 
     /*Time's Up* 10s*/
     override fun onFinishCountDown(listDemo: Boolean) {
+        answerTheQuestion(4)
         mp3Manage.playSong(this,0)
     }
 
