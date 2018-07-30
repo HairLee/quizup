@@ -36,7 +36,7 @@ class TopicDetail {
     var jumpWins: Int? = null
     @SerializedName("promotion_process")
     @Expose
-    var promotionProcess: Int? = null
+    var promotionProcess: Float? = null
     @SerializedName("number_question")
     @Expose
     var numberQuestion: Int? = null

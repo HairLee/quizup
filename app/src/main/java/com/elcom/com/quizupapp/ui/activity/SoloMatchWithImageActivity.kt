@@ -267,7 +267,10 @@ class SoloMatchWithImageActivity : FragmentActivity(), View.OnClickListener, Sol
                 }
 
                 ConstantsApp.RESULT_CODE_TO_CONTINUE_TO_PLAY_GAME_FROM_QUIZUPACTIVITY -> {
-                    setResult(ConstantsApp.RESULT_CODE_FROM_RIGHT_ANSWER_USING_COINS)
+                    val mMinus = data!!.extras.getString(ConstantsApp.KEY_MINUS_GAME)
+                    val intent = Intent()
+                    intent.putExtra(ConstantsApp.KEY_MINUS_GAME, mMinus)
+                    setResult(ConstantsApp.RESULT_CODE_FROM_RIGHT_ANSWER_USING_COINS,intent)
                     finish()
                 }
             }

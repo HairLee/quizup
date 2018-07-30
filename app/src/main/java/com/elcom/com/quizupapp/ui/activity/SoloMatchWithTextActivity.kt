@@ -22,6 +22,9 @@ import com.elcom.com.quizupapp.utils.*
 import kotlinx.android.synthetic.main.activity_solo_text_layout.*
 import kotlinx.android.synthetic.main.coin_and_ex_layout.*
 import java.util.ArrayList
+import android.R.attr.data
+
+
 
 
 
@@ -268,7 +271,12 @@ class SoloMatchWithTextActivity : BaseActivityQuiz(), View.OnClickListener, Solo
                 }
 
                 ConstantsApp.RESULT_CODE_TO_CONTINUE_TO_PLAY_GAME_FROM_QUIZUPACTIVITY -> {
-                    setResult(ConstantsApp.RESULT_CODE_FROM_RIGHT_ANSWER_USING_COINS)
+
+                    val mMinus = data!!.extras.getString(ConstantsApp.KEY_MINUS_GAME)
+                    val intent = Intent()
+                    intent.putExtra(ConstantsApp.KEY_MINUS_GAME, mMinus)
+
+                    setResult(ConstantsApp.RESULT_CODE_FROM_RIGHT_ANSWER_USING_COINS,intent)
                     finish()
                 }
             }

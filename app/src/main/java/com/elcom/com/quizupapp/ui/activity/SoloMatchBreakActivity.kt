@@ -7,6 +7,7 @@ import android.util.Log
 import com.elcom.com.quizupapp.R
 import com.elcom.com.quizupapp.ui.activity.model.entity.AnswerQuestion
 import com.elcom.com.quizupapp.ui.activity.model.entity.Introduction
+import com.elcom.com.quizupapp.ui.activity.model.entity.Result
 import com.elcom.com.quizupapp.ui.network.RestClient
 import com.elcom.com.quizupapp.ui.network.RestData
 import com.elcom.com.quizupapp.utils.ConstantsApp
@@ -19,12 +20,15 @@ import kotlinx.android.synthetic.main.activity_solo_match_break.*
 import kotlinx.android.synthetic.main.coin_and_ex_layout.*
 import retrofit2.Call
 
+
+
 class SoloMatchBreakActivity : FragmentActivity() {
 
 
     var mQuestion:Introduction? = null
     private var mMatchId = ""
     private var mTopicId = ""
+    private var mMinus = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        supportActionBar!!.hide()
@@ -36,6 +40,7 @@ class SoloMatchBreakActivity : FragmentActivity() {
             mMatchId = bundle.getString(ConstantsApp.KEY_SOLO_MATCH_ID)
             mTopicId = bundle.getString(ConstantsApp.KEY_TOPIC_ID)
             updateUI()
+            getResult()
         }
 
         btn_stop_playing.setOnClickListener {
@@ -45,15 +50,14 @@ class SoloMatchBreakActivity : FragmentActivity() {
         }
 
         btn_continue_to_play.setOnClickListener {
-            setResult(ConstantsApp.RESULT_CODE_TO_CONTINUE_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
+
+            val intent = Intent()
+            intent.putExtra(ConstantsApp.KEY_MINUS_GAME, mMinus)
+            setResult(ConstantsApp.RESULT_CODE_TO_CONTINUE_TO_PLAY_GAME_FROM_QUIZUPACTIVITY,intent)
             finish()
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
 
-        lnStatistic.setOnClickListener {
-            startActivityForResult(Intent(this,SoloMatchStatisticActivity::class.java).putExtra(ConstantsApp.KEY_SOLO_MATCH_ID,mMatchId).putExtra(ConstantsApp.KEY_QUESTION_ID,mTopicId), ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
-
-        }
 
     }
 
@@ -72,13 +76,33 @@ class SoloMatchBreakActivity : FragmentActivity() {
         })
     }
 
+    private fun getResult(){
+
+        RestClient().getInstance().getRestService().getResultAfterPlayingGame( PreferUtils().getUserId(this),mTopicId,mMatchId).enqueue(object: Callback<RestData<Result>> {
+            override fun onResponse(call: Call<RestData<Result>>?, response: Response<RestData<Result>>?) {
+                if (response?.body() != null){
+                    mMinus = response.body().data!!.minus_coins!!
+                    updateLayout(response.body().data!!)
+                }
+            }
+
+            override fun onFailure(call: Call<RestData<Result>>?, t: Throwable?) {
+
+            }
+        })
+    }
+
+    private fun updateLayout(result:Result){
+        tvNextCoins.setText("TIẾP TỤC - "+mMinus)
+    }
+
     private fun updateUI(){
         if (mQuestion != null){
             txt_topic_title.text = mQuestion!!.nameTopic
+
             txt_coins.text = mQuestion!!.coins
             txt_point.text = mQuestion!!.point
-            txt_stop_at.text = "Chuỗi thắng : "+mQuestion!!.coins
-            tvNuberOfWin.text = "+ " +mQuestion!!.question_number
+            txt_stop_at.text = "+"+mQuestion!!.point
 
             if(!mQuestion!!.topicImageUrl!!.isEmpty()){
                 Picasso.get()

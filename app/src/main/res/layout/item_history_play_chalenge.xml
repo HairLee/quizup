@@ -101,7 +101,7 @@
                     <TextView
                         android:id="@+id/tvName"
                         android:textSize="14sp"
-                        android:text="Hailt"
+                        android:text="Player"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView

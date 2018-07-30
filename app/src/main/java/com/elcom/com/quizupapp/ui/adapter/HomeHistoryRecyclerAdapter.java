@@ -14,6 +14,7 @@ import com.elcom.com.quizupapp.ui.activity.model.entity.response.topicdetail.Top
 import com.elcom.com.quizupapp.ui.listener.OnHistoryListListener;
 import com.elcom.com.quizupapp.ui.listener.OnSeeMoreTopicsListener;
 import com.elcom.com.quizupapp.utils.ConstantsApp;
+import com.elcom.com.quizupapp.utils.PreferUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -49,7 +50,7 @@ public class HomeHistoryRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
 
     private class ChallengeCellViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         private CircleImageView imvAva;
-        private TextView tvNameOfTopic,tvNumberOfWins,tvCoins,tvEx;
+        private TextView tvNameOfTopic,tvNumberOfWins,tvCoins,tvEx,tvName;
         private RelativeLayout rlBottom;
         private  ImageView imvRemove;
 
@@ -58,6 +59,7 @@ public class HomeHistoryRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
             super(itemView);
             imvAva = (CircleImageView) itemView.findViewById(R.id.imvAva);
             tvNameOfTopic = (TextView)itemView.findViewById(R.id.tvNameOfTopic);
+            tvName = (TextView)itemView.findViewById(R.id.tvName);
             tvNumberOfWins = (TextView)itemView.findViewById(R.id.tvNumberOfWins);
             tvCoins = (TextView)itemView.findViewById(R.id.tvCoins);
             rlBottom = itemView.findViewById(R.id.rlBottom);
@@ -129,6 +131,7 @@ public class HomeHistoryRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
                 }
 
                 cellViewHolder.tvEx.setText("+"+mList.get(position).getBonus());
+//                cellViewHolder.tvName.setText(PreferUtils.get);
                 cellViewHolder.tvNumberOfWins.setText("Chuỗi thắng : "+mList.get(position).getJump_wins());
 
                 break;

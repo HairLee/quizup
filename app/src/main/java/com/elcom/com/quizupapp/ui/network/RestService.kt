@@ -76,7 +76,7 @@ interface RestService {
 
     /*Introduction Of a question*/
     @GET("get-question-solo-match?")
-    abstract fun getIntroductionOfQuestion(@Query("user_id") user_id: String, @Query("topic_id") topic_id: String,@Query("question_number") question_number: String,@Query("type") type: String, @Query("match_id") match_id: String): Call<RestData<Introduction>>
+    abstract fun getIntroductionOfQuestion(@Query("user_id") user_id: String, @Query("topic_id") topic_id: String,@Query("question_number") question_number: String,@Query("type") type: String, @Query("match_id") match_id: String,@Query("minus_coins") minus_coins: String): Call<RestData<Introduction>>
 
 
     @GET("get-question-solo-match?")

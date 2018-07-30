@@ -25,7 +25,8 @@ class TopicDetailViewInterator(pTopicDetailViewListener:TopicDetailViewListener)
 
         RestClient().getInstance().getRestService().getTopicDetail(pTopicId).enqueue(object : Callback<RestData<TopicDetail>> {
             override fun onFailure(call: Call<RestData<TopicDetail>>?, t: Throwable?) {
-                    Log.e("hailpt"," getTopicDetail onFailure")
+                Log.e("hailpt"," getTopicDetail onFailure")
+                mTopicDetailViewListener.getTopicDetailFault()
             }
 
             override fun onResponse(call: Call<RestData<TopicDetail>>?, response: Response<RestData<TopicDetail>>?) {

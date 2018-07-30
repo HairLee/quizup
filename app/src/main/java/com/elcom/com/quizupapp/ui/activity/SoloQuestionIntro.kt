@@ -48,7 +48,7 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
     private var mQuestionNumber = 1
     private var mType = 1
     private var mIntroduction:Introduction? = null
-
+    private var mMinus = ""
     override fun getLayout(): Int {
         return R.layout.activity_solo_question_intro
     }
@@ -145,7 +145,7 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
 
     private fun getIntroductionOfTheQuestion(){
         showProgessDialog()
-        RestClient().getInstance().getRestService().getIntroductionOfQuestion(PreferUtils().getUserId(this),mTopicId,mQuestionNumber.toString(),mType.toString() ,mMatchId).enqueue(object: Callback<RestData<Introduction>>{
+        RestClient().getInstance().getRestService().getIntroductionOfQuestion(PreferUtils().getUserId(this),mTopicId,mQuestionNumber.toString(),mType.toString() ,mMatchId, mMinus).enqueue(object: Callback<RestData<Introduction>>{
 
             override fun onResponse(call: Call<RestData<Introduction>>?, response: Response<RestData<Introduction>>?) {
                 if(response?.body() != null && response.body().data != null){
@@ -221,8 +221,9 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
                         mQuestionNumber++
                         mType = 2
                         btn_next.text = "START QUESTION "+ mQuestionNumber
+                        mMinus = data!!.extras.getString(ConstantsApp.KEY_MINUS_GAME)
                         getIntroductionOfTheQuestion()
-                        Toast.makeText(this,  "-10 Coins "+mQuestionNumber, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this,  "- "+mMinus+ " Coins ", Toast.LENGTH_SHORT).show()
                     }
                 }
             }

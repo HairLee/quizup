@@ -221,7 +221,7 @@ class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickLis
     }
 
     override fun getTopicDetailFault() {
-
+        ProgressDialogUtils.dismissProgressDialog()
     }
 
     override fun onDestroy() {

@@ -65,25 +65,6 @@ class HomeActivity : BaseActivityQuiz(), OnSocketInviteOpponentListener {
 
     override fun initData() {
 
-
-
-
-    }
-
-    private fun moveToGameIntroduction(topic_id:String, match_id:String, question_number:Int){
-        val intent = Intent(applicationContext, SoloQuestionIntro::class.java)
-        intent.putExtra(ConstantsApp.KEY_QUESTION_ID,topic_id)
-        intent.putExtra(ConstantsApp.KEY_SOLO_MATCH_ID,match_id)
-        intent.putExtra(ConstantsApp.KEY_QUESTION_NUMBER,question_number)
-        startActivityForResult(intent, ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-    }
-
-
-    override fun onResume() {
-        super.onResume()
-
-
         navigation.selectedItemId = R.id.action_item1
         BottomNavigationViewHelper.removeShiftMode(navigation)
         navigation.setOnNavigationItemSelectedListener { item ->
@@ -137,6 +118,25 @@ class HomeActivity : BaseActivityQuiz(), OnSocketInviteOpponentListener {
         if( ConstantsApp.socketManage != null){
             ConstantsApp.socketManage.initToInventionFromFriend(this)
         }
+
+
+    }
+
+    private fun moveToGameIntroduction(topic_id:String, match_id:String, question_number:Int){
+        val intent = Intent(applicationContext, SoloQuestionIntro::class.java)
+        intent.putExtra(ConstantsApp.KEY_QUESTION_ID,topic_id)
+        intent.putExtra(ConstantsApp.KEY_SOLO_MATCH_ID,match_id)
+        intent.putExtra(ConstantsApp.KEY_QUESTION_NUMBER,question_number)
+        startActivityForResult(intent, ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+
+
+
     }
 
 

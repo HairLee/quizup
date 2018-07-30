@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/bg"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -20,60 +22,37 @@
             android:textColor="@color/white"
             android:id="@+id/txt_topic_title"
             android:layout_marginTop="20dp"
-            android:text="Sport"
+            tools:text="Sport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <LinearLayout
-            android:gravity="center"
-            android:weightSum="3"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:gravity="center"
-                android:background="@drawable/radius_bg_blue_just_on_top_layout"
-                android:text="KẾT QUẢ"
-                android:layout_weight="2"
-                android:layout_width="0dp"
-                android:layout_height="35dp" />
-        </LinearLayout>
+
 
         <LinearLayout
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:orientation="vertical"
             android:gravity="center_horizontal"
-            android:background="@drawable/radius_edittext_white_bg_white_srtoke2_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <RelativeLayout
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp">
+                android:layout_marginTop="80dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                   android:src="@drawable/default_ava"
                     android:id="@+id/imv_topic"
-                    android:src="@drawable/ic_leaderboard"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp" />
+                    app:civ_border_width="5dp"
+                    app:civ_border_color="@color/white"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp" />
 
-                <LinearLayout
-                    android:layout_marginLeft="10dp"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/imv_topic"
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/tvNuberOfWin"
-                        android:text="111111"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
             <LinearLayout
                 android:layout_marginTop="5dp"
                 android:gravity="center_vertical"
@@ -87,107 +66,20 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
-
-                    android:textColor="#6665FF"
+                    android:textSize="17sp"
+                    android:textColor="@color/white"
                     android:id="@+id/txt_stop_at"
                     android:layout_marginLeft="5dp"
-                    android:text="+20"
+                    tools:text="+20"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
 
-                </LinearLayout>
-
-            </RelativeLayout>
-
-            <TextView
-                android:layout_marginTop="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/green_1"
-                android:text="THĂNG HẠNG MỚI"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:layout_marginTop="5dp"
-                android:text="HIỂU BIẾT"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <RelativeLayout
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
-                <View
-                    android:background="@color/gray_1"
-                    android:layout_alignParentTop="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.3dp"/>
-                <View
-                    android:layout_centerInParent="true"
-                    android:background="@color/gray_1"
-                    android:layout_alignParentTop="true"
-                    android:layout_width="0.3dp"
-                    android:layout_height="match_parent"/>
-
-                <LinearLayout
-                    android:weightSum="2"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp">
-
-                    <LinearLayout
-                        android:id="@+id/lnStatistic"
-                        android:gravity="center"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_width="0dp"
-                        android:layout_weight="1">
-                        <ImageView
-                            android:src="@drawable/ic_list"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-
-                        <TextView
-                            android:textColor="#2DDCAC"
-                            android:layout_marginLeft="5dp"
-                            android:gravity="center"
-                            android:text="THỐNG KÊ"
-                            android:layout_alignParentRight="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent" />
-                    </LinearLayout>
 
 
 
-                    <LinearLayout
-                        android:id="@+id/lnShare"
-                        android:gravity="center"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_width="0dp"
-                        android:layout_weight="1">
-                        <ImageView
-                            android:src="@drawable/ic_share"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
 
-
-                        <TextView
-                            android:textColor="#FF9101"
-                            android:layout_marginLeft="5dp"
-                            android:gravity="center"
-                            android:text="SHARE"
-                            android:layout_alignParentRight="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
-            </RelativeLayout>
 
         </LinearLayout>
 
@@ -196,11 +88,11 @@
 
 
     <LinearLayout
-        android:layout_below="@+id/ln_top"
+        android:layout_alignParentBottom="true"
         android:paddingTop="20dp"
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
-        android:gravity="center_horizontal"
+        android:gravity="center_horizontal|bottom"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -217,7 +109,6 @@
             android:textColor="@color/white"
             android:paddingLeft="60dp"
             android:paddingRight="40dp"
-            android:drawableRight="@drawable/ic_video"
             android:text="XEM VIDEO "
             android:layout_marginTop="10dp"
             android:background="@drawable/radius_button_pink_bg_pink_srtoke_layout"
@@ -225,19 +116,32 @@
             android:layout_height="@dimen/buttonHeigh"
             />
 
-        <Button
 
-            android:textColor="@color/white"
-            android:id="@+id/btn_continue_to_play"
-            android:paddingLeft="60dp"
-            android:paddingRight="40dp"
-            android:drawableRight="@drawable/ic_coin"
-            android:text="TIẾP TỤC   "
+        <LinearLayout
             android:layout_marginTop="10dp"
+            android:id="@+id/btn_continue_to_play"
+            android:orientation="horizontal"
+            android:gravity="center"
             android:background="@drawable/radius_button_green_bg_green_srtoke_layout"
             android:layout_width="200dp"
-            android:layout_height="@dimen/buttonHeigh"
-            />
+            android:layout_height="@dimen/buttonHeigh">
+
+            <TextView
+                android:id="@+id/tvNextCoins"
+                android:textColor="@color/white"
+                android:text="TIẾP TỤC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:src="@drawable/dollar_coin"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
 
         <Button
             android:layout_marginBottom="20dp"

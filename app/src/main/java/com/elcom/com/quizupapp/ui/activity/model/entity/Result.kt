@@ -41,4 +41,8 @@ class Result {
     @Expose
     var current_win_string: String? = null
 
+    @SerializedName("minus_coins")
+    @Expose
+    var minus_coins: String? = null
+
 }
