@@ -27,11 +27,12 @@
                 android:layout_height="50dp" />
 
             <ImageView
+                android:padding="10dp"
                 app:layout_scrollFlags="scroll"
                 android:layout_width="match_parent"
                 android:layout_height="141dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/bg_result_top" />
+                android:src="@drawable/adver_bg" />
 
             <android.support.v7.widget.RecyclerView
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"

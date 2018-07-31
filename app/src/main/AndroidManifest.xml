@@ -121,15 +121,16 @@
         <activity
             android:name=".ui.activity.SettingFriendActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.HistoryListActivity" />
-        <activity android:name=".ui.activity.SearchTopicActivity" />
-        <activity android:name=".ui.activity.AchievementActivity" />
-        <activity android:name=".ui.activity.OnboardingPageActivity" />
-        <activity android:name=".ui.activity.RatingTopicActivity" />
-        <activity android:name=".ui.activity.ListTopicDetailActivity" />
-        <activity android:name=".ui.activity.FavouriteTopicActivity" />
-        <activity android:name=".ui.activity.NotificationActivity" />
-        <activity android:name=".ui.activity.TopicRankActivity"></activity>
+        <activity android:name=".ui.activity.HistoryListActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.SearchTopicActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.AchievementActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.OnboardingPageActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.RatingTopicActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.ListTopicDetailActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.FavouriteTopicActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.NotificationActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.TopicRankActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.IntroductionActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

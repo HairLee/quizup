@@ -32,16 +32,21 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        val tokenId = PreferUtils().getToken(this)
-
-        if(tokenId != ""){
-            ConstantsApp.USER_AVATAR_ME = PreferUtils().getAvatar(this)
-            ConstantsApp.BASE64_HEADER = PreferUtils().getToken(this)
-            getMatchWhenComeBackSplash()
-        } else {
-            val mainIntent = Intent(this, LoginActivity::class.java)
+        if(PreferUtils().getFirstTimeGoToApp(this)){
+            val mainIntent = Intent(this, IntroductionActivity::class.java)
             startActivity(mainIntent)
             finish()
+        } else {
+            val tokenId = PreferUtils().getToken(this)
+            if(tokenId != ""){
+                ConstantsApp.USER_AVATAR_ME = PreferUtils().getAvatar(this)
+                ConstantsApp.BASE64_HEADER = PreferUtils().getToken(this)
+                getMatchWhenComeBackSplash()
+            } else {
+                val mainIntent = Intent(this, LoginActivity::class.java)
+                startActivity(mainIntent)
+                finish()
+            }
         }
 
     }

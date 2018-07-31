@@ -11,6 +11,9 @@
     <string name="can_not_get_data">Can not get data</string>
     <string name="banner_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="get_last_question_success">get last question success</string>
+    <string name="intro_3">So tài kiến thức của bạn cùng hàng nghìn người chơi khác hàng ngày và nhận nhiều quà tặng hấp dẫn.</string>
+    <string name="intro2">Giải trí cùng bạn bè và chinh phục những câu hỏi đầy thú vị.</string>
+    <string name="intro1">Bạn được luyện tập kiến thức với hàng trăm chủ đề câu hỏi phong phú và đa dạng</string>
 
     <string-array name="setting_title">
         <item>Xem hồ sơ cá nhân</item>

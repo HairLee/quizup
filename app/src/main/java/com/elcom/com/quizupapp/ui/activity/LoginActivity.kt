@@ -96,8 +96,6 @@ class LoginActivity : BaseActivity(), LoginView, View.OnClickListener {
             override fun onSuccess(loginResult: LoginResult) {
                 showProgessDialog()
                 PreferUtils().setFacebookId(baseContext,loginResult.accessToken.userId)
-                Log.e("hailpt","accessTokenaccessToken userId "+loginResult.accessToken.userId)
-                Log.e("hailpt","accessTokenaccessToken "+loginResult.accessToken.token)
                 mLoginPresenter.loginWithFacebook(loginResult.accessToken.userId,loginResult.accessToken.token)
             }
 
