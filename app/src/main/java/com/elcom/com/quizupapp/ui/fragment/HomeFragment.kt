@@ -10,8 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.elcom.com.quizupapp.R
-import com.elcom.com.quizupapp.ui.activity.HistoryListActivity
-import com.elcom.com.quizupapp.ui.activity.SoloQuestionIntro
 import com.elcom.com.quizupapp.ui.activity.model.entity.Caterogy
 import com.elcom.com.quizupapp.ui.activity.model.entity.SoloMatch
 import com.elcom.com.quizupapp.ui.activity.model.entity.response.topicdetail.Topic
@@ -32,8 +30,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.content.DialogInterface
-import com.elcom.com.quizupapp.ui.activity.NotificationActivity
-import com.elcom.com.quizupapp.ui.activity.SettingProfileActivity
+import com.elcom.com.quizupapp.ui.activity.*
 import com.facebook.FacebookSdk.getApplicationContext
 import com.squareup.picasso.Picasso
 
@@ -85,15 +82,13 @@ class HomeFragment :  Fragment(), OnSeeMoreTopicsListener, OnHistoryListListener
                     .into(imvAva)
         }
 
+        imvSearch.setOnClickListener {
+            startActivity(Intent(context, SearchTopicActivity::class.java));
+        }
 
-        edtSearch.setOnFocusChangeListener { view, b ->
-            if (b){
-                imvSearch.visibility = View.GONE
-                txtSearch.visibility = View.GONE
-            } else {
-                imvSearch.visibility = View.VISIBLE
-                txtSearch.visibility = View.VISIBLE
-            }
+
+        edtSearch.setOnClickListener {
+            startActivity(Intent(context, SearchTopicActivity::class.java));
         }
 
         imvAva.setOnClickListener {
