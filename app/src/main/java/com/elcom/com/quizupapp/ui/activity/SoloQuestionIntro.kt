@@ -153,6 +153,7 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
                     txt_point.text = mIntroduction!!.point
                     txt_topic.text = mIntroduction!!.nameTopic
                     tvDescription.text = mIntroduction!!.description
+                    tvDes.text = mIntroduction!!.tips
                     mLastQuestion = mIntroduction!!.last_question!!
 
                     if(PreferUtils().getAvatar(baseContext) != ""){

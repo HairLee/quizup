@@ -52,6 +52,12 @@ class Introduction : Serializable {
     @Expose
     var last_question: String? = null
 
+    @SerializedName("tips")
+    @Expose
+    var tips: String? = null
+
+
+
 
     @SerializedName("level")
     @Expose

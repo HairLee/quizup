@@ -26,6 +26,15 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.elcom.com.quizupapp"
+
+
+        manifestPlaceholders = [
+                onesignal_app_id: '61f24c0d-ba18-443d-8118-cc625d0b82c8',
+                // Project number pulled from dashboard, local value is ignored.
+                onesignal_google_project_number: 'REMOTE'
+        ]
+
+
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
@@ -35,7 +44,7 @@ android {
         multiDexEnabled true
 
         manifestPlaceholders = [
-                onesignal_app_id               : '8fc9bc64-54db-43bd-8d82-2185fb3bc504',
+                onesignal_app_id: '8fc9bc64-54db-43bd-8d82-2185fb3bc504',
                 // Project number pulled from dashboard, local value is ignored.
                 onesignal_google_project_number: 'REMOTE'
         ]

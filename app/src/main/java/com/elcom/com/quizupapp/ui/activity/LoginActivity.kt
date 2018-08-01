@@ -24,6 +24,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.onesignal.OneSignal
 import kotlinx.android.synthetic.main.activity_login.*
 
 
@@ -142,6 +143,7 @@ class LoginActivity : BaseActivity(), LoginView, View.OnClickListener {
         PreferUtils().setAvatar(this,mContent.avatar.toString())
         ConstantsApp.USER_AVATAR_ME = mContent.avatar.toString()
         ConstantsApp.BASE64_HEADER = mContent.token
+        OneSignal.sendTag("user_id",mContent.id.toString())
         startActivity(Intent(application, HomeActivity::class.java))
         finish()
     }
