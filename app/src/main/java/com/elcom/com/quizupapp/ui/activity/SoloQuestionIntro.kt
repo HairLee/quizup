@@ -148,7 +148,7 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
 
                     mIntroduction = response.body().data
                     tvLevel.text = "Level chủ đề : "+mIntroduction!!.level
-                    tvJumpWins.text = "Chuỗi thắng hiện tại : "+mIntroduction!!.jump_wins.toString()
+                    tvJumpWins.text = "Chuỗi thắng hiện tại : "+mIntroduction!!.current_win_string.toString()
                     txt_coins.text = mIntroduction!!.coins
                     txt_point.text = mIntroduction!!.point
                     txt_topic.text = mIntroduction!!.nameTopic
