@@ -27,11 +27,20 @@
 
             <include layout="@layout/advertising_layout" />
 
-            <include
+            <ImageView
+                android:id="@+id/imvClose"
+                android:padding="5dp"
+                android:layout_gravity="end"
                 android:layout_marginTop="10dp"
+                android:src="@drawable/close_gray_ic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <include
+
                 layout="@layout/coin_and_ex_layout"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content" />
+
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imv_topic"

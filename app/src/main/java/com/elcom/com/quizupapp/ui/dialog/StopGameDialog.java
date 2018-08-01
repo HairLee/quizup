@@ -36,6 +36,7 @@ public class StopGameDialog extends AlertDialog {
             @Override
             public void onClick(View view) {
                 mOnDialogYesNoListener.clickYesAction();
+                dismiss();
 //                final Animation myAnim = AnimationUtils.loadAnimation(mContext, R.anim.scale_in);
 //                double animationDuration = 5 * 10;
 //                myAnim.setDuration((long)animationDuration);

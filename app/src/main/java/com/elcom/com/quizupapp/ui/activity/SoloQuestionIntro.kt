@@ -3,6 +3,7 @@ package com.elcom.com.quizupapp.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
@@ -73,27 +74,22 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
             }
         }
 
-        btnBack.setOnClickListener {
+        imvClose.setOnClickListener {
             onBackPressed()
         }
     }
 
     override fun onBackPressed() {
-        if (mQuestionNumber == 1){
-            super.onBackPressed()
-//            testPauseGame()
-        } else {
-            val mStopGameDialog = StopGameDialog(this, object : OnDialogYesNoListener {
-                override fun clickNoAction() {
+        val mStopGameDialog = StopGameDialog(this, object : OnDialogYesNoListener {
+            override fun clickNoAction() {
 
-                }
+            }
 
-                override fun clickYesAction() {
-                    goToResultActivity()
-                }
-            })
-            mStopGameDialog.show()
-        }
+            override fun clickYesAction() {
+                endGame()
+            }
+        })
+        mStopGameDialog.show()
     }
 
     override fun initData() {
@@ -192,6 +188,23 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
         intent.putExtra(ConstantsApp.KEY_QUESTION_ID,mTopicId)
         startActivityForResult(intent, ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
+    private fun endGame(){
+        showProgessDialog()
+        RestClient().getInstance().getRestService().endGame(PreferUtils().getUserId(this),mTopicId,"3",mMatchId).enqueue(object : Callback<RestData<JsonElement>>{
+            override fun onFailure(call: Call<RestData<JsonElement>>?, t: Throwable?) {
+                showProgessDialog()
+                Log.e("hailpt","SoloMatchBreakActivity endGame onFailure")
+            }
+
+            override fun onResponse(call: Call<RestData<JsonElement>>?, response: Response<RestData<JsonElement>>?) {
+                if (response?.body() != null){
+                    showProgessDialog()
+                    startActivityForResult(Intent(baseContext,SoloMatchResultActivity::class.java).putExtra(ConstantsApp.KEY_SOLO_MATCH_ID,mMatchId).putExtra(ConstantsApp.KEY_QUESTION_ID,mTopicId), ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
+                }
+            }
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
