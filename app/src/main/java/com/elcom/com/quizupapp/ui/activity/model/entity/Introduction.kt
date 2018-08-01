@@ -19,6 +19,10 @@ class Introduction : Serializable {
     @SerializedName("point")
     @Expose
     var point: String? = null
+
+
+
+
     @SerializedName("name_topic")
     @Expose
     var nameTopic: String? = null

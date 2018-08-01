@@ -19,6 +19,11 @@ class Result {
     @SerializedName("point_total")
     @Expose
     var pointTotal: String? = null
+
+    @SerializedName("point")
+    @Expose
+    var point: String? = null
+
     @SerializedName("name_topic")
     @Expose
     var nameTopic: String? = null

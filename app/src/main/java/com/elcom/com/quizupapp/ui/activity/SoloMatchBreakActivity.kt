@@ -100,6 +100,7 @@ class SoloMatchBreakActivity : FragmentActivity() {
 
     private fun updateLayout(result:Result){
         tvNextCoins.setText("TIẾP TỤC - "+mMinus)
+        txt_stop_at.text = "+"+result.pointAnswer
     }
 
     private fun updateUI(){
@@ -108,7 +109,7 @@ class SoloMatchBreakActivity : FragmentActivity() {
 
             txt_coins.text = mQuestion!!.coins
             txt_point.text = mQuestion!!.point
-            txt_stop_at.text = "+"+mQuestion!!.point
+
 
             if(!mQuestion!!.topicImageUrl!!.isEmpty()){
                 Picasso.get()

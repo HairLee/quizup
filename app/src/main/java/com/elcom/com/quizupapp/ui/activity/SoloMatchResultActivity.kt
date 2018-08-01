@@ -64,7 +64,8 @@ class SoloMatchResultActivity : BaseActivityQuiz() {
         txt_topic_title.text = result.nameTopic
         Picasso.get().load(result.topicImageUrl).into(imvTopic)
         txt_coins.text = result.coins
-        txt_point.text = result.pointTotal
+        txt_point.text = result.point
+        tvLevelConfirm.text = "Chuỗi thắng: "+result.current_win_string
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
