@@ -62,4 +62,8 @@ class Topic {
     @Expose
     var bonus: String? = null
 
+    @SerializedName("time_ago")
+    @Expose
+    var time_ago: String? = null
+
 }

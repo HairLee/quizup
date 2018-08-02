@@ -35,7 +35,7 @@ android {
         ]
 
 
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -43,11 +43,7 @@ android {
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
 
-        manifestPlaceholders = [
-                onesignal_app_id: '8fc9bc64-54db-43bd-8d82-2185fb3bc504',
-                // Project number pulled from dashboard, local value is ignored.
-                onesignal_google_project_number: 'REMOTE'
-        ]
+
     }
 
     lintOptions {

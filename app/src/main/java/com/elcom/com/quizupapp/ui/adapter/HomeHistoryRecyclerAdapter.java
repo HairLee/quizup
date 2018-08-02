@@ -50,7 +50,7 @@ public class HomeHistoryRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
 
     private class ChallengeCellViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         private CircleImageView imvAva;
-        private TextView tvNameOfTopic,tvNumberOfWins,tvCoins,tvEx,tvName;
+        private TextView tvNameOfTopic,tvNumberOfWins,tvCoins,tvEx,tvName,tvTime;
         private RelativeLayout rlBottom;
         private  ImageView imvRemove;
 
@@ -64,6 +64,7 @@ public class HomeHistoryRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
             tvCoins = (TextView)itemView.findViewById(R.id.tvCoins);
             rlBottom = itemView.findViewById(R.id.rlBottom);
             tvEx = (TextView)itemView.findViewById(R.id.tvEx);
+            tvTime = (TextView)itemView.findViewById(R.id.tvTime);
             imvRemove = itemView.findViewById(R.id.imvRemove);
 
             itemView.setOnClickListener(this);
@@ -133,6 +134,7 @@ public class HomeHistoryRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
                 cellViewHolder.tvEx.setText("+"+mList.get(position).getBonus());
 //                cellViewHolder.tvName.setText(PreferUtils.get);
                 cellViewHolder.tvNumberOfWins.setText("Chuỗi thắng : "+mList.get(position).getJump_wins());
+                cellViewHolder.tvTime.setText(mList.get(position).getTime_ago());
 
                 break;
             }

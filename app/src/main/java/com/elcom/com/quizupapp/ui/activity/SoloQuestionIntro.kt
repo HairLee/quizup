@@ -75,22 +75,23 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
         }
 
         imvClose.setOnClickListener {
-            onBackPressed()
+            if(mQuestionNumber == 1){
+                onBackPressed()
+            } else {
+                val mStopGameDialog = StopGameDialog(this, object : OnDialogYesNoListener {
+                    override fun clickNoAction() {
+
+                    }
+
+                    override fun clickYesAction() {
+                        endGame()
+                    }
+                })
+                mStopGameDialog.show()
+            }
         }
     }
 
-    override fun onBackPressed() {
-        val mStopGameDialog = StopGameDialog(this, object : OnDialogYesNoListener {
-            override fun clickNoAction() {
-
-            }
-
-            override fun clickYesAction() {
-                endGame()
-            }
-        })
-        mStopGameDialog.show()
-    }
 
     override fun initData() {
         if (intent.hasExtra(ConstantsApp.KEY_QUESTION_ID)){

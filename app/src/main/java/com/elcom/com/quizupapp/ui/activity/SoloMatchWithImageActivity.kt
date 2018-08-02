@@ -243,7 +243,7 @@ class SoloMatchWithImageActivity : FragmentActivity(), View.OnClickListener, Sol
     /*Time's Up* 10s*/
     override fun onFinishCountDown(listDemo: Boolean) {
         pSoloMatchWithTextPresenter.answerTheQuestion(PreferUtils().getUserId(this), mTopicId, mQuestion!!.answer!![mWrongAnswer].getId().toString(), mQuestion!!.id!!, mMatchId, mLastQuestion )
-        goToBreakActivityBecauseOfWrongAnswer()
+        mp3Manage.playSong(this,0)
     }
 
     override fun onBackPressed() {

@@ -52,6 +52,8 @@ class SettingEditAccountActivity : BaseActivityQuiz(), OnItemClickListener, Sett
     private val IMAGE_DIRECTORY = "/demonuts"
     private val GALLERY = 1
     private val CAMERA = 2
+    private var isGender = true // Man
+    private var isGenderStr = "1"
     var adapter:SettingEditAccountAdapter? = null
     override fun getLayout(): Int {
         return R.layout.activity_setting_edit_account
@@ -90,6 +92,7 @@ class SettingEditAccountActivity : BaseActivityQuiz(), OnItemClickListener, Sett
     override fun getDataSuccessfully(profile: Profile) {
         dismisProgressDialog()
         edtName.hint = profile.name
+        isGender = profile.gender != "0"
         adapter!!.setData(profile)
 
     }
@@ -106,17 +109,21 @@ class SettingEditAccountActivity : BaseActivityQuiz(), OnItemClickListener, Sett
             }
 
             2->{
-
+                isGenderStr = if (isGender){
+                    "0"
+                } else {
+                    "1"
+                }
+                isGender = !isGender
+                adapter!!.setGender(isGender)
             }
 
             3-> {
-                isAvatarChanged = true
-                showPictureDialog()
+
             }
 
             4-> {
-                isAvatarChanged = false
-                showPictureDialog()
+
             }
         }
     }
@@ -223,26 +230,27 @@ class SettingEditAccountActivity : BaseActivityQuiz(), OnItemClickListener, Sett
 
     private fun updateProfile(){
 
-        if (image == null){
-            return
-        }
+//        if (image == null){
+//            return
+//        }
 
-        val avatarImage = RequestBody.create(MediaType.parse("image/*"), image);
-        val coverImage = RequestBody.create(MediaType.parse("image/*"), imageCover);
-
-        val bodyAvatarImage = MultipartBody.Part.createFormData("avatar", image!!.name, avatarImage);
-        val bodyCoverImage = MultipartBody.Part.createFormData("cover", imageCover!!.name, coverImage);
+//        val avatarImage = RequestBody.create(MediaType.parse("image/*"), image);
+//        val coverImage = RequestBody.create(MediaType.parse("image/*"), imageCover);
+//
+//        val bodyAvatarImage = MultipartBody.Part.createFormData("avatar", image!!.name, avatarImage);
+//        val bodyCoverImage = MultipartBody.Part.createFormData("cover", imageCover!!.name, coverImage);
 
         val nameBody =  RequestBody.create(MediaType.parse("text/plain"), edtName.text.toString())
-        val genderBody =  RequestBody.create(MediaType.parse("text/plain"), "1")
+        val genderBody =  RequestBody.create(MediaType.parse("text/plain"), isGenderStr)
 
 
         showProgessDialog()
-        RestClient().getInstance().getRestService().updateProfile(nameBody,bodyAvatarImage,bodyCoverImage,genderBody,nameBody,nameBody).enqueue(object : Callback<RestData<JsonElement>> {
+        RestClient().getInstance().getRestService().updateProfile(nameBody,genderBody,nameBody,nameBody).enqueue(object : Callback<RestData<JsonElement>> {
             override fun onResponse(call: Call<RestData<JsonElement>>?, response: Response<RestData<JsonElement>>?) {
                 if (response?.body() != null){
                     dismisProgressDialog()
                     sendImageBroadcast()
+                    mSettingProfilePresenter.getData(PreferUtils().getUserId(baseContext))
                     LogUtils.e("hailpt"," updateProfile onResponse "+ response.body().data.toString())
                 }
             }

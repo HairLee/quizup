@@ -57,8 +57,9 @@
     </LinearLayout>
 
     <ImageView
+        android:padding="5dp"
         android:id="@+id/imvFavor"
-        android:layout_marginRight="30dp"
+        android:layout_marginRight="25dp"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:src="@drawable/ic_favor"

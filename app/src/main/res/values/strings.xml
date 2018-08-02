@@ -26,10 +26,10 @@
 
     <string-array name="setting_edit_title">
         <item>ambition@gmail.com</item>
-        <item>Mật khẩu</item>
+        <!--<item>Mật khẩu</item>-->
         <item>Text tile nhân được</item>
-        <item>Ảnh đại diện</item>
-        <item>Ảnh bìa</item>
+        <!--<item>Ảnh đại diện</item>-->
+        <!--<item>Ảnh bìa</item>-->
         <item>Giới tính</item>
     </string-array>
 </resources>

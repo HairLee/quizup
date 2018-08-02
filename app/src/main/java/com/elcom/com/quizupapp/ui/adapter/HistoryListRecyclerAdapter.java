@@ -47,7 +47,7 @@ public class HistoryListRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
 
     private class ChallengeCellViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         private CircleImageView imvAva;
-        private TextView tvNameOfTopic,tvNumberOfWins,tvCoins,tvEx;
+        private TextView tvNameOfTopic,tvNumberOfWins,tvCoins,tvEx,tvTime;
         private RelativeLayout rlBottom;
         private ImageView imvRemove;
 
@@ -58,6 +58,7 @@ public class HistoryListRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
             tvNumberOfWins = (TextView)itemView.findViewById(R.id.tvNumberOfWins);
             rlBottom = (RelativeLayout)itemView.findViewById(R.id.rlBottom);
             tvCoins = (TextView)itemView.findViewById(R.id.tvCoins);
+            tvTime = (TextView)itemView.findViewById(R.id.tvTime);
             imvRemove = (ImageView) itemView.findViewById(R.id.imvRemove);
             tvEx = (TextView)itemView.findViewById(R.id.tvEx);
 
@@ -120,6 +121,8 @@ public class HistoryListRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
                         onHistoryListListener.onRemoveHistory(mList.get(position));
                     }
                 });
+
+                cellViewHolder.tvTime.setText(mList.get(position).getTime_ago());
 
                 break;
             }

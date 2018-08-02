@@ -52,7 +52,7 @@ class SettingProfileActivity : BaseActivityQuiz(), SettingProfileView {
                     .into(imvAva)
         }
 
-        tvNumberOfChallenge.text = profile.totalFollow.toString()
+        tvNumberOfChallenge.text = profile.totalMatchSolo.toString()
         tvFollowed.text = profile.totalFollow.toString()
         tvFriend.text = profile.totalFriend.toString()
         tvName.text = profile.name

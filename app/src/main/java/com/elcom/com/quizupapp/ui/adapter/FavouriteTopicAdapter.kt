@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import com.elcom.com.quizupapp.R
 import com.elcom.com.quizupapp.ui.activity.model.entity.response.topicdetail.Topic
+import com.elcom.com.quizupapp.ui.listener.OnFavouriteListener
 import com.elcom.com.quizupapp.ui.listener.OnItemClickListener
 import com.mikhaellopez.circularimageview.CircularImageView
 import com.squareup.picasso.Picasso
@@ -23,7 +24,7 @@ import kotlinx.android.synthetic.main.fragment_setting.*
 class FavouriteTopicAdapter(private val moviesList: List<Topic>,OnItemClick:HorizontalRecyclerAdapter.OnItemClickListener) : RecyclerView.Adapter<FavouriteTopicAdapter.MyViewHolder>() {
 
     private var mOnItemClick = OnItemClick
-
+    private var mOnFavouriteListener:OnFavouriteListener? = null
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var imvAva: CircularImageView = view.findViewById(R.id.imvAva)
         var imvFavor: ImageView = view.findViewById(R.id.imvFavor)
@@ -42,9 +43,13 @@ class FavouriteTopicAdapter(private val moviesList: List<Topic>,OnItemClick:Hori
         return MyViewHolder(itemView)
     }
 
+    fun setOnFavouriteListener(pOnFavouriteListener: OnFavouriteListener){
+        mOnFavouriteListener = pOnFavouriteListener;
+    }
+
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val movie = moviesList[position]
-
+        var mFavourite = movie.statusFollow.toString()
         if(movie.statusFollow == "0"){
             holder.imvFavor.setImageResource(R.drawable.ic_detail_not_favor)
         } else {
@@ -64,6 +69,12 @@ class FavouriteTopicAdapter(private val moviesList: List<Topic>,OnItemClick:Hori
 
         holder.rlRoot.setOnClickListener {
             mOnItemClick.onItemClick(holder.rlRoot,movie)
+        }
+
+        holder.imvFavor.setOnClickListener {
+            if(mOnFavouriteListener != null){
+                mOnFavouriteListener!!.onFavourtie(movie,mFavourite)
+            }
         }
 
 

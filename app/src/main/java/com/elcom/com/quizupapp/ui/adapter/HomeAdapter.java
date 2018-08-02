@@ -34,7 +34,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
 
     private static final int HISTORY_TOPIC = 1;
     private static final int PLAYING_TOPIC = 2;
-    private static final int TOP_TOPIC = 3;
+    private static final int FAVOURITE_TOPIC = 3;
 
     public HomeAdapter(List<Caterogy> list, OnSeeMoreTopicsListener pOnSeeMoreTopicsListener,OnHistoryListListener onHistoryListListener) {
         this.mList = list;
@@ -46,18 +46,6 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
     public Filter getFilter() {
         return null;
     }
-
-    private class TopCellViewHolder extends RecyclerView.ViewHolder {
-
-
-        private TopCellViewHolder(View itemView) {
-            super(itemView);
-
-
-        }
-
-    }
-
 
     private class PlayingCellViewHolder extends RecyclerView.ViewHolder {
 
@@ -89,19 +77,33 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
 
     }
 
+    private class FavouriteCellViewHolder extends RecyclerView.ViewHolder {
+
+        private RecyclerView mRecyclerView;
+        private TextView mTitle,tvMore;
+        private FavouriteCellViewHolder(View itemView) {
+            super(itemView);
+            mRecyclerView = (RecyclerView) itemView.findViewById(R.id.recyclerView);
+            mTitle = (TextView)itemView.findViewById(R.id.txt_topic_title);
+            tvMore = (TextView)itemView.findViewById(R.id.tvMore);
+
+        }
+
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup viewGroup, int viewType) {
         mContext = viewGroup.getContext();
 
         switch (viewType) {
 
-//            case TOP_TOPIC:
-//                View v1 = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_history_vertical_top, viewGroup, false);
-//                return new TopCellViewHolder(v1);
+            case FAVOURITE_TOPIC:
+                View v1 = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_home_history_vertical, viewGroup, false);
+                return new FavouriteCellViewHolder(v1);
 //
-//            case PLAYING_TOPIC:
-//                View v2 = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_home_playing_vertical, viewGroup, false);
-//                return new PlayingCellViewHolder(v2);
+            case PLAYING_TOPIC:
+                View v2 = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_home_history_vertical, viewGroup, false);
+                return new PlayingCellViewHolder(v2);
 
             case HISTORY_TOPIC:
                 View v3 = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_home_history_vertical, viewGroup, false);
@@ -128,8 +130,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                 playingCellViewHolder.mRecyclerView.setLayoutManager(layoutManager1);
                 HomePlayingRecyclerAdapter adapter1 = new HomePlayingRecyclerAdapter(mList.get(0).getTopics());
                 adapter1.SetOnItemClickListener(mItemClickListener);
+                playingCellViewHolder.mTitle.setText(mList.get(position).getName());
                 playingCellViewHolder.mRecyclerView.setAdapter(adapter1);
-
                 break;
 
             case HISTORY_TOPIC:
@@ -141,11 +143,30 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                 HomeHistoryRecyclerAdapter adapter = new HomeHistoryRecyclerAdapter(mList.get(1).getTopics());
                 adapter.setOnHistoryListListener(onHistoryListListener);
                 cellViewHolder.mRecyclerView.setAdapter(adapter);
-
+                cellViewHolder.mTitle.setText(mList.get(position).getName());
                 cellViewHolder.tvMore.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         onSeeMoreTopicsListener.onSeeMoreTopics(1);
+                    }
+                });
+
+                break;
+
+            case FAVOURITE_TOPIC:
+                FavouriteCellViewHolder favouriteCellViewHolder = (FavouriteCellViewHolder) viewHolder;
+                favouriteCellViewHolder.mRecyclerView.setHasFixedSize(true);
+                LinearLayoutManager layoutManager2 = new LinearLayoutManager(mContext);
+                layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
+                favouriteCellViewHolder.mRecyclerView.setLayoutManager(layoutManager2);
+                HomeFavouriteRecyclerAdapter favouriteTopicAdapter = new HomeFavouriteRecyclerAdapter(mList.get(2).getTopics());
+//                favouriteTopicAdapter.SetOnItemClickListener(onHistoryListListener);
+                favouriteCellViewHolder.mRecyclerView.setAdapter(favouriteTopicAdapter);
+                favouriteCellViewHolder.mTitle.setText(mList.get(position).getName());
+                favouriteCellViewHolder.tvMore.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        onSeeMoreTopicsListener.onSeeMoreTopics(2);
                     }
                 });
 
@@ -169,7 +190,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
     @Override
     public int getItemCount() {
 
-        return 1;
+        return mList.size();
     }
 
     public void SetOnItemClickListener(final HomePlayingRecyclerAdapter.OnItemClickListener mItemClickListener) {
@@ -182,6 +203,21 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
 
     @Override
     public int getItemViewType(int position) {
+
+        switch (position){
+            case 0: {
+                return PLAYING_TOPIC;
+            }
+
+            case 1: {
+                return HISTORY_TOPIC;
+            }
+
+            case 2: {
+                return FAVOURITE_TOPIC;
+            }
+        }
+
         return HISTORY_TOPIC;
     }
 

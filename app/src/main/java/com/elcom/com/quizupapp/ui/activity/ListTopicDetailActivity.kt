@@ -11,16 +11,19 @@ import com.elcom.com.quizupapp.ui.activity.model.entity.response.topicdetail.Top
 import com.elcom.com.quizupapp.ui.adapter.FavouriteTopicAdapter
 import com.elcom.com.quizupapp.ui.adapter.HorizontalRecyclerAdapter
 import com.elcom.com.quizupapp.ui.adapter.SettingAdapter
+import com.elcom.com.quizupapp.ui.listener.OnFavouriteListener
 import com.elcom.com.quizupapp.ui.listener.OnItemClickListener
 import com.elcom.com.quizupapp.ui.network.RestClient
 import com.elcom.com.quizupapp.ui.network.RestData
 import com.elcom.com.quizupapp.utils.ConstantsApp
+import com.google.gson.JsonElement
 import kotlinx.android.synthetic.main.activity_favourite_topic.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ListTopicDetailActivity : BaseActivityQuiz() {
+class ListTopicDetailActivity : BaseActivityQuiz(), OnFavouriteListener {
+
 
     private var caterogyId = "0"
     private var caterogyKeyValue = 0
@@ -49,6 +52,21 @@ class ListTopicDetailActivity : BaseActivityQuiz() {
         }
     }
 
+    override fun onFavourtie(topic: Topic, favourite: String) {
+        showProgessDialog()
+        RestClient().getInstance().getRestService().followAndUnfollowTopic(topic.topic_id!!,favourite).enqueue(object: Callback<JsonElement>{
+
+            override fun onFailure(call: Call<JsonElement>?, t: Throwable?) {
+                dismisProgressDialog()
+            }
+
+            override fun onResponse(call: Call<JsonElement>?, response: Response<JsonElement>?) {
+                dismisProgressDialog()
+                getData()
+            }
+        })
+    }
+
     private fun getData(){
 
         RestClient().getRestService().getListTopicFromKey(10,0,caterogyKeyValue,caterogyId).enqueue(object : Callback<RestData<List<Topic>>> {
@@ -69,6 +87,7 @@ class ListTopicDetailActivity : BaseActivityQuiz() {
                        }
 
                    });
+                   adapter.setOnFavouriteListener(this@ListTopicDetailActivity)
                    recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
                    recyclerView.adapter = adapter
                    swipeRefreshLayout.isRefreshing = false

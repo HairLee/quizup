@@ -182,9 +182,20 @@ class HomeFragment :  Fragment(), OnSeeMoreTopicsListener, OnHistoryListListener
 
 
     override fun onSeeMoreTopics(type:Int) {
-        var intent = Intent(context, HistoryListActivity::class.java)
-        startActivityForResult(intent, ConstantsApp.START_ACTIVITY_TO_HISTORY)
+
+        when(type){
+
+            1 -> {
+                var intent = Intent(context, HistoryListActivity::class.java)
+                startActivityForResult(intent, ConstantsApp.START_ACTIVITY_TO_HISTORY)
+            }
+
+            2 -> {
+                startActivity(Intent(context, FavouriteTopicActivity::class.java))
+            }
+        }
     }
+
 
 
 }

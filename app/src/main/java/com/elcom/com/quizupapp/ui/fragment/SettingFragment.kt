@@ -77,22 +77,22 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
             }
 
             4-> {
-                val   mChallengeGameDialog = SettingDialog(context!!,R.drawable.setting_dialog_wrong_email, "THỬ LẠI","QUAY LẠI", object : OnDialogInvitationListener {
-
-                    override fun onInviteFriendToPlayGame() {
-                        Toast.makeText(context!!, "Accept", Toast.LENGTH_SHORT).show()
-                    }
-
-                    override fun onCancelInviteFriendToPlayGame() {
-                        Toast.makeText(context!!, "Reject", Toast.LENGTH_SHORT).show()
-                    }
-
-                })
-                mChallengeGameDialog!!.show()
+//                val   mChallengeGameDialog = SettingDialog(context!!,R.drawable.setting_dialog_wrong_email, "THỬ LẠI","QUAY LẠI", object : OnDialogInvitationListener {
+//
+//                    override fun onInviteFriendToPlayGame() {
+//                        Toast.makeText(context!!, "Accept", Toast.LENGTH_SHORT).show()
+//                    }
+//
+//                    override fun onCancelInviteFriendToPlayGame() {
+//                        Toast.makeText(context!!, "Reject", Toast.LENGTH_SHORT).show()
+//                    }
+//
+//                })
+//                mChallengeGameDialog!!.show()
             }
 
             5->{
-                startActivity(Intent(context, SettingProfileActivity::class.java))
+//                startActivity(Intent(context, SettingProfileActivity::class.java))
             }
         }
     }

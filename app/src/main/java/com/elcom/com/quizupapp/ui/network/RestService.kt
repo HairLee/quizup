@@ -166,8 +166,8 @@ interface RestService {
     @POST("profile/update")
     abstract fun updateProfile(
                                     @Part("description") description: RequestBody,
-                                    @Part avatar: MultipartBody.Part,
-                                    @Part cover: MultipartBody.Part,
+//                                    @Part avatar: MultipartBody.Part,
+//                                    @Part cover: MultipartBody.Part,
                                     @Part("gender") gender: RequestBody,
                                     @Part("password") password: RequestBody,
                                     @Part("name") email: RequestBody): Call<RestData<JsonElement>>

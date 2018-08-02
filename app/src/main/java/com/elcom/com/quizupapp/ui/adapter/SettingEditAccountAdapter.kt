@@ -32,6 +32,17 @@ class SettingEditAccountAdapter(private val moviesList: Array<String>) : Recycle
         notifyDataSetChanged()
     }
 
+    fun setGender(gender:Boolean){
+        if (profile != null){
+            if(gender){
+                profile!!.gender = "1"
+            } else {
+                profile!!.gender = "0"
+            }
+        }
+        notifyDataSetChanged()
+    }
+
     inner class FACEBOOK_VIEW(view: View) : RecyclerView.ViewHolder(view) {
         var rlClick: RelativeLayout = view.findViewById(R.id.rlClick)
     }
@@ -89,44 +100,50 @@ class SettingEditAccountAdapter(private val moviesList: Array<String>) : Recycle
                     }
                 }
 
+//                1 -> {
+//                    holder.imvDes.visibility = View.VISIBLE
+//                    holder.imvDes.setImageResource(R.drawable.setting_view_more_ic)
+//                    holder.viewBottom.visibility = View.INVISIBLE
+//                    holder.imvAva.setImageResource(R.drawable.update_pw)
+//
+//                }
+
                 1 -> {
-                    holder.imvDes.visibility = View.VISIBLE
-                    holder.imvDes.setImageResource(R.drawable.setting_view_more_ic)
-                    holder.viewBottom.visibility = View.INVISIBLE
-                    holder.imvAva.setImageResource(R.drawable.update_pw)
-
-                }
-
-                2 -> {
                     holder.imvAva.setImageResource(R.drawable.update_title)
                     holder.viewBottom.visibility = View.INVISIBLE
                 }
 
-                3 -> {
-                    holder.tvNumberOfTopic.visibility = View.VISIBLE
-                    holder.tvNumberOfTopic.text = "Cập nhật"
-                    holder.viewBottom.visibility = View.INVISIBLE
-//                    holder.imvAva.setImageResource(R.drawable.ic_ava_default)
-                    if(bitmap != null){
-                        holder.imvAva!!.setImageBitmap(bitmap)
-                    }
-                }
+//                3 -> {
+//                    holder.tvNumberOfTopic.visibility = View.VISIBLE
+//                    holder.tvNumberOfTopic.text = "Cập nhật"
+//                    holder.viewBottom.visibility = View.INVISIBLE
+////                    holder.imvAva.setImageResource(R.drawable.ic_ava_default)
+//                    if(bitmap != null){
+//                        holder.imvAva!!.setImageBitmap(bitmap)
+//                    }
+//                }
+//
+//                4 -> {
+//                    holder.tvNumberOfTopic.visibility = View.VISIBLE
+//                    holder.tvNumberOfTopic.text = "Cập nhật"
+//                    holder.viewBottom.visibility = View.INVISIBLE
+//                    holder.imvAva.setImageResource(R.drawable.update_cover_ic)
+//                }
 
-                4 -> {
-                    holder.tvNumberOfTopic.visibility = View.VISIBLE
-                    holder.tvNumberOfTopic.text = "Cập nhật"
-                    holder.viewBottom.visibility = View.INVISIBLE
-                    holder.imvAva.setImageResource(R.drawable.update_cover_ic)
-                }
-
-                5 -> {
-                    holder.tvNumberOfTopic.text = "Sửa"
+                2 -> {
+                    holder.tvNumberOfTopic.text = "Thay đổi"
                     holder.tvNumberOfTopic.visibility = View.VISIBLE
                     holder.viewBottom.visibility = View.INVISIBLE
                     holder.imvAva.setImageResource(R.drawable.update_gender)
+                    if(profile != null && profile!!.gender == "0"){
+                        holder.title.text = "Giới tính: Nữ"
+                    } else {
+                        holder.title.text = "Giới tính: Nam"
+                    }
+
                 }
 
-                6 -> {
+                3 -> {
                     holder.viewBottom.visibility = View.INVISIBLE
                     holder.imvAva.setImageResource(R.drawable.setting_vote_ic)
                 }

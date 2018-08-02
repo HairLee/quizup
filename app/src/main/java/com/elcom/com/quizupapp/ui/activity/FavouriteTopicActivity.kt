@@ -9,15 +9,18 @@ import com.elcom.com.quizupapp.R
 import com.elcom.com.quizupapp.ui.activity.model.entity.response.topicdetail.Topic
 import com.elcom.com.quizupapp.ui.adapter.FavouriteTopicAdapter
 import com.elcom.com.quizupapp.ui.adapter.HorizontalRecyclerAdapter
+import com.elcom.com.quizupapp.ui.listener.OnFavouriteListener
 import com.elcom.com.quizupapp.ui.network.RestClient
 import com.elcom.com.quizupapp.ui.network.RestData
 import com.elcom.com.quizupapp.utils.ConstantsApp
+import com.google.gson.JsonElement
 import kotlinx.android.synthetic.main.activity_favourite_topic2.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FavouriteTopicActivity : BaseActivityQuiz() {
+class FavouriteTopicActivity : BaseActivityQuiz(), OnFavouriteListener {
+
 
 
     override fun getLayout(): Int {
@@ -33,6 +36,26 @@ class FavouriteTopicActivity : BaseActivityQuiz() {
         showProgessDialog()
         getData()
     }
+
+    override fun onFavourtie(topic: Topic,mFavourite:String) {
+
+            showProgessDialog()
+            RestClient().getInstance().getRestService().followAndUnfollowTopic(topic.topic_id!!,mFavourite).enqueue(object: Callback<JsonElement>{
+                override fun onFailure(call: Call<JsonElement>?, t: Throwable?) {
+                    dismisProgressDialog()
+                }
+
+                override fun onResponse(call: Call<JsonElement>?, response: Response<JsonElement>?) {
+                    dismisProgressDialog()
+                    getData()
+                }
+            })
+
+
+
+    }
+
+
 
 
     private fun getData(){
@@ -55,6 +78,7 @@ class FavouriteTopicActivity : BaseActivityQuiz() {
                         }
 
                     });
+                    adapter.setOnFavouriteListener(this@FavouriteTopicActivity)
                     recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
                     recyclerView.adapter = adapter
                     swipeRefreshLayout.isRefreshing = false
