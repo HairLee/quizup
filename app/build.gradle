@@ -104,5 +104,9 @@ dependencies {
 
     implementation 'com.onesignal:OneSignal:[3.9.1, 3.99.99]'
 
+    implementation("com.github.ihsanbal:LoggingInterceptor:2.0.4") {
+        exclude group: 'org.json', module: 'json'
+    }
+
 
 }

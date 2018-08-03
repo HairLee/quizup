@@ -29,7 +29,7 @@ class SoloMatchBreakActivity : FragmentActivity() {
     var mQuestion:Introduction? = null
     private var mMatchId = ""
     private var mTopicId = ""
-    private var mMinus = ""
+    private var mMinus = "0"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        supportActionBar!!.hide()

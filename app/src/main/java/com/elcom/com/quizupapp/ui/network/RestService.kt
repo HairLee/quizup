@@ -37,6 +37,9 @@ interface RestService {
     @GET("topic/view?")
     abstract fun getTopicDetail(@Query("topic_id") topic_id: String): Call<RestData<TopicDetail>>
 
+    @GET("topic/view?")
+    abstract fun getTopicDetailTest(@Query("topic_id") topic_id: String): Call<RestData<JsonElement>>
+
     @POST("user/solo-match")
     @FormUrlEncoded
     abstract fun getTopicMatchId(@Field("user_id") user_id: String,@Field("topic_id") topic_id: String): Call<RestData<SoloMatch>>

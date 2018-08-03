@@ -66,7 +66,6 @@ class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickLis
 
         setOnlineUser()
 
-
     }
 
     private fun setOnlineUser(){
@@ -221,7 +220,8 @@ class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickLis
     }
 
     override fun getTopicDetailFault() {
-        ProgressDialogUtils.dismissProgressDialog()
+        Toast.makeText(this,"Error", Toast.LENGTH_LONG).show()
+        dismisProgressDialog()
     }
 
     override fun onDestroy() {

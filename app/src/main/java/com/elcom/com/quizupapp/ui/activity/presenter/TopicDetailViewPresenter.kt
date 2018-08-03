@@ -26,7 +26,7 @@ class TopicDetailViewPresenter(pTopicDetailView:TopicDetailView) : TopicDetailVi
     }
 
     override fun getTopicDetailFault() {
-
+        mTopicDetailView.getTopicDetailFault()
     }
 
     override fun followAndUnfollowSuccess() {

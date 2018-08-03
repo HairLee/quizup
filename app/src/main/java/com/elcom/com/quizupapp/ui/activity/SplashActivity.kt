@@ -4,11 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import com.elcom.com.quizupapp.R
 import com.elcom.com.quizupapp.db.MangerDB
 import com.elcom.com.quizupapp.db.model.Invention
 import com.elcom.com.quizupapp.ui.activity.model.entity.User
 import com.elcom.com.quizupapp.ui.activity.model.entity.response.ContinueMatch
+import com.elcom.com.quizupapp.ui.activity.model.entity.response.topicdetail.TopicDetail
 import com.elcom.com.quizupapp.ui.custom.SocketManage
 import com.elcom.com.quizupapp.ui.network.RestClient
 import com.elcom.com.quizupapp.ui.network.RestData
@@ -41,6 +43,7 @@ class SplashActivity : AppCompatActivity() {
             if(tokenId != ""){
                 ConstantsApp.USER_AVATAR_ME = PreferUtils().getAvatar(this)
                 ConstantsApp.BASE64_HEADER = PreferUtils().getToken(this)
+                getTopicViewDetail("53")
                 getMatchWhenComeBackSplash()
             } else {
                 val mainIntent = Intent(this, LoginActivity::class.java)
@@ -117,6 +120,19 @@ class SplashActivity : AppCompatActivity() {
 
             }
 
+        })
+    }
+
+    fun getTopicViewDetail(pTopicId:String){
+
+        RestClient().getInstance().getRestService().getTopicDetailTest(pTopicId).enqueue(object : Callback<RestData<JsonElement>> {
+            override fun onFailure(call: Call<RestData<JsonElement>>?, t: Throwable?) {
+                Log.e("hailpt"," getTopicDetail onFailure")
+            }
+
+            override fun onResponse(call: Call<RestData<JsonElement>>?, response: Response<RestData<JsonElement>>?) {
+                Log.e("hailpt"," getTopicDetail onResponse")
+            }
         })
     }
 

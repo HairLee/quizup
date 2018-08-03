@@ -1,11 +1,15 @@
 package com.elcom.com.quizupapp.ui.network
 
+import android.arch.core.BuildConfig
 import com.elcom.com.quizupapp.utils.ConstantsApp
 import com.google.gson.GsonBuilder
+import com.ihsanbal.logging.Level
+import com.ihsanbal.logging.LoggingInterceptor
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
+import okhttp3.internal.platform.Platform
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
@@ -32,6 +36,19 @@ class RestClient {
 
     fun getRestService(): RestService {
         if (restService == null) {
+
+
+            val mLoggingInterceptor = LoggingInterceptor.Builder()
+            mLoggingInterceptor.loggable(true)
+                    .setLevel(Level.BASIC)
+                    .log(Platform.WARN)
+                    .request("Request")
+                    .response("Response")
+
+
+
+
+
             val builder = OkHttpClient().newBuilder()
             builder.addInterceptor { chain ->
                 val original = chain.request()
@@ -42,9 +59,10 @@ class RestClient {
 
                 chain.proceed(request)
             }
-            builder.readTimeout(20, TimeUnit.SECONDS)
-            builder.connectTimeout(15, TimeUnit.SECONDS)
-            builder.writeTimeout(30, TimeUnit.SECONDS)
+            builder.readTimeout(60, TimeUnit.SECONDS)
+            builder.connectTimeout(60, TimeUnit.SECONDS)
+            builder.writeTimeout(60, TimeUnit.SECONDS)
+            builder.addNetworkInterceptor(mLoggingInterceptor.build())
             val gson = GsonBuilder()
                     .setLenient()
                     .create()

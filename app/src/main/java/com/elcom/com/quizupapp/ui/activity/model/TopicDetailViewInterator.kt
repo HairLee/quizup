@@ -32,6 +32,8 @@ class TopicDetailViewInterator(pTopicDetailViewListener:TopicDetailViewListener)
             override fun onResponse(call: Call<RestData<TopicDetail>>?, response: Response<RestData<TopicDetail>>?) {
                 if(response?.body() != null){
                     mTopicDetailViewListener.getTopicDetailSuccess(response?.body().data!!)
+                } else {
+                    mTopicDetailViewListener.getTopicDetailFault()
                 }
             }
         })
