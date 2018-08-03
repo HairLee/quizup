@@ -52,7 +52,10 @@ class SearchPlayerFragment : Fragment(),SearchHorizontalRecyclerAdapter.OnItemCl
 
             override fun onResponse(call: Call<RestData<List<CaterogySearch>>>?, response: Response<RestData<List<CaterogySearch>>>?) {
                 ProgressDialogUtils.dismissProgressDialog()
-                setupView(response!!.body()!!.data!!)
+                if(response?.body() != null){
+                    setupView(response!!.body()!!.data!!)
+                }
+
             }
         })
 

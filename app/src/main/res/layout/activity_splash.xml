@@ -6,13 +6,18 @@
     android:layout_height="match_parent"
     tools:context="com.elcom.com.quizupapp.ui.activity.SplashActivity">
 
-<ImageView
-    android:background="@drawable/splash_bg"
-    android:id="@+id/txt_splash"
-    android:textSize="60sp"
-    android:layout_centerInParent="true"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
+    <ImageView
+        android:scaleType="fitXY"
+        android:background="@drawable/splash_bg"
+        android:id="@+id/txt_splash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:layout_centerInParent="true"
+        android:src="@drawable/logo_bg"
+        android:layout_width="250dp"
+        android:layout_height="250dp" />
 
 
 </RelativeLayout>
