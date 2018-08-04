@@ -41,9 +41,7 @@ class SplashActivity : AppCompatActivity() {
         } else {
             val tokenId = PreferUtils().getToken(this)
             if(tokenId != ""){
-                ConstantsApp.USER_AVATAR_ME = PreferUtils().getAvatar(this)
-                ConstantsApp.BASE64_HEADER = PreferUtils().getToken(this)
-                getMatchWhenComeBackSplash()
+                loginWithFacebook()
             } else {
                 val mainIntent = Intent(this, LoginActivity::class.java)
                 startActivity(mainIntent)
@@ -52,6 +50,8 @@ class SplashActivity : AppCompatActivity() {
         }
 
     }
+
+
 
     private fun getPauseGame(){
 
@@ -100,16 +100,14 @@ class SplashActivity : AppCompatActivity() {
     }
 
 
-    fun loginWithFacebook(userId:String,tokenId:String){
+    fun loginWithFacebook(){
 
-        LogUtils.d("hailpt", "userId "+ " tokenId")
-
-
-        RestClient().getInstance().getRestService().loginWithFacebook(userId,tokenId).enqueue(object : Callback<RestData<User>>{
+        RestClient().getInstance().getRestService().loginWithFacebook( PreferUtils().getFacebookId(this),"").enqueue(object : Callback<RestData<User>>{
             override fun onResponse(call: Call<RestData<User>>?, response: Response<RestData<User>>?) {
                 if (response?.body() != null){
-
-
+                    ConstantsApp.USER_AVATAR_ME = PreferUtils().getAvatar(this@SplashActivity)
+                    ConstantsApp.BASE64_HEADER = response.body().data!!.token
+                    getMatchWhenComeBackSplash()
                 } else{
 
                 }
@@ -118,7 +116,6 @@ class SplashActivity : AppCompatActivity() {
 
 
             }
-
         })
     }
 

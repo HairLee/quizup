@@ -47,9 +47,6 @@ class LoginInteractor(pLoginListener: LoginListener, pContext: Context) {
 
     fun loginWithFacebook(userId:String,tokenId:String){
 
-        LogUtils.d("hailpt", "userId "+ " tokenId")
-
-
         RestClient().getInstance().getRestService().loginWithFacebook(userId,tokenId).enqueue(object : Callback<RestData<User>>{
             override fun onResponse(call: Call<RestData<User>>?, response: Response<RestData<User>>?) {
                 if (response?.body() != null){
