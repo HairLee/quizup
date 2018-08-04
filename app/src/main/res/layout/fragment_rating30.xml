@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" >
     <RelativeLayout
+        android:id="@+id/rlHeader"
         android:orientation="vertical"
         android:layout_below="@+id/rlBack"
         android:background="@drawable/ranking_header_bg"

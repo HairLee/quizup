@@ -8,12 +8,19 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import com.elcom.eonline.quizupapp.R
 import com.elcom.eonline.quizupapp.ui.fragment.MoviesFragment
+import com.elcom.eonline.quizupapp.ui.fragment.rating.Rating30Fragment
+import com.elcom.eonline.quizupapp.ui.fragment.rating.RatingFriendsFragment
+import com.elcom.eonline.quizupapp.ui.fragment.rating.RatingTopFragment
 import kotlinx.android.synthetic.main.activity_ranking.*
 import kotlinx.android.synthetic.main.ranking_header_item.*
 import java.util.ArrayList
 
 class RankingActivity : BaseActivityQuiz() {
 
+
+    var ratingFriendsFragment =  RatingFriendsFragment()
+    var rating30Fragment =  Rating30Fragment()
+    var ratingTopFragment =  RatingTopFragment()
     override fun getLayout(): Int {
         return R.layout.activity_ranking
     }
@@ -33,9 +40,9 @@ class RankingActivity : BaseActivityQuiz() {
 
     private fun setupViewPager(viewPager: ViewPager) {
         val adapter = Adapter(supportFragmentManager)
-        adapter.addFragment(MoviesFragment(), "Bạn bè")
-        adapter.addFragment(MoviesFragment(), "Thế giới")
-        adapter.addFragment(MoviesFragment(), "Quốc gia")
+        adapter.addFragment(ratingFriendsFragment, "Bạn bè")
+        adapter.addFragment(rating30Fragment, "30 Ngày gần nhất")
+        adapter.addFragment(ratingTopFragment, "TOP")
         viewPager.adapter = adapter
     }
 

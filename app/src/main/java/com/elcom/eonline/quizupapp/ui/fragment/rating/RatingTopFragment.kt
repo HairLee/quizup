@@ -110,4 +110,8 @@ class RatingTopFragment : Fragment() {
         return list
     }
 
+    fun hideHeaderBg(){
+        rlHeader.visibility = View.GONE
+    }
+
 }

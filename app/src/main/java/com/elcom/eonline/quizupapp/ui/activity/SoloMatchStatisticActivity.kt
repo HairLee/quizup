@@ -13,8 +13,12 @@ import com.elcom.eonline.quizupapp.R
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.Result
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.Statistical
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.StatisticalData
+import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.StatisticalRes
 import com.elcom.eonline.quizupapp.ui.fragment.MoviesFragment
 import com.elcom.eonline.quizupapp.ui.fragment.StatisticWorldFragment
+import com.elcom.eonline.quizupapp.ui.fragment.rating.Rating30Fragment
+import com.elcom.eonline.quizupapp.ui.fragment.rating.RatingFriendsFragment
+import com.elcom.eonline.quizupapp.ui.fragment.rating.RatingTopFragment
 import com.elcom.eonline.quizupapp.ui.network.RestClient
 import com.elcom.eonline.quizupapp.ui.network.RestData
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
@@ -32,7 +36,6 @@ class SoloMatchStatisticActivity : BaseActivityQuiz() {
 
     private var mMatchId = "1"
     private var mTopicId = "1"
-    private var statisticWorldFragment = StatisticWorldFragment()
 
     private var mWorldList = listOf<Statistical>()
     override fun getLayout(): Int {
@@ -63,9 +66,22 @@ class SoloMatchStatisticActivity : BaseActivityQuiz() {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                when(tab!!.position){
-                    0->{
-                        statisticWorldFragment.setData(mWorldList)
+                if (statisticalRes != null){
+                    when(tab!!.position){
+                        0 -> {
+                            ratingFriendsFragment.hideHeaderBg()
+                            ratingFriendsFragment.updateLayout(statisticalRes!!.friends_statistical!!)
+                        }
+
+                        1 -> {
+                            rating30Fragment.hideHeaderBg()
+                            rating30Fragment.updateLayout(statisticalRes!!.monthStatistical!!)
+                        }
+
+                        2 ->  {
+                            ratingTopFragment.hideHeaderBg()
+                            ratingTopFragment.updateLayout(statisticalRes!!.world_statistical!!)
+                        }
                     }
                 }
             }
@@ -87,6 +103,7 @@ class SoloMatchStatisticActivity : BaseActivityQuiz() {
         RestClient().getInstance().getRestService().getStatistic(mTopicId,mMatchId).enqueue(object: Callback<RestData<StatisticalData>> {
             override fun onResponse(call: Call<RestData<StatisticalData>>?, response: Response<RestData<StatisticalData>>?) {
                 if (response?.body() != null){
+                    statisticalRes = response.body().data!!
                     updateLayout(response.body().data!!)
                 }
             }
@@ -116,17 +133,23 @@ class SoloMatchStatisticActivity : BaseActivityQuiz() {
                 .into(imvTopic)
 
         mWorldList = pResult.world_statistical!!
-        statisticWorldFragment.setData(pResult.world_statistical!!)
+        ratingFriendsFragment.hideHeaderBg()
+        ratingFriendsFragment.updateLayout(pResult.friends_statistical!!)
+//        rating30Fragment.updateLayout(pResult.monthStatistical!!)
+//        ratingTopFragment.updateLayout(pResult.world_statistical!!)
 
         Log.e("hailpt"," statisticWorldFragment ~~~> "+ pResult.world_statistical!!.size)
     }
 
-
+    var ratingFriendsFragment =  RatingFriendsFragment()
+    var rating30Fragment =  Rating30Fragment()
+    var ratingTopFragment =  RatingTopFragment()
+    var statisticalRes: StatisticalData? = null
     private fun setupViewPager(viewPager: ViewPager) {
         val adapter = Adapter(supportFragmentManager)
-        adapter.addFragment(statisticWorldFragment, "Bạn bè")
-        adapter.addFragment(MoviesFragment(), "Thế giới")
-        adapter.addFragment(MoviesFragment(), "Quốc gia")
+        adapter.addFragment(ratingFriendsFragment, "Bạn bè")
+        adapter.addFragment(rating30Fragment, "30 Ngày gần nhất")
+        adapter.addFragment(ratingTopFragment, "TOP")
         viewPager.adapter = adapter
     }
 

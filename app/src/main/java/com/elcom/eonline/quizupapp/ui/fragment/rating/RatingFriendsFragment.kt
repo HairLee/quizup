@@ -93,5 +93,9 @@ class RatingFriendsFragment : Fragment() {
 
     }
 
+    fun hideHeaderBg(){
+        rlHeader.visibility = View.GONE
+    }
+
 
 }

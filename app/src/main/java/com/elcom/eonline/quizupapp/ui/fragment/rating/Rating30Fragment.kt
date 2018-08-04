@@ -78,4 +78,8 @@ class Rating30Fragment : Fragment() {
 
     }
 
+    fun hideHeaderBg(){
+        rlHeader.visibility = View.GONE
+    }
+
 }
