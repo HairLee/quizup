@@ -1,132 +1,113 @@
 package com.elcom.com.quizupapp.ui.activity
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.view.ViewPager
-import android.util.Log
-import android.view.KeyEvent
+import android.content.Intent
+import android.support.v4.widget.SwipeRefreshLayout
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import com.elcom.com.quizupapp.R
-import com.elcom.com.quizupapp.ui.fragment.LiveChallengeEndedFragment
-import com.elcom.com.quizupapp.ui.fragment.search.SearchPlayerFragment
-import com.elcom.com.quizupapp.ui.fragment.search.SearchTopFragment
-import com.elcom.com.quizupapp.ui.fragment.search.SearchTopicFragment
-import com.elcom.com.quizupapp.ui.listener.OnItemClickListener
-import com.elcom.com.quizupapp.utils.Utils
-import kotlinx.android.synthetic.main.activity_search_topic.*
-import java.util.ArrayList
-import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import com.elcom.com.quizupapp.R
+import com.elcom.com.quizupapp.ui.activity.model.entity.Caterogy
+import com.elcom.com.quizupapp.ui.activity.model.entity.response.topicdetail.Search
+import com.elcom.com.quizupapp.ui.activity.model.entity.response.topicdetail.Topic
+import com.elcom.com.quizupapp.ui.adapter.SearchHorizontalRecyclerAdapter
+import com.elcom.com.quizupapp.ui.adapter.SearchHomeVerticalRecyclerAdapter
+import com.elcom.com.quizupapp.ui.adapter.SearchTopicHorizontalRecyclerAdapter
+import com.elcom.com.quizupapp.ui.adapter.SearchTopicVerticalRecyclerAdapter
+import com.elcom.com.quizupapp.ui.network.RestClient
+import com.elcom.com.quizupapp.ui.network.RestData
+import com.elcom.com.quizupapp.utils.ConstantsApp
+import com.elcom.com.quizupapp.utils.ProgressDialogUtils
+import kotlinx.android.synthetic.main.activity_search_topic2.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class SearchTopicActivity : BaseActivityQuiz(), SwipeRefreshLayout.OnRefreshListener, SearchTopicHorizontalRecyclerAdapter.OnItemClickListener {
 
 
 
-class SearchTopicActivity : BaseActivityQuiz(), OnItemClickListener {
+
+    override fun onItemClick(view: View?, search: Topic?) {
+        if(search!!.topic_id != ""){
+            startActivity(Intent(this, TopicDetailActivity::class.java).putExtra(ConstantsApp.KEY_TOPIC_ID,search!!.topic_id))
+        }
+    }
 
 
-
-    private var itemSelected = 0;
-    private var searchTopFragment = SearchTopFragment()
-    private var searchPlayerFragment = SearchPlayerFragment()
-    private var searchTopicFragment = SearchTopicFragment()
     override fun getLayout(): Int {
-        return R.layout.activity_search_topic
+        return R.layout.activity_search_topic2;
     }
 
     override fun initView() {
+
+        edtSearch.setOnFocusChangeListener { view, b ->
+            if (b){
+                imvSearch.visibility = View.GONE
+                txtSearch.visibility = View.GONE
+            } else {
+                imvSearch.visibility = View.VISIBLE
+                txtSearch.visibility = View.VISIBLE
+            }
+        }
+
+        edtSearch.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
+            doSearch(edtSearch.text.toString())
+            return@OnEditorActionListener true
+        })
+
         tvSearch.setOnClickListener {
             onBackPressed()
         }
 
-        edtSearch.setOnFocusChangeListener { view, b ->
-                if (b){
-                    imvSearch.visibility = View.GONE
-                    txtSearch.visibility = View.GONE
-                } else {
-                    imvSearch.visibility = View.VISIBLE
-                    txtSearch.visibility = View.VISIBLE
-                }
-        }
-
-        edtSearch.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                Utils().hideKeyboard(this,lnRoot)
-                when(viewpager2.currentItem){
-                    0 -> {
-                        searchTopFragment.doSearch(edtSearch.text.toString())
-                    }
-
-                    1-> {
-                        searchPlayerFragment.doSearch(edtSearch.text.toString())
-                    }
-
-                    2->{
-                        searchTopicFragment.doSearch(edtSearch.text.toString())
-                    }
-                }
-
-                if(viewpager2.currentItem == 0){
-                    Utils().hideKeyboard(this,lnRoot)
-                    searchTopFragment.doSearch(edtSearch.text.toString())
-                }
-                return@OnEditorActionListener true
-            }
-            false
-        })
+        swipeRefreshLayout.setOnRefreshListener(this)
     }
 
     override fun initData() {
-        if (viewpager2 != null) {
-            setupViewPager(viewpager2)
-        }
-
-        tabs2.setupWithViewPager(viewpager2)
+        getData("")
     }
 
-    private fun setupViewPager(viewPager: ViewPager) {
-        val adapter = Adapter(supportFragmentManager)
-        adapter.addFragment(searchTopFragment, "TOP")
-        adapter.addFragment(searchPlayerFragment, "NGƯỜI CHƠI")
-        adapter.addFragment(searchTopicFragment, "CHỦ ĐỀ")
-        adapter.setOnItemSelected(this)
-        viewPager.adapter = adapter
 
-        viewPager
+    fun getData(keyword:String){
+
+        RestClient().getRestService().searchTopics(keyword,10,0).enqueue(object : Callback<RestData<List<Caterogy>>> {
+
+            override fun onFailure(call: Call<RestData<List<Caterogy>>>?, t: Throwable?) {
+                swipeRefreshLayout.isRefreshing = false
+                ProgressDialogUtils.dismissProgressDialog()
+            }
+
+            override fun onResponse(call: Call<RestData<List<Caterogy>>>?, response: Response<RestData<List<Caterogy>>>?) {
+                ProgressDialogUtils.dismissProgressDialog()
+                swipeRefreshLayout.isRefreshing = false
+                setupView(response!!.body()!!.data!!)
+            }
+        })
+
     }
 
-    internal class Adapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
-        private var onItemSelected:OnItemClickListener? = null
-        private val mFragments = ArrayList<Fragment>()
-        private val mFragmentTitles = ArrayList<String>()
-
-        fun addFragment(fragment: Fragment, title: String) {
-            mFragments.add(fragment)
-            mFragmentTitles.add(title)
-        }
-
-        override fun getItem(position: Int): Fragment {
-            onItemSelected!!.onItemClicked(position)
-            return mFragments[position]
-        }
-
-        override fun getCount(): Int {
-            return mFragments.size
-        }
-
-        override fun getPageTitle(position: Int): CharSequence {
-            return mFragmentTitles[position]
-        }
-
-        fun setOnItemSelected(onItemSelected:OnItemClickListener){
-            this.onItemSelected = onItemSelected
-        }
-    }
-
-    override fun onItemClicked(position: Int) {
-        Log.e("hailpt"," position "+position)
+    fun doSearch(keyword:String){
+        getData(keyword)
     }
 
 
 
+    fun setupView(mList:List<Caterogy>){
+        val layoutManager = LinearLayoutManager(this)
+        recycler_view.layoutManager = layoutManager
+        recycler_view.setHasFixedSize(false)
+        val mAdapter = SearchTopicVerticalRecyclerAdapter(mList, this)
+        recycler_view.adapter = mAdapter
 
+        mAdapter.SetOnItemClickListener(this)
+    }
+
+    override fun onRefresh() {
+        getData("")
+    }
+
+
+
+    override fun onItemLongClick(view: View?, position: Int) {
+
+    }
 }

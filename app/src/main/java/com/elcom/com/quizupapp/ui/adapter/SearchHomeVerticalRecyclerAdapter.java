@@ -14,7 +14,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.elcom.com.quizupapp.R;
-import com.elcom.com.quizupapp.ui.activity.model.entity.Caterogy;
 import com.elcom.com.quizupapp.ui.activity.model.entity.response.CaterogySearch;
 import com.elcom.com.quizupapp.ui.listener.OnSeeMoreTopicsListener;
 
@@ -24,15 +23,15 @@ import java.util.List;
 /**
  * Created Hailpt on 3/21/17.
  */
-public class SearchTopicVerticalRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  implements Filterable {
+public class SearchHomeVerticalRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  implements Filterable {
 
-    private List<Caterogy> mList;
+    private List<CaterogySearch> mList;
     private SparseIntArray listPosition = new SparseIntArray();
-    private SearchTopicHorizontalRecyclerAdapter.OnItemClickListener mItemClickListener;
+    private SearchHorizontalRecyclerAdapter.OnItemClickListener mItemClickListener;
     private Context mContext;
     private OnSeeMoreTopicsListener onSeeMoreTopicsListener;
     private static final int FAVOURITE_TOPIC = 1;
-    public SearchTopicVerticalRecyclerAdapter(List<Caterogy> list, SearchTopicHorizontalRecyclerAdapter.OnItemClickListener pOnSeeMoreTopicsListener) {
+    public SearchHomeVerticalRecyclerAdapter(List<CaterogySearch> list, SearchHorizontalRecyclerAdapter.OnItemClickListener pOnSeeMoreTopicsListener) {
         this.mList = list;
         mItemClickListener = pOnSeeMoreTopicsListener;
     }
@@ -90,7 +89,7 @@ public class SearchTopicVerticalRecyclerAdapter extends RecyclerView.Adapter<Rec
                 LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
                 layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                 cellViewHolder.mRecyclerView.setLayoutManager(layoutManager);
-                SearchTopicHorizontalRecyclerAdapter adapter = new SearchTopicHorizontalRecyclerAdapter(mList.get(position).getTopics());
+                SearchHorizontalRecyclerAdapter adapter = new SearchHorizontalRecyclerAdapter(mList.get(position).getList());
                 cellViewHolder.mRecyclerView.setAdapter(adapter);
                 adapter.SetOnItemClickListener(mItemClickListener);
                 break;
@@ -118,7 +117,7 @@ public class SearchTopicVerticalRecyclerAdapter extends RecyclerView.Adapter<Rec
         return mList.size();
     }
 
-    public void SetOnItemClickListener(final SearchTopicHorizontalRecyclerAdapter.OnItemClickListener mItemClickListener) {
+    public void SetOnItemClickListener(final SearchHorizontalRecyclerAdapter.OnItemClickListener mItemClickListener) {
         this.mItemClickListener = mItemClickListener;
     }
 

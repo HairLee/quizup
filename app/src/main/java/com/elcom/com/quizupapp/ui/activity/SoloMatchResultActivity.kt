@@ -66,6 +66,7 @@ class SoloMatchResultActivity : BaseActivityQuiz() {
         txt_coins.text = result.coins
         txt_point.text = result.point
         tvLevelConfirm.text = "Chuỗi thắng: "+result.current_win_string
+        tvEx.text = "+"+result.pointAnswer
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

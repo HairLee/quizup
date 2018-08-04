@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,9 +13,8 @@ import com.elcom.com.quizupapp.R
 import com.elcom.com.quizupapp.ui.activity.TopicDetailActivity
 import com.elcom.com.quizupapp.ui.activity.model.entity.response.CaterogySearch
 import com.elcom.com.quizupapp.ui.activity.model.entity.response.topicdetail.Search
-import com.elcom.com.quizupapp.ui.activity.model.entity.response.topicdetail.Topic
 import com.elcom.com.quizupapp.ui.adapter.SearchHorizontalRecyclerAdapter
-import com.elcom.com.quizupapp.ui.adapter.SearchTopicVerticalRecyclerAdapter
+import com.elcom.com.quizupapp.ui.adapter.SearchHomeVerticalRecyclerAdapter
 import com.elcom.com.quizupapp.ui.network.RestClient
 import com.elcom.com.quizupapp.ui.network.RestData
 import com.elcom.com.quizupapp.utils.ConstantsApp
@@ -73,7 +71,7 @@ class SearchTopicFragment : Fragment(),SearchHorizontalRecyclerAdapter.OnItemCli
         recycler_view.setHasFixedSize(false)
 //        recycler_view.isNestedScrollingEnabled = false
 
-        val mAdapter = SearchTopicVerticalRecyclerAdapter(mList, this)
+        val mAdapter = SearchHomeVerticalRecyclerAdapter(mList, this)
         recycler_view.adapter = mAdapter
 
         mAdapter.SetOnItemClickListener(this)

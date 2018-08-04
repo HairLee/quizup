@@ -20,12 +20,12 @@ import java.util.List;
 /**
  * Created Hailpt on 3/21/17.
  */
-public class SearchHorizontalRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<Search> mList;
+public class SearchTopicHorizontalRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private List<Topic> mList;
     private OnItemClickListener mItemClickListener;
     private static final int USER_ITEM = 1;
     private static final int TOPIC_ITEM = 2;
-    public SearchHorizontalRecyclerAdapter(List<Search> list) {
+    public SearchTopicHorizontalRecyclerAdapter(List<Topic> list) {
         this.mList = list;
     }
 
@@ -124,7 +124,7 @@ public class SearchHorizontalRecyclerAdapter extends RecyclerView.Adapter<Recycl
             case TOPIC_ITEM: {
                 TopicCellViewHolder topicCellViewHolder = (TopicCellViewHolder) viewHolder;
 
-                final Search topicSearch = mList.get(position);
+                final Topic topicSearch = mList.get(position);
 
                 if (topicSearch != null){
                     if (position == 0) {
@@ -136,11 +136,10 @@ public class SearchHorizontalRecyclerAdapter extends RecyclerView.Adapter<Recycl
 
                     topicCellViewHolder.tvTopicTitle.setText(mList.get(position).getName());
 
-                    if (topicSearch.getStatusFollow() == 1) {
+                    if (topicSearch.getStatusFollow() == "1") {
                         topicCellViewHolder.imvFollow.setImageResource(R.drawable.search_follow_ic);
                     } else {
                         topicCellViewHolder.imvFollow.setImageResource(R.drawable.search_unfollow_ic);
-
                     }
 
                     topicCellViewHolder.imvFollow.setOnClickListener(new View.OnClickListener() {
@@ -169,7 +168,7 @@ public class SearchHorizontalRecyclerAdapter extends RecyclerView.Adapter<Recycl
                 if (mList.get(position) != null){
                     cellViewHolder.tvTopicTitle.setText(mList.get(position).getName());
 
-                    if (mList.get(position).getStatusFollow() == 1){
+                    if (mList.get(position).getStatusFollow() == "1"){
                         cellViewHolder.txt_topic.setText("Following");
                     } else  {
                         cellViewHolder.txt_topic.setText("");
@@ -189,7 +188,7 @@ public class SearchHorizontalRecyclerAdapter extends RecyclerView.Adapter<Recycl
     @Override
     public int getItemViewType(int position) {
 
-        if(mList.get(position).getTopicId().equals("")){
+        if(mList.get(position).getTopic_id().equals("")){
 
             return USER_ITEM;
         } else  {
@@ -205,7 +204,7 @@ public class SearchHorizontalRecyclerAdapter extends RecyclerView.Adapter<Recycl
     }
 
     public interface OnItemClickListener {
-        void onItemClick(View view, Search search);
+        void onItemClick(View view, Topic search);
 
         void onItemLongClick(View view, int position);
     }

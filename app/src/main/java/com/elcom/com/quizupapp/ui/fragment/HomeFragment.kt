@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +30,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import android.content.DialogInterface
 import com.elcom.com.quizupapp.ui.activity.*
-import com.facebook.FacebookSdk.getApplicationContext
 import com.squareup.picasso.Picasso
 
 
@@ -83,12 +81,12 @@ class HomeFragment :  Fragment(), OnSeeMoreTopicsListener, OnHistoryListListener
         }
 
         imvSearch.setOnClickListener {
-            startActivity(Intent(context, SearchTopicActivity::class.java));
+            startActivity(Intent(context, SearchHomeActivity::class.java));
         }
 
 
         edtSearch.setOnClickListener {
-            startActivity(Intent(context, SearchTopicActivity::class.java));
+            startActivity(Intent(context, SearchHomeActivity::class.java));
         }
 
         imvAva.setOnClickListener {

@@ -72,7 +72,7 @@
                      android:id="@+id/tvTitle"
                      android:textSize="19sp"
                      android:textColor="#6665FF"
-                     android:text="Thể dục thể thao"
+                     tools:text="Thể dục thể thao"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content" />
                 <RelativeLayout
@@ -82,7 +82,7 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/imvTopic"
-                        android:src="@drawable/ic_home_playing"
+                        tools:src="@drawable/ic_home_playing"
                         android:layout_width="60dp"
                         android:layout_height="60dp" />
 
@@ -112,8 +112,9 @@
                                 android:layout_height="wrap_content" />
 
                             <TextView
+                                android:id="@+id/tvEx"
                                 android:layout_marginLeft="10dp"
-                                android:text="+20"
+                                tools:text="+20"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
@@ -125,6 +126,7 @@
                 </RelativeLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:gravity="center"
                     android:layout_marginTop="15dp"
                     android:layout_width="wrap_content"

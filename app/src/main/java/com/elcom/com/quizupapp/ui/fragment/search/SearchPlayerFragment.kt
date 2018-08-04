@@ -11,9 +11,8 @@ import android.view.ViewGroup
 import com.elcom.com.quizupapp.R
 import com.elcom.com.quizupapp.ui.activity.model.entity.response.CaterogySearch
 import com.elcom.com.quizupapp.ui.activity.model.entity.response.topicdetail.Search
-import com.elcom.com.quizupapp.ui.activity.model.entity.response.topicdetail.Topic
 import com.elcom.com.quizupapp.ui.adapter.SearchHorizontalRecyclerAdapter
-import com.elcom.com.quizupapp.ui.adapter.SearchTopicVerticalRecyclerAdapter
+import com.elcom.com.quizupapp.ui.adapter.SearchHomeVerticalRecyclerAdapter
 import com.elcom.com.quizupapp.ui.network.RestClient
 import com.elcom.com.quizupapp.ui.network.RestData
 import com.elcom.com.quizupapp.utils.ProgressDialogUtils
@@ -71,7 +70,7 @@ class SearchPlayerFragment : Fragment(),SearchHorizontalRecyclerAdapter.OnItemCl
         recycler_view.setHasFixedSize(true)
 //        recycler_view.isNestedScrollingEnabled = false
 
-        val mAdapter = SearchTopicVerticalRecyclerAdapter(mList, this)
+        val mAdapter = SearchHomeVerticalRecyclerAdapter(mList, this)
         recycler_view.adapter = mAdapter
 
         mAdapter.SetOnItemClickListener(this)

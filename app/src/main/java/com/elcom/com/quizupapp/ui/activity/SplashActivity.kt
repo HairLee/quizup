@@ -43,7 +43,6 @@ class SplashActivity : AppCompatActivity() {
             if(tokenId != ""){
                 ConstantsApp.USER_AVATAR_ME = PreferUtils().getAvatar(this)
                 ConstantsApp.BASE64_HEADER = PreferUtils().getToken(this)
-                getTopicViewDetail("53")
                 getMatchWhenComeBackSplash()
             } else {
                 val mainIntent = Intent(this, LoginActivity::class.java)
@@ -123,17 +122,5 @@ class SplashActivity : AppCompatActivity() {
         })
     }
 
-    fun getTopicViewDetail(pTopicId:String){
-
-        RestClient().getInstance().getRestService().getTopicDetailTest(pTopicId).enqueue(object : Callback<RestData<JsonElement>> {
-            override fun onFailure(call: Call<RestData<JsonElement>>?, t: Throwable?) {
-                Log.e("hailpt"," getTopicDetail onFailure")
-            }
-
-            override fun onResponse(call: Call<RestData<JsonElement>>?, response: Response<RestData<JsonElement>>?) {
-                Log.e("hailpt"," getTopicDetail onResponse")
-            }
-        })
-    }
 
 }

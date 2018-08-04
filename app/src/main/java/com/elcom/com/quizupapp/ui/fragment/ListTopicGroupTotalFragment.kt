@@ -10,10 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.elcom.com.quizupapp.R
-import com.elcom.com.quizupapp.ui.activity.FavouriteTopicActivity
-import com.elcom.com.quizupapp.ui.activity.ListTopicDetailActivity
-import com.elcom.com.quizupapp.ui.activity.SearchTopicActivity
-import com.elcom.com.quizupapp.ui.activity.TopicDetailActivity
+import com.elcom.com.quizupapp.ui.activity.*
 import com.elcom.com.quizupapp.ui.activity.model.entity.Caterogy
 import com.elcom.com.quizupapp.ui.activity.model.entity.response.topicdetail.Topic
 import com.elcom.com.quizupapp.ui.activity.presenter.HomePresenter

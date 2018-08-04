@@ -187,7 +187,8 @@ interface RestService {
     abstract fun searchTopic(@Query("keyword") keyword: String,@Query("limit") limit: Int,@Query("offset") offset: Int,@Query("type") type: Int): Call<RestData<List<CaterogySearch>>>
 
 
-
+    @GET("search-topic?")
+    abstract fun searchTopics(@Query("keyword") keyword: String,@Query("limit") limit: Int,@Query("offset") offset: Int): Call<RestData<List<Caterogy>>>
 
     @GET("achievements?")
     abstract fun getAchievement(@Query("topic_id") topic_id: String): Call<RestData<Achivement>>

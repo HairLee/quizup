@@ -88,7 +88,6 @@ class LoginActivity : BaseActivity(), LoginView, View.OnClickListener {
             Log.w(TAG, "signInResult:failed code=" + e.statusCode)
         }
 
-
     }
 
     private fun setupCallBackForLoginFacebookButton(){

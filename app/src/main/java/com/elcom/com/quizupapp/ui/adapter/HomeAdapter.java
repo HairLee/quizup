@@ -143,7 +143,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                 HomeHistoryRecyclerAdapter adapter = new HomeHistoryRecyclerAdapter(mList.get(1).getTopics());
                 adapter.setOnHistoryListListener(onHistoryListListener);
                 cellViewHolder.mRecyclerView.setAdapter(adapter);
-                cellViewHolder.mTitle.setText(mList.get(position).getName());
+                cellViewHolder.mTitle.setText(mList.get(1).getName());
                 cellViewHolder.tvMore.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -162,7 +162,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                 HomeFavouriteRecyclerAdapter favouriteTopicAdapter = new HomeFavouriteRecyclerAdapter(mList.get(2).getTopics());
 //                favouriteTopicAdapter.SetOnItemClickListener(onHistoryListListener);
                 favouriteCellViewHolder.mRecyclerView.setAdapter(favouriteTopicAdapter);
-                favouriteCellViewHolder.mTitle.setText(mList.get(position).getName());
+                favouriteCellViewHolder.mTitle.setText(mList.get(2).getName());
                 favouriteCellViewHolder.tvMore.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -190,7 +190,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
     @Override
     public int getItemCount() {
 
-        return mList.size();
+        return 2;
     }
 
     public void SetOnItemClickListener(final HomePlayingRecyclerAdapter.OnItemClickListener mItemClickListener) {
@@ -206,11 +206,11 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
 
         switch (position){
             case 0: {
-                return PLAYING_TOPIC;
+                return HISTORY_TOPIC;
             }
 
             case 1: {
-                return HISTORY_TOPIC;
+                return FAVOURITE_TOPIC;
             }
 
             case 2: {

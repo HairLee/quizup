@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/lnRoot"
-    android:orientation="vertical"
     android:focusableInTouchMode="true"
     android:descendantFocusability="beforeDescendants"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.LiveChallengeFragment">
-
+    tools:context=".ui.fragment.search.SearchTopFragment">
     <RelativeLayout
+        android:id="@+id/rlSearch"
         android:background="@color/colorPurple"
         android:layout_width="match_parent"
         android:layout_height="45dp">
@@ -53,7 +50,6 @@
             android:layout_width="18dp"
             android:layout_height="18dp" />
 
-
         <TextView
             android:textColor="#B8B8B8"
             android:textSize="14sp"
@@ -64,28 +60,20 @@
             android:text="Tìm kiếm một chủ đề"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
     </RelativeLayout>
-
-
-
-
     <!-- TODO: Update blank fragment layout -->
-    <android.support.design.widget.TabLayout
-        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
-        app:tabPaddingStart="0dp"
-        app:tabPaddingEnd="0dp"
-        android:background="@color/colorPurple"
-        android:id="@+id/tabs2"
-        app:tabIndicatorColor="@color/white"
-        app:tabSelectedTextColor="@color/white"
-        app:tabTextColor="@color/gray_2"
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_below="@+id/rlSearch"
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-</LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</RelativeLayout>
