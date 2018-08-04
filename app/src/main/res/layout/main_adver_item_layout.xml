@@ -13,14 +13,14 @@
         android:layout_height="100dp">
 
     </LinearLayout>
-    <com.elcom.com.quizupapp.ui.custom.AdvertisingView
+    <com.elcom.eonline.quizupapp.ui.custom.AdvertisingView
         android:id="@+id/rl_adver"
         android:layout_below="@+id/ln_adver"
         android:background="@color/colorPrimaryDark"
         android:layout_width="wrap_content"
         android:layout_height="150dp">
 
-    </com.elcom.com.quizupapp.ui.custom.AdvertisingView>
+    </com.elcom.eonline.quizupapp.ui.custom.AdvertisingView>
 
 
     <android.support.v7.widget.SearchView

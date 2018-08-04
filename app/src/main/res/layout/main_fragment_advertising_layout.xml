@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.elcom.com.quizupapp.ui.activity.MainActivity">
+    tools:context="com.elcom.eonline.quizupapp.ui.activity.MainActivity">
 
 
 

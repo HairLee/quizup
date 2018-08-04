@@ -21,22 +21,22 @@
         android:layout_height="wrap_content">
 
 
-        <com.elcom.com.quizupapp.ui.custom.LiveChallengeWaitingGameView
+        <com.elcom.eonline.quizupapp.ui.custom.LiveChallengeWaitingGameView
             android:layout_width="match_parent"
             android:id="@+id/lnTimer"
             android:layout_height="wrap_content">
 
 
-        </com.elcom.com.quizupapp.ui.custom.LiveChallengeWaitingGameView>
+        </com.elcom.eonline.quizupapp.ui.custom.LiveChallengeWaitingGameView>
 
 
-        <com.elcom.com.quizupapp.ui.custom.LiveChallengePlayGameView
+        <com.elcom.eonline.quizupapp.ui.custom.LiveChallengePlayGameView
             android:id="@+id/lnLivePlayGame"
             android:layout_width="match_parent"
             android:visibility="invisible"
             android:layout_height="wrap_content">
 
-        </com.elcom.com.quizupapp.ui.custom.LiveChallengePlayGameView>
+        </com.elcom.eonline.quizupapp.ui.custom.LiveChallengePlayGameView>
 
 
         <!--<include-->

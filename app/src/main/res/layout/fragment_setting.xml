@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="#EEEFEF"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.elcom.com.quizupapp.ui.fragment.SettingFragment">
+    tools:context="com.elcom.eonline.quizupapp.ui.fragment.SettingFragment">
 
     <RelativeLayout
         android:background="@color/colorPrimary"

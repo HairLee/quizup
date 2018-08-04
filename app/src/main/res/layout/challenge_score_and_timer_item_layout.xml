@@ -40,7 +40,7 @@
 
         </RelativeLayout>
 
-        <com.elcom.com.quizupapp.ui.custom.ProgressTimerView
+        <com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
             android:id="@+id/ProgressTimerView1"
             android:visibility="invisible"
             android:layout_centerInParent="true"
@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <com.elcom.com.quizupapp.ui.custom.ProgressTimerView
+        <com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
             android:id="@+id/ProgressTimerView2"
             android:visibility="invisible"
             android:layout_centerInParent="true"
@@ -102,7 +102,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <com.elcom.com.quizupapp.ui.custom.ProgressTimerView
+        <com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
             android:id="@+id/ProgressTimerView3"
             android:visibility="invisible"
             android:layout_centerInParent="true"
@@ -145,7 +145,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <com.elcom.com.quizupapp.ui.custom.ProgressTimerView
+        <com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
             android:id="@+id/ProgressTimerView4"
             android:visibility="invisible"
             android:layout_centerInParent="true"
@@ -188,7 +188,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <com.elcom.com.quizupapp.ui.custom.ProgressTimerView
+        <com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
             android:id="@+id/ProgressTimerView5"
             android:visibility="invisible"
             android:layout_centerInParent="true"
@@ -231,7 +231,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <com.elcom.com.quizupapp.ui.custom.ProgressTimerView
+        <com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
             android:id="@+id/ProgressTimerView6"
             android:visibility="visible"
             android:layout_centerInParent="true"
@@ -275,7 +275,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <com.elcom.com.quizupapp.ui.custom.ProgressTimerView
+        <com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
             android:visibility="invisible"
             android:id="@+id/ProgressTimerView7"
             android:layout_centerInParent="true"

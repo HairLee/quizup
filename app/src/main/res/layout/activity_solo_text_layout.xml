@@ -25,7 +25,7 @@
 
 
 
-            <com.elcom.com.quizupapp.ui.custom.ProgressTimerView
+            <com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
                 android:id="@+id/ptvCountDown"
                 android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"

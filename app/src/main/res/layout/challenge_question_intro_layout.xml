@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg"
-        tools:context="com.elcom.com.quizupapp.ui.activity.SoloQuestionIntro">
+        tools:context="com.elcom.eonline.quizupapp.ui.activity.SoloQuestionIntro">
 
         <LinearLayout
             android:padding="20dp"

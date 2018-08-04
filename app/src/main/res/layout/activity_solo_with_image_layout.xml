@@ -31,7 +31,7 @@
                 android:id="@+id/ln_coins_ex"
                 layout="@layout/coin_and_ex_layout" />
 
-            <com.elcom.com.quizupapp.ui.custom.ProgressTimerView
+            <com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
                 android:id="@+id/ptvCountDown"
                 android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"

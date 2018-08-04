@@ -11,7 +11,7 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context="com.elcom.com.quizupapp.ui.fragment.TopicDetailFragment"
+    tools:context="com.elcom.eonline.quizupapp.ui.fragment.TopicDetailFragment"
   >
 
 <TextView

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.elcom.com.quizupapp.ui.fragment.SettingFragment">
+    tools:context="com.elcom.eonline.quizupapp.ui.fragment.SettingFragment">
     <RelativeLayout
         android:id="@+id/rlBack"
         android:background="@color/colorPrimary"

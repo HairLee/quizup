@@ -24,7 +24,7 @@
                 layout="@layout/challenge_with_text_header_layout" />
 
 
-            <com.elcom.com.quizupapp.ui.custom.ChallengeScoreAndTimeView
+            <com.elcom.eonline.quizupapp.ui.custom.ChallengeScoreAndTimeView
                 android:layout_marginTop="5dp"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/lnHeader"
@@ -137,7 +137,7 @@
             </LinearLayout>
 
 
-            <com.elcom.com.quizupapp.ui.custom.ChallengeLineScoreItemView
+            <com.elcom.eonline.quizupapp.ui.custom.ChallengeLineScoreItemView
                 android:id="@+id/lineScoreMe"
                 android:layout_below="@+id/txt_question"
                 android:layout_width="wrap_content"
@@ -146,10 +146,10 @@
                 android:layout_height="wrap_content">
 
 
-            </com.elcom.com.quizupapp.ui.custom.ChallengeLineScoreItemView>
+            </com.elcom.eonline.quizupapp.ui.custom.ChallengeLineScoreItemView>
 
 
-            <com.elcom.com.quizupapp.ui.custom.ChallengeLineScoreItemView
+            <com.elcom.eonline.quizupapp.ui.custom.ChallengeLineScoreItemView
                 android:id="@+id/lineScoreOp"
                 android:layout_below="@+id/txt_question"
                 android:layout_width="wrap_content"
@@ -158,7 +158,7 @@
                 android:layout_height="wrap_content">
 
 
-            </com.elcom.com.quizupapp.ui.custom.ChallengeLineScoreItemView>
+            </com.elcom.eonline.quizupapp.ui.custom.ChallengeLineScoreItemView>
 
         </RelativeLayout>
 
