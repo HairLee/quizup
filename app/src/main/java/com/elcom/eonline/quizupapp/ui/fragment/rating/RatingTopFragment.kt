@@ -27,10 +27,12 @@ private const val ARG_PARAM2 = "param2"
  */
 class RatingTopFragment : Fragment() {
 
-
+    private var view:ViewGroup? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        return inflater.inflate(R.layout.fragment_rating_top, container, false)
+        if( view == null){
+            view = inflater.inflate(R.layout.fragment_rating_top, container, false) as ViewGroup
+        }
+        return view
     }
 
 

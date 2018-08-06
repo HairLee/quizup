@@ -1,14 +1,17 @@
 package com.elcom.eonline.quizupapp.ui.activity
 
+import android.Manifest
 import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.media.MediaScannerConnection
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.support.design.widget.Snackbar
+import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.util.Log
@@ -55,6 +58,8 @@ class HomeActivity : BaseActivityQuiz(), OnSocketInviteOpponentListener {
     var mEmail:String = ""
     var selectedFragment: Fragment? = mainFragment
     var mTagOfFragment = "homeFragment"
+
+    public var mImage: Bitmap? = null
     override fun getLayout(): Int {
         return R.layout.activity_home
     }
@@ -167,95 +172,20 @@ class HomeActivity : BaseActivityQuiz(), OnSocketInviteOpponentListener {
         }
     }
 
-    private val IMAGE_DIRECTORY = "/demonuts"
-    fun saveImage(myBitmap: Bitmap): File? {
+    fun isStoragePermissionGranted(): Boolean {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) === PackageManager.PERMISSION_GRANTED) {
+                return true
+            } else {
 
-        val bytes = ByteArrayOutputStream()
-        myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes)
-        val wallpaperDirectory = File(
-                Environment.getExternalStorageDirectory().toString() + IMAGE_DIRECTORY)
-        // have the object build the directory structure, if needed.
-        if (!wallpaperDirectory.exists()) {
-            wallpaperDirectory.mkdirs()
-        }
-
-        try {
-            val f = File(wallpaperDirectory, Calendar.getInstance()
-                    .timeInMillis.toString() + ".jpg")
-            f.createNewFile()
-            val fo = FileOutputStream(f)
-            fo.write(bytes.toByteArray())
-            MediaScannerConnection.scanFile(this,
-                    arrayOf(f.path),
-                    arrayOf("image/jpeg"), null)
-
-
-            settingFragment.uploadAvarOrBackGround(f)
-
-
-
-            fo.close()
-            Log.e("TAG", " SettingEditAccountActivity File Saved::--->" + f.path)
-
-            return f
-        } catch (e1: IOException) {
-            e1.printStackTrace()
-        }
-
-        return null
-    }
-
-    private val GALLERY = 1
-    private val CAMERA = 2
-    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == FragmentActivity.RESULT_CANCELED) {
-            return
-        }
-        if (requestCode == GALLERY) {
-            if (data != null) {
-                val contentURI = data.data
-                try {
-                    val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, contentURI)
-                    Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show()
-
-                    saveImage(bitmap)
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                    Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show()
-                }
-
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
+                return false
             }
-
-        } else if (requestCode == CAMERA) {
-            val bitmap = data!!.extras!!.get("data") as Bitmap
-            saveImage(bitmap)
-            Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show()
+        } else { //permission is automatically granted on sdk<23 upon installation
+            return true
         }
     }
 
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        Toast.makeText(this, "onRequestPermissionsResult", Toast.LENGTH_SHORT).show();
-        when(requestCode){
-
-            1->{
-                if (grantResults.isNotEmpty()
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    settingFragment.choosePhotoFromGallary()
-
-                } else {
-                    Toast.makeText(this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            2-> {
-                settingFragment.takePhotoFromCamera()
-            }
-        }
-
-    }
 
 }

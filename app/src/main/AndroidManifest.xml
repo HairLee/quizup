@@ -152,6 +152,7 @@
             android:name=".ui.activity.IntroductionActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.activity.SearchTopicActivity"  android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.CropImageActivity"  android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -1,5 +1,7 @@
 package com.elcom.eonline.quizupapp.utils;
 
+import android.graphics.Bitmap;
+
 import com.elcom.eonline.quizupapp.ui.custom.SocketManage;
 import com.facebook.AccessToken;
 
@@ -20,8 +22,8 @@ public class ConstantsApp {
     public static String BASE64_HEADER = "";
     public static String SERVER_URL = "http://api.giaido.vn/api/";
 
-
-
+    public static Bitmap mImage = null;
+    public static String EXTRA_URI_STR = "EXTRA_URI_STR ";
     public static int REQUEST_CODE_START_ACTIVITY = 1000;
     public static int START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY = 100;
     public static int START_ACTIVITY_TO_GO_TO_QUESTION_INFO = 101;
@@ -29,7 +31,7 @@ public class ConstantsApp {
     public static int RESULT_CODE_TO_STOP_GAME_FROM_QUIZUPACTIVITY = 10;
     public static int RESULT_CODE_TO_CONTINUE_TO_PLAY_GAME_FROM_QUIZUPACTIVITY = 9;
 
-
+    public static final int RESULT_CODE_CROP_IMAGE = 4444;
     public static int REQUEST_CODE_START_FACEBOOK_LOGIN= 64206;
 
     public static int START_ACTIVITY_TO_MOVE_FROM_LIVECHALLENGE = 100;

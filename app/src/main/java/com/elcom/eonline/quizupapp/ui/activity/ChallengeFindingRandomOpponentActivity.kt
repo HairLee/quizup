@@ -197,6 +197,5 @@ class ChallengeFindingRandomOpponentActivity : BaseActivityQuiz(), ChallengeFind
                 }
             }
         }
-
     }
 }

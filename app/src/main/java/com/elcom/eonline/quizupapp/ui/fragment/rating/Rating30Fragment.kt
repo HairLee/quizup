@@ -16,11 +16,14 @@ import java.util.*
 class Rating30Fragment : Fragment() {
 
 
-
+    private var view:ViewGroup? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        if( view == null){
+            view = inflater.inflate(R.layout.fragment_rating30, container, false) as ViewGroup
+        }
 
+        return view
 
-        return inflater.inflate(R.layout.fragment_rating30, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

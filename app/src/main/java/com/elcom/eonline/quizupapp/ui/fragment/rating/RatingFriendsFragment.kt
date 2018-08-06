@@ -31,10 +31,14 @@ private const val ARG_PARAM2 = "param2"
 class RatingFriendsFragment : Fragment() {
 
 
+    private var view:ViewGroup? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
+        if( view == null){
+            view = inflater.inflate(R.layout.fragment_rating_friends, container, false) as ViewGroup
+        }
 
-        return inflater.inflate(R.layout.fragment_rating_friends, container, false)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

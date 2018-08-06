@@ -38,7 +38,7 @@ android {
         minSdkVersion 20
         targetSdkVersion 26
         versionCode new Date().format("yyMMddHHmm", TimeZone.getTimeZone("Europe/Istanbul")).toInteger()
-        versionName "1.0.0"
+        versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
@@ -107,6 +107,9 @@ dependencies {
     implementation("com.github.ihsanbal:LoggingInterceptor:2.0.4") {
         exclude group: 'org.json', module: 'json'
     }
+
+
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.+'
 
 
 }

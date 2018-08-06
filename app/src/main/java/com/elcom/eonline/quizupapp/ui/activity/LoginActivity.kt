@@ -95,6 +95,9 @@ class LoginActivity : BaseActivity(), LoginView, View.OnClickListener {
         btn_login_facebook.registerCallback(mCallbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
                 showProgessDialog()
+
+                Log.e("setupCallBackForL", "userId" + loginResult.accessToken.userId + " applicationId "+loginResult.accessToken.applicationId)
+
                 PreferUtils().setFacebookId(baseContext,loginResult.accessToken.userId)
                 mLoginPresenter.loginWithFacebook(loginResult.accessToken.userId,loginResult.accessToken.token)
             }
