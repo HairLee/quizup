@@ -136,7 +136,7 @@ public class SearchTopicHorizontalRecyclerAdapter extends RecyclerView.Adapter<R
 
                     topicCellViewHolder.tvTopicTitle.setText(mList.get(position).getName());
 
-                    if (topicSearch.getStatusFollow() == "1") {
+                    if (topicSearch.getStatusFollow().equals("1")) {
                         topicCellViewHolder.imvFollow.setImageResource(R.drawable.search_follow_ic);
                     } else {
                         topicCellViewHolder.imvFollow.setImageResource(R.drawable.search_unfollow_ic);

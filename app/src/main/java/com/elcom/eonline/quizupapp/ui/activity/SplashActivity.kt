@@ -19,6 +19,7 @@ import com.elcom.eonline.quizupapp.ui.view.LoginView
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
 import com.elcom.eonline.quizupapp.utils.LogUtils
 import com.elcom.eonline.quizupapp.utils.PreferUtils
+import com.elcom.eonline.quizupapp.utils.Utils
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import retrofit2.Call

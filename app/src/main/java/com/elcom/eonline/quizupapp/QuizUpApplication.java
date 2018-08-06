@@ -13,6 +13,8 @@ import com.elcom.eonline.quizupapp.utils.ConstantsApp;
 import com.elcom.eonline.quizupapp.utils.FontsOverride;
 import com.elcom.eonline.quizupapp.utils.LogUtils;
 import com.elcom.eonline.quizupapp.utils.PreferUtils;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.onesignal.OneSignal;
 
 import org.jetbrains.annotations.NotNull;
@@ -29,6 +31,10 @@ public class QuizUpApplication extends Application implements OnSocketInviteOppo
     @Override
     public void onCreate() {
         super.onCreate();
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
+
         FontsOverride.setDefaultFont(this, "DEFAULT", "fonts/RobotoLight.ttf");
         FontsOverride.setDefaultFont(this, "MONOSPACE", "fonts/RobotoLight.ttf");
         FontsOverride.setDefaultFont(this, "SERIF", "fonts/RobotoLight.ttf");

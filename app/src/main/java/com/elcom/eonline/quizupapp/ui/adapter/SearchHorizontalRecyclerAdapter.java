@@ -140,7 +140,6 @@ public class SearchHorizontalRecyclerAdapter extends RecyclerView.Adapter<Recycl
                         topicCellViewHolder.imvFollow.setImageResource(R.drawable.search_follow_ic);
                     } else {
                         topicCellViewHolder.imvFollow.setImageResource(R.drawable.search_unfollow_ic);
-
                     }
 
                     topicCellViewHolder.imvFollow.setOnClickListener(new View.OnClickListener() {

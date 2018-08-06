@@ -25,7 +25,7 @@ android {
     dataBinding.enabled = false
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.elcom.com.quizupapp"
+        applicationId "com.elcom.eonline.quizupapp"
 
 
         manifestPlaceholders = [
