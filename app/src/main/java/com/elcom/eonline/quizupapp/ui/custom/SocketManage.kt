@@ -97,7 +97,6 @@ class SocketManage {
            myInfo.put("topicId", topicId)
            myInfo.put("sendId", PreferUtils().getUserId(context))
        } catch (e: JSONException) {
-           // TODO Auto-generated catch block
            e.printStackTrace()
        }
 

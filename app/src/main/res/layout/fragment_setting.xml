@@ -7,7 +7,6 @@
     tools:context="com.elcom.eonline.quizupapp.ui.fragment.SettingFragment">
 
     <RelativeLayout
-        android:background="@color/colorPrimary"
         android:id="@+id/rlTop"
         android:layout_width="match_parent"
         android:layout_height="195dp">
@@ -53,7 +52,7 @@
                 app:civ_border="true"
 
                 android:id="@+id/imvAva"
-                android:src="@drawable/ic_ava_default"
+                tools:src="@drawable/ic_ava_default"
                 android:layout_width="72dp"
                 android:layout_height="72dp" />
 

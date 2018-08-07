@@ -153,7 +153,9 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
 
             Picasso.get()
                     .load(profile.cover)
+                    .error(R.drawable.ic_ava_default)
                     .into(imvBg);
+
         }
 
         if( profile.avatar != null){
@@ -253,6 +255,9 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
 
     private var avatar: File? = null
     fun saveImage(myBitmap: Bitmap): String {
+        if(isAvatarChanged){
+            imvBg.setImageBitmap(myBitmap)
+        }
         val bytes = ByteArrayOutputStream()
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes)
         val wallpaperDirectory = File(
@@ -358,23 +363,21 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
                     PreferUtils().setAvatar(context!!,response.body().data!!.avatar!!)
                     ConstantsApp.USER_AVATAR_ME = response.body().data!!.avatar
 
-                    if(  response.body().data!!.avatar != null) {
                         if (isAvatarChanged) {
-                            Picasso.get()
-                                    .load(response.body().data!!.cover)
-                                    .placeholder(R.drawable.picasso_progress_animation)
-                                    .error(R.drawable.ic_ava_default).into(imvBg)
+//                            if( response.body().data!!.cover != null) {
+//                                Picasso.get()
+//                                        .load(response.body().data!!.cover)
+//                                        .into(imvBg)
+//                            }
                         } else {
-                            Picasso.get()
-                                    .load(response.body().data!!.avatar)
-                                    .placeholder(R.drawable.picasso_progress_animation)
-                                    .error(R.drawable.ic_ava_default).into(imvAva)
-
+                            if( response.body().data!!.avatar != null) {
+                                Picasso.get()
+                                        .load(response.body().data!!.avatar)
+                                        .into(imvAva)
+                            }
                         }
                     }
                 }
-            }
-
         })
     }
 

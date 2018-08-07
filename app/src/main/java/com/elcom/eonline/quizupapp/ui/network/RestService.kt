@@ -109,6 +109,11 @@ interface RestService {
     @GET("get-full-question-duel-match?")
     abstract fun getOpponentChallenge(@Query("topic_id") topic_id: String,@Query("match_id") match_id: String): Call<RestData<ChallengeMatching>>
 
+    // SoloMatchResultActivity
+    @POST("post-create-match-duel")
+    abstract fun getOpponentChallengeInfo(@Query("topic_id") topic_id: String,@Query("user_id_opponent") user_id_opponent: String): Call<RestData<ChallengeMatching>>
+
+
     // Live Challenge
     @GET("get-list-show")
     abstract fun getLiveChallengeList(): Call<RestData<LiveChallengeBig>>

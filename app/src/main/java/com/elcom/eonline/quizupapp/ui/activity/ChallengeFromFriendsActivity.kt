@@ -177,7 +177,8 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
 
     private  var mOnlineList = JSONArray()
     override fun onUserOnlineByTopic(onlineList: JSONArray) {
-        LogUtils.e("SocketManage",onlineList.toString())
+        ProgressDialogUtils.dismissProgressDialog()
+        LogUtils.e("SocketManage ~~~~~~~~~~",onlineList.toString())
         listdata.clear()
 
         for (i in 0 until onlineList.length()) {
@@ -186,7 +187,6 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
 
         if(mOnlineList.toString() != onlineList.toString()){
             runOnUiThread {
-                ProgressDialogUtils.dismissProgressDialog()
                 recyclerView.adapter.notifyDataSetChanged()
             }
         }
