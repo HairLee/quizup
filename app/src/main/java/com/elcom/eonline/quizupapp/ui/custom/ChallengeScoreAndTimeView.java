@@ -21,6 +21,7 @@ public class ChallengeScoreAndTimeView extends LinearLayout implements ProgressS
     private ArrayList<View> mViewList = new ArrayList<>();
     private  ArrayList<ProgressSmallTimerView> mProgressTimerViews = new ArrayList<>();
     private  ArrayList<RelativeLayout> mTimeSeconds = new ArrayList<>();
+    private  onFinishSmallCountDown mOnFinishSmmallCountDown;
     public ChallengeScoreAndTimeView(Context context) {
         super(context);
         init(context);
@@ -99,10 +100,16 @@ public class ChallengeScoreAndTimeView extends LinearLayout implements ProgressS
 
     @Override
     public void onFinishCountDown(boolean listDemo) {
-
+        mOnFinishSmmallCountDown.onFinishSmallCountDown(0);
     }
 
+    public interface onFinishSmallCountDown{
+        void onFinishSmallCountDown(int positionOfTheQuestion);
+    }
 
+    public void setOnFinishSmmallCountDown(onFinishSmallCountDown pOnFinishSmmallCountDown){
+        mOnFinishSmmallCountDown = pOnFinishSmmallCountDown;
+    }
 }
 
 
