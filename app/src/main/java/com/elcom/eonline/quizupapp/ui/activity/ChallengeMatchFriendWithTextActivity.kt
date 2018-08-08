@@ -6,12 +6,11 @@ import android.os.Handler
 import android.view.View
 import android.widget.Button
 import com.elcom.eonline.quizupapp.R
-import com.elcom.eonline.quizupapp.ui.activity.model.entity.*
+import com.elcom.eonline.quizupapp.ui.activity.model.entity.AnswerQuestion
+import com.elcom.eonline.quizupapp.ui.activity.model.entity.ChallengeAnswer
+import com.elcom.eonline.quizupapp.ui.activity.model.entity.ChallengeMatching
 import com.elcom.eonline.quizupapp.ui.activity.presenter.SoloMatchWithTextPresenter
 import com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
-import com.elcom.eonline.quizupapp.ui.dialog.StopGameDialog
-import com.elcom.eonline.quizupapp.ui.listener.OnDialogYesNoListener
-import com.elcom.eonline.quizupapp.ui.listener.OnMp3FinishListener
 import com.elcom.eonline.quizupapp.ui.listener.OnSocketListener
 import com.elcom.eonline.quizupapp.ui.network.RestClient
 import com.elcom.eonline.quizupapp.ui.network.RestData
@@ -23,7 +22,7 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.ArrayList
+import java.util.*
 
 
 
@@ -69,6 +68,7 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
             mQuestionNumber = bundle.getInt(ConstantsApp.KEY_QUESTION_NUMBER)
             numberOfRightAnswerFromMe = bundle.getInt(ConstantsApp.KEY_CHALLENGE_TOTAL_RIGHT_ANSWER_ME)
             updateUI()
+            beginToCountDown()
             updateLineScoreLayout()
 
 
@@ -80,6 +80,10 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
                 }
             }
         }
+    }
+
+    private fun beginToCountDown(){
+        lnScoreAndTime.setShowCountDown(mQuestionNumber)
     }
 
     @SuppressLint("NewApi")
@@ -184,6 +188,7 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
         ln_answer_bottom.visibility = View.INVISIBLE
         mQuestionNumber += 1
         numberOfRightAnswerFromMe +=1
+        beginToCountDown()
         updateLineScoreLayout()
         updateUI()
     }
@@ -193,6 +198,7 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
         ln_answer_top.visibility = View.INVISIBLE
         ln_answer_bottom.visibility = View.INVISIBLE
         mQuestionNumber += 1
+        beginToCountDown()
         updateUI()
     }
 

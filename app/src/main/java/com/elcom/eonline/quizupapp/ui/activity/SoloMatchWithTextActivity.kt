@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import com.elcom.eonline.quizupapp.R
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.Answer
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.AnswerQuestion
@@ -14,15 +13,13 @@ import com.elcom.eonline.quizupapp.ui.activity.model.entity.Introduction
 import com.elcom.eonline.quizupapp.ui.activity.presenter.SoloMatchWithTextPresenter
 import com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
 import com.elcom.eonline.quizupapp.ui.dialog.CongratuationDialog
-import com.elcom.eonline.quizupapp.ui.dialog.StopGameDialog
 import com.elcom.eonline.quizupapp.ui.listener.OnDialogYesNoListener
 import com.elcom.eonline.quizupapp.ui.listener.OnMp3FinishListener
 import com.elcom.eonline.quizupapp.ui.view.SoloMatchWithTextView
 import com.elcom.eonline.quizupapp.utils.*
 import kotlinx.android.synthetic.main.activity_solo_text_layout.*
 import kotlinx.android.synthetic.main.coin_and_ex_layout.*
-import java.util.ArrayList
-import android.R.attr.data
+import java.util.*
 
 
 
@@ -137,6 +134,9 @@ class SoloMatchWithTextActivity : BaseActivityQuiz(), View.OnClickListener, Solo
                 answer_3.text = mQuestion!!.answer!![2].getText()
                 answer_4.text = mQuestion!!.answer!![3].getText()
             }
+
+
+            // count time
 
         }
     }

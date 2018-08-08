@@ -13,9 +13,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-
-
+        <com.elcom.eonline.quizupapp.ui.custom.ProgressSmallTimerView
+            android:id="@+id/ProgressTimerView1"
+            android:visibility="invisible"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/ln_coins_ex"
+            android:layout_width="24dp"
+            android:layout_height="24dp"/>
         <RelativeLayout
+            android:visibility="visible"
             android:id="@+id/rl1"
             android:layout_centerInParent="true"
             android:background="@drawable/circle_button_weak_black_layout"
@@ -40,14 +47,7 @@
 
         </RelativeLayout>
 
-        <com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
-            android:id="@+id/ProgressTimerView1"
-            android:visibility="invisible"
-            android:layout_centerInParent="true"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/ln_coins_ex"
-            android:layout_width="40dp"
-            android:layout_height="40dp"/>
+
 
 
     </RelativeLayout>
@@ -59,16 +59,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
+        <com.elcom.eonline.quizupapp.ui.custom.ProgressSmallTimerView
             android:id="@+id/ProgressTimerView2"
             android:visibility="invisible"
             android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/ln_coins_ex"
-            android:layout_width="40dp"
-            android:layout_height="40dp"/>
+            android:layout_width="24dp"
+            android:layout_height="24dp"/>
 
         <RelativeLayout
+            android:id="@+id/rl2"
             android:layout_centerInParent="true"
             android:background="@drawable/circle_button_weak_black_layout"
             android:layout_width="24dp"
@@ -102,16 +103,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
+        <com.elcom.eonline.quizupapp.ui.custom.ProgressSmallTimerView
             android:id="@+id/ProgressTimerView3"
             android:visibility="invisible"
             android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/ln_coins_ex"
-            android:layout_width="40dp"
-            android:layout_height="40dp"/>
+            android:layout_width="24dp"
+            android:layout_height="24dp"/>
 
         <RelativeLayout
+            android:id="@+id/rl3"
+
             android:layout_centerInParent="true"
             android:background="@drawable/circle_button_weak_black_layout"
             android:layout_width="24dp"
@@ -145,16 +148,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
+        <com.elcom.eonline.quizupapp.ui.custom.ProgressSmallTimerView
             android:id="@+id/ProgressTimerView4"
             android:visibility="invisible"
             android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/ln_coins_ex"
-            android:layout_width="40dp"
-            android:layout_height="40dp"/>
+            android:layout_width="24dp"
+            android:layout_height="24dp"/>
 
         <RelativeLayout
+            android:id="@+id/rl4"
             android:layout_centerInParent="true"
             android:background="@drawable/circle_button_weak_black_layout"
             android:layout_width="24dp"
@@ -188,16 +192,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
+        <com.elcom.eonline.quizupapp.ui.custom.ProgressSmallTimerView
             android:id="@+id/ProgressTimerView5"
             android:visibility="invisible"
             android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/ln_coins_ex"
-            android:layout_width="40dp"
-            android:layout_height="40dp"/>
+            android:layout_width="24dp"
+            android:layout_height="24dp"/>
 
         <RelativeLayout
+            android:id="@+id/rl5"
             android:layout_centerInParent="true"
             android:background="@drawable/circle_button_weak_black_layout"
             android:layout_width="24dp"
@@ -231,17 +236,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
+        <com.elcom.eonline.quizupapp.ui.custom.ProgressSmallTimerView
             android:id="@+id/ProgressTimerView6"
-            android:visibility="visible"
+            android:visibility="invisible"
             android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/ln_coins_ex"
-            android:layout_width="40dp"
-            android:layout_height="40dp"/>
+            android:layout_width="24dp"
+            android:layout_height="24dp"/>
 
         <RelativeLayout
-            android:visibility="invisible"
+            android:id="@+id/rl6"
+            android:visibility="visible"
             android:layout_centerInParent="true"
             android:background="@drawable/circle_button_weak_black_layout"
             android:layout_width="24dp"
@@ -275,16 +281,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
+        <com.elcom.eonline.quizupapp.ui.custom.ProgressSmallTimerView
             android:visibility="invisible"
             android:id="@+id/ProgressTimerView7"
             android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/ln_coins_ex"
-            android:layout_width="40dp"
-            android:layout_height="40dp"/>
+            android:layout_width="24dp"
+            android:layout_height="24dp"/>
 
         <RelativeLayout
+            android:id="@+id/rl7"
             android:layout_centerInParent="true"
             android:background="@drawable/circle_button_weak_black_layout"
             android:layout_width="24dp"
