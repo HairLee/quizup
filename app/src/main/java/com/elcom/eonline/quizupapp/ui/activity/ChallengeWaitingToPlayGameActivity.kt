@@ -2,6 +2,7 @@ package com.elcom.eonline.quizupapp.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.Toast
 import com.elcom.eonline.quizupapp.R
@@ -51,10 +52,10 @@ class ChallengeWaitingToPlayGameActivity : BaseActivityQuiz() {
             if(intent.hasExtra("accept")){
                 opponentId = mObject["sendId"] as String
             } else {
-                opponentId = mObject["toId"] as String
+                opponentId = mObject["userSendId"] as String
             }
 
-            Toast.makeText(this, "opponentId "+opponentId, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "opponentId "+ mObject["sendId"] + " "+mObject["toId"], Toast.LENGTH_SHORT).show()
 
             getData(topicId,opponentId)
             Log.e("hailpt"," ChallengeWaitingToPlayGameActivity "+mObject)
@@ -84,15 +85,18 @@ class ChallengeWaitingToPlayGameActivity : BaseActivityQuiz() {
 
     private fun moveToPlayingGame(){
 
-        if ( mChallengeMatching != null){
-            val mainIntent = Intent(this, ChallengeMatchFriendQuestionIntro::class.java)
-            val bundle = Bundle()
-            bundle.putSerializable("value", mChallengeMatching)
-            mainIntent.putExtras(bundle)
-            mainIntent.putExtra(ConstantsApp.KEY_QUESTION_ID,mTopicId)
-            mainIntent.putExtra(ConstantsApp.KEY_SOLO_MATCH_ID,mMatchId)
-            startActivityForResult(mainIntent, ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
-        }
+        Handler().postDelayed(Runnable {
+            if ( mChallengeMatching != null){
+                val mainIntent = Intent(this, ChallengeMatchFriendQuestionIntro::class.java)
+                val bundle = Bundle()
+                bundle.putSerializable("value", mChallengeMatching)
+                mainIntent.putExtras(bundle)
+                mainIntent.putExtra(ConstantsApp.KEY_QUESTION_ID,mTopicId)
+                mainIntent.putExtra(ConstantsApp.KEY_SOLO_MATCH_ID,mMatchId)
+                startActivityForResult(mainIntent, ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
+            }
+
+        }, 2000)
     }
 
 //    fun getTimeCountDown(userSendId: String, toId: String ){

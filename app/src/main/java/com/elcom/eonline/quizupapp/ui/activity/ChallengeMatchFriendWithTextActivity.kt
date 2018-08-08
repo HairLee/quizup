@@ -136,7 +136,7 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
     override fun onResultQuestion(resultQuestion: JSONObject) {
         LogUtils.e("SocketManage", "ChallengeMatchFriendWithTextActivity resultQuestion ${resultQuestion["resultQuestion"]}")
 //        Toast.makeText(this, resultQuestion.toString(), Toast.LENGTH_SHORT).show()
-        if(resultQuestion["resultQuestion"] == "true"){
+        if(resultQuestion["resultQuestion"] == "1"){
             runOnUiThread {
                 numberOfRightAnswerFromOpponent +=1
                 updateLineOpScoreLayout()
@@ -148,13 +148,18 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
     /* 1. Update layout*/
     private fun updateUI(){
         if(mChallengeMatching != null){
-            beginToShowAnswerLayout()
-            mCustomButton!!.refreshColorAfterTheAnswer()
-            txt_question.text = mChallengeMatching!!.question!![mQuestionNumber]!!.text
-            answer_1.text = mChallengeMatching!!.question!![mQuestionNumber].answer!![0].text
-            answer_2.text = mChallengeMatching!!.question!![mQuestionNumber].answer!![1].text
-            answer_3.text = mChallengeMatching!!.question!![mQuestionNumber].answer!![2].text
-            answer_4.text = mChallengeMatching!!.question!![mQuestionNumber].answer!![3].text
+            if(mQuestionNumber < 7){
+                beginToShowAnswerLayout()
+                mCustomButton!!.refreshColorAfterTheAnswer()
+                txt_question.text = mChallengeMatching!!.question!![mQuestionNumber]!!.text
+                answer_1.text = mChallengeMatching!!.question!![mQuestionNumber].answer!![0].text
+                answer_2.text = mChallengeMatching!!.question!![mQuestionNumber].answer!![1].text
+                answer_3.text = mChallengeMatching!!.question!![mQuestionNumber].answer!![2].text
+                answer_4.text = mChallengeMatching!!.question!![mQuestionNumber].answer!![3].text
+            } else {
+                // Go to the result
+
+            }
         }
     }
 

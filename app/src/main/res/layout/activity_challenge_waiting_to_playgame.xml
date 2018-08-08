@@ -57,20 +57,20 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:textColor="@color/white"
-                    android:text="Ambition"
+                    tools:text="Ambition"
                     android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:textColor="@color/white"
-                    android:text="Level 12"
+                    tools:text="Level 12"
                     android:id="@+id/tvMain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:textColor="#80ffffff"
-                    android:text="Chuyên gia"
+                    tools:text="Chuyên gia"
                     android:id="@+id/tvLevel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -104,20 +104,20 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:textColor="@color/white"
-                    android:text="Jack"
+                    tools:text="Jack"
                     android:id="@+id/tvOpName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:textColor="@color/white"
-                    android:text="Level 20"
+                    tools:text="Level 20"
                     android:id="@+id/tvOpMain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:textColor="#80ffffff"
-                    android:text="Chuyên gia"
+                    tools:text="Chuyên gia"
                     android:id="@+id/tvOpLevel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
