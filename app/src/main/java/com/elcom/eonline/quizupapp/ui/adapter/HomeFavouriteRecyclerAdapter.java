@@ -45,7 +45,7 @@ public class HomeFavouriteRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
         @Override
         public void onClick(View view) {
             if (mItemClickListener != null) {
-                mItemClickListener.onItemClick(view,  mList.get(getLayoutPosition()));
+                mItemClickListener.onItemLikeClick(view,  mList.get(getLayoutPosition()));
             }
         }
 
@@ -100,7 +100,7 @@ public class HomeFavouriteRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
     }
 
     public interface OnItemClickListener {
-        void onItemClick(View view, Topic pTopic);
+        void onItemLikeClick(View view, Topic pTopic);
 
         void onItemLongClick(View view, int position);
     }

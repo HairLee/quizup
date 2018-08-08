@@ -3,6 +3,7 @@ package com.elcom.eonline.quizupapp.ui.activity
 import android.content.Intent
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import com.elcom.eonline.quizupapp.R
@@ -17,16 +18,16 @@ import com.elcom.eonline.quizupapp.ui.network.RestClient
 import com.elcom.eonline.quizupapp.ui.network.RestData
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
 import com.elcom.eonline.quizupapp.utils.ProgressDialogUtils
+import com.google.gson.JsonElement
 import kotlinx.android.synthetic.main.activity_search_topic2.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SearchTopicActivity : BaseActivityQuiz(), SwipeRefreshLayout.OnRefreshListener, SearchTopicHorizontalRecyclerAdapter.OnItemClickListener {
+class SearchTopicActivity : BaseActivityQuiz(), SwipeRefreshLayout.OnRefreshListener, SearchTopicHorizontalRecyclerAdapter.OnItemClickListener, SearchTopicHorizontalRecyclerAdapter.OnItemLikeClickListener {
 
 
-
-
+    private var curentKeyWord = ""
     override fun onItemClick(view: View?, search: Topic?) {
         if(search!!.topic_id != ""){
             startActivity(Intent(this, TopicDetailActivity::class.java).putExtra(ConstantsApp.KEY_TOPIC_ID,search!!.topic_id))
@@ -68,8 +69,7 @@ class SearchTopicActivity : BaseActivityQuiz(), SwipeRefreshLayout.OnRefreshList
 
 
     fun getData(keyword:String){
-
-        RestClient().getRestService().searchTopics(keyword,10,0).enqueue(object : Callback<RestData<List<Caterogy>>> {
+        RestClient().getRestService().searchTopics(keyword,100,0).enqueue(object : Callback<RestData<List<Caterogy>>> {
 
             override fun onFailure(call: Call<RestData<List<Caterogy>>>?, t: Throwable?) {
                 swipeRefreshLayout.isRefreshing = false
@@ -86,6 +86,7 @@ class SearchTopicActivity : BaseActivityQuiz(), SwipeRefreshLayout.OnRefreshList
     }
 
     fun doSearch(keyword:String){
+        curentKeyWord = keyword
         getData(keyword)
     }
 
@@ -99,9 +100,11 @@ class SearchTopicActivity : BaseActivityQuiz(), SwipeRefreshLayout.OnRefreshList
         recycler_view.adapter = mAdapter
 
         mAdapter.SetOnItemClickListener(this)
+        mAdapter.SetOnItemLikeClickListener(this)
     }
 
     override fun onRefresh() {
+        curentKeyWord = ""
         getData("")
     }
 
@@ -110,4 +113,29 @@ class SearchTopicActivity : BaseActivityQuiz(), SwipeRefreshLayout.OnRefreshList
     override fun onItemLongClick(view: View?, position: Int) {
 
     }
+
+    override fun onItemLikeClick(view: View?, search: Topic?) {
+        Log.e("hailpt"," onItemLikeClick "+search!!.statusFollow)
+        onFavourtie(search, search.statusFollow.toString())
+    }
+
+    fun onFavourtie(topic: Topic,mFavourite:String) {
+
+        showProgessDialog()
+        RestClient().getInstance().getRestService().followAndUnfollowTopic(topic.topic_id!!,mFavourite).enqueue(object: Callback<JsonElement>{
+            override fun onFailure(call: Call<JsonElement>?, t: Throwable?) {
+                dismisProgressDialog()
+            }
+
+            override fun onResponse(call: Call<JsonElement>?, response: Response<JsonElement>?) {
+                dismisProgressDialog()
+                getData(curentKeyWord)
+            }
+        })
+
+    }
+
+
+
+
 }

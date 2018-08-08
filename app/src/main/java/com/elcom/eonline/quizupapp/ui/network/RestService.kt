@@ -204,6 +204,10 @@ interface RestService {
     abstract fun removeHistory(@Field("match_id") match_id: Int): Call<RestData<JsonElement>>
 
 
+    @GET("profile/set-follow-user?")
+    abstract fun followFriend(@Query("follow_id") follow_id: String): Call<RestData<JsonElement>>
+
+
     @POST("delete-history-match?")
     @FormUrlEncoded
     abstract fun removeAllHistory(@Field("match_id") match_id: String): Call<RestData<JsonElement>>

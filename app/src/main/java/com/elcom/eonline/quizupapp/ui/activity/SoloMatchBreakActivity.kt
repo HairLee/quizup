@@ -13,6 +13,7 @@ import com.elcom.eonline.quizupapp.ui.network.RestClient
 import com.elcom.eonline.quizupapp.ui.network.RestData
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
 import com.elcom.eonline.quizupapp.utils.PreferUtils
+import com.elcom.eonline.quizupapp.utils.ProgressDialogUtils
 import com.google.gson.JsonElement
 import retrofit2.Callback
 import retrofit2.Response
@@ -83,17 +84,18 @@ class SoloMatchBreakActivity : FragmentActivity() {
     }
 
     private fun getResult(){
-
+        ProgressDialogUtils.showProgressDialog(this, 0, 0)
         RestClient().getInstance().getRestService().getResultAfterPlayingGame( PreferUtils().getUserId(this),mTopicId,mMatchId).enqueue(object: Callback<RestData<Result>> {
             override fun onResponse(call: Call<RestData<Result>>?, response: Response<RestData<Result>>?) {
                 if (response?.body() != null){
+                    ProgressDialogUtils.dismissProgressDialog()
                     mMinus = response.body().data!!.minus_coins!!
                     updateLayout(response.body().data!!)
                 }
             }
 
             override fun onFailure(call: Call<RestData<Result>>?, t: Throwable?) {
-
+                ProgressDialogUtils.dismissProgressDialog()
             }
         })
     }

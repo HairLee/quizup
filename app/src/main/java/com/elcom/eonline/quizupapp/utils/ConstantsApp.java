@@ -21,7 +21,7 @@ public class ConstantsApp {
     public static String BASE64_AUTH_TOKEN = "";
     public static String BASE64_HEADER = "";
 //    public static String SERVER_URL = "http://api.giaido.vn/api/";
-    public static String SERVER_URL = "http://192.168.86.91:6789/api/";
+    public static String SERVER_URL = "http://api-dev.giaido.vn/api/";
 
     public static Bitmap mImage = null;
     public static String EXTRA_URI_STR = "EXTRA_URI_STR ";

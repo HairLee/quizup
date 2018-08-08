@@ -30,13 +30,14 @@ import retrofit2.Callback
 import retrofit2.Response
 import android.content.DialogInterface
 import com.elcom.eonline.quizupapp.ui.activity.*
+import com.elcom.eonline.quizupapp.ui.adapter.HomeFavouriteRecyclerAdapter
 import com.squareup.picasso.Picasso
 
 
 /**
  * Created by Hailpt on 4/26/2018.
  */
-class HomeFragment :  Fragment(), OnSeeMoreTopicsListener, OnHistoryListListener, TopicView, HomePlayingRecyclerAdapter.OnItemClickListener {
+class HomeFragment :  Fragment(), OnSeeMoreTopicsListener, OnHistoryListListener, TopicView, HomePlayingRecyclerAdapter.OnItemClickListener, HomeFavouriteRecyclerAdapter.OnItemClickListener {
 
 
 
@@ -100,7 +101,7 @@ class HomeFragment :  Fragment(), OnSeeMoreTopicsListener, OnHistoryListListener
 
         mData = pData
         ProgressDialogUtils.dismissProgressDialog()
-        val mAdapter = HomeAdapter(mData, this,this)
+        val mAdapter = HomeAdapter(mData, this,this,this)
         mAdapter.SetOnItemClickListener(this)
         mAdapter.SetOnSeeMoreTopicListener(this)
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -122,6 +123,11 @@ class HomeFragment :  Fragment(), OnSeeMoreTopicsListener, OnHistoryListListener
 
     override fun onItemLongClick(view: View?, position: Int) {
 
+    }
+
+    override fun onItemLikeClick(view: View?, pTopic: Topic?) {
+        startActivity(Intent(activity, TopicDetailActivity::class.java).putExtra(ConstantsApp.KEY_TOPIC_ID,pTopic!!.topic_id))
+        activity!!.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
     override fun onRemoveHistory(topic: Topic) {

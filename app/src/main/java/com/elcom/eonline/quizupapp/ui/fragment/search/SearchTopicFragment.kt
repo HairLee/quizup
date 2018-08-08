@@ -48,7 +48,7 @@ class SearchTopicFragment : Fragment(),SearchHorizontalRecyclerAdapter.OnItemCli
 
     fun getData(keyword:String){
         ProgressDialogUtils.showProgressDialog(context, 0, 0)
-        RestClient().getRestService().searchTopic(keyword,10,0,2).enqueue(object : Callback<RestData<List<CaterogySearch>>> {
+        RestClient().getRestService().searchTopic(keyword,100,0,2).enqueue(object : Callback<RestData<List<CaterogySearch>>> {
             override fun onFailure(call: Call<RestData<List<CaterogySearch>>>?, t: Throwable?) {
                 ProgressDialogUtils.dismissProgressDialog()
             }

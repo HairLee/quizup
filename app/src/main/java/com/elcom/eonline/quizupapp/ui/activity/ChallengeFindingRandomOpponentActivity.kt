@@ -95,7 +95,6 @@ class ChallengeFindingRandomOpponentActivity : BaseActivityQuiz(), ChallengeFind
 
             override fun onFinish() {
 
-
                 val bundle = Bundle()
                 bundle.putSerializable("value", pChallengeMatching)
                 mainIntent.putExtras(bundle)

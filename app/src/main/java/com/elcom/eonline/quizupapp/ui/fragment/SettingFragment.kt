@@ -247,7 +247,6 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
         } else if (requestCode == 10) run {
             if (resultCode == ConstantsApp.RESULT_CODE_CROP_IMAGE) {
                 mImage = ConstantsApp.mImage
-                imvAva.setImageBitmap(mImage)
                 saveImage(mImage!!)
             }
         }
@@ -257,6 +256,8 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
     fun saveImage(myBitmap: Bitmap): String {
         if(isAvatarChanged){
             imvBg.setImageBitmap(myBitmap)
+        } else {
+            imvAva.setImageBitmap(myBitmap)
         }
         val bytes = ByteArrayOutputStream()
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes)
@@ -370,11 +371,11 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
 //                                        .into(imvBg)
 //                            }
                         } else {
-                            if( response.body().data!!.avatar != null) {
-                                Picasso.get()
-                                        .load(response.body().data!!.avatar)
-                                        .into(imvAva)
-                            }
+//                            if( response.body().data!!.avatar != null) {
+//                                Picasso.get()
+//                                        .load(response.body().data!!.avatar)
+//                                        .into(imvAva)
+//                            }
                         }
                     }
                 }

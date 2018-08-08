@@ -41,7 +41,7 @@ class SocketManage {
         Log.e("SocketManage", " Connecting... ")
 
         try {
-            mSocket = IO.socket("http://192.168.86.91:3000")
+            mSocket = IO.socket("http://socket-dev.giaido.vn")
         } catch (e: URISyntaxException) {
 
         }

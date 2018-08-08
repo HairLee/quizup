@@ -1,18 +1,22 @@
 package com.elcom.eonline.quizupapp.ui.fragment.search
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import com.elcom.eonline.quizupapp.R
+import com.elcom.eonline.quizupapp.ui.activity.SettingProfileActivity
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.CaterogySearch
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.topicdetail.Search
 import com.elcom.eonline.quizupapp.ui.adapter.SearchHorizontalRecyclerAdapter
 import com.elcom.eonline.quizupapp.ui.adapter.SearchHomeVerticalRecyclerAdapter
+import com.elcom.eonline.quizupapp.ui.adapter.SearchPlayerVerticalRecyclerAdapter
 import com.elcom.eonline.quizupapp.ui.network.RestClient
 import com.elcom.eonline.quizupapp.ui.network.RestData
 import com.elcom.eonline.quizupapp.utils.ProgressDialogUtils
@@ -44,7 +48,7 @@ class SearchPlayerFragment : Fragment(),SearchHorizontalRecyclerAdapter.OnItemCl
 
     fun getData(keyword:String){
         ProgressDialogUtils.showProgressDialog(context, 0, 0)
-        RestClient().getRestService().searchTopic(keyword,10,0,1).enqueue(object : Callback<RestData<List<CaterogySearch>>> {
+        RestClient().getRestService().searchTopic(keyword,200,0,1).enqueue(object : Callback<RestData<List<CaterogySearch>>> {
             override fun onFailure(call: Call<RestData<List<CaterogySearch>>>?, t: Throwable?) {
                 ProgressDialogUtils.dismissProgressDialog()
             }
@@ -70,14 +74,15 @@ class SearchPlayerFragment : Fragment(),SearchHorizontalRecyclerAdapter.OnItemCl
         recycler_view.setHasFixedSize(true)
 //        recycler_view.isNestedScrollingEnabled = false
 
-        val mAdapter = SearchHomeVerticalRecyclerAdapter(mList, this)
+        val mAdapter = SearchPlayerVerticalRecyclerAdapter(mList, this)
         recycler_view.adapter = mAdapter
 
         mAdapter.SetOnItemClickListener(this)
     }
 
-    override fun onItemClick(view: View?, pTopic: Search?) {
-
+    override fun onItemClick(view: View?, search: Search?) {
+            Log.e("hailpt"," onItemClick "+search!!.name)
+        startActivity(Intent(context, SettingProfileActivity::class.java).putExtra("USER_ID",search.userId))
     }
 
     override fun onItemLongClick(view: View?, position: Int) {

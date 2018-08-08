@@ -239,6 +239,7 @@ class SoloMatchWithTextActivity : BaseActivityQuiz(), View.OnClickListener, Solo
 
     /*Time's Up* 10s*/
     override fun onFinishCountDown(listDemo: Boolean) {
+        Utils.CustomButtom(mButtonList).unableButtonClick()
         pSoloMatchWithTextPresenter.answerTheQuestion(PreferUtils().getUserId(this), mTopicId, mQuestion!!.answer!![mWrongAnswer].getId().toString(), mQuestion!!.id!!, mMatchId, mLastQuestion )
         mp3Manage.playSong(this,0)
     }

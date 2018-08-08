@@ -6,12 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.elcom.eonline.quizupapp.R;
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.topicdetail.Search;
-import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.topicdetail.Topic;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
@@ -21,12 +19,12 @@ import java.util.List;
 /**
  * Created Hailpt on 3/21/17.
  */
-public class SearchHorizontalRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class SearchPlayerHorizontalRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Search> mList;
     private OnItemClickListener mItemClickListener;
     private static final int USER_ITEM = 1;
     private static final int TOPIC_ITEM = 2;
-    public SearchHorizontalRecyclerAdapter(List<Search> list) {
+    public SearchPlayerHorizontalRecyclerAdapter(List<Search> list) {
         this.mList = list;
     }
 
@@ -34,13 +32,11 @@ public class SearchHorizontalRecyclerAdapter extends RecyclerView.Adapter<Recycl
         private CircularImageView imvIconGame;
         private TextView tvTopicTitle;
         private TextView txt_topic;
-        private RelativeLayout rlUser;
         private CellViewHolder(View itemView) {
             super(itemView);
             imvIconGame = (CircularImageView) itemView.findViewById(R.id.imv_game_icon);
             tvTopicTitle = (TextView)itemView.findViewById(R.id.txt_topic_title);
             txt_topic = (TextView)itemView.findViewById(R.id.txt_topic);
-            rlUser = itemView.findViewById(R.id.rlUser);
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
         }
@@ -121,7 +117,7 @@ public class SearchHorizontalRecyclerAdapter extends RecyclerView.Adapter<Recycl
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         switch (viewHolder.getItemViewType()) {
 
             case TOPIC_ITEM: {
@@ -181,13 +177,6 @@ public class SearchHorizontalRecyclerAdapter extends RecyclerView.Adapter<Recycl
                     Picasso.get()
                             .load(mList.get(position).getUrl())
                             .into(cellViewHolder.imvIconGame);
-
-                    cellViewHolder.rlUser.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            mItemClickListener.onItemClick(view,mList.get(position));
-                        }
-                    });
                 }
 
                 break;

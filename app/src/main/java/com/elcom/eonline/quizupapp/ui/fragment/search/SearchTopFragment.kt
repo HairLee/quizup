@@ -60,7 +60,7 @@ class SearchTopFragment : Fragment(),SearchHorizontalRecyclerAdapter.OnItemClick
 
     fun getData(keyword:String){
 
-        RestClient().getRestService().searchTopic(keyword,10,0,0).enqueue(object : Callback<RestData<List<CaterogySearch>>> {
+        RestClient().getRestService().searchTopic(keyword,100,0,0).enqueue(object : Callback<RestData<List<CaterogySearch>>> {
 
             override fun onFailure(call: Call<RestData<List<CaterogySearch>>>?, t: Throwable?) {
                 swipeRefreshLayout.isRefreshing = false

@@ -107,10 +107,81 @@
 
 
     </RelativeLayout>
+    
+    <RelativeLayout
+        android:paddingTop="10dp"
+        android:orientation="vertical"
+        android:id="@+id/tlFollowFriend"
+        android:layout_below="@+id/rlTop"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <RelativeLayout
+            android:id="@+id/rlFollow"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/radius_button_trans_bg_purple_srtoke_layout"
+            android:layout_width="142dp"
+            android:layout_height="36dp">
+
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/follow_friend_ic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textColor="#6665FF"
+                android:text="FOLLOW"
+                android:layout_marginRight="10dp"
+               android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/radius_button_red_bg_red_srtoke_layout"
+            android:layout_width="142dp"
+            android:layout_height="36dp">
+
+            <ImageView
+                android:id="@+id/imvChallenge"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/challenge_ic_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginLeft="10dp"
+              android:layout_toRightOf="@+id/imvChallenge"
+                android:textColor="#ffffff"
+                android:text="THÁCH ĐẤU"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/gray_2"
+            />
+    </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/lnNumberOfTopic"
         android:weightSum="3"
-        android:layout_below="@+id/rlTop"
+        android:layout_below="@+id/tlFollowFriend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -143,7 +214,7 @@
                     android:textColor="@color/black"
                     android:layout_marginLeft="5dp"
                     android:textSize="11sp"
-                    android:text="100"
+                    tools:text="100"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -154,8 +225,6 @@
         </LinearLayout>
         <!--End-->
         <View
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@color/gray_2"
@@ -191,7 +260,7 @@
                     android:textColor="@color/black"
                     android:layout_marginLeft="5dp"
                     android:textSize="11sp"
-                    android:text="100"
+                    tools:text="100"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -202,8 +271,6 @@
         </LinearLayout>
         <!--End-->
         <View
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="@color/gray_2"
@@ -238,7 +305,7 @@
                     android:textColor="@color/black"
                     android:layout_marginLeft="5dp"
                     android:textSize="11sp"
-                    android:text="100"
+                    tools:text="100"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -340,7 +407,7 @@
                     android:textColor="@color/black"
                     android:textSize="17sp"
                     android:layout_marginLeft="10dp"
-                    android:text="Chủ đề yêu thích (20)"
+                    android:text="Chủ đề yêu thích"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 

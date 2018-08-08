@@ -251,7 +251,7 @@ class SettingEditAccountActivity : BaseActivityQuiz(), OnItemClickListener, Sett
                     dismisProgressDialog()
                     sendImageBroadcast()
                     mSettingProfilePresenter.getData(PreferUtils().getUserId(baseContext))
-                    LogUtils.e("hailpt"," updateProfile onResponse "+ response.body().data.toString())
+                    Toast.makeText(this@SettingEditAccountActivity, "Cập nhật thành công", Toast.LENGTH_SHORT).show()
                 }
             }
 

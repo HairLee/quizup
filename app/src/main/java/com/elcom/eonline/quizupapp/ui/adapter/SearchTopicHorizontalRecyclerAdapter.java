@@ -23,6 +23,7 @@ import java.util.List;
 public class SearchTopicHorizontalRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Topic> mList;
     private OnItemClickListener mItemClickListener;
+    private OnItemLikeClickListener mItemLikeClickListener;
     private static final int USER_ITEM = 1;
     private static final int TOPIC_ITEM = 2;
     public SearchTopicHorizontalRecyclerAdapter(List<Topic> list) {
@@ -154,6 +155,13 @@ public class SearchTopicHorizontalRecyclerAdapter extends RecyclerView.Adapter<R
                             .load(mList.get(position).getUrl())
                             .into(topicCellViewHolder.imvIconGame);
 
+                    topicCellViewHolder.imvFollow.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            mItemLikeClickListener.onItemLikeClick(view,topicSearch);
+                        }
+                    });
+
 
                 }
 
@@ -209,8 +217,16 @@ public class SearchTopicHorizontalRecyclerAdapter extends RecyclerView.Adapter<R
         void onItemLongClick(View view, int position);
     }
 
+    public interface OnItemLikeClickListener {
+        void onItemLikeClick(View view, Topic search);
+    }
+
     // for both short and long click
     public void SetOnItemClickListener(final OnItemClickListener mItemClickListener) {
         this.mItemClickListener = mItemClickListener;
+    }
+
+    public void SetOnItemLikeClickListener(final OnItemLikeClickListener mItemClickListener) {
+        this.mItemLikeClickListener = mItemClickListener;
     }
 }

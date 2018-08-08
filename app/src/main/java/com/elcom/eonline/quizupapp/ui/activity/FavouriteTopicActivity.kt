@@ -60,7 +60,7 @@ class FavouriteTopicActivity : BaseActivityQuiz(), OnFavouriteListener {
 
     private fun getData(){
 
-        RestClient().getRestService().getListTopicFromKey(10,0,1,"").enqueue(object : Callback<RestData<List<Topic>>> {
+        RestClient().getRestService().getListTopicFromKey(100,0,1,"").enqueue(object : Callback<RestData<List<Topic>>> {
             override fun onFailure(call: Call<RestData<List<Topic>>>?, t: Throwable?) {
                 dismisProgressDialog()
             }

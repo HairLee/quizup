@@ -59,15 +59,18 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
         }
 
         ConstantsApp.socketManage.getUserOnlineByTopic(myInfo)
-        ProgressDialogUtils.showProgressDialog(this, 0, 0)
     }
 
     override fun onSomeoneInviteYouToPlayGame(resultQuestion: JSONObject) {
         LogUtils.e("SocketManage","ChallengeFromFriendsActivity Someone invite you to play a game " + resultQuestion.toString())
+        LogUtils.e("SocketManage","ChallengeFromFriendsActivity Someone invite you to play a game Id " + PreferUtils().getUserId(this))
 
         // When your friend accept your invitation, begin to play a game
         if(resultQuestion["challenge"] == "true" && resultQuestion["userSendId"] == PreferUtils().getUserId(this)){
-            startActivity(Intent(this,ChallengeWaitingToPlayGameActivity::class.java).putExtra("data",resultQuestion.toString()))
+           val intent = Intent(this,ChallengeWaitingToPlayGameActivity::class.java)
+            intent.putExtra("data",resultQuestion.toString())
+            intent.putExtra("accept","")
+            startActivity(intent)
         } else if (resultQuestion["challenge"] == "true" && resultQuestion["userSendId"] != PreferUtils().getUserId(this)) {
         // When you wanna accept your friend to play Game
             runOnUiThread {
@@ -177,7 +180,6 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
 
     private  var mOnlineList = JSONArray()
     override fun onUserOnlineByTopic(onlineList: JSONArray) {
-        ProgressDialogUtils.dismissProgressDialog()
         LogUtils.e("SocketManage ~~~~~~~~~~",onlineList.toString())
         listdata.clear()
 

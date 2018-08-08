@@ -74,7 +74,7 @@ public class QuizUpApplication extends Application implements OnSocketInviteOppo
     private CountDownTimer countDownTimer;
     public void startCountDownTimer() {
 
-        long timeCountInMilliSeconds = 40 * 1000;
+        long timeCountInMilliSeconds = 10 * 1000;
         countDownTimer = new CountDownTimer(timeCountInMilliSeconds, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {

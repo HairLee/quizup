@@ -31,15 +31,17 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
     private Context mContext;
     private OnSeeMoreTopicsListener onSeeMoreTopicsListener;
     private OnHistoryListListener onHistoryListListener;
+    private HomeFavouriteRecyclerAdapter.OnItemClickListener onFavorListListener;
 
     private static final int HISTORY_TOPIC = 1;
     private static final int PLAYING_TOPIC = 2;
     private static final int FAVOURITE_TOPIC = 3;
 
-    public HomeAdapter(List<Caterogy> list, OnSeeMoreTopicsListener pOnSeeMoreTopicsListener,OnHistoryListListener onHistoryListListener) {
+    public HomeAdapter(List<Caterogy> list, OnSeeMoreTopicsListener pOnSeeMoreTopicsListener,OnHistoryListListener onHistoryListListener,HomeFavouriteRecyclerAdapter.OnItemClickListener onFavorListListener) {
         this.mList = list;
         onSeeMoreTopicsListener = pOnSeeMoreTopicsListener;
         this.onHistoryListListener = onHistoryListListener;
+        this.onFavorListListener = onFavorListListener;
     }
 
     @Override
@@ -160,7 +162,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                 layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
                 favouriteCellViewHolder.mRecyclerView.setLayoutManager(layoutManager2);
                 HomeFavouriteRecyclerAdapter favouriteTopicAdapter = new HomeFavouriteRecyclerAdapter(mList.get(2).getTopics());
-//                favouriteTopicAdapter.SetOnItemClickListener(onHistoryListListener);
+                favouriteTopicAdapter.SetOnItemClickListener(onFavorListListener);
                 favouriteCellViewHolder.mRecyclerView.setAdapter(favouriteTopicAdapter);
                 favouriteCellViewHolder.mTitle.setText(mList.get(2).getName());
                 favouriteCellViewHolder.tvMore.setOnClickListener(new View.OnClickListener() {
