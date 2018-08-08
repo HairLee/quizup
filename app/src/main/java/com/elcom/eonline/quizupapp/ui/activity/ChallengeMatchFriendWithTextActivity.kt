@@ -11,7 +11,6 @@ import com.elcom.eonline.quizupapp.ui.activity.model.entity.ChallengeAnswer
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.ChallengeMatching
 import com.elcom.eonline.quizupapp.ui.activity.presenter.SoloMatchWithTextPresenter
 import com.elcom.eonline.quizupapp.ui.custom.ChallengeScoreAndTimeView
-import com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
 import com.elcom.eonline.quizupapp.ui.listener.OnSocketListener
 import com.elcom.eonline.quizupapp.ui.network.RestClient
 import com.elcom.eonline.quizupapp.ui.network.RestData
@@ -27,7 +26,7 @@ import java.util.*
 
 
 
-class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickListener, SoloMatchWithTextView,ProgressTimerView.onFinishCountDown, OnSocketListener, ChallengeScoreAndTimeView.onFinishSmallCountDown {
+class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickListener, SoloMatchWithTextView, OnSocketListener, ChallengeScoreAndTimeView.onFinishSmallCountDown {
 
 
     private var mChallengeMatching: ChallengeMatching? = null
@@ -168,7 +167,7 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
                 answer_4.text = mChallengeMatching!!.question!![mQuestionNumber].answer!![3].text
             } else {
                 // Go to the result
-
+                goToResultActivity()
             }
         }
     }
@@ -207,7 +206,7 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
     }
 
     private fun goToResultActivity(){
-        val intent = Intent(this, SoloMatchStatisticActivity::class.java)
+        val intent = Intent(this, ChallengeResultActivity::class.java)
         intent.putExtra(ConstantsApp.KEY_SOLO_MATCH_ID,mMatchId)
         intent.putExtra(ConstantsApp.KEY_QUESTION_ID,mTopicId)
         startActivityForResult(intent, ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
@@ -243,10 +242,6 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
     }
 
     /*Time's Up* 10s*/
-    override fun onFinishCountDown(listDemo: Boolean) {
-
-    }
-
     override fun onFinishSmallCountDown(positionOfTheQuestion: Int) {
         pSoloMatchWithTextPresenter.sendMyAnswerBySocket(ConstantsApp.socketManage!!, PreferUtils().getUserId(this), mChallengeMatching!!.opponent!!.userIdOpponent.toString(),mChallengeMatching!!.matchId.toString(),mTopicId, (mQuestionNumber+1).toString(),mChallengeMatching!!.question!![mQuestionNumber].answer!![mWrongAnswer].correct.toString(), mChallengeMatching!!.opponent!!.statusBotUser.toString() )
         goToBreakActivityBecauseOfWrongAnswer()
