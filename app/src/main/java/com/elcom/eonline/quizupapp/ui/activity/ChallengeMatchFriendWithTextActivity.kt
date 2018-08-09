@@ -176,6 +176,11 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
 
     /* 2. Give a question*/
     private fun answerTheQuestion(pAnswerIdPos:Int){
+
+
+
+
+
         Utils.CustomButtom(mButtonList).unableButtonClick()
         mTheAnswerFromMe = pAnswerIdPos
         mCustomButton!!.changeColorWithCorrectAnswer(mAnswer,mCorrectAnswer)

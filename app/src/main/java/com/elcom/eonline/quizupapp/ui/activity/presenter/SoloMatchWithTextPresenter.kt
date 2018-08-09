@@ -87,6 +87,8 @@ class SoloMatchWithTextPresenter(pSoloMatchWithTextView: SoloMatchWithTextView):
             e.printStackTrace()
         }
 
+        Log.e("hailpt"," sendMyAnswerBySocket data ==== "+data.toString())
+
         pSocketManage.sendMyAnswerBySocket(data)
 
     }
