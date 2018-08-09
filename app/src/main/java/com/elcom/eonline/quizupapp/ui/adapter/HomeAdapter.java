@@ -142,7 +142,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                 LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
                 layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                 cellViewHolder.mRecyclerView.setLayoutManager(layoutManager);
-                HomeHistoryRecyclerAdapter adapter = new HomeHistoryRecyclerAdapter(mList.get(1).getTopics());
+                HomeHistoryRecyclerAdapter adapter = new HomeHistoryRecyclerAdapter(mList.get(1).getTopics(), mContext);
                 adapter.setOnHistoryListListener(onHistoryListListener);
                 cellViewHolder.mRecyclerView.setAdapter(adapter);
                 cellViewHolder.mTitle.setText(mList.get(1).getName());

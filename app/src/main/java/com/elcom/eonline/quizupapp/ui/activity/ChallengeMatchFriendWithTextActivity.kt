@@ -3,6 +3,7 @@ package com.elcom.eonline.quizupapp.ui.activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import com.elcom.eonline.quizupapp.R
@@ -39,9 +40,9 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
     private var mIsAnswer = false
     private var numberOfRightAnswerFromMe = 0
     private var numberOfRightAnswerFromOpponent = 0
-//    private val mSocketManage = SocketManage()
+    //    private val mSocketManage = SocketManage()
     override fun getLayout(): Int {
-       return R.layout.challenge_with_text_layout
+        return R.layout.challenge_with_text_layout
     }
 
     override fun initView() {
@@ -101,6 +102,7 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
 
     private var mAnswer = 4
     private var mCorrectAnswer = -1
+    private var mTheAnswerFromMe = -1
     private var mWrongAnswer = -1
     override fun onClick(p0: View?) {
         if (p0 != null) {
@@ -174,14 +176,13 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
 
     /* 2. Give a question*/
     private fun answerTheQuestion(pAnswerIdPos:Int){
-
+        mTheAnswerFromMe = pAnswerIdPos
         mCustomButton!!.changeColorWithCorrectAnswer(mAnswer,mCorrectAnswer)
 //        pSoloMatchWithTextPresenter.answerTheQuestion(PreferUtils().getUserId(this), mTopicId,   mChallengeMatching!!.question!![mQuestionNumber]!!.answer!![pAnswerIdPos].id.toString(),  mChallengeMatching!!.question!![mQuestionNumber].id!!.toString(), mMatchId, "false" )
         pSoloMatchWithTextPresenter.sendMyAnswerBySocket(ConstantsApp.socketManage!!, PreferUtils().getUserId(this), mChallengeMatching!!.opponent!!.userIdOpponent.toString(),mChallengeMatching!!.matchId.toString(),mTopicId, (mQuestionNumber+1).toString(),mChallengeMatching!!.question!![mQuestionNumber].answer!![pAnswerIdPos].correct.toString(), mChallengeMatching!!.opponent!!.statusBotUser.toString() )
+
         if(mCorrectAnswer == pAnswerIdPos){
-            goBackToQuestionIntroActivityBecauseOfRightAnswer()
-        } else {
-            goToBreakActivityBecauseOfWrongAnswer()
+            updateLineScoreLayout(numberOfRightAnswerFromMe  + 1)
         }
     }
 
@@ -189,6 +190,7 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
     private fun goBackToQuestionIntroActivityBecauseOfRightAnswer(){
         ln_answer_top.visibility = View.INVISIBLE
         ln_answer_bottom.visibility = View.INVISIBLE
+        mTheAnswerFromMe = -1
         mQuestionNumber += 1
         numberOfRightAnswerFromMe +=1
         beginToCountDown()
@@ -200,6 +202,7 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
     private fun goToBreakActivityBecauseOfWrongAnswer(){
         ln_answer_top.visibility = View.INVISIBLE
         ln_answer_bottom.visibility = View.INVISIBLE
+        mTheAnswerFromMe = -1
         mQuestionNumber += 1
         beginToCountDown()
         updateUI()
@@ -207,6 +210,9 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
 
     private fun goToResultActivity(){
         val intent = Intent(this, ChallengeResultActivity::class.java)
+        intent.putExtra(ConstantsApp.KEY_CHALLENGE_TO_ID,mChallengeMatching!!.opponent!!.userIdOpponent)
+        intent.putExtra(ConstantsApp.KEY_CHALLENGE_USER_ID,PreferUtils().getUserId(this))
+        intent.putExtra(ConstantsApp.KEY_CHALLENGE_USER_BOT,mChallengeMatching!!.opponent!!.statusBotUser)
         intent.putExtra(ConstantsApp.KEY_SOLO_MATCH_ID,mMatchId)
         intent.putExtra(ConstantsApp.KEY_QUESTION_ID,mTopicId)
         startActivityForResult(intent, ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
@@ -232,6 +238,10 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
         lineScoreMe.changeColorOfItemWithRightAnswer(numberOfRightAnswerFromMe)
     }
 
+    private fun updateLineScoreLayout(numberOfRightAnswerFromMe:Int){
+        lineScoreMe.changeColorOfItemWithRightAnswer(numberOfRightAnswerFromMe)
+    }
+
     private fun updateLineOpScoreLayout(){
         lineScoreOp.changeColorOfItemWithRightAnswerOp(numberOfRightAnswerFromOpponent)
     }
@@ -243,8 +253,11 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
 
     /*Time's Up* 10s*/
     override fun onFinishSmallCountDown(positionOfTheQuestion: Int) {
-        pSoloMatchWithTextPresenter.sendMyAnswerBySocket(ConstantsApp.socketManage!!, PreferUtils().getUserId(this), mChallengeMatching!!.opponent!!.userIdOpponent.toString(),mChallengeMatching!!.matchId.toString(),mTopicId, (mQuestionNumber+1).toString(),mChallengeMatching!!.question!![mQuestionNumber].answer!![mWrongAnswer].correct.toString(), mChallengeMatching!!.opponent!!.statusBotUser.toString() )
-        goToBreakActivityBecauseOfWrongAnswer()
+        if(mCorrectAnswer == mTheAnswerFromMe){
+            goBackToQuestionIntroActivityBecauseOfRightAnswer()
+        } else {
+            goToBreakActivityBecauseOfWrongAnswer()
+        }
     }
 
     override fun onBackPressed() {

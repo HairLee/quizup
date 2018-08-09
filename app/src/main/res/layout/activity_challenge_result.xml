@@ -28,6 +28,7 @@
         android:layout_height="wrap_content" />
 
     <TextView
+        android:id="@+id/tvConfirm"
         android:textStyle="bold"
         android:layout_marginTop="10dp"
         android:textSize="20sp"
@@ -97,6 +98,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tvMyScore"
             android:textStyle="bold"
             android:textColor="#F86868"
             android:layout_marginLeft="10dp"
@@ -147,6 +149,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tvOpScore"
             android:textStyle="bold"
             android:textColor="#4CCC15"
             android:layout_marginLeft="10dp"

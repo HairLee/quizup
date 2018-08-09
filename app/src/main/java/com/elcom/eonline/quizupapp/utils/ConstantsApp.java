@@ -80,4 +80,8 @@ public class ConstantsApp {
     public static int MP3_WRONG_ANSWER = 0;
     public static int MP3_CORRECT_ANSWER = 1;
 
+    public static String KEY_CHALLENGE_TO_ID = "KEY_CHALLENGE_TO_ID";
+    public static String KEY_CHALLENGE_USER_ID = "KEY_CHALLENGE_USER_ID";
+    public static String KEY_CHALLENGE_USER_BOT = "KEY_CHALLENGE_USER_BOT";
+
 }

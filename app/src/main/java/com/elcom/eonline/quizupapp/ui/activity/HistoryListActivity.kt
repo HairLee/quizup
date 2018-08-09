@@ -75,7 +75,7 @@ class HistoryListActivity : BaseActivityQuiz() {
 
     private fun getData(){
         showProgessDialog()
-        RestClient().getInstance().getRestService().getListTopicFromKey(10,0,2,"2").enqueue(object : Callback<RestData<List<Topic>>> {
+        RestClient().getInstance().getRestService().getListTopicFromKey(1000,0,2,"2").enqueue(object : Callback<RestData<List<Topic>>> {
 
             override fun onFailure(call: Call<RestData<List<Topic>>>?, t: Throwable?) {
                 ProgressDialogUtils.dismissProgressDialog()

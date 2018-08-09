@@ -1,6 +1,7 @@
 package com.elcom.eonline.quizupapp.ui.adapter;
 
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.elcom.eonline.quizupapp.ui.listener.OnHistoryListListener;
 import com.elcom.eonline.quizupapp.ui.listener.OnSeeMoreTopicsListener;
 import com.elcom.eonline.quizupapp.utils.ConstantsApp;
 import com.elcom.eonline.quizupapp.utils.PreferUtils;
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -31,8 +33,10 @@ public class HomeHistoryRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
     private OnHistoryListListener onHistoryListListener ;
     private static final int HISTORY_SOLO = 1;
     private static final int HISTORY_CHALLENGE = 2;
-
-    public HomeHistoryRecyclerAdapter(List<Topic> list) {
+    private boolean clickable = true;
+    private Context mContext;
+    public HomeHistoryRecyclerAdapter(List<Topic> list, Context context) {
+        mContext = context;
         this.mList = list;
     }
 
@@ -109,12 +113,16 @@ public class HomeHistoryRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
         switch (viewHolder.getItemViewType()) {
             default: {
+
                 ChallengeCellViewHolder cellViewHolder = (ChallengeCellViewHolder) viewHolder;
                 cellViewHolder.tvNameOfTopic.setText(mList.get(position).getName());
                 cellViewHolder.rlBottom.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        onHistoryListListener.onPlayTopicAgain(mList.get(position));
+                        if (clickable) {
+                            onHistoryListListener.onPlayTopicAgain(mList.get(position));
+                            clickable = false;
+                        }
                     }
                 });
 
@@ -125,11 +133,11 @@ public class HomeHistoryRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
                     }
                 });
 
-                if(ConstantsApp.USER_AVATAR_ME != ""){
+//                if(!ConstantsApp.USER_AVATAR_ME.equals("")){
                     Picasso.get()
-                            .load(ConstantsApp.USER_AVATAR_ME)
+                            .load(new PreferUtils().getAvatar(mContext))
                             .into(cellViewHolder.imvAva);
-                }
+//                }
 
                 cellViewHolder.tvEx.setText("+"+mList.get(position).getBonus());
 //                cellViewHolder.tvName.setText(PreferUtils.get);

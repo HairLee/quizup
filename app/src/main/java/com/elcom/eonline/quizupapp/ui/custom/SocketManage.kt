@@ -25,6 +25,7 @@ class SocketManage {
     private var mOnSocketListener: OnSocketListener? = null
     private var mOnSocketGetOnlineListListener:OnSocketGetOnlineListener? = null
     private var mOnInviteOpponentListener: OnSocketInviteOpponentListener? = null
+    private var mOnGetResultQuestion:OnGetResultQuestion? = null
     fun init(pOnSocketListener:OnSocketListener ){
         mOnSocketListener = pOnSocketListener
     }
@@ -54,6 +55,7 @@ class SocketManage {
         mSocket!!.on("resultQuestion", resultQuestion)
         mSocket!!.on("getUserOnlineByTopic", getUserOnlineByTopic)
         mSocket!!.on("sendChallengeInformation", sendChallengeInformation)
+        mSocket!!.on("getResultMatchDuel", getResultMatchDuel)
     }
 
     fun disconnect(){
@@ -175,6 +177,19 @@ class SocketManage {
 
 
 
+    /*getResultMatchDuel*/
+    private val getResultMatchDuel = Emitter.Listener { args ->
+        val data = args[0] as JSONObject
+        mOnGetResultQuestion!!.onGetResultQuestion(data)
+    }
+
+    fun getResultMatchDuel(data:JSONObject){
+        mSocket!!.emit("getResultMatchDuel", data)
+    }
+    /*getResultMatchDuel*/
+
+
+
     private fun getStringValueObjectFromKey(pData:JSONObject,pKey:String): String{
         var  countDown = ""
         try {
@@ -196,5 +211,11 @@ class SocketManage {
     }
 
 
+    interface OnGetResultQuestion {
+        fun onGetResultQuestion(resultQuestion:JSONObject)
+    }
 
+    fun setOnGetResultQuestion(onGetResultQuestion:OnGetResultQuestion){
+        mOnGetResultQuestion = onGetResultQuestion
+    }
 }

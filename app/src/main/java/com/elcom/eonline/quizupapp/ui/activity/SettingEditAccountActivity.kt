@@ -77,11 +77,7 @@ class SettingEditAccountActivity : BaseActivityQuiz(), OnItemClickListener, Sett
         mSettingProfilePresenter.getData(PreferUtils().getUserId(this))
         imvBack.setOnClickListener { onBackPressed() }
         tvLogout.setOnClickListener {
-            PreferUtils().setToken(this,"")
-            val intent = Intent(applicationContext, LoginActivity::class.java)
-            intent.putExtra("FROM_LOGOUT","FROM_LOGOUT")
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
+            logoutDialog()
         }
 
         tvSave.setOnClickListener {
@@ -128,19 +124,25 @@ class SettingEditAccountActivity : BaseActivityQuiz(), OnItemClickListener, Sett
         }
     }
 
-    private fun showPictureDialog() {
-        val pictureDialog = AlertDialog.Builder(this)
-        pictureDialog.setTitle("Select Action")
-        val pictureDialogItems = arrayOf("Select photo from gallery", "Capture photo from camera")
-        pictureDialog.setItems(pictureDialogItems,
-                { _, which ->
-                    when (which) {
-                        0 ->  ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),1)
-                        1 ->   ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA),2)
-                    }
-                })
+    private fun logoutDialog() {
+        val builder = AlertDialog.Builder(this)
 
-        pictureDialog.show()
+        builder.setMessage("Bạn có muốn đăng xuất không?")
+        builder.setPositiveButton("Có", DialogInterface.OnClickListener { dialog, which ->
+            PreferUtils().setToken(this,"")
+            val intent = Intent(applicationContext, LoginActivity::class.java)
+            intent.putExtra("FROM_LOGOUT","FROM_LOGOUT")
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            dialog.dismiss()
+        })
+
+        builder.setNegativeButton("Không", DialogInterface.OnClickListener { dialog, which ->
+            dialog.dismiss()
+        })
+
+        val alert = builder.create()
+        alert.show()
     }
 
     private fun choosePhotoFromGallary() {

@@ -105,6 +105,8 @@ class HomeFragment :  Fragment(), OnSeeMoreTopicsListener, OnHistoryListListener
         mAdapter.SetOnItemClickListener(this)
         mAdapter.SetOnSeeMoreTopicListener(this)
         recyclerView.layoutManager = LinearLayoutManager(context)
+//        recyclerView.layoutManager = recyclerView.layoutManager
+//        recyclerView.isNestedScrollingEnabled = false
         recyclerView.setHasFixedSize(false)
         recyclerView.adapter = mAdapter
     }
@@ -156,9 +158,11 @@ class HomeFragment :  Fragment(), OnSeeMoreTopicsListener, OnHistoryListListener
     }
 
     override fun removeHistoryFault() {
+        
     }
 
     override fun onPlayTopicAgain(topic: Topic) {
+        ProgressDialogUtils.showProgressDialog(context, 0, 0)
         RestClient().getInstance().getRestService().getTopicMatchId(PreferUtils().getUserId(context!!), topic.topic_id.toString()).enqueue(object : Callback<RestData<SoloMatch>> {
             override fun onResponse(call: Call<RestData<SoloMatch>>?, response: Response<RestData<SoloMatch>>?) {
                 ProgressDialogUtils.dismissProgressDialog()

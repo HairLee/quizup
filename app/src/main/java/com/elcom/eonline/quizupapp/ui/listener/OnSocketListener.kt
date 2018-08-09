@@ -10,5 +10,4 @@ interface OnSocketListener {
     fun onAuthentication()
     fun onCountDown(timeToCountDown:Int)
     fun onResultQuestion(resultQuestion:JSONObject)
-
 }
