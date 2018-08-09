@@ -151,7 +151,7 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
             if(mQuestionNumber < 7){
                 beginToShowAnswerLayout()
                 mCustomButton!!.refreshColorAfterTheAnswer()
-                txt_question.text = mChallengeMatching!!.question!![mQuestionNumber]!!.text
+                txt_question.text = mChallengeMatching!!.question!![mQuestionNumber]!!.question
                 answer_1.text = mChallengeMatching!!.question!![mQuestionNumber].answer!![0].text
                 answer_2.text = mChallengeMatching!!.question!![mQuestionNumber].answer!![1].text
                 answer_3.text = mChallengeMatching!!.question!![mQuestionNumber].answer!![2].text
