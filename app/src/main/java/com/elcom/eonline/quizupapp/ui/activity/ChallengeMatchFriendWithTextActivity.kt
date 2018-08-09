@@ -6,12 +6,11 @@ import android.os.Handler
 import android.view.View
 import android.widget.Button
 import com.elcom.eonline.quizupapp.R
-import com.elcom.eonline.quizupapp.ui.activity.model.entity.*
+import com.elcom.eonline.quizupapp.ui.activity.model.entity.AnswerQuestion
+import com.elcom.eonline.quizupapp.ui.activity.model.entity.ChallengeAnswer
+import com.elcom.eonline.quizupapp.ui.activity.model.entity.ChallengeMatching
 import com.elcom.eonline.quizupapp.ui.activity.presenter.SoloMatchWithTextPresenter
-import com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
-import com.elcom.eonline.quizupapp.ui.dialog.StopGameDialog
-import com.elcom.eonline.quizupapp.ui.listener.OnDialogYesNoListener
-import com.elcom.eonline.quizupapp.ui.listener.OnMp3FinishListener
+import com.elcom.eonline.quizupapp.ui.custom.ChallengeScoreAndTimeView
 import com.elcom.eonline.quizupapp.ui.listener.OnSocketListener
 import com.elcom.eonline.quizupapp.ui.network.RestClient
 import com.elcom.eonline.quizupapp.ui.network.RestData
@@ -23,11 +22,12 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.ArrayList
+import java.util.*
 
 
 
-class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickListener, SoloMatchWithTextView,ProgressTimerView.onFinishCountDown, OnSocketListener {
+class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickListener, SoloMatchWithTextView, OnSocketListener, ChallengeScoreAndTimeView.onFinishSmallCountDown {
+
 
     private var mChallengeMatching: ChallengeMatching? = null
     private var mMatchId = ""
@@ -58,6 +58,8 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
         mButtonList.add(answer_4)
 
         mCustomButton = Utils.CustomButtom(mButtonList)
+
+        lnScoreAndTime.setOnFinishSmmallCountDown(this)
     }
 
     override fun initData() {
@@ -69,6 +71,7 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
             mQuestionNumber = bundle.getInt(ConstantsApp.KEY_QUESTION_NUMBER)
             numberOfRightAnswerFromMe = bundle.getInt(ConstantsApp.KEY_CHALLENGE_TOTAL_RIGHT_ANSWER_ME)
             updateUI()
+            beginToCountDown()
             updateLineScoreLayout()
 
 
@@ -76,10 +79,15 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
             for (i in 0 until answerList.size) {
                 if (answerList[i].correct == 1){
                     mCorrectAnswer = i
-                    return
+                } else {
+                    mWrongAnswer = i
                 }
             }
         }
+    }
+
+    private fun beginToCountDown(){
+        lnScoreAndTime.setShowCountDown(mQuestionNumber)
     }
 
     @SuppressLint("NewApi")
@@ -93,6 +101,7 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
 
     private var mAnswer = 4
     private var mCorrectAnswer = -1
+    private var mWrongAnswer = -1
     override fun onClick(p0: View?) {
         if (p0 != null) {
             when (p0.id) {
@@ -158,7 +167,7 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
                 answer_4.text = mChallengeMatching!!.question!![mQuestionNumber].answer!![3].text
             } else {
                 // Go to the result
-
+                goToResultActivity()
             }
         }
     }
@@ -169,8 +178,6 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
         mCustomButton!!.changeColorWithCorrectAnswer(mAnswer,mCorrectAnswer)
 //        pSoloMatchWithTextPresenter.answerTheQuestion(PreferUtils().getUserId(this), mTopicId,   mChallengeMatching!!.question!![mQuestionNumber]!!.answer!![pAnswerIdPos].id.toString(),  mChallengeMatching!!.question!![mQuestionNumber].id!!.toString(), mMatchId, "false" )
         pSoloMatchWithTextPresenter.sendMyAnswerBySocket(ConstantsApp.socketManage!!, PreferUtils().getUserId(this), mChallengeMatching!!.opponent!!.userIdOpponent.toString(),mChallengeMatching!!.matchId.toString(),mTopicId, (mQuestionNumber+1).toString(),mChallengeMatching!!.question!![mQuestionNumber].answer!![pAnswerIdPos].correct.toString(), mChallengeMatching!!.opponent!!.statusBotUser.toString() )
-
-
         if(mCorrectAnswer == pAnswerIdPos){
             goBackToQuestionIntroActivityBecauseOfRightAnswer()
         } else {
@@ -184,6 +191,7 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
         ln_answer_bottom.visibility = View.INVISIBLE
         mQuestionNumber += 1
         numberOfRightAnswerFromMe +=1
+        beginToCountDown()
         updateLineScoreLayout()
         updateUI()
     }
@@ -193,11 +201,12 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
         ln_answer_top.visibility = View.INVISIBLE
         ln_answer_bottom.visibility = View.INVISIBLE
         mQuestionNumber += 1
+        beginToCountDown()
         updateUI()
     }
 
     private fun goToResultActivity(){
-        val intent = Intent(this, SoloMatchStatisticActivity::class.java)
+        val intent = Intent(this, ChallengeResultActivity::class.java)
         intent.putExtra(ConstantsApp.KEY_SOLO_MATCH_ID,mMatchId)
         intent.putExtra(ConstantsApp.KEY_QUESTION_ID,mTopicId)
         startActivityForResult(intent, ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
@@ -233,8 +242,9 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
     }
 
     /*Time's Up* 10s*/
-    override fun onFinishCountDown(listDemo: Boolean) {
-
+    override fun onFinishSmallCountDown(positionOfTheQuestion: Int) {
+        pSoloMatchWithTextPresenter.sendMyAnswerBySocket(ConstantsApp.socketManage!!, PreferUtils().getUserId(this), mChallengeMatching!!.opponent!!.userIdOpponent.toString(),mChallengeMatching!!.matchId.toString(),mTopicId, (mQuestionNumber+1).toString(),mChallengeMatching!!.question!![mQuestionNumber].answer!![mWrongAnswer].correct.toString(), mChallengeMatching!!.opponent!!.statusBotUser.toString() )
+        goToBreakActivityBecauseOfWrongAnswer()
     }
 
     override fun onBackPressed() {

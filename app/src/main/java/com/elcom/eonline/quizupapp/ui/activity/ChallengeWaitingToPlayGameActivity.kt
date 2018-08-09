@@ -10,11 +10,7 @@ import com.elcom.eonline.quizupapp.ui.activity.model.entity.ChallengeMatching
 import com.elcom.eonline.quizupapp.ui.network.RestClient
 import com.elcom.eonline.quizupapp.ui.network.RestData
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
-import com.elcom.eonline.quizupapp.utils.PreferUtils
-import com.google.gson.Gson
-import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_challenge_waiting_to_playgame.*
-import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -76,10 +72,15 @@ class ChallengeWaitingToPlayGameActivity : BaseActivityQuiz() {
                     val data = response.body().data
                     mChallengeMatching = data
                     mMatchId = data!!.matchId!!
+                    updateLayout(data)
                     moveToPlayingGame()
                 }
             }
         })
+    }
+
+    private fun updateLayout(challengeMatching:ChallengeMatching){
+        tvOpName.text = challengeMatching.opponent!!.name
     }
 
 
@@ -96,7 +97,7 @@ class ChallengeWaitingToPlayGameActivity : BaseActivityQuiz() {
                 startActivityForResult(mainIntent, ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
             }
 
-        }, 2000)
+        }, 4000)
     }
 
 //    fun getTimeCountDown(userSendId: String, toId: String ){
@@ -116,5 +117,23 @@ class ChallengeWaitingToPlayGameActivity : BaseActivityQuiz() {
 //        }
 //        ConstantsApp.socketManage.sendChallengeInformation(myInfo)
 //    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY){
+            when(resultCode){
+
+                ConstantsApp.RESULT_CODE_TO_STOP_GAME_FROM_QUIZUPACTIVITY -> {
+                    setResult(ConstantsApp.RESULT_CODE_TO_STOP_GAME_FROM_QUIZUPACTIVITY)
+                    finish()
+                }
+
+                ConstantsApp.RESULT_CODE_TO_CONTINUE_TO_PLAY_GAME_FROM_QUIZUPACTIVITY -> {
+                    setResult(ConstantsApp.RESULT_CODE_FROM_RIGHT_ANSWER_USING_COINS)
+                    finish()
+                }
+            }
+        }
+    }
 
 }

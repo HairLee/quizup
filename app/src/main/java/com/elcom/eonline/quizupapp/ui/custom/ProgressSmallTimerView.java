@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * Created by admin on 3/5/2018.
  */
 
-public class ProgressTimerView extends RelativeLayout {
+public class ProgressSmallTimerView extends RelativeLayout {
 
     View rootView;
     TextView valueTextView;
@@ -34,22 +34,22 @@ public class ProgressTimerView extends RelativeLayout {
     }
     private TimerStatus timerStatus = TimerStatus.STOPPED;
 
-    public ProgressTimerView(Context context) {
+    public ProgressSmallTimerView(Context context) {
         super(context);
         init(context);
     }
 
-    public ProgressTimerView(Context context, AttributeSet attrs) {
+    public ProgressSmallTimerView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public ProgressTimerView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ProgressSmallTimerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @SuppressLint("NewApi")
-    public ProgressTimerView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public ProgressSmallTimerView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
@@ -66,13 +66,13 @@ public class ProgressTimerView extends RelativeLayout {
     }
 
     public void startStop() {
-        if (timerStatus == ProgressTimerView.TimerStatus.STOPPED) {
+        if (timerStatus == ProgressSmallTimerView.TimerStatus.STOPPED) {
             setTimerValues();
             setProgressBarValues();
-            timerStatus = ProgressTimerView.TimerStatus.STARTED;
+            timerStatus = ProgressSmallTimerView.TimerStatus.STARTED;
             startCountDownTimer();
         } else {
-            timerStatus = ProgressTimerView.TimerStatus.STOPPED;
+            timerStatus = ProgressSmallTimerView.TimerStatus.STOPPED;
             stopCountDownTimer();
         }
     }
@@ -98,7 +98,7 @@ public class ProgressTimerView extends RelativeLayout {
                 textViewTime.setTextColor(getResources().getColor(R.color.colorAccent));
                 textViewTime.setText("0");
                 setProgressBarValues();
-                timerStatus = ProgressTimerView.TimerStatus.STOPPED;
+                timerStatus = ProgressSmallTimerView.TimerStatus.STOPPED;
                 mOnFinishCountDown.onFinishCountDown(true);
             }
 

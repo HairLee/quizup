@@ -1,8 +1,7 @@
 package com.elcom.eonline.quizupapp.ui.activity
 
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
 import com.elcom.eonline.quizupapp.R
+import com.elcom.eonline.quizupapp.utils.ConstantsApp
 
 class ChallengeResultActivity : BaseActivityQuiz() {
 
@@ -16,6 +15,11 @@ class ChallengeResultActivity : BaseActivityQuiz() {
 
     override fun initData() {
 
+    }
+
+    override fun onBackPressed() {
+        setResult(ConstantsApp.RESULT_CODE_TO_STOP_GAME_FROM_QUIZUPACTIVITY)
+        finish()
     }
 
 
