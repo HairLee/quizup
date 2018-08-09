@@ -225,7 +225,9 @@
         </LinearLayout>
         <!--End-->
         <View
-            android:layout_width="1dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="0.5dp"
             android:layout_height="match_parent"
             android:background="@color/gray_2"
             />
@@ -271,7 +273,9 @@
         </LinearLayout>
         <!--End-->
         <View
-            android:layout_width="1dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="0.5dp"
             android:layout_height="match_parent"
             android:background="@color/gray_2"
             />
@@ -334,7 +338,7 @@
             <View
                 android:background="@color/gray_2"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"/>
+                android:layout_height="0.5dp"/>
 
             <TextView
                 android:textColor="@color/black"
@@ -394,7 +398,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@color/gray_2"
                 android:layout_width="match_parent"
-                android:layout_height="1dp" />
+                android:layout_height="0.5dp" />
 
             <LinearLayout
                 android:layout_marginTop="10dp"

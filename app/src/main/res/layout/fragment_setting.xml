@@ -28,7 +28,7 @@
             android:id="@+id/tvName"
             android:textSize="17sp"
             android:textColor="@color/white"
-            android:text="Ambition"
+            tools:text="Ambition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

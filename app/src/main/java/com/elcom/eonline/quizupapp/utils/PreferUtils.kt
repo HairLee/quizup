@@ -15,6 +15,7 @@ class PreferUtils {
     private val CHANLLENGE_TIME_TO_INTIVE = "CHANLLENGE_TIME_TO_INTIVE"
     private val FACEBOOK_ID = "FACEBOOK_ID"
     private val KEY_ENCRYPTION = "kenc"
+    private val KEY_SOUND_SETTING = "KEY_SOUND_SETTING"
 
 //    private val applicationContext  = QuizUpApp().getAppContext()!!
 
@@ -87,6 +88,17 @@ class PreferUtils {
     fun getFirstTimeGoToApp(context: Context): Boolean {
         val preferences = context.getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE)
         return preferences.getBoolean(KEY_FIRST_TIME,true)
+    }
+
+    fun setSoundSetting(context: Context, token: Boolean) {
+        val editor = context.getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE).edit()
+        editor.putBoolean(KEY_SOUND_SETTING, token)
+        editor.commit()
+    }
+
+    fun getSoundSetting(context: Context): Boolean {
+        val preferences = context.getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE)
+        return preferences.getBoolean(KEY_SOUND_SETTING,false)
     }
 
 }

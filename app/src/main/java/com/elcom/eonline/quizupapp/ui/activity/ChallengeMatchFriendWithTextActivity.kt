@@ -176,6 +176,7 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
 
     /* 2. Give a question*/
     private fun answerTheQuestion(pAnswerIdPos:Int){
+        Utils.CustomButtom(mButtonList).unableButtonClick()
         mTheAnswerFromMe = pAnswerIdPos
         mCustomButton!!.changeColorWithCorrectAnswer(mAnswer,mCorrectAnswer)
 //        pSoloMatchWithTextPresenter.answerTheQuestion(PreferUtils().getUserId(this), mTopicId,   mChallengeMatching!!.question!![mQuestionNumber]!!.answer!![pAnswerIdPos].id.toString(),  mChallengeMatching!!.question!![mQuestionNumber].id!!.toString(), mMatchId, "false" )
@@ -258,6 +259,8 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
         } else {
             goToBreakActivityBecauseOfWrongAnswer()
         }
+
+        Utils.CustomButtom(mButtonList).enableButtonClick()
     }
 
     override fun onBackPressed() {
@@ -306,8 +309,5 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
             }
         }
     }
-
-
-
 
 }

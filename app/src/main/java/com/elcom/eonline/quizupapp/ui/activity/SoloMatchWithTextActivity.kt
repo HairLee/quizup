@@ -209,13 +209,26 @@ class SoloMatchWithTextActivity : BaseActivityQuiz(), View.OnClickListener, Solo
             return
         }
 
-        if(mData.correct == ConstantsApp.KEY_CORRECT_ANSWER){
-            mp3Manage.playSong(this,1)
+//        if(mData.correct == ConstantsApp.KEY_CORRECT_ANSWER){
+//            mp3Manage.playSong(this,1)
+//        } else {
+//            mp3Manage.playSong(this,0)
+//        }
+
+        if(PreferUtils().getSoundSetting(this)){
+            if(mData.correct == ConstantsApp.KEY_CORRECT_ANSWER){
+                mp3Manage.playSong(this,1)
+            } else {
+                mp3Manage.playSong(this,0)
+            }
         } else {
-            mp3Manage.playSong(this,0)
+            Utils.CustomButtom(mButtonList).enableButtonClick()
+            if(mData.correct == ConstantsApp.KEY_CORRECT_ANSWER){
+                goBackToQuestionIntroActivityBecauseOfRightAnswer()
+            } else {
+                goToBreakActivityBecauseOfWrongAnswer()
+            }
         }
-
-
     }
 
     override fun onMp3RightOrWrongAnswerFinished(pos: Int) {

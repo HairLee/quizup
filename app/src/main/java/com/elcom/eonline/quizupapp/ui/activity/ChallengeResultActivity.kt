@@ -51,26 +51,31 @@ class ChallengeResultActivity : BaseActivityQuiz(), SocketManage.OnGetResultQues
         try {
 
             if(PreferUtils().getUserId(this).equals(resultQuestion["sendUserPoint"])){
+                runOnUiThread {
+                    tvMyScore.text = resultQuestion["sendUserPoint"].toString()
+                    tvOpScore.text = resultQuestion["toUserPoint"].toString()
 
-                tvMyScore.text = resultQuestion["sendUserPoint"].toString()
-                tvOpScore.text = resultQuestion["toUserPoint"].toString()
-
-                if(resultQuestion["sendUserPoint"] as Int > resultQuestion["sendUserPoint"] as Int){
-                    tvConfirm.text = "BẠN ĐÃ CHIẾN THẮNG"
-                } else {
-                    tvConfirm.text = "BẠN ĐÃ THUA"
+                    if (resultQuestion["sendUserPoint"] as Int > resultQuestion["sendUserPoint"] as Int) {
+                        tvConfirm.text = "BẠN ĐÃ CHIẾN THẮNG"
+                    } else {
+                        tvConfirm.text = "BẠN ĐÃ THUA"
+                    }
                 }
 
             } else {
 
-                tvMyScore.text = resultQuestion["toUserPoint"].toString()
-                tvOpScore.text = resultQuestion["sendUserPoint"].toString()
+                runOnUiThread {
+                    tvMyScore.text = resultQuestion["toUserPoint"].toString()
+                    tvOpScore.text = resultQuestion["sendUserPoint"].toString()
 
-                if(resultQuestion["sendUserPoint"] as Int > resultQuestion["sendUserPoint"] as Int){
-                    tvConfirm.text = "BẠN ĐÃ THUA"
-                } else {
-                    tvConfirm.text = "BẠN ĐÃ CHIẾN THẮNG"
+                    if(resultQuestion["sendUserPoint"] as Int > resultQuestion["sendUserPoint"] as Int){
+                        tvConfirm.text = "BẠN ĐÃ THUA"
+                    } else {
+                        tvConfirm.text = "BẠN ĐÃ CHIẾN THẮNG"
+                    }
                 }
+
+
             }
 
 

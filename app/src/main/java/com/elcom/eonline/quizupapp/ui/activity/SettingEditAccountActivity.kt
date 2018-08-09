@@ -2,6 +2,8 @@ package com.elcom.eonline.quizupapp.ui.activity
 
 import android.Manifest
 import android.app.AlertDialog
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Button
@@ -17,12 +19,15 @@ import android.provider.MediaStore
 import java.io.IOException
 import android.content.DialogInterface
 import android.content.pm.PackageManager
+import android.media.AudioManager
 import android.media.MediaScannerConnection
+import android.os.Build
 import android.os.Environment
 import java.nio.file.Files.exists
 import android.os.Environment.getExternalStorageDirectory
 import android.support.v4.app.ActivityCompat
 import android.util.Log
+import android.widget.CompoundButton
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.AnswerQuestion
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.profile.Profile
 import com.elcom.eonline.quizupapp.ui.activity.presenter.SettingProfilePresenter
@@ -54,6 +59,7 @@ class SettingEditAccountActivity : BaseActivityQuiz(), OnItemClickListener, Sett
     private val CAMERA = 2
     private var isGender = true // Man
     private var isGenderStr = "1"
+    var ON_DO_NOT_DISTURB_CALLBACK_CODE = 12345
     var adapter:SettingEditAccountAdapter? = null
     override fun getLayout(): Int {
         return R.layout.activity_setting_edit_account
@@ -61,10 +67,25 @@ class SettingEditAccountActivity : BaseActivityQuiz(), OnItemClickListener, Sett
 
     override fun initView() {
 
+        swSound.isChecked = PreferUtils().getSoundSetting(this)
+
+
+        swSound.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
+            override fun onCheckedChanged(p0: CompoundButton?, isChecked: Boolean) {
+                if (isChecked) {
+                    PreferUtils().setSoundSetting(this@SettingEditAccountActivity,true)
+                } else {
+                    PreferUtils().setSoundSetting(this@SettingEditAccountActivity,false)
+                }
+            }
+
+        })
+
     }
 
     override fun initData() {
         setupView()
+
     }
 
     private fun setupView(){
@@ -145,87 +166,12 @@ class SettingEditAccountActivity : BaseActivityQuiz(), OnItemClickListener, Sett
         alert.show()
     }
 
-    private fun choosePhotoFromGallary() {
-        val galleryIntent = Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-
-        startActivityForResult(galleryIntent, GALLERY)
-    }
-
-    private fun takePhotoFromCamera() {
-        val intent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(intent, CAMERA)
-    }
-
-
-    private var image:File? = null
-    private var imageCover:File? = null
-    private var isAvatarChanged = false
-    fun saveImage(myBitmap: Bitmap): File? {
-
-        val bytes = ByteArrayOutputStream()
-        myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes)
-        val wallpaperDirectory = File(
-                Environment.getExternalStorageDirectory().toString() + IMAGE_DIRECTORY)
-        // have the object build the directory structure, if needed.
-        if (!wallpaperDirectory.exists()) {
-            wallpaperDirectory.mkdirs()
-        }
-
-        try {
-            val f = File(wallpaperDirectory, Calendar.getInstance()
-                    .timeInMillis.toString() + ".jpg")
-            f.createNewFile()
-            val fo = FileOutputStream(f)
-            fo.write(bytes.toByteArray())
-            MediaScannerConnection.scanFile(this,
-                    arrayOf(f.path),
-                    arrayOf("image/jpeg"), null)
-            if(isAvatarChanged){
-                image = f
-            } else {
-                imageCover = f
-            }
-
-            fo.close()
-            Log.e("TAG", " SettingEditAccountActivity File Saved::--->" + f.path)
-
-            return f
-        } catch (e1: IOException) {
-            e1.printStackTrace()
-        }
-
-        return null
-    }
-
-
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_CANCELED) {
-            return
-        }
-        if (requestCode == GALLERY) {
-            if (data != null) {
-                val contentURI = data.data
-                try {
-                    val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, contentURI)
-                    Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show()
-                    adapter!!.setAvaBitmap(bitmap)
 
-                    saveImage(bitmap)
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                    Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show()
-                }
-
-            }
-
-        } else if (requestCode == CAMERA) {
-            val bitmap = data!!.extras!!.get("data") as Bitmap
-            adapter!!.setAvaBitmap(bitmap)
-            saveImage(bitmap)
-            Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show()
+        if (requestCode == ON_DO_NOT_DISTURB_CALLBACK_CODE) {
+            this.requestDoNotDisturbPermissionOrSetDoNotDisturbApi23AndUp()
         }
     }
 
@@ -263,35 +209,45 @@ class SettingEditAccountActivity : BaseActivityQuiz(), OnItemClickListener, Sett
         })
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        when(requestCode){
-
-            1->{
-                if (grantResults.isNotEmpty()
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    choosePhotoFromGallary()
-                } else {
-                    Toast.makeText(this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            2-> {
-                takePhotoFromCamera()
-            }
-        }
-
-    }
-
-
-
-
 
     private fun sendImageBroadcast() {
         val intent = Intent(ConstantsApp.KEY_LIVE_CHALLENGE_VALUE)
         sendBroadcast(intent)
     }
+
+
+    private fun requestMutePhonePermsAndMutePhone() {
+        try {
+            if (Build.VERSION.SDK_INT < 23) {
+                val audioManager = applicationContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+                audioManager.ringerMode = AudioManager.RINGER_MODE_SILENT
+            } else if (Build.VERSION.SDK_INT >= 23) {
+                this.requestDoNotDisturbPermissionOrSetDoNotDisturbApi23AndUp()
+            }
+        } catch (e: SecurityException) {
+
+        }
+
+    }
+
+    private fun requestDoNotDisturbPermissionOrSetDoNotDisturbApi23AndUp() {
+        //TO SUPPRESS API ERROR MESSAGES IN THIS FUNCTION, since Ive no time to figrure our Android SDK suppress stuff
+        if (Build.VERSION.SDK_INT < 23) {
+            return
+        }
+
+        val notificationManager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (notificationManager.isNotificationPolicyAccessGranted) {
+            val audioManager = applicationContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+            audioManager.ringerMode = AudioManager.RINGER_MODE_SILENT
+        } else {
+            // Ask the user to grant access
+            val intent = Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS)
+            startActivityForResult(intent, ON_DO_NOT_DISTURB_CALLBACK_CODE)
+        }
+    }
+
+
 
 
 }
