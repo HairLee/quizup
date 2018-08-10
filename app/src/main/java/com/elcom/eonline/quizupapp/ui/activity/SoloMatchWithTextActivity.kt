@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import com.elcom.eonline.quizupapp.R
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.Answer
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.AnswerQuestion
@@ -57,6 +58,7 @@ class SoloMatchWithTextActivity : BaseActivityQuiz(), View.OnClickListener, Solo
             mTopicId = bundle.getString(ConstantsApp.KEY_QUESTION_ID)
             mLastQuestion = bundle.getString(ConstantsApp.KEY_LAST_QUESTION)
             mQuestionNumber = bundle.getString(ConstantsApp.KEY_QUESTION_NUMBER)
+            Utils.CustomButtom(mButtonList).enableButtonClick()
             updateUI()
             val answerList = mQuestion!!.answer as List<Answer>
             for (i in 0 until answerList.size) {
@@ -144,9 +146,9 @@ class SoloMatchWithTextActivity : BaseActivityQuiz(), View.OnClickListener, Solo
     /* 2. Give a question*/
     private var currentAnswerId = ""
     private fun answerTheQuestion(pAnswerIdPos:Int){
+        Utils.CustomButtom(mButtonList).unableButtonClick()
         ProgressDialogUtils.showProgressDialog(this, 0, 0)
         ptvCountDown.stopCountDownTimer()
-        Utils.CustomButtom(mButtonList).unableButtonClick()
         currentAnswerId = mQuestion!!.answer!![pAnswerIdPos].getId().toString()
         mCustomButtom!!.changeColorWithCorrectAnswer(mAnswer,mCorrectAnswer)
         if(mQuestion != null){
@@ -234,12 +236,10 @@ class SoloMatchWithTextActivity : BaseActivityQuiz(), View.OnClickListener, Solo
     override fun onMp3RightOrWrongAnswerFinished(pos: Int) {
         when(pos){
             ConstantsApp.MP3_CORRECT_ANSWER ->{
-                Utils.CustomButtom(mButtonList).enableButtonClick()
                 goBackToQuestionIntroActivityBecauseOfRightAnswer()
             }
 
             ConstantsApp.MP3_WRONG_ANSWER ->{
-                Utils.CustomButtom(mButtonList).enableButtonClick()
                 goToBreakActivityBecauseOfWrongAnswer()
             }
         }
@@ -255,6 +255,7 @@ class SoloMatchWithTextActivity : BaseActivityQuiz(), View.OnClickListener, Solo
         Utils.CustomButtom(mButtonList).unableButtonClick()
         pSoloMatchWithTextPresenter.answerTheQuestion(PreferUtils().getUserId(this), mTopicId, mQuestion!!.answer!![mWrongAnswer].getId().toString(), mQuestion!!.id!!, mMatchId, mLastQuestion )
         mp3Manage.playSong(this,0)
+        Toast.makeText(this,"Hết thời gian trả lời",Toast.LENGTH_SHORT).show()
     }
 
     override fun onBackPressed() {
@@ -273,7 +274,7 @@ class SoloMatchWithTextActivity : BaseActivityQuiz(), View.OnClickListener, Solo
 
     override fun onDestroy() {
         super.onDestroy()
-        mp3Manage.release()
+//        mp3Manage.release()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

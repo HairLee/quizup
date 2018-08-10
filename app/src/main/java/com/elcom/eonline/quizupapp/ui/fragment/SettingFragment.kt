@@ -82,6 +82,10 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
                 startActivity(Intent(context, SettingFriendActivity::class.java))
             }
 
+           2->{
+               startActivity(Intent(context, FavouriteTopicActivity::class.java))
+            }
+
             4-> {
 //                val   mChallengeGameDialog = SettingDialog(context!!,R.drawable.setting_dialog_wrong_email, "THỬ LẠI","QUAY LẠI", object : OnDialogInvitationListener {
 //

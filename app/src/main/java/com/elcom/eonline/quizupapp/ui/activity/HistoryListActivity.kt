@@ -34,7 +34,9 @@ class HistoryListActivity : BaseActivityQuiz() {
         imvBack.setOnClickListener {
             setResult(999)
             finish() }
+    }
 
+    private fun setupRemoveFunction(){
         val builder = AlertDialog.Builder(this)
 
         tvRemoveAll.setOnClickListener {
@@ -52,8 +54,6 @@ class HistoryListActivity : BaseActivityQuiz() {
             val alert = builder.create()
             alert.show()
         }
-
-
     }
 
     private fun removeAllHistory(){
@@ -84,6 +84,11 @@ class HistoryListActivity : BaseActivityQuiz() {
             override fun onResponse(call: Call<RestData<List<Topic>>>?, response: Response<RestData<List<Topic>>>?) {
                 ProgressDialogUtils.dismissProgressDialog()
                 if(response?.body() != null && response.body().data != null){
+
+                    if(response.body().data!!.isNotEmpty()){
+                        setupRemoveFunction()
+                    }
+
                     val mAdapter =  HistoryListRecyclerAdapter( response.body().data, object : OnHistoryListListener {
 
                         override fun onRemoveHistory(topic: Topic) {

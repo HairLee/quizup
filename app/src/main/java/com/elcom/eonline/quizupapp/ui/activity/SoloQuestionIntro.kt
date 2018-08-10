@@ -99,7 +99,7 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
             mMatchId = intent.getStringExtra(ConstantsApp.KEY_SOLO_MATCH_ID)
             if (intent.hasExtra(ConstantsApp.KEY_QUESTION_NUMBER)){
                 mQuestionNumber = intent.getIntExtra(ConstantsApp.KEY_QUESTION_NUMBER,1)
-                btn_next.text = "START QUESTION "+ mQuestionNumber
+                btn_next.text = "BẮT ĐẦU CÂU "+ mQuestionNumber
             }
             getIntroductionOfTheQuestion()
             if( ConstantsApp.socketManage != null){
@@ -228,7 +228,7 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
                         mMinus = "0"
                         mQuestionNumber++
                         mType = 1
-                        btn_next.text = "START QUESTION "+ mQuestionNumber
+                        btn_next.text = "BẮT ĐẦU CÂU "+ mQuestionNumber
                         getIntroductionOfTheQuestion()
 //                        Toast.makeText(this,  "Load "+mQuestionNumber, Toast.LENGTH_SHORT).show()
                     }
@@ -236,7 +236,7 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
                     ConstantsApp.RESULT_CODE_FROM_RIGHT_ANSWER_USING_COINS -> {
                         mQuestionNumber++
                         mType = 2
-                        btn_next.text = "START QUESTION "+ mQuestionNumber
+                        btn_next.text = "BẮT ĐẦU CÂU "+ mQuestionNumber
                         mMinus = data!!.extras.getString(ConstantsApp.KEY_MINUS_GAME)
                         getIntroductionOfTheQuestion()
                         Toast.makeText(this,  "- "+mMinus+ " Coins ", Toast.LENGTH_SHORT).show()

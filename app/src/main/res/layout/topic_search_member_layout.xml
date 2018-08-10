@@ -16,10 +16,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-
-
     <android.support.v7.widget.SearchView
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_toRightOf="@+id/imvSearch"
         app:searchIcon="@color/transparent"
         app:queryHint="Tìm kiếm một chủ đề"

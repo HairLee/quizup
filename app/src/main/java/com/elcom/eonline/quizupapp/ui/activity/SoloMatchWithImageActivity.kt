@@ -55,6 +55,7 @@ class SoloMatchWithImageActivity : FragmentActivity(), View.OnClickListener, Sol
             mLastQuestion = bundle.getString(ConstantsApp.KEY_LAST_QUESTION)
             mQuestionNumber = bundle.getString(ConstantsApp.KEY_QUESTION_NUMBER)
             updateUI()
+            Utils.CustomButtom(mButtonList).enableButtonClick()
             val answerList = mQuestion!!.answer as List<Answer>
             for (i in 0 until answerList.size) {
                 if (answerList[i].getCorrect() == "1"){
@@ -233,12 +234,10 @@ class SoloMatchWithImageActivity : FragmentActivity(), View.OnClickListener, Sol
     override fun onMp3RightOrWrongAnswerFinished(pos: Int) {
         when(pos){
             ConstantsApp.MP3_CORRECT_ANSWER ->{
-                Utils.CustomButtom(mButtonList).enableButtonClick()
                 goBackToQuestionIntroActivityBecauseOfRightAnswer()
             }
 
             ConstantsApp.MP3_WRONG_ANSWER ->{
-                Utils.CustomButtom(mButtonList).enableButtonClick()
                 goToBreakActivityBecauseOfWrongAnswer()
             }
         }
@@ -254,6 +253,7 @@ class SoloMatchWithImageActivity : FragmentActivity(), View.OnClickListener, Sol
         Utils.CustomButtom(mButtonList).unableButtonClick()
         pSoloMatchWithTextPresenter.answerTheQuestion(PreferUtils().getUserId(this), mTopicId, mQuestion!!.answer!![mWrongAnswer].getId().toString(), mQuestion!!.id!!, mMatchId, mLastQuestion )
         mp3Manage.playSong(this,0)
+        Toast.makeText(this,"Hết thời gian trả lời",Toast.LENGTH_SHORT).show()
     }
 
     override fun onBackPressed() {

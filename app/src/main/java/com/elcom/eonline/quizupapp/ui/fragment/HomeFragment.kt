@@ -101,14 +101,15 @@ class HomeFragment :  Fragment(), OnSeeMoreTopicsListener, OnHistoryListListener
 
         mData = pData
         ProgressDialogUtils.dismissProgressDialog()
-        val mAdapter = HomeAdapter(mData, this,this,this)
-        mAdapter.SetOnItemClickListener(this)
-        mAdapter.SetOnSeeMoreTopicListener(this)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-//        recyclerView.layoutManager = recyclerView.layoutManager
-//        recyclerView.isNestedScrollingEnabled = false
-        recyclerView.setHasFixedSize(false)
-        recyclerView.adapter = mAdapter
+        if( recyclerView != null){
+            val mAdapter = HomeAdapter(mData, this,this,this)
+            mAdapter.SetOnItemClickListener(this)
+            mAdapter.SetOnSeeMoreTopicListener(this)
+            recyclerView.layoutManager = LinearLayoutManager(context)
+            recyclerView.setHasFixedSize(false)
+            recyclerView.adapter = mAdapter
+        }
+
     }
 
     override fun getListTopicFail() {
