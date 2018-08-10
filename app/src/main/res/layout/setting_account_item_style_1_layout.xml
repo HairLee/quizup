@@ -26,9 +26,9 @@
         android:id="@+id/viewBottom"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="60dp"
-        android:background="#C8C7CC"
-    android:layout_width="match_parent"
-    android:layout_height="1dp" />
+        android:background="@color/gray_2"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp" />
 
     <LinearLayout
         android:id="@+id/lnNumberOfTopic"

@@ -23,7 +23,7 @@
         app:civ_shadow_radius="10"
         android:layout_centerVertical="true"
         app:civ_shadow_color="@color/gray_2"
-        android:src="@drawable/icon_food"
+        android:src="@drawable/defaut_avatar_ic"
         android:id="@+id/imv_game_icon"
         android:layout_width="54dp"
         android:layout_height="54dp"

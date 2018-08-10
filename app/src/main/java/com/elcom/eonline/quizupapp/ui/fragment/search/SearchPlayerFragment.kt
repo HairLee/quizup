@@ -81,11 +81,10 @@ class SearchPlayerFragment : Fragment(),SearchHorizontalRecyclerAdapter.OnItemCl
     }
 
     override fun onItemClick(view: View?, search: Search?) {
-            Log.e("hailpt"," onItemClick "+search!!.name)
-        startActivity(Intent(context, SettingProfileActivity::class.java).putExtra("USER_ID",search.userId))
+        startActivity(Intent(context, SettingProfileActivity::class.java).putExtra("USER_ID",search!!.userId))
     }
 
-    override fun onItemLongClick(view: View?, position: Int) {
+    override fun onItemLikeClick(view: View?, position: Search) {
 
     }
 

@@ -51,8 +51,6 @@ class FavouriteTopicActivity : BaseActivityQuiz(), OnFavouriteListener {
                 }
             })
 
-
-
     }
 
 

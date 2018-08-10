@@ -172,6 +172,8 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
 
         }
         ConstantsApp.socketManage.sendChallengeInformation(myInfo)
+
+        Log.e("hailpt", " ChallengeFromFriendsActivity sendInviteOrAcceptInvite "+ myInfo.toString())
     }
 
     override fun onTimeCountDown(currentTime: String) {

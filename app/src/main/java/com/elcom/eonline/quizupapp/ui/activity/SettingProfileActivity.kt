@@ -28,7 +28,9 @@ class SettingProfileActivity : BaseActivityQuiz(), SettingProfileView {
 
     override fun initView() {
         imvBack.setOnClickListener { onBackPressed() }
-        tvFavorTopic.setOnClickListener {   startActivity(Intent(this, FavouriteTopicActivity::class.java)) }
+        tvFavorTopic.setOnClickListener {
+            startActivity(Intent(this, FavouriteTopicActivity::class.java).putExtra("USER_ID",userId))
+        }
 
         rlFollow.setOnClickListener {
             followFriend(userId)
@@ -43,8 +45,9 @@ class SettingProfileActivity : BaseActivityQuiz(), SettingProfileView {
             mSettingProfilePresenter.getData(userId)
         } else {
             showProgessDialog()
+            userId = PreferUtils().getUserId(this)
             tlFollowFriend.visibility = View.GONE
-            mSettingProfilePresenter.getData(PreferUtils().getUserId(this))
+            mSettingProfilePresenter.getData(userId)
         }
 
 
@@ -82,6 +85,12 @@ class SettingProfileActivity : BaseActivityQuiz(), SettingProfileView {
         tvNumberOfTopic.text = "Chủ đề yêu thích ( "+profile.topicFollow!!.data!!.size + " )"
 
         tvRanking.text = "Tỉ lệ thắng "+profile.winningRate + "%"
+
+        if(profile.checkFollow == 0){
+            tvFollow.text = "Theo dõi"
+        } else {
+            tvFollow.text = "Bỏ theo dõi"
+        }
     }
 
     fun followFriend(userId:String){
@@ -92,8 +101,8 @@ class SettingProfileActivity : BaseActivityQuiz(), SettingProfileView {
             }
 
             override fun onResponse(call: Call<RestData<JsonElement>>?, response: Response<RestData<JsonElement>>?) {
-                    if(response?.body() != null){
-                    Toast.makeText(this@SettingProfileActivity, "Theo dõi thành công", Toast.LENGTH_SHORT).show()
+                if(response?.body() != null){
+                    mSettingProfilePresenter.getData(userId)
                 }
             }
         })

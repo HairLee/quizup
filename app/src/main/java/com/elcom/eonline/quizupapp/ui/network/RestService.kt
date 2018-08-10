@@ -111,7 +111,8 @@ interface RestService {
 
     // SoloMatchResultActivity
     @POST("post-create-match-duel")
-    abstract fun getOpponentChallengeInfo(@Query("topic_id") topic_id: String,@Query("user_id_opponent") user_id_opponent: String): Call<RestData<ChallengeMatching>>
+    @FormUrlEncoded
+    abstract fun getOpponentChallengeInfo(@Field("topic_id") topic_id: String,@Field("user_id_opponent") user_id_opponent: String): Call<RestData<ChallengeMatching>>
 
 
     // Live Challenge
@@ -204,7 +205,7 @@ interface RestService {
     abstract fun removeHistory(@Field("match_id") match_id: Int): Call<RestData<JsonElement>>
 
 
-    @GET("profile/set-follow-user?")
+    @POST("profile/set-follow-user?")
     abstract fun followFriend(@Query("follow_id") follow_id: String): Call<RestData<JsonElement>>
 
 

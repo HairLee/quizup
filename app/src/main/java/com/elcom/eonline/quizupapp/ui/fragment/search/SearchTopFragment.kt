@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.elcom.eonline.quizupapp.R
+import com.elcom.eonline.quizupapp.ui.activity.SettingProfileActivity
 import com.elcom.eonline.quizupapp.ui.activity.TopicDetailActivity
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.CaterogySearch
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.topicdetail.Search
@@ -19,6 +20,7 @@ import com.elcom.eonline.quizupapp.ui.network.RestClient
 import com.elcom.eonline.quizupapp.ui.network.RestData
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
 import com.elcom.eonline.quizupapp.utils.ProgressDialogUtils
+import com.google.gson.JsonElement
 import kotlinx.android.synthetic.main.fragment_search_top.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -38,6 +40,7 @@ class SearchTopFragment : Fragment(),SearchHorizontalRecyclerAdapter.OnItemClick
 
 
     private var view: ViewGroup? = null
+    private var currentKeyWord = ""
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         if (view == null){
@@ -77,6 +80,7 @@ class SearchTopFragment : Fragment(),SearchHorizontalRecyclerAdapter.OnItemClick
     }
 
     fun doSearch(keyword:String){
+        currentKeyWord = keyword
         getData(keyword)
     }
 
@@ -95,12 +99,22 @@ class SearchTopFragment : Fragment(),SearchHorizontalRecyclerAdapter.OnItemClick
     override fun onItemClick(view: View?, search: Search?) {
         if(search!!.topicId != ""){
             startActivity(Intent(context, TopicDetailActivity::class.java).putExtra(ConstantsApp.KEY_TOPIC_ID,search!!.topicId))
+        } else {
+            startActivity(Intent(context, SettingProfileActivity::class.java).putExtra("USER_ID",search!!.userId))
         }
 
     }
 
-    override fun onItemLongClick(view: View?, position: Int) {
+    override fun onItemLikeClick(view: View?, search: Search) {
+        RestClient().getInstance().getRestService().followAndUnfollowTopic(search.topicId!!,search.statusFollow.toString()).enqueue(object: Callback<JsonElement>{
+            override fun onFailure(call: Call<JsonElement>?, t: Throwable?) {
 
+            }
+
+            override fun onResponse(call: Call<JsonElement>?, response: Response<JsonElement>?) {
+                getData(currentKeyWord)
+            }
+        })
     }
 
 

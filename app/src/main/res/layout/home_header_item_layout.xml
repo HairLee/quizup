@@ -11,15 +11,14 @@
     android:layout_alignParentLeft="true"
     android:layout_centerVertical="true"
     android:layout_marginLeft="15dp"
-    android:layout_width="34dp"
+    android:layout_width="32dp"
     android:visibility="visible"
-    android:src="@drawable/default_ava"
-    android:layout_height="34dp" />
+    android:src="@drawable/defaut_avatar_ic"
+    android:layout_height="32dp" />
 
 
 
     <RelativeLayout
-        android:layout_marginLeft="5dp"
         android:layout_toRightOf="@+id/imvAva"
         android:layout_toLeftOf="@+id/rlNoti"
         android:background="@color/colorPurple"
@@ -71,11 +70,10 @@
         android:id="@+id/rlNoti"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
-        android:layout_width="36dp"
-        android:layout_height="36dp">
+        android:layout_width="34dp"
+        android:layout_height="34dp">
 
         <ImageView
-
             android:src="@drawable/icon_notification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -83,16 +81,18 @@
         <RelativeLayout
             android:layout_marginTop="2dp"
             android:layout_alignParentRight="true"
-            android:layout_width="16dp"
-            android:layout_height="16dp">
+            android:layout_width="14dp"
+            android:layout_height="14dp">
             <ImageView
+                android:visibility="visible"
                 android:src="@drawable/home_number_of_notify_icon"
                 android:layout_width="16dp"
                 android:layout_height="16dp" />
 
             <TextView
+                android:visibility="visible"
                 android:textColor="@color/white"
-                android:textSize="9sp"
+                android:textSize="8sp"
                 android:layout_centerInParent="true"
                 android:text="2"
                 android:layout_width="wrap_content"

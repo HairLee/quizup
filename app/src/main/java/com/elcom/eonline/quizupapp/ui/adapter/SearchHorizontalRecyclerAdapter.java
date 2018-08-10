@@ -55,7 +55,7 @@ public class SearchHorizontalRecyclerAdapter extends RecyclerView.Adapter<Recycl
         @Override
         public boolean onLongClick(View view) {
             if (mItemClickListener != null) {
-                mItemClickListener.onItemLongClick(view, getLayoutPosition());
+                mItemClickListener.onItemLikeClick(view,  mList.get(getLayoutPosition()));
                 return true;
             }
             return false;
@@ -91,7 +91,7 @@ public class SearchHorizontalRecyclerAdapter extends RecyclerView.Adapter<Recycl
         @Override
         public boolean onLongClick(View view) {
             if (mItemClickListener != null) {
-                mItemClickListener.onItemLongClick(view, getLayoutPosition());
+                mItemClickListener.onItemLikeClick(view,  mList.get(getLayoutPosition()));
                 return true;
             }
             return false;
@@ -148,14 +148,18 @@ public class SearchHorizontalRecyclerAdapter extends RecyclerView.Adapter<Recycl
                     topicCellViewHolder.imvFollow.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            mItemClickListener.onItemClick(view,topicSearch);
+                            mItemClickListener.onItemLikeClick(view,topicSearch);
                         }
                     });
 
+                    if(!mList.get(position).getUrl().equals("")){
+                        Picasso.get()
+                                .load(mList.get(position).getUrl())
+                                .placeholder(R.drawable.defaut_avatar_ic)
+                                .error(R.drawable.defaut_avatar_ic)
+                                .into(topicCellViewHolder.imvIconGame);
+                    }
 
-                    Picasso.get()
-                            .load(mList.get(position).getUrl())
-                            .into(topicCellViewHolder.imvIconGame);
 
 
                 }
@@ -216,7 +220,7 @@ public class SearchHorizontalRecyclerAdapter extends RecyclerView.Adapter<Recycl
     public interface OnItemClickListener {
         void onItemClick(View view, Search search);
 
-        void onItemLongClick(View view, int position);
+        void onItemLikeClick(View view, Search search);
     }
 
     // for both short and long click

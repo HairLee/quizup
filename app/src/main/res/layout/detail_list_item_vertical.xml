@@ -25,7 +25,7 @@
             android:textStyle="bold"
             android:textColor="@color/colorPrimary"
             android:id="@+id/txt_topic_title"
-            android:textSize="18sp"
+            android:textSize="17sp"
             android:text="@string/title_of_caterogy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

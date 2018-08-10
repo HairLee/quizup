@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,7 @@ import com.elcom.eonline.quizupapp.ui.network.RestClient
 import com.elcom.eonline.quizupapp.ui.network.RestData
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
 import com.elcom.eonline.quizupapp.utils.ProgressDialogUtils
+import com.google.gson.JsonElement
 import kotlinx.android.synthetic.main.fragment_search_topic.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -37,6 +39,7 @@ class SearchTopicFragment : Fragment(),SearchHorizontalRecyclerAdapter.OnItemCli
 
 
     private var view: ViewGroup? = null
+    private var currentKeyWord = ""
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         if (view == null){
@@ -62,6 +65,7 @@ class SearchTopicFragment : Fragment(),SearchHorizontalRecyclerAdapter.OnItemCli
     }
 
     fun doSearch(keyword:String){
+        currentKeyWord = keyword
         getData(keyword)
     }
 
@@ -82,7 +86,15 @@ class SearchTopicFragment : Fragment(),SearchHorizontalRecyclerAdapter.OnItemCli
         startActivity(Intent(context, TopicDetailActivity::class.java).putExtra(ConstantsApp.KEY_TOPIC_ID,search!!.topicId))
     }
 
-    override fun onItemLongClick(view: View?, position: Int) {
+    override fun onItemLikeClick(view: View?, search: Search) {
+        RestClient().getInstance().getRestService().followAndUnfollowTopic(search.topicId!!,search.statusFollow.toString()).enqueue(object: Callback<JsonElement>{
+            override fun onFailure(call: Call<JsonElement>?, t: Throwable?) {
 
+            }
+
+            override fun onResponse(call: Call<JsonElement>?, response: Response<JsonElement>?) {
+                getData(currentKeyWord)
+            }
+        })
     }
 }
