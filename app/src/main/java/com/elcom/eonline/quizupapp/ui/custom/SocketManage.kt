@@ -5,6 +5,7 @@ import android.util.Log
 import com.elcom.eonline.quizupapp.ui.listener.OnSocketInviteOpponentListener
 import com.elcom.eonline.quizupapp.ui.listener.OnSocketGetOnlineListener
 import com.elcom.eonline.quizupapp.ui.listener.OnSocketListener
+import com.elcom.eonline.quizupapp.ui.listener.OnSocketSendChallengeInformationListener
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
 import com.elcom.eonline.quizupapp.utils.LogUtils
 import com.elcom.eonline.quizupapp.utils.PreferUtils
@@ -26,6 +27,7 @@ class SocketManage {
     private var mOnSocketGetOnlineListListener:OnSocketGetOnlineListener? = null
     private var mOnInviteOpponentListener: OnSocketInviteOpponentListener? = null
     private var mOnGetResultQuestion:OnGetResultQuestion? = null
+    private var mOnSocketSendChallengeInformationListener: OnSocketSendChallengeInformationListener? = null
     fun init(pOnSocketListener:OnSocketListener ){
         mOnSocketListener = pOnSocketListener
     }
@@ -36,6 +38,10 @@ class SocketManage {
 
     fun initToInventionFromFriend(pOnInviteOpponentListener:OnSocketInviteOpponentListener){
         mOnInviteOpponentListener = pOnInviteOpponentListener
+    }
+
+    fun initOnSocketSendChallengeInformationListener(pOnInviteOpponentListener:OnSocketSendChallengeInformationListener){
+        mOnSocketSendChallengeInformationListener = pOnInviteOpponentListener
     }
 
     fun connectSocket(){
@@ -56,6 +62,7 @@ class SocketManage {
         mSocket!!.on("getUserOnlineByTopic", getUserOnlineByTopic)
         mSocket!!.on("sendChallengeInformation", sendChallengeInformation)
         mSocket!!.on("getResultMatchDuel", getResultMatchDuel)
+        mSocket!!.on("sendQuestionMatchDuel", sendQuestionMatchDuel)
     }
 
     fun disconnect(){
@@ -172,6 +179,19 @@ class SocketManage {
 
     fun sendMyAnswerBySocket(data:JSONObject){
         mSocket!!.emit("resultQuestion", data)
+    }
+    /*resultQuestion*/
+
+
+
+    /*sendQuestionMatchDuel*/
+    private val sendQuestionMatchDuel = Emitter.Listener { args ->
+        val data = args[0] as JSONObject
+        mOnSocketSendChallengeInformationListener!!.OnSocketSendChallengeInformationListener(data)
+    }
+
+    fun sendQuestionMatchDuel(data:JSONObject){
+        mSocket!!.emit("sendQuestionMatchDuel", data)
     }
     /*resultQuestion*/
 

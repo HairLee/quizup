@@ -26,7 +26,7 @@ import com.elcom.eonline.quizupapp.ui.listener.*
 import com.elcom.eonline.quizupapp.utils.WrapContentLinearLayoutManager
 
 
-class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListener, OnItemClickListener, OnSocketInviteOpponentListener, OnInvitationTimeCountDownListener {
+class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListener, OnItemClickListener, OnSocketInviteOpponentListener, OnInvitationTimeCountDownListener,OnSocketSendChallengeInformationListener {
 
 
 
@@ -44,6 +44,8 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
             if( ConstantsApp.socketManage != null){
                 ConstantsApp.socketManage.initToGetListOnline(this)
                 ConstantsApp.socketManage.initToInventionFromFriend(this)
+                ConstantsApp.socketManage.initOnSocketSendChallengeInformationListener(this)
+
                 getUserOnlineByTopic()
             }
         }
@@ -71,6 +73,8 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
             intent.putExtra("data",resultQuestion.toString())
             intent.putExtra("accept","")
             startActivity(intent)
+            // Call Api to get question info and then send data from socket
+
         } else if (resultQuestion["challenge"] == "true" && resultQuestion["userSendId"] != PreferUtils().getUserId(this)) {
         // When you wanna accept your friend to play Game
             runOnUiThread {
@@ -79,7 +83,9 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
                     override fun onClick(view: View) {
                         // Accept the invitation
                         sendInviteOrAcceptInvite(resultQuestion["userSendId"] as String, resultQuestion["sendId"] as String )
-                        startActivity(Intent(applicationContext,ChallengeWaitingToPlayGameActivity::class.java).putExtra("data",resultQuestion.toString()))
+
+
+//                        startActivity(Intent(applicationContext,ChallengeWaitingToPlayGameActivity::class.java).putExtra("data",resultQuestion.toString()))
                     }
                 })
                 val view = snack.getView()
@@ -89,6 +95,11 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
                 snack.show()
             }
         }
+    }
+
+
+    override fun OnSocketSendChallengeInformationListener(resultQuestion: JSONObject) {
+        startActivity(Intent(applicationContext,ChallengeWaitingToPlayGameActivity::class.java).putExtra("data_op",resultQuestion.toString()))
     }
 
     override fun initView(){

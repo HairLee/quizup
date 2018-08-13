@@ -10,7 +10,9 @@ import com.elcom.eonline.quizupapp.ui.activity.model.entity.ChallengeMatching
 import com.elcom.eonline.quizupapp.ui.network.RestClient
 import com.elcom.eonline.quizupapp.ui.network.RestData
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
+import com.elcom.eonline.quizupapp.utils.PreferUtils
 import kotlinx.android.synthetic.main.activity_challenge_waiting_to_playgame.*
+import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -54,7 +56,14 @@ class ChallengeWaitingToPlayGameActivity : BaseActivityQuiz() {
             Toast.makeText(this, "opponentId "+ mObject["sendId"] + " "+mObject["toId"], Toast.LENGTH_SHORT).show()
 
             getData(topicId,opponentId)
-            Log.e("hailpt"," ChallengeWaitingToPlayGameActivity "+mObject)
+
+        } else {
+
+            val data = intent.extras.getString("data_op")
+            val mObject = JSONObject(data)
+
+            Log.e("hailpt"," ChallengeWaitingToPlayGameActivity ~~> "+mObject)
+
         }
     }
 
@@ -73,6 +82,7 @@ class ChallengeWaitingToPlayGameActivity : BaseActivityQuiz() {
                     mChallengeMatching = data
                     mMatchId = data!!.matchId!!
                     updateLayout(data)
+                    sendChallengeInformation(mChallengeMatching!!)
                     moveToPlayingGame()
                 }
             }
@@ -83,8 +93,33 @@ class ChallengeWaitingToPlayGameActivity : BaseActivityQuiz() {
         tvOpName.text = challengeMatching.opponent!!.name
     }
 
+    fun sendChallengeInformation(challengeMatching:ChallengeMatching){
+
+        val myInfo = JSONObject()
+        try {
+            myInfo.put("topicId", mTopicId)
+            myInfo.put("sendId", PreferUtils().getUserId(this))
+            myInfo.put("toId", opponentId )
+            myInfo.put("challenge", "true")
+            myInfo.put("url", "url")
+            myInfo.put("name", "Ambitionnnn")
+            myInfo.put("topicName", "topicName")
+            myInfo.put("urlTopic", "urlTopic")
+            myInfo.put("userSendId", opponentId)
+            myInfo.put("question", challengeMatching.toString())
+        } catch (e: JSONException) {
+
+        }
+        ConstantsApp.socketManage.sendChallengeInformation(myInfo)
+
+
+
+    }
+
 
     private fun moveToPlayingGame(){
+
+
 
         Handler().postDelayed(Runnable {
             if ( mChallengeMatching != null){
