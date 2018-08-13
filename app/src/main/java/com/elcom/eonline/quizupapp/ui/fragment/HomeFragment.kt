@@ -31,7 +31,11 @@ import retrofit2.Response
 import android.content.DialogInterface
 import com.elcom.eonline.quizupapp.ui.activity.*
 import com.elcom.eonline.quizupapp.ui.adapter.HomeFavouriteRecyclerAdapter
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
 import com.squareup.picasso.Picasso
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 
 
 /**
@@ -58,6 +62,7 @@ class HomeFragment :  Fragment(), OnSeeMoreTopicsListener, OnHistoryListListener
         ProgressDialogUtils.showProgressDialog(context, 0, 0)
         mTopicPresenter = TopicPresenter(this, context!!)
         mTopicPresenter!!.getLisTopic()
+        MobileAds.initialize(context, "ca-app-pub-7842886552548626~1660400336")
 //        }
         return view
     }
@@ -93,6 +98,10 @@ class HomeFragment :  Fragment(), OnSeeMoreTopicsListener, OnHistoryListListener
         imvAva.setOnClickListener {
             startActivity(Intent(context, SettingProfileActivity::class.java))
         }
+
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
+
     }
 
 

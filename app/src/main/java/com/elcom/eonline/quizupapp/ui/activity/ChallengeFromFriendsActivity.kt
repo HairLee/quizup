@@ -181,21 +181,23 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
     }
 
     private  var mOnlineList = JSONArray()
-    override fun onUserOnlineByTopic(onlineList: JSONArray) {
-        LogUtils.e("SocketManage ~~~~~~~~~~",onlineList.toString())
-        listdata.clear()
+    override fun onUserOnlineByTopic(onlineList: JSONArray,topicId:String) {
+        if(topicId == mTopicId){
+            LogUtils.e("SocketManage ~~~~~~~~~~",onlineList.toString())
+            listdata.clear()
 
-        for (i in 0 until onlineList.length()) {
-            listdata.add(onlineList.getString(i))
-        }
-
-        if(mOnlineList.toString() != onlineList.toString()){
-            runOnUiThread {
-                recyclerView.adapter.notifyDataSetChanged()
+            for (i in 0 until onlineList.length()) {
+                listdata.add(onlineList.getString(i))
             }
-        }
 
-        mOnlineList = onlineList
+            if(mOnlineList.toString() != onlineList.toString()){
+                runOnUiThread {
+                    recyclerView.adapter.notifyDataSetChanged()
+                }
+            }
+
+            mOnlineList = onlineList
+        }
     }
 
     override fun onDestroy() {

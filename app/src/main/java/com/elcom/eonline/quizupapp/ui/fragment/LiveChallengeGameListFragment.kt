@@ -52,22 +52,25 @@ class LiveChallengeGameListFragment : Fragment(), View.OnClickListener, LiveChal
         super.onViewCreated(view, savedInstanceState)
 
         btnInviteFriend.setOnClickListener(this)
-        mLiveChallengeGameListPresenter.getData()
-        ProgressDialogUtils.showProgressDialog(context, 0, 0)
+//        mLiveChallengeGameListPresenter.getData()
+//        ProgressDialogUtils.showProgressDialog(context, 0, 0)
 
         refresh.setOnRefreshListener(this)
         refresh.setColorSchemeColors(resources.getColor(R.color.colorPurple), Color.YELLOW, Color.BLUE)
     }
 
     private fun setupRecyclerView() {
-        recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
-        recyclerView.adapter = LiveChallengePrepareToPlayAdapter(activity!!,
-                mLiveChallenge, object  : OnItemClickListener{
-            override fun onItemClicked(position: Int) {
-                goToLiveChallengeDetail(position)
-            }
+        if(recyclerView != null){
+            recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
+            recyclerView.adapter = LiveChallengePrepareToPlayAdapter(activity!!,
+                    mLiveChallenge, object  : OnItemClickListener{
+                override fun onItemClicked(position: Int) {
+                    goToLiveChallengeDetail(position)
+                }
 
-        })
+            })
+        }
+
     }
 
     private fun goToLiveChallengeDetail(pos: Int){

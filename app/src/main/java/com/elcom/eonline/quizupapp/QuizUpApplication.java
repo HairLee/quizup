@@ -15,6 +15,7 @@ import com.elcom.eonline.quizupapp.utils.LogUtils;
 import com.elcom.eonline.quizupapp.utils.PreferUtils;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
+import com.google.android.gms.ads.MobileAds;
 import com.onesignal.OneSignal;
 
 import org.jetbrains.annotations.NotNull;

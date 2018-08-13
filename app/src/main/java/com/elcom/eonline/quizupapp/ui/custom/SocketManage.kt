@@ -124,7 +124,7 @@ class SocketManage {
         val data = args[0]  as JSONObject
         val jsonArray = data["data"] as JSONArray
         if(mOnSocketGetOnlineListListener != null){
-            mOnSocketGetOnlineListListener!!.onUserOnlineByTopic(jsonArray)
+            mOnSocketGetOnlineListListener!!.onUserOnlineByTopic(jsonArray,data["topicId"].toString() )
         }
     }
 
