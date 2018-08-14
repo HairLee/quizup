@@ -26,7 +26,7 @@ class TestActivity : BaseActivity(), OnSocketListener {
         LogUtils.e("hailpt", "TestActivity onSocketConnected ")
     }
 
-    override fun onAuthentication() {
+    override fun onAuthentication(content:String) {
     }
 
     override fun onCountDown(timeToCountDown: Int) {

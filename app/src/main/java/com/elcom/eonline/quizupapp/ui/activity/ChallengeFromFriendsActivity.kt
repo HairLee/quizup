@@ -99,7 +99,9 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
 
 
     override fun OnSocketSendChallengeInformationListener(resultQuestion: JSONObject) {
-        startActivity(Intent(applicationContext,ChallengeWaitingToPlayGameActivity::class.java).putExtra("data_op",resultQuestion.toString()))
+        val intent = Intent(this,ChallengeWaitingToPlayGameActivity::class.java)
+        intent.putExtra("data_op",resultQuestion.toString())
+        startActivity(intent)
     }
 
     override fun initView(){

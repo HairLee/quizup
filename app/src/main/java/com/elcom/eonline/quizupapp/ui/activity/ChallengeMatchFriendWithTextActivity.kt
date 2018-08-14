@@ -6,6 +6,7 @@ import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import com.elcom.eonline.quizupapp.R
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.AnswerQuestion
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.ChallengeAnswer
@@ -40,6 +41,7 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
     private var mIsAnswer = false
     private var numberOfRightAnswerFromMe = 0
     private var numberOfRightAnswerFromOpponent = 0
+    private var isFromOpoonentOrYou = false // true = you -- false = opponent
     //    private val mSocketManage = SocketManage()
     override fun getLayout(): Int {
         return R.layout.challenge_with_text_layout
@@ -71,6 +73,7 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
             mTopicId = bundle.getString(ConstantsApp.KEY_QUESTION_ID)
             mQuestionNumber = bundle.getInt(ConstantsApp.KEY_QUESTION_NUMBER)
             numberOfRightAnswerFromMe = bundle.getInt(ConstantsApp.KEY_CHALLENGE_TOTAL_RIGHT_ANSWER_ME)
+            isFromOpoonentOrYou = intent.getBooleanExtra(ConstantsApp.KEY_CHALLENGE_IS_OPPONENT,false)
             updateUI()
             beginToCountDown()
             updateLineScoreLayout()
@@ -136,7 +139,7 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
         pSoloMatchWithTextPresenter.countDownBySocket(ConstantsApp.socketManage!!, PreferUtils().getUserId(this), mChallengeMatching!!.opponent!!.userIdOpponent.toString(), mChallengeMatching!!.opponent!!.statusBotUser.toString() )
     }
 
-    override fun onAuthentication() {
+    override fun onAuthentication(content:String) {
         LogUtils.e("SocketManage", "ChallengeMatchWithTextActivity onAuthentication ")
     }
 
@@ -147,7 +150,7 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
     override fun onResultQuestion(resultQuestion: JSONObject) {
         LogUtils.e("SocketManage", "ChallengeMatchFriendWithTextActivity resultQuestion ${resultQuestion["resultQuestion"]}")
 //        Toast.makeText(this, resultQuestion.toString(), Toast.LENGTH_SHORT).show()
-        if(resultQuestion["resultQuestion"] == "1"){
+        if(resultQuestion["resultQuestion"] == "true"){
             runOnUiThread {
                 numberOfRightAnswerFromOpponent +=1
                 updateLineOpScoreLayout()
@@ -178,14 +181,29 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
     private fun answerTheQuestion(pAnswerIdPos:Int){
 
 
-
+        Toast.makeText(this, " mTopicId = "+ isFromOpoonentOrYou + " " + mTopicId, Toast.LENGTH_SHORT).show()
 
 
         Utils.CustomButtom(mButtonList).unableButtonClick()
         mTheAnswerFromMe = pAnswerIdPos
         mCustomButton!!.changeColorWithCorrectAnswer(mAnswer,mCorrectAnswer)
 //        pSoloMatchWithTextPresenter.answerTheQuestion(PreferUtils().getUserId(this), mTopicId,   mChallengeMatching!!.question!![mQuestionNumber]!!.answer!![pAnswerIdPos].id.toString(),  mChallengeMatching!!.question!![mQuestionNumber].id!!.toString(), mMatchId, "false" )
-        pSoloMatchWithTextPresenter.sendMyAnswerBySocket(ConstantsApp.socketManage!!, PreferUtils().getUserId(this), mChallengeMatching!!.opponent!!.userIdOpponent.toString(),mChallengeMatching!!.matchId.toString(),mTopicId, (mQuestionNumber+1).toString(),mChallengeMatching!!.question!![mQuestionNumber].answer!![pAnswerIdPos].correct.toString(), mChallengeMatching!!.opponent!!.statusBotUser.toString() )
+
+        var blAnswer = "false"
+        if(mChallengeMatching!!.question!![mQuestionNumber].answer!![pAnswerIdPos].correct.toString() == "0"){
+            blAnswer = "false"
+        } else {
+            blAnswer = "true"
+        }
+
+
+        if(isFromOpoonentOrYou){
+            pSoloMatchWithTextPresenter.sendMyAnswerBySocket(ConstantsApp.socketManage!!,mChallengeMatching!!.userId.toString(), mChallengeMatching!!.opponent!!.userIdOpponent.toString(),mChallengeMatching!!.matchId.toString(),mTopicId, (mQuestionNumber+1).toString(),blAnswer, mChallengeMatching!!.opponent!!.statusBotUser.toString() )
+        } else {
+            pSoloMatchWithTextPresenter.sendMyAnswerBySocket(ConstantsApp.socketManage!!, PreferUtils().getUserId(this),mChallengeMatching!!.userId.toString() ,mChallengeMatching!!.matchId.toString(),mTopicId, (mQuestionNumber+1).toString(),blAnswer, mChallengeMatching!!.opponent!!.statusBotUser.toString() )
+        }
+
+
 
         if(mCorrectAnswer == pAnswerIdPos){
             updateLineScoreLayout(numberOfRightAnswerFromMe  + 1)
@@ -216,11 +234,19 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
 
     private fun goToResultActivity(){
         val intent = Intent(this, ChallengeResultActivity::class.java)
+
+
+        Log.e("hailpt", " KEY_CHALLENGE_TO_ID  1" + isFromOpoonentOrYou + " "+ mChallengeMatching!!.opponent!!.userIdOpponent)
+        Log.e("hailpt", " KEY_CHALLENGE_TO_ID  2" + isFromOpoonentOrYou + PreferUtils().getUserId(this))
+        Log.e("hailpt", " KEY_CHALLENGE_TO_ID  3" + isFromOpoonentOrYou + mChallengeMatching!!.userId)
+
+
         intent.putExtra(ConstantsApp.KEY_CHALLENGE_TO_ID,mChallengeMatching!!.opponent!!.userIdOpponent)
         intent.putExtra(ConstantsApp.KEY_CHALLENGE_USER_ID,PreferUtils().getUserId(this))
         intent.putExtra(ConstantsApp.KEY_CHALLENGE_USER_BOT,mChallengeMatching!!.opponent!!.statusBotUser)
         intent.putExtra(ConstantsApp.KEY_SOLO_MATCH_ID,mMatchId)
         intent.putExtra(ConstantsApp.KEY_QUESTION_ID,mTopicId)
+        intent.putExtra(ConstantsApp.KEY_CHALLENGE_IS_OPPONENT,isFromOpoonentOrYou)
         startActivityForResult(intent, ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }

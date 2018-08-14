@@ -84,7 +84,8 @@ class SocketManage {
 
     /*authentication*/
     private val authentication = Emitter.Listener { args ->
-        mOnSocketListener!!.onAuthentication()
+        LogUtils.e("SocketManage", " authentication senttttt"+ args[0] )
+        mOnSocketListener!!.onAuthentication(""+args[0])
     }
 
     fun sendUserInformationBySocket(context:Context){

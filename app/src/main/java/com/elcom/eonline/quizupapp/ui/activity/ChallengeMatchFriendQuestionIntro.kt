@@ -28,6 +28,7 @@ class ChallengeMatchFriendQuestionIntro : BaseActivityQuiz() {
     private var mType = 1
     private var mChallengeMatching:ChallengeMatching? = null
     private var numberOfRightAnswerFromMe = 0
+    private var isFromOpoonentOrYou = false
     override fun getLayout(): Int {
         return R.layout.activity_solo_question_intro
     }
@@ -40,6 +41,7 @@ class ChallengeMatchFriendQuestionIntro : BaseActivityQuiz() {
         if (intent.hasExtra(ConstantsApp.KEY_QUESTION_ID)){
             mTopicId = intent.getStringExtra(ConstantsApp.KEY_QUESTION_ID)
             mMatchId = intent.getStringExtra(ConstantsApp.KEY_SOLO_MATCH_ID)
+            isFromOpoonentOrYou = intent.getBooleanExtra(ConstantsApp.KEY_CHALLENGE_IS_OPPONENT,false)
             mChallengeMatching = intent.getSerializableExtra("value") as ChallengeMatching
             moveToPlayingGame()
         }
@@ -54,6 +56,7 @@ class ChallengeMatchFriendQuestionIntro : BaseActivityQuiz() {
             bundle.putString(ConstantsApp.KEY_QUESTION_ID,mTopicId)
             bundle.putInt(ConstantsApp.KEY_QUESTION_NUMBER,mQuestionNumber)
             bundle.putSerializable(ConstantsApp.KEY_INTRODUCTION_VALUE, mChallengeMatching)
+            bundle.putBoolean(ConstantsApp.KEY_CHALLENGE_IS_OPPONENT,isFromOpoonentOrYou)
             startActivityForResultQuiz(ChallengeMatchFriendWithTextActivity::class.java,ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY,bundle)
         }
     }

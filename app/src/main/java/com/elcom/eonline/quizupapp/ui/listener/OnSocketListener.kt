@@ -7,7 +7,7 @@ import org.json.JSONObject
  */
 interface OnSocketListener {
     fun onSocketConnected()
-    fun onAuthentication()
+    fun onAuthentication(content:String)
     fun onCountDown(timeToCountDown:Int)
     fun onResultQuestion(resultQuestion:JSONObject)
 }

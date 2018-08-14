@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
+import android.widget.Toast;
 
 import com.elcom.eonline.quizupapp.ui.custom.SocketManage;
 import com.elcom.eonline.quizupapp.ui.listener.OnInvitationTimeCountDownListener;
@@ -123,7 +124,13 @@ public class QuizUpApplication extends Application implements OnSocketInviteOppo
     }
 
     @Override
-    public void onAuthentication() {
+    public void onAuthentication(final String content) {
+       runOnUiThread(new Runnable() {
+            public void run() {
+                Toast.makeText(getBaseContext(), content, Toast.LENGTH_SHORT).show();
+            }
+        });
+
         LogUtils.e("SocketManage", " QuizUpApplication onAuthentication ");
     }
 

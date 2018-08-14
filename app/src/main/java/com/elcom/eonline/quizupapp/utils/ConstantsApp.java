@@ -50,6 +50,7 @@ public class ConstantsApp {
     public static String KEY_QUESTION_ID= "KEY_QUESTION_ID";
     public static String KEY_ANSWER_ID= "KEY_ANSWER_ID";
     public static String KEY_SOLO_MATCH_ID= "KEY_SOLO_MATCH_ID";
+    public static String KEY_CHALLENGE_IS_OPPONENT= "KEY_CHALLENGE_IS_OPPONENT";
     public static String KEY_QUESTION_NUMBER= "KEY_QUESTION_NUMBER";
     public static String KEY_LAST_QUESTION= "KEY_LAST_QUESTION";
     public static String KEY_INTRODUCTION_VALUE= "KEY_INTRODUCTION_VALUE";

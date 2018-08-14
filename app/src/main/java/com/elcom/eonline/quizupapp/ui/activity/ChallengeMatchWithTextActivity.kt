@@ -128,7 +128,7 @@ class ChallengeMatchWithTextActivity : BaseActivityQuiz(), View.OnClickListener,
         pSoloMatchWithTextPresenter.countDownBySocket(ConstantsApp.socketManage!!, PreferUtils().getUserId(this), mChallengeMatching!!.opponent!!.userIdOpponent.toString(), mChallengeMatching!!.opponent!!.statusBotUser.toString() )
     }
 
-    override fun onAuthentication() {
+    override fun onAuthentication(content:String) {
         LogUtils.e("SocketManage", "ChallengeMatchWithTextActivity onAuthentication ")
     }
 
