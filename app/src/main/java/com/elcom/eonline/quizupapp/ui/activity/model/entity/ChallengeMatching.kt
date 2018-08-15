@@ -15,7 +15,9 @@ class ChallengeMatching : Serializable {
     var matchId: String? = null
 
 
-
+    @SerializedName("player")
+    @Expose
+    var player: User? = null
 
     @SerializedName("topic_id")
     @Expose

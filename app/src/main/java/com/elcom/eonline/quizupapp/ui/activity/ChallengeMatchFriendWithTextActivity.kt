@@ -19,6 +19,8 @@ import com.elcom.eonline.quizupapp.ui.network.RestData
 import com.elcom.eonline.quizupapp.ui.view.SoloMatchWithTextView
 import com.elcom.eonline.quizupapp.utils.*
 import com.google.gson.JsonElement
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.challenge_with_text_header_layout.*
 import kotlinx.android.synthetic.main.challenge_with_text_layout.*
 import org.json.JSONObject
 import retrofit2.Call
@@ -174,6 +176,9 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
                 // Go to the result
                 goToResultActivity()
             }
+
+            Picasso.get().load(mChallengeMatching!!.player!!.avatar).into(imvMyself)
+            Picasso.get().load(mChallengeMatching!!.opponent!!.avatar).into(imvOb)
         }
     }
 
@@ -235,18 +240,24 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
     private fun goToResultActivity(){
         val intent = Intent(this, ChallengeResultActivity::class.java)
 
+        if(isFromOpoonentOrYou){
+            intent.putExtra(ConstantsApp.KEY_CHALLENGE_TO_ID,mChallengeMatching!!.opponent!!.userIdOpponent)
+            intent.putExtra(ConstantsApp.KEY_AVATAR_OPPONENT,mChallengeMatching!!.opponent!!.avatar)
+            intent.putExtra(ConstantsApp.KEY_NAME_OPPONENT,mChallengeMatching!!.opponent!!.name)
+        } else {
+            intent.putExtra(ConstantsApp.KEY_CHALLENGE_TO_ID,mChallengeMatching!!.userId)
+            intent.putExtra(ConstantsApp.KEY_AVATAR_OPPONENT,mChallengeMatching!!.player!!.avatar)
+            intent.putExtra(ConstantsApp.KEY_NAME_OPPONENT,mChallengeMatching!!.player!!.name)
+        }
 
-        Log.e("hailpt", " KEY_CHALLENGE_TO_ID  1" + isFromOpoonentOrYou + " "+ mChallengeMatching!!.opponent!!.userIdOpponent)
-        Log.e("hailpt", " KEY_CHALLENGE_TO_ID  2" + isFromOpoonentOrYou + PreferUtils().getUserId(this))
-        Log.e("hailpt", " KEY_CHALLENGE_TO_ID  3" + isFromOpoonentOrYou + mChallengeMatching!!.userId)
-
-
-        intent.putExtra(ConstantsApp.KEY_CHALLENGE_TO_ID,mChallengeMatching!!.opponent!!.userIdOpponent)
         intent.putExtra(ConstantsApp.KEY_CHALLENGE_USER_ID,PreferUtils().getUserId(this))
         intent.putExtra(ConstantsApp.KEY_CHALLENGE_USER_BOT,mChallengeMatching!!.opponent!!.statusBotUser)
         intent.putExtra(ConstantsApp.KEY_SOLO_MATCH_ID,mMatchId)
         intent.putExtra(ConstantsApp.KEY_QUESTION_ID,mTopicId)
         intent.putExtra(ConstantsApp.KEY_CHALLENGE_IS_OPPONENT,isFromOpoonentOrYou)
+
+
+
         startActivityForResult(intent, ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
@@ -263,7 +274,6 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
         } else {
             goToBreakActivityBecauseOfWrongAnswer()
         }
-
     }
 
     private fun updateLineScoreLayout(){

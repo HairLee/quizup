@@ -20,6 +20,7 @@
         android:layout_height="wrap_content" />
 
     <TextView
+        android:id="@+id/tvNameOfTopic"
         android:layout_marginTop="5dp"
         android:textSize="17sp"
         android:text="Thể Thao"
@@ -70,11 +71,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imvMyAva"
                 android:src="@drawable/ic_home_playing"
                 android:layout_width="70dp"
                 android:layout_height="70dp" />
 
             <TextView
+                android:id="@+id/tvMyName"
                 android:layout_marginTop="13dp"
                 android:textColor="@color/white"
                 android:text="Ambition"
@@ -82,6 +85,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:id="@+id/tvMyLevel"
                 android:layout_marginTop="7dp"
                 android:textColor="@color/white"
                 android:text="Level 12"
@@ -121,11 +125,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imvOpAva"
                 android:src="@drawable/ic_home_playing"
                 android:layout_width="70dp"
                 android:layout_height="70dp" />
 
             <TextView
+                android:id="@+id/tvObName"
                 android:layout_marginTop="13dp"
                 android:textColor="@color/white"
                 android:text="Ambition"
@@ -133,6 +139,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:id="@+id/tvObLevel"
                 android:layout_marginTop="7dp"
                 android:textColor="@color/white"
                 android:text="Level 12"

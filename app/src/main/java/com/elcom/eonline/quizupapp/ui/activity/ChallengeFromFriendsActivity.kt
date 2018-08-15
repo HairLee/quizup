@@ -24,6 +24,9 @@ import org.json.JSONObject
 import com.elcom.eonline.quizupapp.QuizUpApplication
 import com.elcom.eonline.quizupapp.ui.listener.*
 import com.elcom.eonline.quizupapp.utils.WrapContentLinearLayoutManager
+import android.R.attr.password
+
+
 
 
 class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListener, OnItemClickListener, OnSocketInviteOpponentListener, OnInvitationTimeCountDownListener,OnSocketSendChallengeInformationListener {
@@ -32,7 +35,7 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
 
     private var mTopicId = ""
     private var listdata = ArrayList<String>()
-    val mAdapter =  ChallengeFromFriendsAdapter(listdata,this)
+    val mAdapter =  ChallengeFromFriendsAdapter(listdata,this, this)
     override fun getLayout(): Int {
         return R.layout.activity_challenge_from_friends
     }
@@ -79,7 +82,7 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
         // When you wanna accept your friend to play Game
             runOnUiThread {
                 Log.e("hailpt"," resultQuestion "+resultQuestion.toString())
-                val snack = Snackbar.make(lnRoot, "Someone invite you to play a game", Snackbar.LENGTH_SHORT) .setAction("DISMISS", object : View.OnClickListener {
+                val snack = Snackbar.make(lnRoot, "Bạn có một lời mời chơi game", Snackbar.LENGTH_SHORT) .setAction("Đồng ý", object : View.OnClickListener {
                     override fun onClick(view: View) {
                         // Accept the invitation
                         sendInviteOrAcceptInvite(resultQuestion["userSendId"] as String, resultQuestion["sendId"] as String )
@@ -90,7 +93,7 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
                 })
                 val view = snack.getView()
                 val params = view.layoutParams as FrameLayout.LayoutParams
-                params.gravity = Gravity.BOTTOM
+                params.gravity = Gravity.TOP
                 view.layoutParams = params
                 snack.show()
             }
@@ -196,8 +199,11 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
     private  var mOnlineList = JSONArray()
     override fun onUserOnlineByTopic(onlineList: JSONArray,topicId:String) {
         if(topicId == mTopicId){
+
+
             LogUtils.e("SocketManage ~~~~~~~~~~",onlineList.toString())
             listdata.clear()
+
 
             for (i in 0 until onlineList.length()) {
                 listdata.add(onlineList.getString(i))

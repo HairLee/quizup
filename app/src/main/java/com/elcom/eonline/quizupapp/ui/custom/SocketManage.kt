@@ -159,6 +159,23 @@ class SocketManage {
     /*authentication*/
 
 
+    /*setTimeEndMatchDuel*/
+    private val setTimeEndMatchDuel = Emitter.Listener { args ->
+        val data = args[0]  as JSONObject
+
+        if(mOnInviteOpponentListener != null){
+            mOnInviteOpponentListener!!.onSomeoneInviteYouToPlayGame(data)
+        }
+
+    }
+
+
+    fun setTimeEndMatchDuel(mInfo:JSONObject) {
+        mSocket!!.emit("setTimeEndMatchDuel", mInfo)
+    }
+    /*setTimeEndMatchDuel*/
+
+
     /*CountDown*/
     private val countDown = Emitter.Listener { args ->
         val data = args[0] as JSONObject

@@ -2,9 +2,11 @@ package com.elcom.eonline.quizupapp.ui.activity
 
 import android.util.Log
 import com.elcom.eonline.quizupapp.R
+import com.elcom.eonline.quizupapp.ui.activity.model.entity.ChallengeMatching
 import com.elcom.eonline.quizupapp.ui.custom.SocketManage
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
 import com.elcom.eonline.quizupapp.utils.PreferUtils
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_challenge_result.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -12,6 +14,8 @@ import org.json.JSONObject
 class ChallengeResultActivity : BaseActivityQuiz(), SocketManage.OnGetResultQuestion {
 
     private var isFromOpoonentOrYou = false // true = you -- false = opponent
+    var opAvatar = ""
+    var opName = ""
     override fun getLayout(): Int {
         return R.layout.activity_challenge_result
     }
@@ -29,12 +33,23 @@ class ChallengeResultActivity : BaseActivityQuiz(), SocketManage.OnGetResultQues
             val statusUserBot = intent.extras.getString(ConstantsApp.KEY_CHALLENGE_USER_BOT)
             val topicId = intent.extras.getString(ConstantsApp.KEY_QUESTION_ID)
             val matchId = intent.extras.getString(ConstantsApp.KEY_SOLO_MATCH_ID)
-            isFromOpoonentOrYou = intent.getBooleanExtra(ConstantsApp.KEY_CHALLENGE_IS_OPPONENT,false)
-            ConstantsApp.socketManage.setOnGetResultQuestion(this)
+            opAvatar = intent.extras.getString(ConstantsApp.KEY_AVATAR_OPPONENT)
+            opName = intent.extras.getString(ConstantsApp.KEY_NAME_OPPONENT)
 
+            isFromOpoonentOrYou = intent.getBooleanExtra(ConstantsApp.KEY_CHALLENGE_IS_OPPONENT,false)
+
+            updateLayout()
+            ConstantsApp.socketManage.setOnGetResultQuestion(this)
             getResultMatchDuel(sendId,toId,matchId,topicId,statusUserBot)
         }
 
+    }
+
+
+    private fun updateLayout(){
+        Picasso.get().load(opAvatar).into(imvOpAva)
+        Picasso.get().load(PreferUtils().getAvatar(this)).into(imvMyAva)
+        tvObName.text = opName
     }
 
     override fun onBackPressed() {
@@ -45,12 +60,9 @@ class ChallengeResultActivity : BaseActivityQuiz(), SocketManage.OnGetResultQues
     override fun onGetResultQuestion(resultQuestion: JSONObject) {
         Log.e("hailpt"," onGetResultQuestion "+ resultQuestion.toString())
 
-
-
-
         try {
 
-            if(PreferUtils().getUserId(this).equals(resultQuestion["sendUserPoint"])){
+            if(PreferUtils().getUserId(this) == resultQuestion["sendUserPoint"]){
                 runOnUiThread {
                     tvMyScore.text = resultQuestion["sendUserPoint"].toString()
                     tvOpScore.text = resultQuestion["toUserPoint"].toString()
@@ -60,7 +72,7 @@ class ChallengeResultActivity : BaseActivityQuiz(), SocketManage.OnGetResultQues
                     } else if(resultQuestion["result"] == 2){
                         tvConfirm.text = "BẠN ĐÃ THUA"
                     } else {
-                        tvConfirm.text = "BẠN ĐÃ HOAF"
+                        tvConfirm.text = "BẠN ĐÃ HÒA"
                     }
                 }
 
@@ -71,10 +83,12 @@ class ChallengeResultActivity : BaseActivityQuiz(), SocketManage.OnGetResultQues
                     tvOpScore.text = resultQuestion["toUserPoint"].toString()
                     tvMyScore.text = resultQuestion["sendUserPoint"].toString()
 
-                    if(resultQuestion["sendUserPoint"] as Int > resultQuestion["sendUserPoint"] as Int){
+                    if (resultQuestion["result"] == 1) {
+                        tvConfirm.text = "BẠN ĐÃ CHIẾN THẮNG"
+                    } else if(resultQuestion["result"] == 2){
                         tvConfirm.text = "BẠN ĐÃ THUA"
                     } else {
-                        tvConfirm.text = "BẠN ĐÃ CHIẾN THẮNG"
+                        tvConfirm.text = "BẠN ĐÃ HÒA"
                     }
                 }
 
@@ -95,8 +109,8 @@ class ChallengeResultActivity : BaseActivityQuiz(), SocketManage.OnGetResultQues
         try {
 
 
-            data.put("sendId", toId)
-            data.put("toId", sendId)
+            data.put("sendId", sendId)
+            data.put("toId", toId)
             data.put("matchId", matchId)
             data.put("topicId", topicId)
             data.put("statusUserBot", statusUserBot)
