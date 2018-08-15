@@ -93,7 +93,7 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
                 })
                 val view = snack.getView()
                 val params = view.layoutParams as FrameLayout.LayoutParams
-                params.gravity = Gravity.TOP
+                params.gravity = Gravity.BOTTOM
                 view.layoutParams = params
                 snack.show()
             }
