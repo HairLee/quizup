@@ -13,6 +13,7 @@ import com.elcom.eonline.quizupapp.utils.ConstantsApp
 import com.elcom.eonline.quizupapp.utils.PreferUtils
 import com.google.gson.Gson
 import com.google.gson.JsonArray
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_challenge_waiting_to_playgame.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -97,6 +98,7 @@ class ChallengeWaitingToPlayGameActivity : BaseActivityQuiz() {
                     mChallengeMatching = data
                     mMatchId = data!!.matchId!!
                     updateLayout(data)
+                    setTimeEndMatchDuel()
                     sendQuestionMatchDuel(mChallengeMatching!!)
                     moveToPlayingGame()
                 }
@@ -105,7 +107,28 @@ class ChallengeWaitingToPlayGameActivity : BaseActivityQuiz() {
     }
 
     private fun updateLayout(challengeMatching:ChallengeMatching){
-        tvOpName.text = challengeMatching.opponent!!.name
+        Picasso.get().load(mChallengeMatching!!.player!!.avatar).into(imvMyself)
+        Picasso.get().load(mChallengeMatching!!.opponent!!.avatar).into(imvOb)
+        if(isFromOpoonentOrYou) {
+            tvOpName.text = mChallengeMatching!!.opponent!!.name
+        } else {
+            tvOpName.text = mChallengeMatching!!.player!!.name
+        }
+    }
+
+    fun setTimeEndMatchDuel(){
+        val myInfo = JSONObject()
+        try {
+            myInfo.put("topicId", mTopicId)
+            myInfo.put("sendId", PreferUtils().getUserId(this))
+            myInfo.put("toId", opponentId )
+            myInfo.put("statusUserBot", false)
+            myInfo.put("matchId", mMatchId)
+
+        } catch (e: JSONException) {
+
+        }
+        ConstantsApp.socketManage.setTimeEndMatchDuel(myInfo)
     }
 
     fun sendQuestionMatchDuel(challengeMatching:ChallengeMatching){

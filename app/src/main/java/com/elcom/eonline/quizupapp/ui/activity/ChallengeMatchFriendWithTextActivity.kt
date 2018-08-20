@@ -177,8 +177,17 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
                 goToResultActivity()
             }
 
-            Picasso.get().load(mChallengeMatching!!.player!!.avatar).into(imvMyself)
-            Picasso.get().load(mChallengeMatching!!.opponent!!.avatar).into(imvOb)
+
+
+            if(isFromOpoonentOrYou) {
+                Picasso.get().load(mChallengeMatching!!.player!!.avatar).into(imvMyself)
+                Picasso.get().load(mChallengeMatching!!.opponent!!.avatar).into(imvOb)
+                tvOpName.text = mChallengeMatching!!.opponent!!.name
+            } else {
+                Picasso.get().load(mChallengeMatching!!.opponent!!.avatar).into(imvMyself)
+                Picasso.get().load(mChallengeMatching!!.player!!.avatar).into(imvOb)
+                tvOpName.text = mChallengeMatching!!.player!!.name
+            }
         }
     }
 

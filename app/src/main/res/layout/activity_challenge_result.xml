@@ -53,6 +53,15 @@
             android:layout_width="24dp"
             android:layout_height="24dp" />
 
+        <TextView
+            android:textColor="@color/white"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/tvScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
 
     </RelativeLayout>
 
@@ -80,7 +89,7 @@
                 android:id="@+id/tvMyName"
                 android:layout_marginTop="13dp"
                 android:textColor="@color/white"
-                android:text="Ambition"
+                android:text="Bạn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

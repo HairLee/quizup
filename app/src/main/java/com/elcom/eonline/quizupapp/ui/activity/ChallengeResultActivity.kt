@@ -74,6 +74,8 @@ class ChallengeResultActivity : BaseActivityQuiz(), SocketManage.OnGetResultQues
                     } else {
                         tvConfirm.text = "BẠN ĐÃ HÒA"
                     }
+
+                    tvScore.text = "+"+ resultQuestion["toUserPoint"].toString()
                 }
 
             } else {
@@ -90,6 +92,8 @@ class ChallengeResultActivity : BaseActivityQuiz(), SocketManage.OnGetResultQues
                     } else {
                         tvConfirm.text = "BẠN ĐÃ HÒA"
                     }
+
+                    tvScore.text = "+"+  resultQuestion["sendUserPoint"]
                 }
 
 
