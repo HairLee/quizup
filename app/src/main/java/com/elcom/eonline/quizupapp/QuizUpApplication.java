@@ -61,6 +61,7 @@ public class QuizUpApplication extends Application implements OnSocketInviteOppo
     public void onSomeoneInviteYouToPlayGame(@NotNull JSONObject resultQuestion) {
         LogUtils.e("SocketManage","QuizUpApplication "+resultQuestion.toString());
 
+
     }
 
     private static final Handler mHandler = new Handler();
@@ -138,6 +139,7 @@ public class QuizUpApplication extends Application implements OnSocketInviteOppo
     public void onSocketConnected() {
         LogUtils.e("SocketManage", " QuizUpApplication onSocketConnected ");
         ConstantsApp.socketManage = mSocketManage;
+        regisSocket();
         mSocketManage.sendUserInformationBySocket(this);
     }
 }
