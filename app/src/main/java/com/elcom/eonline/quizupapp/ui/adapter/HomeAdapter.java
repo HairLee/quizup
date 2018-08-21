@@ -128,7 +128,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                 PlayingCellViewHolder playingCellViewHolder = (PlayingCellViewHolder) viewHolder;
                 playingCellViewHolder.mRecyclerView.setHasFixedSize(true);
                 LinearLayoutManager layoutManager1 = new LinearLayoutManager(mContext);
-                layoutManager1.setOrientation(LinearLayoutManager.VERTICAL);
+                layoutManager1.setOrientation(LinearLayoutManager.HORIZONTAL);
                 playingCellViewHolder.mRecyclerView.setLayoutManager(layoutManager1);
                 HomePlayingRecyclerAdapter adapter1 = new HomePlayingRecyclerAdapter(mList.get(0).getTopics());
                 adapter1.SetOnItemClickListener(mItemClickListener);
@@ -140,10 +140,10 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                 HistoryCellViewHolder cellViewHolder = (HistoryCellViewHolder) viewHolder;
                 cellViewHolder.mRecyclerView.setHasFixedSize(true);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
-                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 cellViewHolder.mRecyclerView.setLayoutManager(layoutManager);
-                HomeHistoryRecyclerAdapter adapter = new HomeHistoryRecyclerAdapter(mList.get(1).getTopics(), mContext);
-                adapter.setOnHistoryListListener(onHistoryListListener);
+                HomeFavouriteRecyclerAdapter adapter = new HomeFavouriteRecyclerAdapter(mList.get(1).getTopics());
+                adapter.SetOnItemClickListener(onFavorListListener);
                 cellViewHolder.mRecyclerView.setAdapter(adapter);
                 cellViewHolder.mTitle.setText(mList.get(1).getName());
                 cellViewHolder.tvMore.setOnClickListener(new View.OnClickListener() {
@@ -208,15 +208,15 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
 
         switch (position){
             case 0: {
-                return HISTORY_TOPIC;
+                return FAVOURITE_TOPIC;
             }
 
             case 1: {
-                return FAVOURITE_TOPIC;
+                return HISTORY_TOPIC;
             }
 
             case 2: {
-                return FAVOURITE_TOPIC;
+                return HISTORY_TOPIC;
             }
         }
 

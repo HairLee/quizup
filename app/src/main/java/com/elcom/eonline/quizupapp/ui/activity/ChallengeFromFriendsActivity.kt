@@ -197,8 +197,8 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
     }
 
     private  var mOnlineList = JSONArray()
-    override fun onUserOnlineByTopic(onlineList: JSONArray,topicId:String) {
-        if(topicId == mTopicId){
+    override fun onUserOnlineByTopic(onlineList: JSONArray) {
+//        if(topicId == mTopicId){
 
 
             LogUtils.e("SocketManage ~~~~~~~~~~",onlineList.toString())
@@ -216,7 +216,7 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
             }
 
             mOnlineList = onlineList
-        }
+//        }
     }
 
     override fun onDestroy() {

@@ -7,5 +7,5 @@ import org.json.JSONObject
  * Created by Hailpt on 5/3/2018.
  */
 interface OnSocketGetOnlineListener {
-    fun onUserOnlineByTopic(onlineList:JSONArray, topicId:String)
+    fun onUserOnlineByTopic(onlineList:JSONArray)
 }

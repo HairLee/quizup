@@ -48,7 +48,7 @@ class SocketManage {
         Log.e("SocketManage", " Connecting... ")
 
         try {
-            mSocket = IO.socket("http://socket-dev.giaido.vn:3000")
+            mSocket = IO.socket("http://socket.giaido.vn:3000")
         } catch (e: URISyntaxException) {
 
         }
@@ -59,7 +59,7 @@ class SocketManage {
         mSocket!!.on("authentication", authentication)
         mSocket!!.on("countDown", countDown)
         mSocket!!.on("resultQuestion", resultQuestion)
-        mSocket!!.on("getUserOnlineByTopic", getUserOnlineByTopic)
+        mSocket!!.on("getUserOnline", getUserOnlineByTopic)
         mSocket!!.on("sendChallengeInformation", sendChallengeInformation)
         mSocket!!.on("getResultMatchDuel", getResultMatchDuel)
         mSocket!!.on("sendQuestionMatchDuel", sendQuestionMatchDuel)
@@ -132,13 +132,13 @@ class SocketManage {
         val data = args[0]  as JSONObject
         val jsonArray = data["data"] as JSONArray
         if(mOnSocketGetOnlineListListener != null){
-            mOnSocketGetOnlineListListener!!.onUserOnlineByTopic(jsonArray,data["topicId"].toString() )
+            mOnSocketGetOnlineListListener!!.onUserOnlineByTopic(jsonArray)
         }
     }
 
 
     fun getUserOnlineByTopic(mInfo:JSONObject) {
-        mSocket!!.emit("getUserOnlineByTopic", mInfo)
+        mSocket!!.emit("getUserOnline", mInfo)
     }
     /*getUserOnlineByTopic*/
 
