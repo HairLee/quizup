@@ -46,8 +46,8 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
 
             if( ConstantsApp.socketManage != null){
                 ConstantsApp.socketManage.initToGetListOnline(this)
-                ConstantsApp.socketManage.initToInventionFromFriend(this)
-                ConstantsApp.socketManage.initOnSocketSendChallengeInformationListener(this)
+//                ConstantsApp.socketManage.initToInventionFromFriend(this)
+//                ConstantsApp.socketManage.initOnSocketSendChallengeInformationListener(this)
 
                 getUserOnlineByTopic()
             }
@@ -149,19 +149,19 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
         }
 
 
-        val mApp = application as QuizUpApplication
-        mApp.setListener(this)
+//        val mApp = application as QuizUpApplication
+//        mApp.setListener(this)
 
         mChallengeGameDialog = ChallengeInventedFriendDialog(this, object : OnDialogInvitationListener {
             override fun onCancelInviteFriendToPlayGame() {
-                mApp.stopCountDownTimer()
+//                mApp.stopCountDownTimer()
                 ConstantsApp.CHALLENGE_TIME_COUNT_DOWN = "0"
             }
 
             override fun onInviteFriendToPlayGame() {
 
-                mApp.stopCountDownTimer()
-                mApp.startCountDownTimer()
+//                mApp.stopCountDownTimer()
+//                mApp.startCountDownTimer()
 
                 val mObject = mOnlineList[position] as JSONObject
                 sendInviteOrAcceptInvite(PreferUtils().getUserId(applicationContext), mObject["id"].toString())
@@ -180,7 +180,7 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
             myInfo.put("toId", toId )
             myInfo.put("challenge", "true")
             myInfo.put("url", "url")
-            myInfo.put("name", "Ambitionnnn")
+            myInfo.put("name", PreferUtils().getName(this))
             myInfo.put("topicName", "topicName")
             myInfo.put("urlTopic", "urlTopic")
             myInfo.put("userSendId", userSendId)
@@ -221,6 +221,13 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
 
     override fun onDestroy() {
         super.onDestroy()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (mChallengeGameDialog != null){
+            mChallengeGameDialog!!.dismiss()
+        }
     }
 
 

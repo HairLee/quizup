@@ -138,7 +138,7 @@ class ChallengeWaitingToPlayGameActivity : BaseActivityQuiz() {
             myInfo.put("topicId", mTopicId)
             myInfo.put("sendId", PreferUtils().getUserId(this))
             myInfo.put("toId", opponentId )
-            myInfo.put("name", "Ambitionnnn")
+            myInfo.put("name", PreferUtils().getName(this))
             myInfo.put("userSendId", opponentId)
             myInfo.put("matchId", mMatchId)
 

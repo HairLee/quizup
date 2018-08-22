@@ -10,6 +10,7 @@ class PreferUtils {
     private val PREFER_NAME = "quizup"
     private val PREFER_GCM_TOKEN = "gcm_token"
     private val KEY_FIRST_TIME = "KEY_FIRST_TIME"
+    private val KEY_USER_NAME= "KEY_USER_NAME"
     private val PREFER_AVATAR_MYSELF = "PREFER_AVATAR_MYSELF"
     private val USER_ID = "user_id"
     private val CHANLLENGE_TIME_TO_INTIVE = "CHANLLENGE_TIME_TO_INTIVE"
@@ -18,6 +19,18 @@ class PreferUtils {
     private val KEY_SOUND_SETTING = "KEY_SOUND_SETTING"
 
 //    private val applicationContext  = QuizUpApp().getAppContext()!!
+
+    fun setName(context: Context, token: String) {
+        val editor = context.getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE).edit()
+        editor.putString(KEY_USER_NAME, token)
+        editor.commit()
+    }
+
+    fun getName(context: Context): String {
+        val preferences = context.getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE)
+        return preferences.getString(KEY_USER_NAME, "")
+    }
+
 
     fun setToken(context: Context, token: String) {
         val editor = context.getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE).edit()

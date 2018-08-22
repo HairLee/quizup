@@ -76,9 +76,9 @@ class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickLis
 
     override fun onResume() {
         super.onResume()
-        if( ConstantsApp.socketManage != null){
-            ConstantsApp.socketManage.initToInventionFromFriend(this)
-        }
+//        if( ConstantsApp.socketManage != null){
+//            ConstantsApp.socketManage.initToInventionFromFriend(this)
+//        }
     }
 
     override fun onClick(p0: View?) {

@@ -102,9 +102,9 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
                 btn_next.text = "BẮT ĐẦU CÂU "+ mQuestionNumber
             }
             getIntroductionOfTheQuestion()
-            if( ConstantsApp.socketManage != null){
-                ConstantsApp.socketManage.initToInventionFromFriend(this)
-            }
+//            if( ConstantsApp.socketManage != null){
+//                ConstantsApp.socketManage.initToInventionFromFriend(this)
+//            }
 
             if(intent.hasExtra(ConstantsApp.KEY_TYPE_OF_GAME)){
                 mType = 2

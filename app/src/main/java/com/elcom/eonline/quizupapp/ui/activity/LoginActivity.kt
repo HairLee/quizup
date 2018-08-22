@@ -143,6 +143,7 @@ class LoginActivity : BaseActivity(), LoginView, View.OnClickListener {
         PreferUtils().setToken(this,mContent.token)
         PreferUtils().setUserId(this,mContent.id.toString())
         PreferUtils().setAvatar(this,mContent.avatar.toString())
+        PreferUtils().setName(this,mContent.name!!)
         ConstantsApp.USER_AVATAR_ME = mContent.avatar.toString()
         ConstantsApp.BASE64_HEADER = mContent.token
         OneSignal.sendTag("user_id",mContent.id.toString())

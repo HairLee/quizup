@@ -1,0 +1,79 @@
+package com.elcom.eonline.quizupapp.ui.activity
+
+import android.content.Intent
+import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
+import android.util.Log
+import com.elcom.eonline.quizupapp.R
+import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.ChallengeInfo
+import com.elcom.eonline.quizupapp.utils.ConstantsApp
+import com.elcom.eonline.quizupapp.utils.LogUtils
+import com.elcom.eonline.quizupapp.utils.PreferUtils
+import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_challenge_invitation_dialog.*
+import org.json.JSONException
+import org.json.JSONObject
+
+class ChallengeInvitationDialogActivity : AppCompatActivity() {
+
+    var mChallengeMatching:ChallengeInfo? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_challenge_invitation_dialog)
+
+        val data =   intent.getStringExtra("resultQuestion")
+
+        val mObject = JSONObject(data)
+
+        mChallengeMatching = Gson().fromJson(mObject.toString() , ChallengeInfo::class.java)
+
+        btnAccept.setOnClickListener {
+            onSomeoneInviteYou(mObject)
+            ChallengeInvitationDialogActivity@this.finish()
+        }
+
+        imvClose.setOnClickListener {
+            finish()
+        }
+
+    }
+
+    fun onSomeoneInviteYou(resultQuestion: JSONObject) {
+        LogUtils.e("SocketManage","ChallengeFromFriendsActivity Someone invite you to play a game " + resultQuestion.toString())
+        LogUtils.e("SocketManage","ChallengeFromFriendsActivity Someone invite you to play a game Id " + PreferUtils().getUserId(this))
+
+        // When your friend accept your invitation, begin to play a game
+        if(resultQuestion["challenge"] == "true" && resultQuestion["userSendId"] == PreferUtils().getUserId(this)){
+            val intent = Intent(this, ChallengeWaitingToPlayGameActivity::class.java)
+            intent.putExtra("data",resultQuestion.toString())
+            intent.putExtra("accept","")
+            startActivity(intent)
+
+            // Call Api to get question info and then send data from socket
+
+        } else if (resultQuestion["challenge"] == "true" && resultQuestion["userSendId"] != PreferUtils().getUserId(this)) {
+            // When you wanna accept your friend to play Game
+            sendInviteOrAcceptInvite(resultQuestion["topicId"] as String,resultQuestion["userSendId"] as String, resultQuestion["sendId"] as String )
+        }
+    }
+
+    fun sendInviteOrAcceptInvite(mTopicId: String,userSendId: String, toId: String ){
+        val myInfo = JSONObject()
+        try {
+            myInfo.put("topicId", mTopicId)
+            myInfo.put("sendId", PreferUtils().getUserId(this))
+            myInfo.put("toId", toId )
+            myInfo.put("challenge", "true")
+            myInfo.put("url", "url")
+            myInfo.put("name", "Ambitionnnn")
+            myInfo.put("topicName", "topicName")
+            myInfo.put("urlTopic", "urlTopic")
+            myInfo.put("userSendId", userSendId)
+        } catch (e: JSONException) {
+
+        }
+        ConstantsApp.socketManage.sendChallengeInformation(myInfo)
+
+        Log.e("hailpt", " ChallengeFromFriendsActivity sendInviteOrAcceptInvite "+ myInfo.toString())
+    }
+}

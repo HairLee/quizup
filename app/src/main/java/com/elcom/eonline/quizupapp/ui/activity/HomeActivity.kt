@@ -1,54 +1,27 @@
 package com.elcom.eonline.quizupapp.ui.activity
 
 import android.Manifest
-import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.media.MediaScannerConnection
 import android.os.Build
-import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
-import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
-import android.util.Log
-import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.Toast
-import com.elcom.eonline.quizupapp.QuizUpApplication
 import com.elcom.eonline.quizupapp.R
-import com.elcom.eonline.quizupapp.ui.fragment.*
-import com.elcom.eonline.quizupapp.ui.listener.OnSocketInviteOpponentListener
+import com.elcom.eonline.quizupapp.ui.fragment.HomeFragment
+import com.elcom.eonline.quizupapp.ui.fragment.ListTopicGroupTotalFragment
+import com.elcom.eonline.quizupapp.ui.fragment.LiveChallengeFragment
+import com.elcom.eonline.quizupapp.ui.fragment.SettingFragment
 import com.elcom.eonline.quizupapp.utils.BottomNavigationViewHelper
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
 import com.elcom.eonline.quizupapp.utils.LogUtils
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.activity_solo_question_intro.*
-import org.json.JSONObject
-import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import java.util.*
 
 
-class HomeActivity : BaseActivityQuiz(), OnSocketInviteOpponentListener {
+class HomeActivity : BaseActivityQuiz() {
 
-    override fun onSomeoneInviteYouToPlayGame(resultQuestion: JSONObject) {
-//        runOnUiThread {
-//            val snack = Snackbar.make(lnRoot, "Someone invite you to play a game", Snackbar.LENGTH_SHORT)
-//            val view = snack.getView()
-//            val params = view.layoutParams as FrameLayout.LayoutParams
-//            params.gravity = Gravity.BOTTOM
-//            view.layoutParams = params
-//            snack.show()
-//        }
-    }
+
 
 
     var mainFragment = ListTopicGroupTotalFragment()
@@ -117,14 +90,6 @@ class HomeActivity : BaseActivityQuiz(), OnSocketInviteOpponentListener {
             val  questionNumber = intent.getIntExtra(ConstantsApp.KEY_QUESTION_NUMBER,1)
             moveToGameIntroduction(topicId,matchId,questionNumber)
         }
-
-
-
-        if( ConstantsApp.socketManage != null){
-            ConstantsApp.socketManage.initToInventionFromFriend(this)
-        }
-
-
     }
 
     private fun moveToGameIntroduction(topic_id:String, match_id:String, question_number:Int){

@@ -73,7 +73,7 @@
         <item name="android:windowExitAnimation">@android:anim/slide_out_right</item>
     </style>
 
-    <style name="DialogAnimationRightLeft">
+    <style name="DialogAnimationRightLeft"  parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowEnterAnimation">@anim/slide_in_right</item>
         <item name="android:windowExitAnimation">@anim/slide_out_left</item>
     </style>
@@ -116,6 +116,17 @@
         <item name="android:progressDrawable">@drawable/custom_progress_bar_horizontal</item>
         <item name="android:minHeight">10dip</item>
         <item name="android:maxHeight">20dip</item>
+    </style>
+
+    <style name="Theme.AppCompat.Translucent">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
     </style>
 
 </resources>

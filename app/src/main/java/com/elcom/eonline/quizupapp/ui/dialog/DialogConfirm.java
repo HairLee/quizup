@@ -3,15 +3,9 @@ package com.elcom.eonline.quizupapp.ui.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.View;
 import android.widget.TextView;
 
-import com.elcom.eonline.quizupapp.QuizUpApplication;
 import com.elcom.eonline.quizupapp.R;
-import com.elcom.eonline.quizupapp.ui.listener.OnInvitationTimeCountDownListener;
-
-import org.jetbrains.annotations.NotNull;
 
 
 /**

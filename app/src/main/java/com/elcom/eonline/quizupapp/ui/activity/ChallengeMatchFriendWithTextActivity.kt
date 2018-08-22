@@ -195,12 +195,12 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
     private fun answerTheQuestion(pAnswerIdPos:Int){
 
 
-        Toast.makeText(this, " mTopicId = "+ isFromOpoonentOrYou + " " + mTopicId, Toast.LENGTH_SHORT).show()
-
+//        Toast.makeText(this, " mTopicId = "+ isFromOpoonentOrYou + " " + mTopicId, Toast.LENGTH_SHORT).show()
 
         Utils.CustomButtom(mButtonList).unableButtonClick()
         mTheAnswerFromMe = pAnswerIdPos
         mCustomButton!!.changeColorWithCorrectAnswer(mAnswer,mCorrectAnswer)
+        mCustomButton!!.changeColorWithCorrectAnswer(mCorrectAnswer,mCorrectAnswer)
 //        pSoloMatchWithTextPresenter.answerTheQuestion(PreferUtils().getUserId(this), mTopicId,   mChallengeMatching!!.question!![mQuestionNumber]!!.answer!![pAnswerIdPos].id.toString(),  mChallengeMatching!!.question!![mQuestionNumber].id!!.toString(), mMatchId, "false" )
 
         var blAnswer = "false"

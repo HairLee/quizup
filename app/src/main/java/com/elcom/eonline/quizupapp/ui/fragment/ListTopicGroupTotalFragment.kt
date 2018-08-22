@@ -153,10 +153,12 @@ class ListTopicGroupTotalFragment : BaseFragment(), HomeView, OnSeeMoreCaterogyL
     }
 
     override fun getListTopicSuccess(pData: List<Caterogy>) {
-        refresh.isRefreshing = false
-        dismisProgressDialog()
-        mListCategory = pData as ArrayList<Caterogy>
-        initData()
+        if(refresh != null){
+            refresh.isRefreshing = false
+            dismisProgressDialog()
+            mListCategory = pData as ArrayList<Caterogy>
+            initData()
+        }
     }
 
     override fun getListTopicFail() {

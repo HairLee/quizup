@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.elcom.eonline.quizupapp.ui.custom.SocketManage;
@@ -54,14 +55,17 @@ public class QuizUpApplication extends Application implements OnSocketInviteOppo
     }
 
     public void regisSocket(){
-        ConstantsApp.socketManage.initToInventionFromFriend(this);
+        mSocketManage.initToInventionFromFriend(this);
     }
 
     @Override
-    public void onSomeoneInviteYouToPlayGame(@NotNull JSONObject resultQuestion) {
-        LogUtils.e("SocketManage","QuizUpApplication "+resultQuestion.toString());
-
-
+    public void onSomeoneInviteYouToPlayGame(@NotNull final JSONObject resultQuestion) {
+        Log.e("SocketManage","QuizUpApplication "+resultQuestion.toString());
+        runOnUiThread(new Runnable() {
+            public void run() {
+                Toast.makeText(getBaseContext(), resultQuestion.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private static final Handler mHandler = new Handler();
