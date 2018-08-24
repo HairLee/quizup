@@ -11,13 +11,13 @@ import com.elcom.eonline.quizupapp.ui.custom.SocketManage;
 import com.elcom.eonline.quizupapp.ui.listener.OnInvitationTimeCountDownListener;
 import com.elcom.eonline.quizupapp.ui.listener.OnSocketInviteOpponentListener;
 import com.elcom.eonline.quizupapp.ui.listener.OnSocketListener;
+import com.elcom.eonline.quizupapp.utils.ApplicationLifecycleHandler;
 import com.elcom.eonline.quizupapp.utils.ConstantsApp;
 import com.elcom.eonline.quizupapp.utils.FontsOverride;
 import com.elcom.eonline.quizupapp.utils.LogUtils;
 import com.elcom.eonline.quizupapp.utils.PreferUtils;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
-import com.google.android.gms.ads.MobileAds;
 import com.onesignal.OneSignal;
 
 import org.jetbrains.annotations.NotNull;
@@ -52,6 +52,10 @@ public class QuizUpApplication extends Application implements OnSocketInviteOppo
                 .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
                 .unsubscribeWhenNotificationsAreDisabled(true)
                 .init();
+
+        ApplicationLifecycleHandler handler = new ApplicationLifecycleHandler();
+        registerActivityLifecycleCallbacks(handler);
+        registerComponentCallbacks(handler);
     }
 
     public void regisSocket(){

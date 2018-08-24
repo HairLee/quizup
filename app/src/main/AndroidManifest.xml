@@ -163,10 +163,11 @@
         <activity
             android:name=".ui.activity.ChallengeMatchFriendWithTextActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.ChallengeInvitationDialogActivity"
+        <activity
+            android:name=".ui.activity.ChallengeInvitationDialogActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Translucent"
-            />
+            android:theme="@style/Theme.AppCompat.Translucent" />
+        <activity android:name=".ui.activity.AdmodVideoActivity"></activity>
     </application>
 
 </manifest>
