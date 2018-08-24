@@ -12,10 +12,7 @@ import com.elcom.eonline.quizupapp.ui.dialog.ChallengeInventedFriendDialog
 import com.elcom.eonline.quizupapp.ui.listener.OnSocketInviteOpponentListener
 import com.elcom.eonline.quizupapp.ui.listener.OnSocketListener
 import com.elcom.eonline.quizupapp.ui.listener.OnSocketSendChallengeInformationListener
-import com.elcom.eonline.quizupapp.utils.ConstantsApp
-import com.elcom.eonline.quizupapp.utils.FontsOverride
-import com.elcom.eonline.quizupapp.utils.LogUtils
-import com.elcom.eonline.quizupapp.utils.PreferUtils
+import com.elcom.eonline.quizupapp.utils.*
 import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsLogger
 import com.onesignal.OneSignal
@@ -29,6 +26,7 @@ class ApplicationQuzup : Application(), OnSocketInviteOpponentListener, OnSocket
 
 
     var mSocketManage = SocketManage()
+    var handler = ApplicationLifecycleHandler()
     override fun onCreate() {
         super.onCreate()
         FacebookSdk.sdkInitialize(applicationContext)
@@ -48,6 +46,9 @@ class ApplicationQuzup : Application(), OnSocketInviteOpponentListener, OnSocket
                 .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
                 .unsubscribeWhenNotificationsAreDisabled(true)
                 .init()
+
+        registerActivityLifecycleCallbacks(handler)
+        registerComponentCallbacks(handler)
     }
 
     override fun onSocketConnected() {

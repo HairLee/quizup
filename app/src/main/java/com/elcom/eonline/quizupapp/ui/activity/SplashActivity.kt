@@ -4,24 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import com.elcom.eonline.quizupapp.R
 import com.elcom.eonline.quizupapp.db.MangerDB
-import com.elcom.eonline.quizupapp.db.model.Invention
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.User
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.ContinueMatch
-import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.topicdetail.TopicDetail
-import com.elcom.eonline.quizupapp.ui.custom.SocketManage
 import com.elcom.eonline.quizupapp.ui.network.RestClient
 import com.elcom.eonline.quizupapp.ui.network.RestData
-import com.elcom.eonline.quizupapp.ui.network.RestService
-import com.elcom.eonline.quizupapp.ui.view.LoginView
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
 import com.elcom.eonline.quizupapp.utils.LogUtils
 import com.elcom.eonline.quizupapp.utils.PreferUtils
 import com.elcom.eonline.quizupapp.utils.Utils
-import com.google.gson.JsonElement
-import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -84,7 +76,7 @@ class SplashActivity : AppCompatActivity() {
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                         finish()
                     } else {
-                        val loginIntent = Intent(baseContext, HomeActivity::class.java)
+                        val loginIntent = Intent(baseContext, AdmodVideoActivity::class.java)
                         startActivity(loginIntent)
                         finish()
                     }
