@@ -10,6 +10,7 @@ import com.elcom.eonline.quizupapp.utils.ConstantsApp
 import com.elcom.eonline.quizupapp.utils.LogUtils
 import com.elcom.eonline.quizupapp.utils.PreferUtils
 import com.google.gson.Gson
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_challenge_invitation_dialog.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -26,7 +27,7 @@ class ChallengeInvitationDialogActivity : AppCompatActivity() {
         val mObject = JSONObject(data)
 
         mChallengeMatching = Gson().fromJson(mObject.toString() , ChallengeInfo::class.java)
-
+        updateLayout(mChallengeMatching!!)
         btnAccept.setOnClickListener {
             onSomeoneInviteYou(mObject)
             ChallengeInvitationDialogActivity@this.finish()
@@ -75,5 +76,15 @@ class ChallengeInvitationDialogActivity : AppCompatActivity() {
         ConstantsApp.socketManage.sendChallengeInformation(myInfo)
 
         Log.e("hailpt", " ChallengeFromFriendsActivity sendInviteOrAcceptInvite "+ myInfo.toString())
+    }
+
+    private fun updateLayout(data:ChallengeInfo){
+        if(data != null){
+            Picasso.get().load(data.getUrl()).into(imvAva)
+            tvTopicName.text = data.getName()
+
+        }
+
+
     }
 }
