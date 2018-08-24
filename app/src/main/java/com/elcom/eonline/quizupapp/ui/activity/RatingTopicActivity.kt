@@ -71,6 +71,7 @@ class RatingTopicActivity : BaseActivityQuiz() {
 
         if (intent.hasExtra(ConstantsApp.KEY_QUESTION_ID)){
             mTopicId = intent.getStringExtra(ConstantsApp.KEY_QUESTION_ID)
+            showProgessDialog()
             getStatistic()
         }
 
@@ -81,6 +82,7 @@ class RatingTopicActivity : BaseActivityQuiz() {
 
         RestClient().getInstance().getRestService().getStatistic(mTopicId).enqueue(object: Callback<RestData<StatisticalRes>> {
             override fun onResponse(call: Call<RestData<StatisticalRes>>?, response: Response<RestData<StatisticalRes>>?) {
+                dismisProgressDialog()
                 if (response?.body() != null){
 //                    updateLayout(response.body().data!!)
                     statisticalRes = response.body().data!!
@@ -89,7 +91,7 @@ class RatingTopicActivity : BaseActivityQuiz() {
             }
 
             override fun onFailure(call: Call<RestData<StatisticalRes>>?, t: Throwable?) {
-
+                dismisProgressDialog()
             }
         })
     }

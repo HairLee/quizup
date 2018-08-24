@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -21,7 +22,9 @@ public class ChallengeScoreAndTimeView extends LinearLayout implements ProgressS
     private ArrayList<View> mViewList = new ArrayList<>();
     private  ArrayList<ProgressSmallTimerView> mProgressTimerViews = new ArrayList<>();
     private  ArrayList<RelativeLayout> mTimeSeconds = new ArrayList<>();
+    private  ArrayList<ImageView> imvScores = new ArrayList<>();
     private  onFinishSmallCountDown mOnFinishSmmallCountDown;
+    private ImageView imvScore0,imvScore1,imvScore2,imvScore3,imvScore4,imvScore5,imvScore6;
     public ChallengeScoreAndTimeView(Context context) {
         super(context);
         init(context);
@@ -59,6 +62,14 @@ public class ChallengeScoreAndTimeView extends LinearLayout implements ProgressS
         RelativeLayout rlTime5 = rootView.findViewById(R.id.rl6);
         RelativeLayout rlTime6 = rootView.findViewById(R.id.rl7);
 
+        imvScore0 = rootView.findViewById(R.id.imvScore0);
+        imvScore1 = rootView.findViewById(R.id.imvScore1);
+        imvScore2 = rootView.findViewById(R.id.imvScore2);
+        imvScore3 = rootView.findViewById(R.id.imvScore3);
+        imvScore4 = rootView.findViewById(R.id.imvScore4);
+        imvScore5 = rootView.findViewById(R.id.imvScore5);
+        imvScore6 = rootView.findViewById(R.id.imvScore6);
+
         mProgressTimerViews.add(progressTimerView0);
         mProgressTimerViews.add(progressTimerView1);
         mProgressTimerViews.add(progressTimerView2);
@@ -75,10 +86,29 @@ public class ChallengeScoreAndTimeView extends LinearLayout implements ProgressS
         mTimeSeconds.add(rlTime5);
         mTimeSeconds.add(rlTime6);
 
+        imvScores.add(imvScore0);
+        imvScores.add(imvScore1);
+        imvScores.add(imvScore2);
+        imvScores.add(imvScore3);
+        imvScores.add(imvScore4);
+        imvScores.add(imvScore5);
+        imvScores.add(imvScore6);
+
 
         for (int i = 0; i < mProgressTimerViews.size(); i++) {
             mProgressTimerViews.get(i).setListener(this);
         }
+    }
+
+    public void changeScoreIcon(int pos, boolean answer){
+
+        imvScores.get(pos).setVisibility(View.VISIBLE);
+        if(answer){
+            imvScores.get(pos).setImageResource(R.drawable.ic_challenge_v);
+        } else {
+            imvScores.get(pos).setImageResource(R.drawable.ic_challenge_x);
+        }
+
     }
 
     public void setShowCountDown(int pos){

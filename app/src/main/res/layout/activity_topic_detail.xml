@@ -34,7 +34,7 @@
                     android:id="@+id/imvAva"
                     android:layout_marginLeft="20dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/quizup_icon"
+                    tools:src="@drawable/quizup_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp" />
 
@@ -66,6 +66,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/lnXp"
                     android:gravity="center"
                     android:layout_marginLeft="10dp"
                     android:layout_centerVertical="true"
@@ -90,16 +91,35 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tvRank"
-                    android:textSize="13sp"
-                    android:textColor="#6665FF"
-                    android:padding="10dp"
-                    android:text="Xem xếp hạng >"
-                    android:layout_alignParentBottom="true"
+
+                <LinearLayout
+                    android:layout_toRightOf="@+id/lnXp"
                     android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="#6665FF"
+                        android:id="@+id/tvRank"
+                        android:textSize="13sp"
+                        android:text="Bảng xếp hạng"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:id="@+id/imvRank"
+                        android:src="@drawable/rank_ic"
+                        android:textColor="#07BE8C"
+                        android:textSize="13sp"
+                        android:layout_marginTop="5dp"
+                        tools:text="12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
 
 
             </RelativeLayout>
@@ -119,27 +139,9 @@
             android:layout_alignParentTop="true"
             android:background="@drawable/ic_topic_detail_bg" />
 
-        <TextView
-            android:textSize="19sp"
-            android:textColor="@color/white"
-            android:padding="10dp"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/txt_topic_title"
-            tools:text="Basic Math"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
 
 
-        <ImageView
-            android:padding="10dp"
-            android:id="@+id/imv_favorite"
-            android:paddingLeft="10dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:src="@drawable/ic_favor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
         <ImageView
             android:padding="10dp"
             android:id="@+id/imvClose"
@@ -149,66 +151,76 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <TextView
-            android:layout_marginTop="5dp"
-            android:gravity="center"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:singleLine="true"
-            android:layout_below="@+id/imvClose"
-            android:textSize="12sp"
-            android:textColor="@color/white"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/txt_topic_des"
-            tools:text="Basic Math"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+
+
+
+
 
         <RelativeLayout
+            android:layout_below="@id/imvClose"
             android:id="@+id/rl_ava"
             android:layout_marginTop="5dp"
-            android:layout_below="@+id/txt_topic_des"
             android:layout_width="match_parent"
-            android:layout_height="100dp">
+            android:layout_height="wrap_content">
             <LinearLayout
-                android:gravity="center_horizontal"
-                android:layout_toLeftOf="@+id/imvAvaTopic"
                 android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imvAvaTopic"
+                android:layout_below="@+id/lnJumpWin"
                 android:orientation="vertical"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
                 <TextView
-                    android:textSize="16sp"
+                    android:id="@+id/txt_topic_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    tools:text="Level"
                     android:textColor="@color/white"
-                    android:text="Level"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textSize="16sp" />
                 <TextView
-                    android:id="@+id/tvLevel"
-                    android:textSize="32sp"
+                    android:visibility="gone"
+                    android:textSize="16sp"
                     android:textColor="@color/yellow"
-                    tools:text="26"
+                    tools:text=" 26"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:id="@+id/txt_topic_des"
+                    android:textSize="11sp"
+                    android:textColor="@color/white"
+                    tools:text="Chuỗi thắng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <ImageView
+                    android:layout_toRightOf="@+id/imvAvaTopic"
+                    android:layout_below="@+id/lnJumpWin"
+                    android:id="@+id/imv_favorite"
+                    tools:src="@drawable/btn_favor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
 
             </LinearLayout>
 
             <LinearLayout
-                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/lnJumpWin"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/imvAvaTopic"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
                 <TextView
+                    android:visibility="gone"
                     android:textSize="16sp"
-                    android:textColor="@color/white"
-                    android:text="Chuỗi thắng"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:id="@+id/tvJumpWins"
-                    android:textSize="32sp"
                     android:textColor="#85E6FF"
                     tools:text="45"
                     android:layout_width="wrap_content"
@@ -218,8 +230,9 @@
 
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_marginLeft="40dp"
+                tools:src="@color/ava_circle_border"
                 android:id="@+id/imvAvaTopic"
-                android:layout_centerInParent="true"
                 android:layout_width="100dp"
                 android:layout_height="100dp" />
 
@@ -236,12 +249,69 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_marginTop="10dp"
-                android:textColor="@color/white"
-                android:text="Tiến Trình"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <RelativeLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/btn_single_play"
+                    android:textColor="#39D171"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="LUYỆN TẬP"
+                    android:background="@drawable/radius_edittext_white_bg_gray_srtoke_layout"
+                    android:layout_width="140dp"
+                    android:layout_height="36dp" />
+
+                <Button
+                    android:id="@+id/btnChallenge"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="#FF6969"
+                    android:layout_alignParentRight="true"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:text="THÁCH ĐẤU"
+                    android:background="@drawable/radius_edittext_white_bg_gray_srtoke_layout"
+                    android:layout_width="140dp"
+                    android:layout_height="36dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvLevel"
+                    android:textColor="@color/white"
+                    tools:text="Level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tvJumpWins"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white"
+                    tools:text="Chuỗi thắng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tvNumberOfQuestion"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/white"
+                    tools:text="Trả lời đúng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+
             <RelativeLayout
                 android:gravity="center"
                 android:layout_marginEnd="35dp"
@@ -274,6 +344,7 @@
 
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_marginBottom="10dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginLeft="15dp"
@@ -337,7 +408,7 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/tvNumberOfQuestion"
+
                         android:textColor="@color/white"
                         android:layout_marginLeft="5dp"
                         tools:text="115"
@@ -429,39 +500,6 @@
 
 
 
-    <RelativeLayout
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
 
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:layout_marginBottom="10dp"
-            android:id="@+id/btn_single_play"
-            android:textColor="@color/white"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:text="LUYỆN TẬP"
-            android:background="@drawable/radius_button_purple_bg_purple_srtoke_layout"
-            android:drawableLeft="@drawable/ic_detail_solo"
-            android:layout_width="140dp"
-            android:layout_height="36dp" />
-
-        <Button
-            android:id="@+id/btnChallenge"
-            android:layout_marginBottom="10dp"
-            android:textColor="@color/white"
-            android:layout_alignParentRight="true"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:text="THÁCH ĐẤU"
-            android:background="@drawable/radius_button_red_bg_red_srtoke_layout"
-            android:drawableLeft="@drawable/ic_detail_chalenge"
-            android:layout_width="140dp"
-            android:layout_height="36dp" />
-
-    </RelativeLayout>
 
 </RelativeLayout>

@@ -193,6 +193,11 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
         }
     }
 
+    override fun onStop() {
+        super.onStop()
+        activity!!.unregisterReceiver(receiver)
+    }
+
     private fun showPictureDialog() {
         val pictureDialog = AlertDialog.Builder(activity)
         pictureDialog.setTitle("Select Action")

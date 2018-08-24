@@ -44,6 +44,9 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
     private var numberOfRightAnswerFromMe = 0
     private var numberOfRightAnswerFromOpponent = 0
     private var isFromOpoonentOrYou = false // true = you -- false = opponent
+    private var myScore = 0
+    private var opScore = 0
+
     //    private val mSocketManage = SocketManage()
     override fun getLayout(): Int {
         return R.layout.challenge_with_text_layout
@@ -155,6 +158,8 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
         if(resultQuestion["resultQuestion"] == "true"){
             runOnUiThread {
                 numberOfRightAnswerFromOpponent +=1
+                opScore+=10
+                updateScore()
                 updateLineOpScoreLayout()
             }
         }
@@ -217,11 +222,19 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
             pSoloMatchWithTextPresenter.sendMyAnswerBySocket(ConstantsApp.socketManage!!, PreferUtils().getUserId(this),mChallengeMatching!!.userId.toString() ,mChallengeMatching!!.matchId.toString(),mTopicId, (mQuestionNumber+1).toString(),blAnswer, mChallengeMatching!!.opponent!!.statusBotUser.toString() )
         }
 
-
-
         if(mCorrectAnswer == pAnswerIdPos){
+            lnScoreAndTime.changeScoreIcon(mQuestionNumber,true)
+            myScore+= 10
+            updateScore()
             updateLineScoreLayout(numberOfRightAnswerFromMe  + 1)
+        } else {
+            lnScoreAndTime.changeScoreIcon(mQuestionNumber,false)
         }
+    }
+
+    private fun updateScore(){
+             tvMyScore.text = myScore.toString()
+             tvOpScore.text = opScore.toString()
     }
 
     /* 2.1 If the answer is true */
@@ -305,8 +318,10 @@ class ChallengeMatchFriendWithTextActivity : BaseActivityQuiz(), View.OnClickLis
     /*Time's Up* 10s*/
     override fun onFinishSmallCountDown(positionOfTheQuestion: Int) {
         if(mCorrectAnswer == mTheAnswerFromMe){
+            lnScoreAndTime.changeScoreIcon(mQuestionNumber,true)
             goBackToQuestionIntroActivityBecauseOfRightAnswer()
         } else {
+            lnScoreAndTime.changeScoreIcon(mQuestionNumber,false)
             goToBreakActivityBecauseOfWrongAnswer()
         }
 

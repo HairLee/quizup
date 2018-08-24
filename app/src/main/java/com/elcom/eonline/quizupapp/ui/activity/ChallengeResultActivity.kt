@@ -21,7 +21,10 @@ class ChallengeResultActivity : BaseActivityQuiz(), SocketManage.OnGetResultQues
     }
 
     override fun initView() {
-
+        btn_stop_playing.setOnClickListener {
+            setResult(ConstantsApp.RESULT_CODE_TO_STOP_GAME_FROM_QUIZUPACTIVITY )
+            finish()
+        }
     }
 
     override fun initData() {

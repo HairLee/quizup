@@ -81,8 +81,8 @@ class ChallengeInvitationDialogActivity : AppCompatActivity() {
     private fun updateLayout(data:ChallengeInfo){
         if(data != null){
             Picasso.get().load(data.getUrl()).into(imvAva)
-            tvTopicName.text = data.getName()
-
+            tvTopicName.text = data.getTopicName()
+            tvMyName.text = data.getName()
         }
 
 

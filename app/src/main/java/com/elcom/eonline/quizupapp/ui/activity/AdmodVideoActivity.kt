@@ -1,6 +1,8 @@
 package com.elcom.eonline.quizupapp.ui.activity
 
+import android.util.Log
 import com.elcom.eonline.quizupapp.R
+import com.elcom.eonline.quizupapp.utils.ConstantsApp
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.reward.RewardItem
@@ -32,10 +34,15 @@ class AdmodVideoActivity : BaseActivityQuiz(), RewardedVideoAdListener {
     }
 
     override fun onRewardedVideoAdClosed() {
-//        finish()
+        Log.e("hailpt","onRewardedVideoAdClosed")
+        setResult(ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_CANCEL)
+        finish()
     }
 
     override fun onRewardedVideoAdLeftApplication() {
+        Log.e("hailpt","onRewardedVideoAdLeftApplication")
+        setResult(ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_CANCEL)
+        finish()
     }
 
     override fun onRewardedVideoAdLoaded() {
@@ -43,20 +50,25 @@ class AdmodVideoActivity : BaseActivityQuiz(), RewardedVideoAdListener {
     }
 
     override fun onRewardedVideoAdOpened() {
+        Log.e("hailpt","onRewardedVideoAdOpened")
     }
 
     override fun onRewardedVideoCompleted() {
-        finish()
+        Log.e("hailpt","onRewardedVideoCompleted")
     }
 
     override fun onRewarded(p0: RewardItem?) {
-        finish()
+        Log.e("hailpt","onRewarded")
     }
 
     override fun onRewardedVideoStarted() {
+        Log.e("hailpt","onRewardedVideoStarted")
     }
 
     override fun onRewardedVideoAdFailedToLoad(p0: Int) {
+        Log.e("hailpt","onRewardedVideoAdFailedToLoad")
+        setResult(ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_CANCEL)
+        finish()
     }
 
 }

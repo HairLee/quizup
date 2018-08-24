@@ -76,7 +76,7 @@ class SplashActivity : AppCompatActivity() {
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                         finish()
                     } else {
-                        val loginIntent = Intent(baseContext, AdmodVideoActivity::class.java)
+                        val loginIntent = Intent(baseContext, HomeActivity::class.java)
                         startActivity(loginIntent)
                         finish()
                     }

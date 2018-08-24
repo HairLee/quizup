@@ -65,6 +65,10 @@ class SoloMatchBreakActivity : FragmentActivity() {
 
         }
 
+        btnVideoAdmod.setOnClickListener {
+            showVideoAdmod()
+        }
+
 
     }
 
@@ -119,6 +123,22 @@ class SoloMatchBreakActivity : FragmentActivity() {
                         .into(imv_topic)
             }
         }
+    }
+
+    private fun showVideoAdmod(){
+
+        var admodCount = PreferUtils().getAdmodCount(this)
+
+        if(admodCount == 2){
+            Toast.makeText(this, " Hết số lần xem video", Toast.LENGTH_SHORT).show()
+            return
+        }
+        admodCount++
+        PreferUtils().setAdmodCount(this,admodCount)
+
+        val intent = Intent(this, AdmodVideoActivity::class.java)
+        startActivity(intent)
+
     }
 
     override fun onBackPressed() {

@@ -28,15 +28,17 @@
             android:layout_height="wrap_content" />
 
         <TextView
+            android:id="@+id/tvMyScore"
             android:textColor="#F86868"
             android:textSize="23sp"
-            android:text="20"
+            android:text="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:gravity="end"
         android:layout_toLeftOf="@+id/imvOb"
         android:layout_marginRight="10dp"
         android:layout_centerVertical="true"
@@ -44,17 +46,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView
+            android:maxLength="10"
             android:id="@+id/tvOpName"
             android:textColor="@color/white"
             android:textSize="13sp"
-            android:text="Your"
+            android:text=""
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:id="@+id/tvOpScore"
             android:textColor="#3DC901"
             android:textSize="23sp"
-            android:text="20"
+            android:text="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

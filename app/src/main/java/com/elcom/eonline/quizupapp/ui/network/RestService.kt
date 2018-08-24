@@ -2,6 +2,7 @@ package com.elcom.eonline.quizupapp.ui.network
 
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.*
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.Followed.Followed
+import com.elcom.eonline.quizupapp.ui.activity.model.entity.admod.AdmodAds
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.profile.Profile
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.*
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.topicdetail.Topic
@@ -91,8 +92,8 @@ interface RestService {
     @GET("get-start-time-count-down-show?")
     abstract fun getTimeCountDownLiveQuestion(@Query("show_id") show_id: String): Call<RestData<JsonElement>>
 
-
-
+    @GET("get-setting-app")
+    abstract fun getSettingAdmod(): Call<RestData<AdmodAds>>
 
     // SoloMatchResultActivity
     @GET("get-solo-match-result?")

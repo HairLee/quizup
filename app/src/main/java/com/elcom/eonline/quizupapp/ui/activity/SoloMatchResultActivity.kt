@@ -10,6 +10,7 @@ import com.elcom.eonline.quizupapp.ui.network.RestData
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
 import com.elcom.eonline.quizupapp.utils.PreferUtils
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_challenge_result.*
 import kotlinx.android.synthetic.main.activity_solo_match_result.*
 import kotlinx.android.synthetic.main.coin_and_ex_layout.*
 import retrofit2.Call
@@ -34,6 +35,11 @@ class SoloMatchResultActivity : BaseActivityQuiz() {
         lnStatistic.setOnClickListener {
             startActivityForResult(Intent(this,SoloMatchStatisticActivity::class.java).putExtra(ConstantsApp.KEY_SOLO_MATCH_ID,mMatchId).putExtra(ConstantsApp.KEY_QUESTION_ID,mTopicId), ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
         }
+
+//        btn_stop_playing.setOnClickListener {
+//            setResult(ConstantsApp.RESULT_CODE_TO_STOP_GAME_FROM_QUIZUPACTIVITY )
+//            finish()
+//        }
     }
 
     override fun initData() {
