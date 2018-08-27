@@ -1,6 +1,7 @@
 package com.elcom.eonline.quizupapp.ui.activity
 
 import android.util.Log
+import android.widget.Toast
 import com.elcom.eonline.quizupapp.R
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
 import com.google.android.gms.ads.AdRequest
@@ -35,14 +36,10 @@ class AdmodVideoActivity : BaseActivityQuiz(), RewardedVideoAdListener {
 
     override fun onRewardedVideoAdClosed() {
         Log.e("hailpt","onRewardedVideoAdClosed")
-        setResult(ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_CANCEL)
-        finish()
     }
 
     override fun onRewardedVideoAdLeftApplication() {
         Log.e("hailpt","onRewardedVideoAdLeftApplication")
-        setResult(ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_CANCEL)
-        finish()
     }
 
     override fun onRewardedVideoAdLoaded() {
@@ -55,10 +52,13 @@ class AdmodVideoActivity : BaseActivityQuiz(), RewardedVideoAdListener {
 
     override fun onRewardedVideoCompleted() {
         Log.e("hailpt","onRewardedVideoCompleted")
+
     }
 
     override fun onRewarded(p0: RewardItem?) {
-        Log.e("hailpt","onRewarded")
+        Toast.makeText(this, " onRewarded ", Toast.LENGTH_SHORT).show()
+        setResult(ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_OK)
+        finish()
     }
 
     override fun onRewardedVideoStarted() {

@@ -67,17 +67,17 @@ class SettingAdapter(private val moviesList: Array<String>) : RecyclerView.Adapt
                     holder.imvAva.setImageResource(R.drawable.setting_my_profile_ic)
                 }
 
-//                1->{
-//                    holder.imvAva.setImageResource(R.drawable.setting_level_ic)
-//
-//                }
-
-                1 -> {
-                    holder.imvAva.setImageResource(R.drawable.setting_friend_ic)
+                1->{
+                    holder.imvAva.setImageResource(R.drawable.coin_market_ic)
 
                 }
 
                 2 -> {
+                    holder.imvAva.setImageResource(R.drawable.setting_friend_ic)
+
+                }
+
+                3 -> {
                     holder.imvAva.setImageResource(R.drawable.setting_favor_topic_ic)
 //                    holder.lnNumberOfTopic.visibility = View.VISIBLE
 //                    holder.viewBottom.visibility = View.INVISIBLE
@@ -87,15 +87,15 @@ class SettingAdapter(private val moviesList: Array<String>) : RecyclerView.Adapt
 //                    holder.imvAva.setImageResource(R.drawable.setting_facebook_ic)
 //                }
 
-                3 -> {
+                4 -> {
                     holder.imvAva.setImageResource(R.drawable.setting_about_me_ic)
                 }
 
-                4 -> {
+                5 -> {
                     holder.imvAva.setImageResource(R.drawable.setting_support_ic)
                 }
 
-                5 -> {
+                6 -> {
                     holder.imvAva.setImageResource(R.drawable.setting_vote_ic)
                     holder.viewBottom.visibility = View.INVISIBLE
                 }

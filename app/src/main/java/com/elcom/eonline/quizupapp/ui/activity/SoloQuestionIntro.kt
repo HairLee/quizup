@@ -276,14 +276,14 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
                         getIntroductionOfTheQuestion()
                         showVideoAdmod()
                     }
-                }
-            }
-
-            ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO -> {
-                when(resultCode){
 
                     ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_OK -> {
-
+                        mMinus = "0"
+                        mQuestionNumber++
+                        mDisplayVideoAdmod = 0
+                        mType = 1
+                        btn_next.text = "BẮT ĐẦU CÂU "+ mQuestionNumber
+                        getIntroductionOfTheQuestion()
                     }
 
                     ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_CANCEL -> {

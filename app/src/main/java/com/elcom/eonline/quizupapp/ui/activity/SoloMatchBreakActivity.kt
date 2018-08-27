@@ -137,7 +137,7 @@ class SoloMatchBreakActivity : FragmentActivity() {
         PreferUtils().setAdmodCount(this,admodCount)
 
         val intent = Intent(this, AdmodVideoActivity::class.java)
-        startActivity(intent)
+        startActivityForResult(intent,(ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY))
 
     }
 
@@ -154,8 +154,19 @@ class SoloMatchBreakActivity : FragmentActivity() {
                     setResult(ConstantsApp.RESULT_CODE_TO_STOP_GAME_FROM_QUIZUPACTIVITY )
                     finish()
                 }
+
+                ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_OK -> {
+                    setResult(ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_OK)
+                    finish()
+                }
+
+                ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_CANCEL -> {
+                    setResult(ConstantsApp.RESULT_CODE_TO_STOP_GAME_FROM_QUIZUPACTIVITY)
+                    finish()
+                }
             }
         }
+
     }
 
 }

@@ -78,15 +78,15 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
                 startActivity(Intent(context, SettingProfileActivity::class.java))
             }
 
-            1->{
+            2->{
                 startActivity(Intent(context, SettingFriendActivity::class.java))
             }
 
-           2->{
+           3->{
                startActivity(Intent(context, FavouriteTopicActivity::class.java))
             }
 
-            4-> {
+            5-> {
 //                val   mChallengeGameDialog = SettingDialog(context!!,R.drawable.setting_dialog_wrong_email, "THỬ LẠI","QUAY LẠI", object : OnDialogInvitationListener {
 //
 //                    override fun onInviteFriendToPlayGame() {
@@ -101,7 +101,7 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
 //                mChallengeGameDialog!!.show()
             }
 
-            5->{
+            6->{
 //                startActivity(Intent(context, SettingProfileActivity::class.java))
             }
         }
@@ -178,9 +178,9 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
     }
 
     private fun registerReceiver() {
-        val intentFilter = IntentFilter()
-        intentFilter.addAction(ConstantsApp.KEY_LIVE_CHALLENGE_VALUE)
-        activity!!.registerReceiver(receiver, intentFilter)
+//        val intentFilter = IntentFilter()
+//        intentFilter.addAction(ConstantsApp.KEY_LIVE_CHALLENGE_VALUE)
+//        activity!!.registerReceiver(receiver, intentFilter)
     }
 
     private val receiver = object : BroadcastReceiver() {
@@ -195,7 +195,7 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
 
     override fun onStop() {
         super.onStop()
-        activity!!.unregisterReceiver(receiver)
+//        activity!!.unregisterReceiver(receiver)
     }
 
     private fun showPictureDialog() {

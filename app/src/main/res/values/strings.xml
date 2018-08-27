@@ -20,7 +20,8 @@
     <string name="intro1">Bạn được luyện tập kiến thức với hàng trăm chủ đề câu hỏi phong phú và đa dạng</string>
 
     <string-array name="setting_title">
-        <item>Xem hồ sơ cá nhân</item>
+        <item>Xem hồ</item>
+        <item>Nạp Coin</item>
         <item>Bạn bè</item>
         <item>Chủ đề yêu thích</item>
         <item>Giới thiệu</item>
