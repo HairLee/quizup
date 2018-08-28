@@ -11,7 +11,7 @@ public class ApplicationLifecycleHandler implements Application.ActivityLifecycl
     private static final String TAG = ApplicationLifecycleHandler.class.getSimpleName();
     public static boolean isInBackground = false;
     private Activity mActivity;
-    private String mActivityName;
+    public static String mActivityName;
 
     @Override
     public void onActivityCreated(Activity activity, Bundle bundle) {

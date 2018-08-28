@@ -167,7 +167,9 @@
             android:name=".ui.activity.ChallengeInvitationDialogActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Translucent" />
-        <activity android:name=".ui.activity.AdmodVideoActivity"></activity>
+        <activity android:name=".ui.activity.AdmodVideoActivity" />
+        <activity android:name=".ui.activity.singleplay.SoloWithImageChooseTextActivity" />
+        <activity android:name=".ui.activity.CoinPaymentActivity"></activity>
     </application>
 
 </manifest>

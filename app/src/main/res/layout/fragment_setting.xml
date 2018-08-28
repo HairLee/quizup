@@ -72,6 +72,7 @@
             android:layout_width="110dp"
             android:layout_height="32dp">
             <ImageView
+                android:id="@+id/imvCoin"
                 android:layout_marginLeft="5dp"
                 android:layout_centerVertical="true"
                 android:src="@drawable/dollar_coin"
@@ -79,6 +80,12 @@
                 android:layout_height="wrap_content" />
 
         <TextView
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/imvCoin"
+            android:layout_toLeftOf="@+id/imvAdd"
+            android:id="@+id/tvCoin"
             android:text="120"
             android:textColor="@color/white"
             android:layout_centerInParent="true"
@@ -86,6 +93,7 @@
             android:layout_height="wrap_content" />
 
             <ImageView
+                android:id="@+id/imvAdd"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="5dp"
                 android:layout_centerVertical="true"

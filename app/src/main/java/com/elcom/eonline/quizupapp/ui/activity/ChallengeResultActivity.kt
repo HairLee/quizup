@@ -1,5 +1,6 @@
 package com.elcom.eonline.quizupapp.ui.activity
 
+import android.content.Intent
 import android.util.Log
 import com.elcom.eonline.quizupapp.R
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.ChallengeMatching
@@ -132,6 +133,24 @@ class ChallengeResultActivity : BaseActivityQuiz(), SocketManage.OnGetResultQues
 
         Log.e("hailpt"," getResultMatchDuel ~~> "+ data.toString())
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY){
+            when(resultCode){
+
+                ConstantsApp.RESULT_CODE_TO_STOP_GAME_FROM_QUIZUPACTIVITY -> {
+                    setResult(ConstantsApp.RESULT_CODE_TO_STOP_GAME_FROM_QUIZUPACTIVITY)
+                    finish()
+                }
+
+                ConstantsApp.RESULT_CODE_TO_CONTINUE_TO_PLAY_GAME_FROM_QUIZUPACTIVITY -> {
+                    setResult(ConstantsApp.RESULT_CODE_FROM_RIGHT_ANSWER_USING_COINS)
+                    finish()
+                }
+            }
+        }
     }
 
 

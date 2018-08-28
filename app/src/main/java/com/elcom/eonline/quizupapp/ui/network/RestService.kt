@@ -3,6 +3,7 @@ package com.elcom.eonline.quizupapp.ui.network
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.*
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.Followed.Followed
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.admod.AdmodAds
+import com.elcom.eonline.quizupapp.ui.activity.model.entity.coin.Coin
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.profile.Profile
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.*
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.topicdetail.Topic
@@ -77,6 +78,14 @@ interface RestService {
     @GET("user/show-list-of-topics?")
     abstract fun getListHomeTopic(@Query("user_id") user_id: String): Call<RestData<List<Caterogy>>>
 
+
+    @GET("get-buy-coins-list")
+    abstract fun getCoinPayment(): Call<RestData<Coin>>
+
+
+    @POST("post-buy-coins")
+    @FormUrlEncoded
+    abstract fun postBuyCoin(@Field("coins_number") coins_number: String): Call<RestData<JsonElement>>
 
     /*Introduction Of a question*/
     @GET("get-question-solo-match?")

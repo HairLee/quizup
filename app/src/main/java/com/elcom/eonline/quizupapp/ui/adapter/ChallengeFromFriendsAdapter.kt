@@ -62,6 +62,8 @@ class ChallengeFromFriendsAdapter(private var moviesList: List<String>, private 
         }
         if (mObject.has("url")){
             Picasso.get().load(mObject["url"] as String).into( holder.imvAva)
+        } else {
+            Picasso.get().load(mObject["avatar"] as String).into( holder.imvAva)
         }
 
         holder.btnChallenge.setOnClickListener {

@@ -70,6 +70,15 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
         LogUtils.e("SocketManage","ChallengeFromFriendsActivity Someone invite you to play a game " + resultQuestion.toString())
         LogUtils.e("SocketManage","ChallengeFromFriendsActivity Someone invite you to play a game Id " + PreferUtils().getUserId(this))
 
+
+        if (resultQuestion["challenge"] == "false"){
+           if(mChallengeGameDialog != null && mChallengeGameDialog!!.isShowing){
+               mChallengeGameDialog!!.dismiss()
+               Toast.makeText(this,"Lời mời bị từ chối", Toast.LENGTH_SHORT).show()
+           }
+            return
+        }
+
         // When your friend accept your invitation, begin to play a game
         if(resultQuestion["challenge"] == "true" && resultQuestion["userSendId"] == PreferUtils().getUserId(this)){
            val intent = Intent(this,ChallengeWaitingToPlayGameActivity::class.java)

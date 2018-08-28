@@ -19,7 +19,9 @@ class AchievementActivity : BaseActivityQuiz(){
     }
 
     override fun initView() {
-
+        imvBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     override fun initData() {

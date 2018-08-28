@@ -78,6 +78,10 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
                 startActivity(Intent(context, SettingProfileActivity::class.java))
             }
 
+            1->{
+                startActivityForResult(Intent(context, CoinPaymentActivity::class.java),1111)
+            }
+
             2->{
                 startActivity(Intent(context, SettingFriendActivity::class.java))
             }
@@ -110,13 +114,13 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
     private var mView:ViewGroup? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        if(mView == null){
+//        if(mView == null){
             mView = inflater!!.inflate(R.layout.fragment_setting, container, false) as ViewGroup?
 
             showProgessDialog()
             mSettingProfilePresenter.getData(PreferUtils().getUserId(activity!!))
 
-        }
+//        }
 
 
         return mView
@@ -171,6 +175,7 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
         }
 
         tvName.text = profile.name
+        tvCoin.text = ""+profile.coins
     }
 
     override fun getDataFault() {
@@ -258,6 +263,9 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
                 mImage = ConstantsApp.mImage
                 saveImage(mImage!!)
             }
+        } else if(requestCode == 1111){
+            showProgessDialog()
+            mSettingProfilePresenter.getData(PreferUtils().getUserId(activity!!))
         }
     }
 
