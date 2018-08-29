@@ -25,11 +25,11 @@ import com.elcom.eonline.quizupapp.QuizUpApplication
 import com.elcom.eonline.quizupapp.ui.listener.*
 import com.elcom.eonline.quizupapp.utils.WrapContentLinearLayoutManager
 import android.R.attr.password
+import android.app.Application
+import com.elcom.eonline.quizupapp.ApplicationQuzup
 
 
-
-
-class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListener, OnItemClickListener, OnSocketInviteOpponentListener, OnInvitationTimeCountDownListener,OnSocketSendChallengeInformationListener {
+class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListener, OnItemClickListener, OnSocketInviteOpponentListener, OnInvitationTimeCountDownListener,OnSocketSendChallengeInformationListener,OnRejectInvitationListener {
 
 
 
@@ -43,7 +43,7 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
     override fun initData() {
         if (intent.hasExtra(ConstantsApp.KEY_QUESTION_ID)){
             mTopicId = intent.getStringExtra(ConstantsApp.KEY_QUESTION_ID)
-
+            (application as ApplicationQuzup).setOnRejectInvitationListener(this)
             if( ConstantsApp.socketManage != null){
                 ConstantsApp.socketManage.initToGetListOnline(this)
 //                ConstantsApp.socketManage.initToInventionFromFriend(this)
@@ -179,6 +179,13 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
             }
         })
         mChallengeGameDialog!!.show()
+    }
+
+    override fun onRejectInvitationListener() {
+        if(mChallengeGameDialog != null && mChallengeGameDialog!!.isShowing){
+            mChallengeGameDialog!!.dismiss()
+        }
+
     }
 
     fun sendInviteOrAcceptInvite(userSendId: String, toId: String ){

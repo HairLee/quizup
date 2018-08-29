@@ -5,10 +5,12 @@ import android.content.Intent
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.widget.Toast
 import com.elcom.eonline.quizupapp.ui.activity.ChallengeInvitationDialogActivity
 import com.elcom.eonline.quizupapp.ui.activity.ChallengeWaitingToPlayGameActivity
 import com.elcom.eonline.quizupapp.ui.custom.SocketManage
 import com.elcom.eonline.quizupapp.ui.dialog.ChallengeInventedFriendDialog
+import com.elcom.eonline.quizupapp.ui.listener.OnRejectInvitationListener
 import com.elcom.eonline.quizupapp.ui.listener.OnSocketInviteOpponentListener
 import com.elcom.eonline.quizupapp.ui.listener.OnSocketListener
 import com.elcom.eonline.quizupapp.ui.listener.OnSocketSendChallengeInformationListener
@@ -71,10 +73,10 @@ class ApplicationQuzup : Application(), OnSocketInviteOpponentListener, OnSocket
 
 
     var mChallengeGameDialog: ChallengeInventedFriendDialog? = null
+    var mORejectInvitationListener: OnRejectInvitationListener? = null
     override fun onSomeoneInviteYouToPlayGame(resultQuestion: JSONObject) {
         Log.e("SocketManage", "QuizUpApplication " + resultQuestion.toString())
 //        runOnUiThreadA(Runnable { Toast.makeText(baseContext, resultQuestion.toString(), Toast.LENGTH_SHORT).show() })
-
 
 
         if(resultQuestion["challenge"] == "true" && resultQuestion["userSendId"] == PreferUtils().getUserId(this)){
@@ -84,10 +86,15 @@ class ApplicationQuzup : Application(), OnSocketInviteOpponentListener, OnSocket
             startActivity(intent)
             // Call Api to get question info and then send data from socket
 
-        } else {
+        } else if (resultQuestion["challenge"] == "true" ){
             val intent = Intent(baseContext, ChallengeInvitationDialogActivity::class.java)
             intent.putExtra("resultQuestion",resultQuestion.toString())
             startActivity(intent)
+        } else {
+            if(mORejectInvitationListener != null){
+                mORejectInvitationListener!!.onRejectInvitationListener()
+                runOnUiThreadA(Runnable { Toast.makeText(baseContext, "Đối phương từ chối lời mời", Toast.LENGTH_SHORT).show() })
+            }
         }
 
 
@@ -168,5 +175,9 @@ class ApplicationQuzup : Application(), OnSocketInviteOpponentListener, OnSocket
         Log.e("hailpt", " ChallengeFromFriendsActivity sendInviteOrAcceptInvite "+ myInfo.toString())
     }
 
+
+    fun setOnRejectInvitationListener(pOnRejectInvitationListener:OnRejectInvitationListener){
+        mORejectInvitationListener = pOnRejectInvitationListener
+    }
 
 }

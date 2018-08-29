@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.elcom.eonline.quizupapp.R
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.ChallengeInfo
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
@@ -34,7 +35,10 @@ class ChallengeInvitationDialogActivity : AppCompatActivity() {
         }
 
         btnReject.setOnClickListener {
-            ChallengeInvitationDialogActivity@this.finish()
+            if(mObject != null){
+                sendRejectInvite(mObject["topicId"] as String,mObject["userSendId"] as String, mObject["sendId"] as String)
+                ChallengeInvitationDialogActivity@this.finish()
+            }
         }
 
         imvClose.setOnClickListener {
