@@ -281,7 +281,7 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
                         mMinus = "0"
                         mQuestionNumber++
                         mDisplayVideoAdmod = 0
-                        mType = 1
+                        mType = 2
                         btn_next.text = "BẮT ĐẦU CÂU "+ mQuestionNumber
                         getIntroductionOfTheQuestion()
                     }

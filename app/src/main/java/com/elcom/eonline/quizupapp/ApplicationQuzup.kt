@@ -180,4 +180,8 @@ class ApplicationQuzup : Application(), OnSocketInviteOpponentListener, OnSocket
         mORejectInvitationListener = pOnRejectInvitationListener
     }
 
+
+
+
+
 }

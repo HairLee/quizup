@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.elcom.eonline.quizupapp.ApplicationQuzup
 import com.elcom.eonline.quizupapp.R
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.ChallengeInfo
+import com.elcom.eonline.quizupapp.ui.listener.OnRejectInvitationListener
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
 import com.elcom.eonline.quizupapp.utils.LogUtils
 import com.elcom.eonline.quizupapp.utils.PreferUtils
@@ -16,13 +18,14 @@ import kotlinx.android.synthetic.main.activity_challenge_invitation_dialog.*
 import org.json.JSONException
 import org.json.JSONObject
 
-class ChallengeInvitationDialogActivity : AppCompatActivity() {
+class ChallengeInvitationDialogActivity : AppCompatActivity(), OnRejectInvitationListener {
+
 
     var mChallengeMatching:ChallengeInfo? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_challenge_invitation_dialog)
-
+        (application as ApplicationQuzup).setOnRejectInvitationListener(this)
         val data =   intent.getStringExtra("resultQuestion")
 
         val mObject = JSONObject(data)
@@ -35,16 +38,14 @@ class ChallengeInvitationDialogActivity : AppCompatActivity() {
         }
 
         btnReject.setOnClickListener {
-            if(mObject != null){
-                sendRejectInvite(mObject["topicId"] as String,mObject["userSendId"] as String, mObject["sendId"] as String)
-                ChallengeInvitationDialogActivity@this.finish()
-            }
+            sendRejectInvite(mObject["topicId"] as String,mObject["userSendId"] as String, mObject["sendId"] as String)
+            ChallengeInvitationDialogActivity@this.finish()
         }
 
         imvClose.setOnClickListener {
-            finish()
+            sendRejectInvite(mObject["topicId"] as String,mObject["userSendId"] as String, mObject["sendId"] as String)
+            ChallengeInvitationDialogActivity@this.finish()
         }
-
     }
 
     fun onSomeoneInviteYou(resultQuestion: JSONObject) {
@@ -109,6 +110,11 @@ class ChallengeInvitationDialogActivity : AppCompatActivity() {
         ConstantsApp.socketManage.sendChallengeInformation(myInfo)
 
         Log.e("hailpt", " ChallengeFromFriendsActivity sendInviteOrAcceptInvite "+ myInfo.toString())
+    }
+
+    override fun onRejectInvitationListener() {
+        Toast.makeText(this, "Hủy lời mời", Toast.LENGTH_SHORT).show()
+        finish()
     }
 
     private fun updateLayout(data:ChallengeInfo){

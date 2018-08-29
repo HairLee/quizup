@@ -1,6 +1,8 @@
 package com.elcom.eonline.quizupapp.ui.activity
 
 import android.content.Intent
+import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import com.elcom.eonline.quizupapp.R
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.ChallengeMatching
@@ -44,7 +46,13 @@ class ChallengeResultActivity : BaseActivityQuiz(), SocketManage.OnGetResultQues
 
             updateLayout()
             ConstantsApp.socketManage.setOnGetResultQuestion(this)
-            getResultMatchDuel(sendId,toId,matchId,topicId,statusUserBot)
+
+            showProgessDialog()
+            Handler().postDelayed(Runnable {
+                dismisProgressDialog()
+                getResultMatchDuel(sendId,toId,matchId,topicId,statusUserBot)
+            }, 4000)
+
         }
 
     }
