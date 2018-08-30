@@ -13,6 +13,7 @@ import com.elcom.eonline.quizupapp.db.MangerDB
 import com.elcom.eonline.quizupapp.db.model.GamePause
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.Introduction
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.admod.AdmodAds
+import com.elcom.eonline.quizupapp.ui.activity.singleplay.SoloWithImageChooseTextActivity
 import com.elcom.eonline.quizupapp.ui.dialog.StopGameDialog
 import com.elcom.eonline.quizupapp.ui.listener.OnDialogYesNoListener
 import com.elcom.eonline.quizupapp.ui.listener.OnSocketInviteOpponentListener
@@ -68,8 +69,12 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
                 bundle.putSerializable(ConstantsApp.KEY_INTRODUCTION_VALUE, mIntroduction)
                 if(mIntroduction!!.type == "1"){
                     startActivityForResultQuiz(SoloMatchWithTextActivity::class.java,ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY,bundle)
-                }  else {
+                }  else if(mIntroduction!!.type == "2"){
                     startActivityForResultQuiz(SoloMatchWithImageActivity::class.java,ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY,bundle)
+                } else if(mIntroduction!!.type == "3"){
+                    startActivityForResultQuiz(SoloWithImageChooseTextActivity::class.java,ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY,bundle)
+                } else if(mIntroduction!!.type == "4"){
+                    startActivityForResultQuiz(SoloWithImageChooseTextActivity::class.java,ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY,bundle)
                 }
 
             } else {

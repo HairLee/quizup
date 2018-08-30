@@ -156,9 +156,12 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
 //        }
 
         mChallengeGameDialog = ChallengeInventedFriendDialog(this, mOnlineList[position] as JSONObject, object : OnDialogInvitationListener {
+
+            val mObject = mOnlineList[position] as JSONObject
             override fun onCancelInviteFriendToPlayGame() {
                 stopCountDownTimer()
                 ConstantsApp.CHALLENGE_TIME_COUNT_DOWN = "0"
+                sendInviteOrAcceptInvite(mObject,"false")
             }
 
             override fun onInviteFriendToPlayGame() {
@@ -166,8 +169,8 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
                 stopCountDownTimer()
                 startCountDownTimer()
 
-                val mObject = mOnlineList[position] as JSONObject
-                sendInviteOrAcceptInvite(mObject)
+
+                sendInviteOrAcceptInvite(mObject,"true")
 
 
             }
@@ -179,16 +182,15 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
         if(mChallengeGameDialog != null && mChallengeGameDialog!!.isShowing){
             mChallengeGameDialog!!.dismiss()
         }
-
     }
 
-    fun sendInviteOrAcceptInvite(mObject:JSONObject ){
+    fun sendInviteOrAcceptInvite(mObject:JSONObject,challenge:String ){
         val myInfo = JSONObject()
         try {
             myInfo.put("topicId", mTopicId)
             myInfo.put("sendId", PreferUtils().getUserId(this))
             myInfo.put("toId", mObject["id"].toString() )
-            myInfo.put("challenge", "true")
+            myInfo.put("challenge", challenge)
             myInfo.put("url", "url")
             myInfo.put("name", PreferUtils().getName(this))
             myInfo.put("topicName", "topicName")

@@ -83,4 +83,7 @@ class Introduction : Serializable {
     @Expose
     var jump_wins: Int? = null
 
+
+
+
 }

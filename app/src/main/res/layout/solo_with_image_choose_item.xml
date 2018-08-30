@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--Start-->
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:weightSum="8"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvAnswer1"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:id="@+id/tvAnswer2"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/tvAnswer3"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/tvAnswer4"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/tvAnswer5"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/tvAnswer6"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/tvAnswer7"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/tvAnswer8"
+            android:gravity="center"
+            tools:text="x"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+
+
+    </LinearLayout>
+    <!--End-->
+
+    <!--Start-->
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:weightSum="8"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvAnswer11"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:id="@+id/tvAnswer21"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/tvAnswer31"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/tvAnswer41"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/tvAnswer51"
+            android:gravity="center"
+            android:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/tvAnswer61"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/tvAnswer71"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/tvAnswer81"
+            android:gravity="center"
+            tools:text="x"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+
+
+    </LinearLayout>
+    <!--End-->
+
+
+    <!--Start-->
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:weightSum="8"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvAnswer12"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:id="@+id/tvAnswer22"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/tvAnswer32"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/tvAnswer42"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/tvAnswer52"
+            android:gravity="center"
+            android:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/tvAnswer62"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/tvAnswer72"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/tvAnswer82"
+            android:gravity="center"
+            tools:text="x"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke4_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="30dp" />
+
+
+    </LinearLayout>
+    <!--End-->
+
+
+    <!--Start Suggest-->
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:weightSum="8"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvSuggest1"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke5_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="45dp" />
+
+        <TextView
+            android:id="@+id/tvSuggest2"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke5_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="45dp" />
+        <TextView
+            android:id="@+id/tvSuggest3"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke5_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="45dp" />
+        <TextView
+            android:id="@+id/tvSuggest4"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke5_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="45dp" />
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/tvSuggest5"
+            android:gravity="center"
+            android:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke5_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="45dp" />
+        <TextView
+            android:id="@+id/tvSuggest6"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke5_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="45dp" />
+        <TextView
+            android:id="@+id/tvSuggest7"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke5_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="45dp" />
+        <TextView
+            android:id="@+id/tvSuggest8"
+            android:gravity="center"
+            tools:text="x"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke5_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="45dp" />
+
+
+    </LinearLayout>
+    <!--End Suggest-->
+
+    <!--Start Suggest-->
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:weightSum="8"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvSuggest11"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke5_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="45dp" />
+
+        <TextView
+            android:id="@+id/tvSuggest21"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke5_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="45dp" />
+        <TextView
+            android:id="@+id/tvSuggest31"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke5_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="45dp" />
+        <TextView
+            android:id="@+id/tvSuggest41"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke5_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="45dp" />
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/tvSuggest51"
+            android:gravity="center"
+            android:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke5_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="45dp" />
+        <TextView
+            android:id="@+id/tvSuggest61"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke5_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="45dp" />
+        <TextView
+            android:id="@+id/tvSuggest71"
+            android:gravity="center"
+            tools:text="x"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke5_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="45dp" />
+        <TextView
+            android:id="@+id/tvSuggest81"
+            android:gravity="center"
+            tools:text="x"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/radius_edittext_white_bg_gray_srtoke5_layout"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="45dp" />
+
+
+    </LinearLayout>
+    <!--End Suggest-->
+
+
+
+</LinearLayout>
