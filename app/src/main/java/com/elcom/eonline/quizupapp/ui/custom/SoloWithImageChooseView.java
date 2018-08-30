@@ -192,39 +192,27 @@ public class SoloWithImageChooseView extends LinearLayout implements View.OnClic
     @Override
     public void onClick(View view) {
 
-
-//        if(answerList.size() == 4){
-//            return;
-//        }
         Log.e("hailp","updateAfterGivingTheAnswer ~ "+ (Integer) view.getTag());
         switch (view.getId()){
 
             case R.id.tvAnswer1:
                 answerTextViewList.get(0).setText("");
                 hideSuggestButtonAfterChooseAnswer((Integer) view.getTag(),true);
-
-
                 break;
 
             case R.id.tvAnswer2:
                 answerTextViewList.get(1).setText("");
                 hideSuggestButtonAfterChooseAnswer((Integer) view.getTag(),true);
-//                answerList.remove(new Integer(answerList.get(1)));
-
                 break;
 
             case R.id.tvAnswer3:
                 answerTextViewList.get(2).setText("");
                 hideSuggestButtonAfterChooseAnswer((Integer) view.getTag(),true);
-//                answerList.remove(new Integer(answerList.get(2)));
-
                 break;
 
             case R.id.tvAnswer4:
                 answerTextViewList.get(3).setText("");
                 hideSuggestButtonAfterChooseAnswer((Integer) view.getTag(),true);
-//                answerList.remove(new Integer(answerList.get(3)));
-
                 break;
 
             case R.id.tvAnswer5:
@@ -249,6 +237,54 @@ public class SoloWithImageChooseView extends LinearLayout implements View.OnClic
 
 
 
+
+            case R.id.tvAnswer11:
+                answerTextViewList.get(8).setText("");
+                hideSuggestButtonAfterChooseAnswer((Integer) view.getTag(),true);
+                break;
+
+            case R.id.tvAnswer21:
+                answerTextViewList.get(9).setText("");
+                hideSuggestButtonAfterChooseAnswer((Integer) view.getTag(),true);
+                break;
+
+            case R.id.tvAnswer31:
+                answerTextViewList.get(10).setText("");
+                hideSuggestButtonAfterChooseAnswer((Integer) view.getTag(),true);
+                break;
+
+            case R.id.tvAnswer41:
+                answerTextViewList.get(11).setText("");
+                hideSuggestButtonAfterChooseAnswer((Integer) view.getTag(),true);
+                break;
+
+            case R.id.tvAnswer51:
+                answerTextViewList.get(12).setText("");
+                hideSuggestButtonAfterChooseAnswer((Integer) view.getTag(),true);
+                break;
+
+            case R.id.tvAnswer61:
+                answerTextViewList.get(13).setText("");
+                hideSuggestButtonAfterChooseAnswer((Integer) view.getTag(),true);
+                break;
+
+            case R.id.tvAnswer71:
+                answerTextViewList.get(14).setText("");
+                hideSuggestButtonAfterChooseAnswer((Integer) view.getTag(),true);
+                break;
+
+            case R.id.tvAnswer81:
+                answerTextViewList.get(15).setText("");
+                hideSuggestButtonAfterChooseAnswer((Integer) view.getTag(),true);
+                break;
+
+        }
+
+        if (isEnoughAnswerOrNot()){
+            return;
+        }
+
+        switch (view.getId()){
             case R.id.tvSuggest1:
                 updateAfterGivingTheAnswer(0);
                 break;
@@ -273,7 +309,36 @@ public class SoloWithImageChooseView extends LinearLayout implements View.OnClic
             case R.id.tvSuggest8:
                 updateAfterGivingTheAnswer(7);
                 break;
+
+
+
+            case R.id.tvSuggest11:
+                updateAfterGivingTheAnswer(8);
+                break;
+            case R.id.tvSuggest21:
+                updateAfterGivingTheAnswer(9);
+                break;
+            case R.id.tvSuggest31:
+                updateAfterGivingTheAnswer(10);
+                break;
+            case R.id.tvSuggest41:
+                updateAfterGivingTheAnswer(11);
+                break;
+            case R.id.tvSuggest51:
+                updateAfterGivingTheAnswer(12);
+                break;
+            case R.id.tvSuggest61:
+                updateAfterGivingTheAnswer(13);
+                break;
+            case R.id.tvSuggest71:
+                updateAfterGivingTheAnswer(14);
+                break;
+            case R.id.tvSuggest81:
+                updateAfterGivingTheAnswer(15);
+                break;
         }
+
+
     }
 
     public void setDataForSuggestList(List<String> suggestList){
@@ -338,6 +403,15 @@ public class SoloWithImageChooseView extends LinearLayout implements View.OnClic
         }
 
 //        answerList.indexOf(location);
+    }
+
+    private boolean isEnoughAnswerOrNot(){
+        for (int i = 0; i < chooseAnswerList.size(); i++) {
+            if (chooseAnswerList.get(i).getTextView().getText().equals("")){
+                return false;
+            }
+        }
+        return true;
     }
 }
 

@@ -2,11 +2,13 @@ package com.elcom.eonline.quizupapp.ui.activity.singleplay
 
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import com.elcom.eonline.quizupapp.R
 import com.elcom.eonline.quizupapp.ui.activity.BaseActivityQuiz
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.Introduction
 import com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_solo_with_image_choose_text.*
 import kotlinx.android.synthetic.main.coin_and_ex_layout.*
 import java.util.*
@@ -44,6 +46,8 @@ class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.on
             mQuestionNumber = bundle.getString(ConstantsApp.KEY_QUESTION_NUMBER)
             txt_coins.text ="mQuestion!!.coins"
             updateUI()
+
+            Log.e("hailpt"," SoloWithImageChooseTextActivity "+ Gson().toJson(mQuestion))
         }
 
     }
@@ -56,6 +60,18 @@ class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.on
 
     fun setupData(){
         val mData = ArrayList<String>()
+        mData.add("")
+        mData.add("")
+        mData.add("")
+        mData.add("")
+        mData.add("")
+        mData.add("")
+        mData.add("")
+        mData.add("")
+        mData.add("")
+        mData.add("")
+        mData.add("")
+        mData.add("")
         mData.add("")
         mData.add("")
         mData.add("")
@@ -73,6 +89,10 @@ class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.on
         mSuggestData.add("F")
         mSuggestData.add("G")
         mSuggestData.add("H")
+        mSuggestData.add("D")
+        mSuggestData.add("E")
+        mSuggestData.add("A")
+        mSuggestData.add("B")
         mSuggestData.add("D")
         mSuggestData.add("E")
         mSuggestData.add("A")
