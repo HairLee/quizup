@@ -47,6 +47,9 @@ class RatingFriendsFragment : Fragment() {
     }
 
     fun updateLayout(data: List<Statistical>){
+        if(recyclerview == null){
+            return
+        }
         recyclerview.layoutManager = LinearLayoutManager(recyclerview.context)
         recyclerview.adapter = SimpleStringRecyclerViewAdapter(activity!!,
                 data)

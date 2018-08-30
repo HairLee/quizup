@@ -55,7 +55,10 @@ class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickLis
         imvClose.setOnClickListener(this)
         tvRanking.setOnClickListener(this)
         tvRank.setOnClickListener(this)
+        imvRank.setOnClickListener(this)
         tvArchiMore.setOnClickListener(this)
+
+        PreferUtils().setAdmodCount(this,0)
     }
 
     override fun initData() {
@@ -128,6 +131,12 @@ class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickLis
                 intent.putExtra(ConstantsApp.KEY_QUESTION_ID,mTopicId)
                 startActivityForResult(intent, ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
             }
+
+            R.id.imvRank -> {
+                val  intent = Intent(applicationContext, RatingTopicActivity::class.java)
+                intent.putExtra(ConstantsApp.KEY_QUESTION_ID,mTopicId)
+                startActivityForResult(intent, ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
+            }
         }
     }
 
@@ -156,6 +165,10 @@ class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickLis
                 .load(pTopic.url)
                 .into(imvAvaTopic)
 
+        Picasso.get()
+                .load(PreferUtils().getAvatar(this))
+                .into(imvAva)
+
         if (pTopic.achievements!!.listDetail!!.isNotEmpty()){
             Picasso.get()
                     .load(pTopic.achievements!!.listDetail!![0].imageUnlock)
@@ -173,20 +186,20 @@ class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickLis
 
         mFavourite = pTopic.statusFollow.toString()
         mLike = if (mFavourite == "0"){
-            imv_favorite.setImageResource(R.drawable.ic_detail_not_favor)
+            imv_favorite.setImageResource(R.drawable.btn_not_favor)
             false
         } else {
-            imv_favorite.setImageResource(R.drawable.ic_favor)
+            imv_favorite.setImageResource(R.drawable.btn_favor)
             true
         }
 
-        tvLevel.text = pTopic.level.toString()
-        tvJumpWins.text = pTopic.jumpWins.toString()
+        tvLevel.text = "Level : "+ pTopic.level.toString()
+        tvJumpWins.text ="Chuỗi thắng : "+ pTopic.jumpWins.toString()
         tvNumberOfPlayer.text = pTopic.numberPlayed.toString()
         tvNumberOfFavourite.text = pTopic.totalFollower.toString()
         tvRanking.text = pTopic.ratings.toString()
         tvTotalXp.text = pTopic.xp.toString()
-        tvNumberOfQuestion.text = pTopic.numberQuestion.toString()
+        tvNumberOfQuestion.text ="Trả lời đúng : "+ pTopic.numberQuestion.toString()
 
         customProgress.progress = pTopic.promotionProcess!!.toInt()
 
@@ -205,11 +218,11 @@ class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickLis
         ProgressDialogUtils.dismissProgressDialog()
         mLike = !mLike
         if (mLike){
-            imv_favorite.setImageResource(R.drawable.ic_favor)
+            imv_favorite.setImageResource(R.drawable.btn_favor)
             mTotalLikes += 1
             updateFollower((mTotalLikes).toString())
         } else {
-            imv_favorite.setImageResource(R.drawable.ic_detail_not_favor)
+            imv_favorite.setImageResource(R.drawable.btn_not_favor)
             mTotalLikes -= 1
             updateFollower((mTotalLikes).toString())
         }

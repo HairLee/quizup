@@ -50,7 +50,7 @@ class ChallengeWaitingToPlayGameActivity : BaseActivityQuiz() {
 
             val mObject = JSONObject(data)
 
-            tvName.text = mObject["name"] as String
+//            tvName.text = mObject["name"] as String
 
             mTopicId = mObject["topicId"] as String
 
@@ -60,7 +60,7 @@ class ChallengeWaitingToPlayGameActivity : BaseActivityQuiz() {
                 opponentId = mObject["userSendId"] as String
             }
 
-            Toast.makeText(this, "opponentId "+ mObject["sendId"] + " "+mObject["toId"], Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "opponentId "+ mObject["sendId"] + " "+mObject["toId"], Toast.LENGTH_SHORT).show()
 
             getData(mTopicId,opponentId)
 
@@ -78,7 +78,7 @@ class ChallengeWaitingToPlayGameActivity : BaseActivityQuiz() {
             opponentId = mObject["toId"] as String
             mMatchId = mChallengeMatching!!.matchId!!
             moveToPlayingGame()
-            Toast.makeText(this, "Được mời Ok",Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "Được mời Ok",Toast.LENGTH_SHORT).show()
             Log.e("hailpt"," ChallengeWaitingToPlayGameActivity ~~> "+mObject)
 
         }
@@ -107,11 +107,14 @@ class ChallengeWaitingToPlayGameActivity : BaseActivityQuiz() {
     }
 
     private fun updateLayout(challengeMatching:ChallengeMatching){
-        Picasso.get().load(mChallengeMatching!!.player!!.avatar).into(imvMyself)
-        Picasso.get().load(mChallengeMatching!!.opponent!!.avatar).into(imvOb)
+
         if(isFromOpoonentOrYou) {
+            Picasso.get().load(mChallengeMatching!!.player!!.avatar).into(imvMyself)
+            Picasso.get().load(mChallengeMatching!!.opponent!!.avatar).into(imvOb)
             tvOpName.text = mChallengeMatching!!.opponent!!.name
         } else {
+            Picasso.get().load(mChallengeMatching!!.opponent!!.avatar).into(imvMyself)
+            Picasso.get().load(mChallengeMatching!!.player!!.avatar).into(imvOb)
             tvOpName.text = mChallengeMatching!!.player!!.name
         }
     }

@@ -30,6 +30,7 @@
             android:layout_height="24dp">
 
             <TextView
+                android:visibility="gone"
                 android:textColor="#2DDCAC"
                 android:textSize="8sp"
                 android:layout_centerInParent="true"
@@ -38,7 +39,8 @@
                 android:layout_height="wrap_content" />
 
             <ImageView
-                android:visibility="invisible"
+                android:id="@+id/imvScore0"
+                android:visibility="gone"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_challenge_x"
                 android:layout_width="wrap_content"
@@ -75,21 +77,14 @@
             android:layout_width="24dp"
             android:layout_height="24dp">
 
-            <TextView
-                android:textColor="#2DDCAC"
-                android:textSize="8sp"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:text="1.5s"
-                android:layout_height="wrap_content" />
 
             <ImageView
-                android:visibility="invisible"
+                android:id="@+id/imvScore1"
+                android:visibility="gone"
                 android:layout_centerInParent="true"
-                android:src="@drawable/ic_challenge_x"
+                android:src="@drawable/ic_challenge_v"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-
 
         </RelativeLayout>
 
@@ -120,18 +115,12 @@
             android:layout_width="24dp"
             android:layout_height="24dp">
 
-            <TextView
-                android:textColor="#2DDCAC"
-                android:textSize="8sp"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:text="1.5s"
-                android:layout_height="wrap_content" />
 
             <ImageView
-                android:visibility="invisible"
+                android:id="@+id/imvScore2"
+                android:visibility="gone"
                 android:layout_centerInParent="true"
-                android:src="@drawable/ic_challenge_x"
+                android:src="@drawable/ic_challenge_v"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -164,16 +153,11 @@
             android:layout_width="24dp"
             android:layout_height="24dp">
 
-            <TextView
-                android:textColor="#2DDCAC"
-                android:textSize="8sp"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:text="1.5s"
-                android:layout_height="wrap_content" />
+
 
             <ImageView
-                android:visibility="invisible"
+                android:id="@+id/imvScore3"
+                android:visibility="gone"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_challenge_x"
                 android:layout_width="wrap_content"
@@ -208,18 +192,12 @@
             android:layout_width="24dp"
             android:layout_height="24dp">
 
-            <TextView
-                android:textColor="#2DDCAC"
-                android:textSize="8sp"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:text="1.5s"
-                android:layout_height="wrap_content" />
 
             <ImageView
-                android:visibility="invisible"
+                android:id="@+id/imvScore4"
+                android:visibility="gone"
                 android:layout_centerInParent="true"
-                android:src="@drawable/ic_challenge_x"
+                android:src="@drawable/ic_challenge_v"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -253,16 +231,11 @@
             android:layout_width="24dp"
             android:layout_height="24dp">
 
-            <TextView
-                android:textColor="#2DDCAC"
-                android:textSize="8sp"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:text="1.5s"
-                android:layout_height="wrap_content" />
+
 
             <ImageView
-                android:visibility="invisible"
+                android:id="@+id/imvScore5"
+                android:visibility="gone"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_challenge_x"
                 android:layout_width="wrap_content"
@@ -297,18 +270,12 @@
             android:layout_width="24dp"
             android:layout_height="24dp">
 
-            <TextView
-                android:textColor="#2DDCAC"
-                android:textSize="8sp"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:text="1.5s"
-                android:layout_height="wrap_content" />
 
             <ImageView
-                android:visibility="invisible"
+                android:id="@+id/imvScore6"
+                android:visibility="gone"
                 android:layout_centerInParent="true"
-                android:src="@drawable/ic_challenge_x"
+                android:src="@drawable/ic_challenge_v"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

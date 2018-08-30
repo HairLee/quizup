@@ -79,14 +79,18 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
             }
 
             1->{
+                startActivityForResult(Intent(context, CoinPaymentActivity::class.java),1111)
+            }
+
+            2->{
                 startActivity(Intent(context, SettingFriendActivity::class.java))
             }
 
-           2->{
+           3->{
                startActivity(Intent(context, FavouriteTopicActivity::class.java))
             }
 
-            4-> {
+            5-> {
 //                val   mChallengeGameDialog = SettingDialog(context!!,R.drawable.setting_dialog_wrong_email, "THỬ LẠI","QUAY LẠI", object : OnDialogInvitationListener {
 //
 //                    override fun onInviteFriendToPlayGame() {
@@ -101,7 +105,7 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
 //                mChallengeGameDialog!!.show()
             }
 
-            5->{
+            6->{
 //                startActivity(Intent(context, SettingProfileActivity::class.java))
             }
         }
@@ -110,13 +114,13 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
     private var mView:ViewGroup? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        if(mView == null){
+//        if(mView == null){
             mView = inflater!!.inflate(R.layout.fragment_setting, container, false) as ViewGroup?
 
             showProgessDialog()
             mSettingProfilePresenter.getData(PreferUtils().getUserId(activity!!))
 
-        }
+//        }
 
 
         return mView
@@ -171,6 +175,7 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
         }
 
         tvName.text = profile.name
+        tvCoin.text = ""+profile.coins
     }
 
     override fun getDataFault() {
@@ -178,9 +183,9 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
     }
 
     private fun registerReceiver() {
-        val intentFilter = IntentFilter()
-        intentFilter.addAction(ConstantsApp.KEY_LIVE_CHALLENGE_VALUE)
-        activity!!.registerReceiver(receiver, intentFilter)
+//        val intentFilter = IntentFilter()
+//        intentFilter.addAction(ConstantsApp.KEY_LIVE_CHALLENGE_VALUE)
+//        activity!!.registerReceiver(receiver, intentFilter)
     }
 
     private val receiver = object : BroadcastReceiver() {
@@ -191,6 +196,11 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
                 mSettingProfilePresenter.getData(PreferUtils().getUserId(context))
             }
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+//        activity!!.unregisterReceiver(receiver)
     }
 
     private fun showPictureDialog() {
@@ -253,6 +263,9 @@ class SettingFragment : BaseFragment(), OnItemClickListener, SettingProfileView 
                 mImage = ConstantsApp.mImage
                 saveImage(mImage!!)
             }
+        } else if(requestCode == 1111){
+            showProgessDialog()
+            mSettingProfilePresenter.getData(PreferUtils().getUserId(activity!!))
         }
     }
 

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:background="@drawable/radius_edittext_white_bg_gray_srtoke3_layout"
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="72dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_centerVertical="true"
+        android:id="@+id/imvAva"
+        android:layout_marginLeft="16sp"
+        android:layout_width="48dp"
+        android:src="@drawable/coin_buy_ic"
+        android:layout_height="48dp" />
+
+    <LinearLayout
+        android:layout_toLeftOf="@+id/btnBuy"
+        android:id="@+id/lnInfo"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/imvAva"
+        android:layout_marginLeft="15dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvName"
+            android:textColor="@color/black"
+            android:text="Ambition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:id="@+id/tvDes"
+                android:textSize="13sp"
+                android:text="Level 120"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+    <Button
+        android:layout_marginLeft="10dp"
+        android:id="@+id/btnBuy"
+        android:layout_centerVertical="true"
+        android:textColor="@color/colorPurple"
+        android:text="200.000 Vnd"
+        android:textSize="11sp"
+        android:background="@drawable/radius_button_trans_bg_purple_srtoke_layout"
+        android:layout_marginRight="16sp"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp" />
+
+
+
+
+
+</RelativeLayout>

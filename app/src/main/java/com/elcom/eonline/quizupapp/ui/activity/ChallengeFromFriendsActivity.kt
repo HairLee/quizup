@@ -16,20 +16,18 @@ import com.elcom.eonline.quizupapp.ui.dialog.ChallengeInventedFriendDialog
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
 import com.elcom.eonline.quizupapp.utils.LogUtils
 import com.elcom.eonline.quizupapp.utils.PreferUtils
-import com.elcom.eonline.quizupapp.utils.ProgressDialogUtils
 import kotlinx.android.synthetic.main.activity_challenge_from_friends.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import com.elcom.eonline.quizupapp.QuizUpApplication
 import com.elcom.eonline.quizupapp.ui.listener.*
 import com.elcom.eonline.quizupapp.utils.WrapContentLinearLayoutManager
-import android.R.attr.password
+import android.os.CountDownTimer
+import com.elcom.eonline.quizupapp.ApplicationQuzup
+import java.util.concurrent.TimeUnit
 
 
-
-
-class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListener, OnItemClickListener, OnSocketInviteOpponentListener, OnInvitationTimeCountDownListener,OnSocketSendChallengeInformationListener {
+class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListener, OnItemClickListener, OnSocketInviteOpponentListener, OnInvitationTimeCountDownListener,OnSocketSendChallengeInformationListener,OnRejectInvitationListener {
 
 
 
@@ -43,7 +41,7 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
     override fun initData() {
         if (intent.hasExtra(ConstantsApp.KEY_QUESTION_ID)){
             mTopicId = intent.getStringExtra(ConstantsApp.KEY_QUESTION_ID)
-
+            (application as ApplicationQuzup).setOnRejectInvitationListener(this)
             if( ConstantsApp.socketManage != null){
                 ConstantsApp.socketManage.initToGetListOnline(this)
 //                ConstantsApp.socketManage.initToInventionFromFriend(this)
@@ -70,6 +68,15 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
         LogUtils.e("SocketManage","ChallengeFromFriendsActivity Someone invite you to play a game " + resultQuestion.toString())
         LogUtils.e("SocketManage","ChallengeFromFriendsActivity Someone invite you to play a game Id " + PreferUtils().getUserId(this))
 
+
+        if (resultQuestion["challenge"] == "false"){
+           if(mChallengeGameDialog != null && mChallengeGameDialog!!.isShowing){
+               mChallengeGameDialog!!.dismiss()
+               Toast.makeText(this,"Lời mời bị từ chối", Toast.LENGTH_SHORT).show()
+           }
+            return
+        }
+
         // When your friend accept your invitation, begin to play a game
         if(resultQuestion["challenge"] == "true" && resultQuestion["userSendId"] == PreferUtils().getUserId(this)){
            val intent = Intent(this,ChallengeWaitingToPlayGameActivity::class.java)
@@ -80,23 +87,23 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
 
         } else if (resultQuestion["challenge"] == "true" && resultQuestion["userSendId"] != PreferUtils().getUserId(this)) {
         // When you wanna accept your friend to play Game
-            runOnUiThread {
-                Log.e("hailpt"," resultQuestion "+resultQuestion.toString())
-                val snack = Snackbar.make(lnRoot, "Bạn có một lời mời chơi game", Snackbar.LENGTH_SHORT) .setAction("Đồng ý", object : View.OnClickListener {
-                    override fun onClick(view: View) {
-                        // Accept the invitation
-                        sendInviteOrAcceptInvite(resultQuestion["userSendId"] as String, resultQuestion["sendId"] as String )
-
-
-//                        startActivity(Intent(applicationContext,ChallengeWaitingToPlayGameActivity::class.java).putExtra("data",resultQuestion.toString()))
-                    }
-                })
-                val view = snack.getView()
-                val params = view.layoutParams as FrameLayout.LayoutParams
-                params.gravity = Gravity.BOTTOM
-                view.layoutParams = params
-                snack.show()
-            }
+//            runOnUiThread {
+//                Log.e("hailpt"," resultQuestion "+resultQuestion.toString())
+//                val snack = Snackbar.make(lnRoot, "Bạn có một lời mời chơi game", Snackbar.LENGTH_SHORT) .setAction("Đồng ý", object : View.OnClickListener {
+//                    override fun onClick(view: View) {
+//                        // Accept the invitation
+//                        sendInviteOrAcceptInvite(resultQuestion["userSendId"] as String, resultQuestion["sendId"] as String )
+//
+//
+////                        startActivity(Intent(applicationContext,ChallengeWaitingToPlayGameActivity::class.java).putExtra("data",resultQuestion.toString()))
+//                    }
+//                })
+//                val view = snack.getView()
+//                val params = view.layoutParams as FrameLayout.LayoutParams
+//                params.gravity = Gravity.BOTTOM
+//                view.layoutParams = params
+//                snack.show()
+//            }
         }
     }
 
@@ -143,28 +150,27 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
     var mChallengeGameDialog: ChallengeInventedFriendDialog? = null
     override fun onItemClicked(position: Int) {
 
-        if( ConstantsApp.CHALLENGE_TIME_COUNT_DOWN  != "0"){
-            Toast.makeText(this, "Đang Mời Người Khác Rồi Nhé !", Toast.LENGTH_SHORT).show()
-            return
-        }
+//        if( ConstantsApp.CHALLENGE_TIME_COUNT_DOWN  != "0"){
+//            Toast.makeText(this, "Đang Mời Người Khác Rồi Nhé !", Toast.LENGTH_SHORT).show()
+//            return
+//        }
 
+        mChallengeGameDialog = ChallengeInventedFriendDialog(this, mOnlineList[position] as JSONObject, object : OnDialogInvitationListener {
 
-//        val mApp = application as QuizUpApplication
-//        mApp.setListener(this)
-
-        mChallengeGameDialog = ChallengeInventedFriendDialog(this, object : OnDialogInvitationListener {
+            val mObject = mOnlineList[position] as JSONObject
             override fun onCancelInviteFriendToPlayGame() {
-//                mApp.stopCountDownTimer()
+                stopCountDownTimer()
                 ConstantsApp.CHALLENGE_TIME_COUNT_DOWN = "0"
+                sendInviteOrAcceptInvite(mObject,"false")
             }
 
             override fun onInviteFriendToPlayGame() {
 
-//                mApp.stopCountDownTimer()
-//                mApp.startCountDownTimer()
+                stopCountDownTimer()
+                startCountDownTimer()
 
-                val mObject = mOnlineList[position] as JSONObject
-                sendInviteOrAcceptInvite(PreferUtils().getUserId(applicationContext), mObject["id"].toString())
+
+                sendInviteOrAcceptInvite(mObject,"true")
 
 
             }
@@ -172,18 +178,24 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
         mChallengeGameDialog!!.show()
     }
 
-    fun sendInviteOrAcceptInvite(userSendId: String, toId: String ){
+    override fun onRejectInvitationListener() {
+        if(mChallengeGameDialog != null && mChallengeGameDialog!!.isShowing){
+            mChallengeGameDialog!!.dismiss()
+        }
+    }
+
+    fun sendInviteOrAcceptInvite(mObject:JSONObject,challenge:String ){
         val myInfo = JSONObject()
         try {
             myInfo.put("topicId", mTopicId)
             myInfo.put("sendId", PreferUtils().getUserId(this))
-            myInfo.put("toId", toId )
-            myInfo.put("challenge", "true")
+            myInfo.put("toId", mObject["id"].toString() )
+            myInfo.put("challenge", challenge)
             myInfo.put("url", "url")
             myInfo.put("name", PreferUtils().getName(this))
             myInfo.put("topicName", "topicName")
             myInfo.put("urlTopic", "urlTopic")
-            myInfo.put("userSendId", userSendId)
+            myInfo.put("userSendId", PreferUtils().getUserId(this))
         } catch (e: JSONException) {
 
         }
@@ -231,6 +243,43 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
     }
 
 
+
+
+    private var countDownTimer: CountDownTimer? = null
+    fun startCountDownTimer() {
+
+        val timeCountInMilliSeconds = (10 * 1000).toLong()
+        countDownTimer = object : CountDownTimer(timeCountInMilliSeconds, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                LogUtils.e("SocketManage", " startCountDownTimer " + hmsTimeFormatter(millisUntilFinished))
+//                mOnCountDown!!.onTimeCountDown(hmsTimeFormatter(millisUntilFinished))
+
+                ConstantsApp.CHALLENGE_TIME_COUNT_DOWN = hmsTimeFormatter(millisUntilFinished)
+            }
+
+            override fun onFinish() {
+                ConstantsApp.CHALLENGE_TIME_COUNT_DOWN = "0"
+//                mOnCountDown!!.onTimeCountDown("0")
+                countDownTimer!!.cancel()
+            }
+
+        }.start()
+    }
+
+    fun stopCountDownTimer() {
+        if (countDownTimer != null) {
+            countDownTimer!!.cancel()
+        }
+    }
+
+    private fun hmsTimeFormatter(milliSeconds: Long): String {
+        return String.format("%d", TimeUnit.MILLISECONDS.toSeconds(milliSeconds) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(milliSeconds)))
+    }
+
+    private var mOnCountDown: OnInvitationTimeCountDownListener? = null
+    fun setListener(pOnCountDown: OnInvitationTimeCountDownListener) {
+        mOnCountDown = pOnCountDown
+    }
 
 
 

@@ -6,9 +6,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_of_caterogy">Sport - Education</string>
     <!--<string name="facebook_app_id">2146066182338933</string> // for release-->
-    <string name="facebook_app_id">1890610284576940</string>
+    <!--<string name="facebook_app_id">1890610284576940</string>-->
     // At home
-    <!--<string name="facebook_app_id">287222165367861</string>-->
+    <string name="facebook_app_id">287222165367861</string>
     <string name="fb_login_protocol_scheme">fb2146066182338933</string>
     <string name="coin">Coins</string>
     <string name="experience">Ex</string>
@@ -20,7 +20,8 @@
     <string name="intro1">Bạn được luyện tập kiến thức với hàng trăm chủ đề câu hỏi phong phú và đa dạng</string>
 
     <string-array name="setting_title">
-        <item>Xem hồ sơ cá nhân</item>
+        <item>Xem hồ</item>
+        <item>Nạp Coin</item>
         <item>Bạn bè</item>
         <item>Chủ đề yêu thích</item>
         <item>Giới thiệu</item>

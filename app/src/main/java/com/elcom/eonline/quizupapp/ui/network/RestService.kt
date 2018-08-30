@@ -2,6 +2,8 @@ package com.elcom.eonline.quizupapp.ui.network
 
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.*
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.Followed.Followed
+import com.elcom.eonline.quizupapp.ui.activity.model.entity.admod.AdmodAds
+import com.elcom.eonline.quizupapp.ui.activity.model.entity.coin.Coin
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.profile.Profile
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.*
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.topicdetail.Topic
@@ -77,6 +79,14 @@ interface RestService {
     abstract fun getListHomeTopic(@Query("user_id") user_id: String): Call<RestData<List<Caterogy>>>
 
 
+    @GET("get-buy-coins-list")
+    abstract fun getCoinPayment(): Call<RestData<Coin>>
+
+
+    @POST("post-buy-coins")
+    @FormUrlEncoded
+    abstract fun postBuyCoin(@Field("coins_number") coins_number: String): Call<RestData<JsonElement>>
+
     /*Introduction Of a question*/
     @GET("get-question-solo-match?")
     abstract fun getIntroductionOfQuestion(@Query("user_id") user_id: String, @Query("topic_id") topic_id: String,@Query("question_number") question_number: String,@Query("type") type: String, @Query("match_id") match_id: String,@Query("minus_coins") minus_coins: String): Call<RestData<Introduction>>
@@ -91,8 +101,8 @@ interface RestService {
     @GET("get-start-time-count-down-show?")
     abstract fun getTimeCountDownLiveQuestion(@Query("show_id") show_id: String): Call<RestData<JsonElement>>
 
-
-
+    @GET("get-setting-app")
+    abstract fun getSettingAdmod(): Call<RestData<AdmodAds>>
 
     // SoloMatchResultActivity
     @GET("get-solo-match-result?")

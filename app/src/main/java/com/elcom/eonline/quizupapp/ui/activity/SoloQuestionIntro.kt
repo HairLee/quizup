@@ -12,6 +12,8 @@ import com.elcom.eonline.quizupapp.R
 import com.elcom.eonline.quizupapp.db.MangerDB
 import com.elcom.eonline.quizupapp.db.model.GamePause
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.Introduction
+import com.elcom.eonline.quizupapp.ui.activity.model.entity.admod.AdmodAds
+import com.elcom.eonline.quizupapp.ui.activity.singleplay.SoloWithImageChooseTextActivity
 import com.elcom.eonline.quizupapp.ui.dialog.StopGameDialog
 import com.elcom.eonline.quizupapp.ui.listener.OnDialogYesNoListener
 import com.elcom.eonline.quizupapp.ui.listener.OnSocketInviteOpponentListener
@@ -47,6 +49,8 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
     private var mMatchId = ""
     private var mLastQuestion = "false"
     private var mQuestionNumber = 1
+    private var mDisplayVideoAdmod = 0
+    private var mDefaultDisplayVideoAdmod = 3
     private var mType = 1
     private var mIntroduction:Introduction? = null
     private var mMinus = ""
@@ -65,8 +69,12 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
                 bundle.putSerializable(ConstantsApp.KEY_INTRODUCTION_VALUE, mIntroduction)
                 if(mIntroduction!!.type == "1"){
                     startActivityForResultQuiz(SoloMatchWithTextActivity::class.java,ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY,bundle)
-                }  else {
+                }  else if(mIntroduction!!.type == "2"){
                     startActivityForResultQuiz(SoloMatchWithImageActivity::class.java,ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY,bundle)
+                } else if(mIntroduction!!.type == "3"){
+                    startActivityForResultQuiz(SoloWithImageChooseTextActivity::class.java,ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY,bundle)
+                } else if(mIntroduction!!.type == "4"){
+                    startActivityForResultQuiz(SoloWithImageChooseTextActivity::class.java,ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY,bundle)
                 }
 
             } else {
@@ -109,6 +117,8 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
             if(intent.hasExtra(ConstantsApp.KEY_TYPE_OF_GAME)){
                 mType = 2
             }
+
+            getSettingAdmods()
         }
     }
 
@@ -209,6 +219,34 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
         })
     }
 
+    private fun getSettingAdmods(){
+        RestClient().getInstance().getRestService().getSettingAdmod().enqueue(object : Callback<RestData<AdmodAds>>{
+            override fun onFailure(call: Call<RestData<AdmodAds>>?, t: Throwable?) {
+
+
+            }
+
+            override fun onResponse(call: Call<RestData<AdmodAds>>?, response: Response<RestData<AdmodAds>>?) {
+                if (response?.body() != null){
+                    mDefaultDisplayVideoAdmod = response.body().data!!.displayNumber!!
+                }
+            }
+        })
+
+
+    }
+
+    private fun showVideoAdmod(){
+
+        if(mDisplayVideoAdmod == 3){
+            mDisplayVideoAdmod = 0
+            val intent = Intent(this, AdmodVideoActivity::class.java)
+            startActivityForResult(intent, ConstantsApp.REQUEST_CODE_FROM_QUESTION_INTRO_ACTIVITY )
+        }
+    }
+
+
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
@@ -227,22 +265,39 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
                     ConstantsApp.RESULT_CODE_FROM_RIGHT_ANSWER -> {
                         mMinus = "0"
                         mQuestionNumber++
+                        mDisplayVideoAdmod++
                         mType = 1
                         btn_next.text = "BẮT ĐẦU CÂU "+ mQuestionNumber
                         getIntroductionOfTheQuestion()
-//                        Toast.makeText(this,  "Load "+mQuestionNumber, Toast.LENGTH_SHORT).show()
+                        showVideoAdmod()
                     }
 
                     ConstantsApp.RESULT_CODE_FROM_RIGHT_ANSWER_USING_COINS -> {
                         mQuestionNumber++
+                        mDisplayVideoAdmod++
                         mType = 2
                         btn_next.text = "BẮT ĐẦU CÂU "+ mQuestionNumber
                         mMinus = data!!.extras.getString(ConstantsApp.KEY_MINUS_GAME)
                         getIntroductionOfTheQuestion()
-                        Toast.makeText(this,  "- "+mMinus+ " Coins ", Toast.LENGTH_SHORT).show()
+                        showVideoAdmod()
+                    }
+
+                    ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_OK -> {
+                        mMinus = "0"
+                        mQuestionNumber++
+                        mDisplayVideoAdmod = 0
+                        mType = 2
+                        btn_next.text = "BẮT ĐẦU CÂU "+ mQuestionNumber
+                        getIntroductionOfTheQuestion()
+                    }
+
+                    ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_CANCEL -> {
+                        setResult(ConstantsApp.RESULT_CODE_TO_STOP_GAME_FROM_QUIZUPACTIVITY)
+                        finish()
                     }
                 }
             }
+
         }
 
     }

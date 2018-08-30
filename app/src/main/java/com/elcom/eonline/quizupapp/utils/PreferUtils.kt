@@ -17,6 +17,7 @@ class PreferUtils {
     private val FACEBOOK_ID = "FACEBOOK_ID"
     private val KEY_ENCRYPTION = "kenc"
     private val KEY_SOUND_SETTING = "KEY_SOUND_SETTING"
+    private val KEY_ADMOD_COUNT = "KEY_ADMOD_COUNT"
 
 //    private val applicationContext  = QuizUpApp().getAppContext()!!
 
@@ -112,6 +113,18 @@ class PreferUtils {
     fun getSoundSetting(context: Context): Boolean {
         val preferences = context.getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE)
         return preferences.getBoolean(KEY_SOUND_SETTING,false)
+    }
+
+
+    fun setAdmodCount(context: Context, token: Int) {
+        val editor = context.getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE).edit()
+        editor.putInt(KEY_ADMOD_COUNT, token)
+        editor.commit()
+    }
+
+    fun getAdmodCount(context: Context): Int {
+        val preferences = context.getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE)
+        return preferences.getInt(KEY_ADMOD_COUNT,0)
     }
 
 }
