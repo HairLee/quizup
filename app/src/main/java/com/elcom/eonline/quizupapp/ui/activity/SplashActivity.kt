@@ -8,6 +8,7 @@ import com.elcom.eonline.quizupapp.R
 import com.elcom.eonline.quizupapp.db.MangerDB
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.User
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.ContinueMatch
+import com.elcom.eonline.quizupapp.ui.activity.singleplay.SoloWithImageChooseTextActivity
 import com.elcom.eonline.quizupapp.ui.network.RestClient
 import com.elcom.eonline.quizupapp.ui.network.RestData
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
@@ -67,7 +68,7 @@ class SplashActivity : AppCompatActivity() {
                     if(response?.body() != null && response.body().data != null && (response.body().message == getString(R.string.get_last_question_success))){
 
                         val match = response!!.body().data
-                        val intent = Intent(baseContext, HomeActivity::class.java)
+                        val intent = Intent(baseContext, SoloWithImageChooseTextActivity::class.java)
                         ConstantsApp.BASE64_HEADER = PreferUtils().getToken(baseContext)
                         intent.putExtra(ConstantsApp.KEY_QUESTION_ID,match!!.topic_id)
                         intent.putExtra(ConstantsApp.KEY_SOLO_MATCH_ID,match.match_id)
@@ -76,7 +77,7 @@ class SplashActivity : AppCompatActivity() {
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                         finish()
                     } else {
-                        val loginIntent = Intent(baseContext, HomeActivity::class.java)
+                        val loginIntent = Intent(baseContext, SoloWithImageChooseTextActivity::class.java)
                         startActivity(loginIntent)
                         finish()
                     }

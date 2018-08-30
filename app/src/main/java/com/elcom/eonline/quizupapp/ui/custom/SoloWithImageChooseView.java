@@ -33,8 +33,7 @@ public class SoloWithImageChooseView extends LinearLayout implements View.OnClic
     private List<ChooseAnswer> chooseAnswerList = new ArrayList<>();
     private List<ChooseAnswer> chooseSuggestList = new ArrayList<>();
 
-    private List<Integer> answerList = new ArrayList<>();
-    private List<ChooseAnswer> sugestList = new ArrayList<>();
+
 
     public SoloWithImageChooseView(Context context) {
         super(context);
@@ -192,45 +191,60 @@ public class SoloWithImageChooseView extends LinearLayout implements View.OnClic
 
     @Override
     public void onClick(View view) {
+
+
+//        if(answerList.size() == 4){
+//            return;
+//        }
+        Log.e("hailp","updateAfterGivingTheAnswer ~ "+ (Integer) view.getTag());
         switch (view.getId()){
+
             case R.id.tvAnswer1:
                 answerTextViewList.get(0).setText("");
-                hideSuggestButtonAfterChooseAnswer(answerList.get(0),true);
+                hideSuggestButtonAfterChooseAnswer((Integer) view.getTag(),true);
+
+
                 break;
 
             case R.id.tvAnswer2:
                 answerTextViewList.get(1).setText("");
-                hideSuggestButtonAfterChooseAnswer(answerList.get(1),true);
+                hideSuggestButtonAfterChooseAnswer((Integer) view.getTag(),true);
+//                answerList.remove(new Integer(answerList.get(1)));
+
                 break;
 
             case R.id.tvAnswer3:
                 answerTextViewList.get(2).setText("");
-                hideSuggestButtonAfterChooseAnswer(chooseSuggestList.get(1).getPosition(),true);
+                hideSuggestButtonAfterChooseAnswer((Integer) view.getTag(),true);
+//                answerList.remove(new Integer(answerList.get(2)));
+
                 break;
 
             case R.id.tvAnswer4:
                 answerTextViewList.get(3).setText("");
-                hideSuggestButtonAfterChooseAnswer(3,true);
+                hideSuggestButtonAfterChooseAnswer((Integer) view.getTag(),true);
+//                answerList.remove(new Integer(answerList.get(3)));
+
                 break;
 
             case R.id.tvAnswer5:
                 answerTextViewList.get(4).setText("");
-                hideSuggestButtonAfterChooseAnswer(4,true);
+                hideSuggestButtonAfterChooseAnswer((Integer) view.getTag(),true);
                 break;
 
             case R.id.tvAnswer6:
                 answerTextViewList.get(5).setText("");
-                hideSuggestButtonAfterChooseAnswer(5,true);
+                hideSuggestButtonAfterChooseAnswer((Integer) view.getTag(),true);
                 break;
 
             case R.id.tvAnswer7:
                 answerTextViewList.get(6).setText("");
-                hideSuggestButtonAfterChooseAnswer(6,true);
+                hideSuggestButtonAfterChooseAnswer((Integer) view.getTag(),true);
                 break;
 
             case R.id.tvAnswer8:
                 answerTextViewList.get(7).setText("");
-                hideSuggestButtonAfterChooseAnswer(7,true);
+                hideSuggestButtonAfterChooseAnswer((Integer) view.getTag(),true);
                 break;
 
 
@@ -264,16 +278,16 @@ public class SoloWithImageChooseView extends LinearLayout implements View.OnClic
 
     public void setDataForSuggestList(List<String> suggestList){
         for (int i = 0; i < suggestTextViewList.size(); i++) {
-                ChooseAnswer chooseAnswer = new ChooseAnswer();
-                chooseAnswer.setPosition(i);
-                chooseAnswer.setTextView(suggestTextViewList.get(i));
-                if(suggestList.size() > i){
-                    chooseAnswer.setAnswer(suggestList.get(i));
-                }
+            ChooseAnswer chooseAnswer = new ChooseAnswer();
+            chooseAnswer.setPosition(i);
+            chooseAnswer.setTextView(suggestTextViewList.get(i));
+            if(suggestList.size() > i){
+                chooseAnswer.setAnswer(suggestList.get(i));
+            }
 
-                chooseSuggestList.add(chooseAnswer);
-
-                suggestTextViewList.get(i).setOnClickListener(this);
+            chooseSuggestList.add(chooseAnswer);
+            suggestTextViewList.get(i).setTag(i);
+            suggestTextViewList.get(i).setOnClickListener(this);
         }
 
         setUpSuggestLayout(suggestList);
@@ -299,22 +313,31 @@ public class SoloWithImageChooseView extends LinearLayout implements View.OnClic
         for (int i = 0; i < answerTextViewList.size(); i++) {
             if(answerTextViewList.get(i).getText().equals("")){
                 answerTextViewList.get(i).setText(chooseSuggestList.get(location).getAnswer());
-                answerList.add(chooseSuggestList.get(location).getPosition());
+                answerTextViewList.get(i).setTag(location);
                 return;
             }
         }
-
     }
 
     public void hideSuggestButtonAfterChooseAnswer(int location, boolean isChoose){
 
-//        if(isChoose){
-//            suggestTextViewList.get(location).setVisibility(VISIBLE);
-//        } else  {
-//            suggestTextViewList.get(location).setVisibility(INVISIBLE);
-//        }
-//
-//        answerList.remove(location);
+        if(isChoose){
+
+            for (int i = 0; i < suggestTextViewList.size(); i++) {
+                if((Integer)suggestTextViewList.get(i).getTag() == location){
+                    suggestTextViewList.get(i).setVisibility(VISIBLE);
+                }
+            }
+
+        } else  {
+            for (int i = 0; i < suggestTextViewList.size(); i++) {
+                if((Integer)suggestTextViewList.get(i).getTag() == location){
+                    suggestTextViewList.get(i).setVisibility(INVISIBLE);
+                }
+            }
+        }
+
+//        answerList.indexOf(location);
     }
 }
 

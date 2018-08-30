@@ -1,6 +1,5 @@
 package com.elcom.eonline.quizupapp.ui.activity.singleplay
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.elcom.eonline.quizupapp.R
@@ -10,7 +9,7 @@ import com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
 import kotlinx.android.synthetic.main.activity_solo_with_image_choose_text.*
 import kotlinx.android.synthetic.main.coin_and_ex_layout.*
-import java.util.ArrayList
+import java.util.*
 
 class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.onFinishCountDown {
 
@@ -31,8 +30,8 @@ class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.on
 
         val handler = Handler()
         handler.postDelayed({
-            ptvCountDown.startStop()
-            ptvCountDown.setListener(this)
+//            ptvCountDown.startStop()
+//            ptvCountDown.setListener(this)
         }, 500)
 
 
@@ -71,9 +70,9 @@ class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.on
         mSuggestData.add("D")
         mSuggestData.add("E")
 
-        mSuggestData.add("A")
-        mSuggestData.add("B")
-        mSuggestData.add("C")
+        mSuggestData.add("F")
+        mSuggestData.add("G")
+        mSuggestData.add("H")
         mSuggestData.add("D")
         mSuggestData.add("E")
         mSuggestData.add("A")
