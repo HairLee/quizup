@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.elcom.eonline.quizupapp.R;
 import com.elcom.eonline.quizupapp.ui.activity.singleplay.ChooseAnswer;
-import com.elcom.eonline.quizupapp.ui.activity.singleplay.OnSoloChooseTextListener;
+import com.elcom.eonline.quizupapp.ui.activity.singleplay.OnAnswerTheQuestionListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -184,9 +184,9 @@ public class SoloWithImageChooseView extends LinearLayout implements View.OnClic
 
     }
 
-    private OnSoloChooseTextListener mOnSoloChooseTextListener;
-    public void setOnSoloChooseTextListener(OnSoloChooseTextListener pOnSoloChooseTextListener){
-        mOnSoloChooseTextListener = pOnSoloChooseTextListener;
+    private OnAnswerTheQuestionListener mOnAnswerTheQuestionListener;
+    public void setOnSoloChooseTextListener(OnAnswerTheQuestionListener pOnAnswerTheQuestionListener){
+        mOnAnswerTheQuestionListener = pOnAnswerTheQuestionListener;
     }
 
     @Override
@@ -381,6 +381,7 @@ public class SoloWithImageChooseView extends LinearLayout implements View.OnClic
                 answerTextViewList.get(i).setText(chooseSuggestList.get(location).getAnswer());
                 answerTextViewList.get(i).setTag(location);
                 Log.e("hailpt"," updateAfterGivingTheAnswer final "+checkFinalAnswer());
+                mOnAnswerTheQuestionListener.onAnswerTheQuestionListener(checkFinalAnswer());
                 return;
             }
         }
