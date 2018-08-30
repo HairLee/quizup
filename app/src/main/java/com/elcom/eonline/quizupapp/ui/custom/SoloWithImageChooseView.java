@@ -374,14 +374,18 @@ public class SoloWithImageChooseView extends LinearLayout implements View.OnClic
 
 
     public void updateAfterGivingTheAnswer( int location){
+
         hideSuggestButtonAfterChooseAnswer(location,false);
         for (int i = 0; i < answerTextViewList.size(); i++) {
             if(answerTextViewList.get(i).getText().equals("")){
                 answerTextViewList.get(i).setText(chooseSuggestList.get(location).getAnswer());
                 answerTextViewList.get(i).setTag(location);
+                Log.e("hailpt"," updateAfterGivingTheAnswer final "+checkFinalAnswer());
                 return;
             }
         }
+
+
     }
 
     public void hideSuggestButtonAfterChooseAnswer(int location, boolean isChoose){
@@ -401,8 +405,6 @@ public class SoloWithImageChooseView extends LinearLayout implements View.OnClic
                 }
             }
         }
-
-//        answerList.indexOf(location);
     }
 
     private boolean isEnoughAnswerOrNot(){
@@ -412,6 +414,17 @@ public class SoloWithImageChooseView extends LinearLayout implements View.OnClic
             }
         }
         return true;
+    }
+
+    public String checkFinalAnswer(){
+       if(isEnoughAnswerOrNot()){
+           String finalAnswer = "";
+           for (int i = 0; i < chooseAnswerList.size(); i++) {
+               finalAnswer = finalAnswer + chooseAnswerList.get(i).getTextView().getText();
+           }
+           return finalAnswer;
+       }
+        return "";
     }
 }
 

@@ -29,11 +29,14 @@ class Answer : Serializable {
 
     @SerializedName("answer_corect")
     @Expose
-    private var answer_corect: List<String>? = null
+    var answer_corect: List<String>? = null
 
     @SerializedName("answer_incorrect")
     @Expose
-    private var answer_incorrect: List<String>? = null
+    var answer_incorrect: List<String>? = null
+
+
+
 
 
     fun getId(): Int? {

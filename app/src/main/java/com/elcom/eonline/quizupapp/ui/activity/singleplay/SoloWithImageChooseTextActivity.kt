@@ -1,6 +1,5 @@
 package com.elcom.eonline.quizupapp.ui.activity.singleplay
 
-import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import com.elcom.eonline.quizupapp.R
@@ -11,7 +10,6 @@ import com.elcom.eonline.quizupapp.utils.ConstantsApp
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_solo_with_image_choose_text.*
 import kotlinx.android.synthetic.main.coin_and_ex_layout.*
-import java.util.*
 
 class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.onFinishCountDown {
 
@@ -20,6 +18,8 @@ class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.on
     private var mTopicId = ""
     private var mLastQuestion = ""
     private var mQuestionNumber = "1"
+    private var answerList:List<String>? = null
+    private var suggestList:List<String>? = null
     override fun getLayout(): Int {
         return R.layout.activity_solo_with_image_choose_text
     }
@@ -47,60 +47,23 @@ class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.on
             txt_coins.text ="mQuestion!!.coins"
             updateUI()
 
-            Log.e("hailpt"," SoloWithImageChooseTextActivity "+ Gson().toJson(mQuestion))
+            answerList = mQuestion!!.answer!!.get(0).answer_corect
+            suggestList = mQuestion!!.answer!!.get(0).answer_incorrect
+            setupData()
+            Log.e("hailpt"," SoloWithImageChooseTextActivity "+ Gson().toJson(answerList))
         }
 
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_solo_with_image_choose_text)
-        setupData()
-    }
-
-    fun setupData(){
+      fun setupData(){
         val mData = ArrayList<String>()
-        mData.add("")
-        mData.add("")
-        mData.add("")
-        mData.add("")
-        mData.add("")
-        mData.add("")
-        mData.add("")
-        mData.add("")
-        mData.add("")
-        mData.add("")
-        mData.add("")
-        mData.add("")
-        mData.add("")
-        mData.add("")
-        mData.add("")
-        mData.add("")
 
-
-
-        val mSuggestData = ArrayList<String>()
-        mSuggestData.add("A")
-        mSuggestData.add("B")
-        mSuggestData.add("C")
-        mSuggestData.add("D")
-        mSuggestData.add("E")
-
-        mSuggestData.add("F")
-        mSuggestData.add("G")
-        mSuggestData.add("H")
-        mSuggestData.add("D")
-        mSuggestData.add("E")
-        mSuggestData.add("A")
-        mSuggestData.add("B")
-        mSuggestData.add("D")
-        mSuggestData.add("E")
-        mSuggestData.add("A")
-        mSuggestData.add("B")
-
+          for (i in answerList!!.indices) {
+              mData.add("")
+          }
 
         lnSoloWithImageChooseView.setDataForAnswerList(mData)
-        lnSoloWithImageChooseView.setDataForSuggestList(mSuggestData)
+        lnSoloWithImageChooseView.setDataForSuggestList(suggestList)
     }
 
     override fun onFinishCountDown(listDemo: Boolean) {
