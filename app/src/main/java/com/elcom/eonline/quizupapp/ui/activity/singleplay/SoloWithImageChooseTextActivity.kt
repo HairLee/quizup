@@ -47,7 +47,6 @@ class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.on
             mTopicId = bundle.getString(ConstantsApp.KEY_QUESTION_ID)
             mLastQuestion = bundle.getString(ConstantsApp.KEY_LAST_QUESTION)
             mQuestionNumber = bundle.getString(ConstantsApp.KEY_QUESTION_NUMBER)
-            txt_coins.text ="mQuestion!!.coins"
             updateUI()
 
             answerList = mQuestion!!.answer!![0].answer_corect
@@ -64,6 +63,8 @@ class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.on
         for (i in answerList!!.indices) {
             mData.add("")
         }
+
+
         lnSoloWithImageChooseView.setOnSoloChooseTextListener(this)
         lnSoloWithImageChooseView.setDataForAnswerList(mData)
         lnSoloWithImageChooseView.setDataForSuggestList(suggestList)

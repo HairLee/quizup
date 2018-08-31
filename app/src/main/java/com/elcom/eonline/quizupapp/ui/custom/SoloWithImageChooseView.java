@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.elcom.eonline.quizupapp.R;
 import com.elcom.eonline.quizupapp.ui.activity.singleplay.ChooseAnswer;
 import com.elcom.eonline.quizupapp.ui.activity.singleplay.OnAnswerTheQuestionListener;
+import com.elcom.eonline.quizupapp.utils.AnimationUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -380,7 +381,7 @@ public class SoloWithImageChooseView extends LinearLayout implements View.OnClic
             if(answerTextViewList.get(i).getText().equals("")){
                 answerTextViewList.get(i).setText(chooseSuggestList.get(location).getAnswer());
                 answerTextViewList.get(i).setTag(location);
-                Log.e("hailpt"," updateAfterGivingTheAnswer final "+checkFinalAnswer());
+                AnimationUtil.flipTextView(answerTextViewList.get(i));
                 mOnAnswerTheQuestionListener.onAnswerTheQuestionListener(checkFinalAnswer());
                 return;
             }
