@@ -1,24 +1,28 @@
 package com.elcom.eonline.quizupapp.ui.activity.singleplay
 
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
 import android.os.Handler
+import android.util.Log
+import android.widget.Toast
 import com.elcom.eonline.quizupapp.R
 import com.elcom.eonline.quizupapp.ui.activity.BaseActivityQuiz
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.Introduction
 import com.elcom.eonline.quizupapp.ui.custom.ProgressTimerView
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
+import com.google.gson.Gson
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_solo_with_image_choose_text.*
 import kotlinx.android.synthetic.main.coin_and_ex_layout.*
-import java.util.ArrayList
 
-class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.onFinishCountDown {
+class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.onFinishCountDown, OnAnswerTheQuestionListener {
+
 
     private var mQuestion: Introduction? = null
     private var mMatchId = ""
     private var mTopicId = ""
     private var mLastQuestion = ""
     private var mQuestionNumber = "1"
+    private var answerList:List<String>? = null
+    private var suggestList:List<String>? = null
     override fun getLayout(): Int {
         return R.layout.activity_solo_with_image_choose_text
     }
@@ -31,8 +35,8 @@ class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.on
 
         val handler = Handler()
         handler.postDelayed({
-            ptvCountDown.startStop()
-            ptvCountDown.setListener(this)
+            //            ptvCountDown.startStop()
+//            ptvCountDown.setListener(this)
         }, 500)
 
 
@@ -45,43 +49,24 @@ class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.on
             mQuestionNumber = bundle.getString(ConstantsApp.KEY_QUESTION_NUMBER)
             txt_coins.text ="mQuestion!!.coins"
             updateUI()
+
+            answerList = mQuestion!!.answer!![0].answer_corect
+            suggestList = mQuestion!!.answer!![0].answer_incorrect
+            setupData()
+            Log.e("hailpt"," SoloWithImageChooseTextActivity "+ Gson().toJson(answerList))
         }
 
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_solo_with_image_choose_text)
-        setupData()
-    }
-
     fun setupData(){
         val mData = ArrayList<String>()
-        mData.add("")
-        mData.add("")
-        mData.add("")
-        mData.add("")
 
-
-
-        val mSuggestData = ArrayList<String>()
-        mSuggestData.add("A")
-        mSuggestData.add("B")
-        mSuggestData.add("C")
-        mSuggestData.add("D")
-        mSuggestData.add("E")
-
-        mSuggestData.add("A")
-        mSuggestData.add("B")
-        mSuggestData.add("C")
-        mSuggestData.add("D")
-        mSuggestData.add("E")
-        mSuggestData.add("A")
-        mSuggestData.add("B")
-
-
+        for (i in answerList!!.indices) {
+            mData.add("")
+        }
+        lnSoloWithImageChooseView.setOnSoloChooseTextListener(this)
         lnSoloWithImageChooseView.setDataForAnswerList(mData)
-        lnSoloWithImageChooseView.setDataForSuggestList(mSuggestData)
+        lnSoloWithImageChooseView.setDataForSuggestList(suggestList)
     }
 
     override fun onFinishCountDown(listDemo: Boolean) {
@@ -90,9 +75,16 @@ class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.on
 
     private fun updateUI(){
         if(mQuestion != null){
-//            txt_coins.text ="mQuestion!!.coins"
+            txt_coins.text = mQuestion!!.coins
             txt_point.text = mQuestion!!.point
             txt_question.text = mQuestion!!.question
+            Picasso.get().load(mQuestion!!.userImageUrl).into(roundedImageView)
+        }
+    }
+
+    override fun onAnswerTheQuestionListener(answer: String?) {
+        if(answer != ""){
+            Toast.makeText(this,answer,Toast.LENGTH_SHORT).show()
         }
     }
 }
