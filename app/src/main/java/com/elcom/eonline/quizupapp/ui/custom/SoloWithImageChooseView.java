@@ -14,6 +14,7 @@ import com.elcom.eonline.quizupapp.ui.activity.singleplay.OnAnswerTheQuestionLis
 import com.elcom.eonline.quizupapp.utils.AnimationUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -419,14 +420,36 @@ public class SoloWithImageChooseView extends LinearLayout implements View.OnClic
     }
 
     public String checkFinalAnswer(){
-       if(isEnoughAnswerOrNot()){
-           String finalAnswer = "";
-           for (int i = 0; i < chooseAnswerList.size(); i++) {
-               finalAnswer = finalAnswer + chooseAnswerList.get(i).getTextView().getText();
-           }
-           return finalAnswer;
-       }
+        if(isEnoughAnswerOrNot()){
+            String finalAnswer = "";
+            for (int i = 0; i < chooseAnswerList.size(); i++) {
+                finalAnswer = finalAnswer + chooseAnswerList.get(i).getTextView().getText();
+            }
+            return finalAnswer;
+        }
         return "";
+    }
+
+    public void changeLayoutWithWrongAnswer(String rightAnswer, String answer){
+
+
+        List<String> rightAnswers = new ArrayList<String>(Arrays.asList(rightAnswer.split("")));
+
+        List<String> answers = new ArrayList<String>(Arrays.asList(answer.split("")));
+
+        rightAnswers.remove(0);
+        answers.remove(0);
+
+
+        for (int i = 0; i < rightAnswers.size(); i++) {
+            if (rightAnswers.get(i).equals(answers.get(i))){
+                answerTextViewList.get(i).setBackgroundResource(R.drawable.radius_edittext_white_bg_gray_srtoke7_layout);
+            } else {
+                answerTextViewList.get(i).setBackgroundResource(R.drawable.radius_edittext_white_bg_gray_srtoke6_layout);
+            }
+        }
+
+
     }
 }
 

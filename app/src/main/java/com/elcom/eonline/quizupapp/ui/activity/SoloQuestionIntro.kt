@@ -238,7 +238,7 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
 
     private fun showVideoAdmod(){
 
-        if(mDisplayVideoAdmod == 3){
+        if(mDisplayVideoAdmod == 13){
             mDisplayVideoAdmod = 0
             val intent = Intent(this, AdmodVideoActivity::class.java)
             startActivityForResult(intent, ConstantsApp.REQUEST_CODE_FROM_QUESTION_INTRO_ACTIVITY )

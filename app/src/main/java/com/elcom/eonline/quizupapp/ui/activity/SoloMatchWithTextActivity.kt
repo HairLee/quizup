@@ -86,7 +86,7 @@ class SoloMatchWithTextActivity : BaseActivityQuiz(), View.OnClickListener, Solo
         handler.postDelayed({
             AnimationUtil.setAnimationSlideLeft(ln_answer_top, true)
             AnimationUtil.setAnimationSlideRight(ln_answer_bottom, true)
-            ptvCountDown.startStop()
+            ptvCountDown.startStop(11)
             ptvCountDown.setListener(this)
         }, 500)
 
@@ -151,6 +151,7 @@ class SoloMatchWithTextActivity : BaseActivityQuiz(), View.OnClickListener, Solo
         ptvCountDown.stopCountDownTimer()
         currentAnswerId = mQuestion!!.answer!![pAnswerIdPos].getId().toString()
         mCustomButtom!!.changeColorWithCorrectAnswer(mAnswer,mCorrectAnswer)
+        mCustomButtom!!.changeColorWithCorrectAnswer(mCorrectAnswer,mCorrectAnswer)
         if(mQuestion != null){
             pSoloMatchWithTextPresenter.answerTheQuestion(PreferUtils().getUserId(this), mTopicId, mQuestion!!.answer!![pAnswerIdPos].getId().toString(), mQuestion!!.id!!, mMatchId, mLastQuestion )
         }

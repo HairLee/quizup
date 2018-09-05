@@ -92,7 +92,7 @@ class SoloMatchWithImageActivity : FragmentActivity(), View.OnClickListener, Sol
         handler.postDelayed({
             AnimationUtil.setAnimationSlideLeft(ln_answer_top, true)
             AnimationUtil.setAnimationSlideRight(ln_answer_bottom, true)
-            ptvCountDown.startStop()
+            ptvCountDown.startStop(11)
             ptvCountDown.setListener(this)
         }, 500)
     }
@@ -154,6 +154,7 @@ class SoloMatchWithImageActivity : FragmentActivity(), View.OnClickListener, Sol
         ptvCountDown.stopCountDownTimer()
         currentAnswerId = mQuestion!!.answer!![pAnswerIdPos].getId().toString()
         mCustomButton!!.changeColorWithCorrectAnswer(mAnswer,mCorrectAnswer)
+        mCustomButton!!.changeColorWithCorrectAnswer(mCorrectAnswer,mCorrectAnswer)
         if(mQuestion != null){
             pSoloMatchWithTextPresenter.answerTheQuestion(PreferUtils().getUserId(this), mTopicId, mQuestion!!.answer!![pAnswerIdPos].getId().toString(), mQuestion!!.id!!, mMatchId,mLastQuestion )
         }

@@ -65,9 +65,9 @@ public class ProgressTimerView extends RelativeLayout {
         startCountDownTimer();
     }
 
-    public void startStop() {
+    public void startStop(int time) {
         if (timerStatus == ProgressTimerView.TimerStatus.STOPPED) {
-            setTimerValues();
+            setTimerValues(time);
             setProgressBarValues();
             timerStatus = ProgressTimerView.TimerStatus.STARTED;
             startCountDownTimer();
@@ -77,9 +77,7 @@ public class ProgressTimerView extends RelativeLayout {
         }
     }
 
-    private void setTimerValues() {
-        int time = 11;
-
+    private void setTimerValues(int time) {
         timeCountInMilliSeconds = time * 1000;
     }
 

@@ -199,7 +199,7 @@ class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickLis
         tvNumberOfFavourite.text = pTopic.totalFollower.toString()
         tvRanking.text = pTopic.ratings.toString()
         tvTotalXp.text = pTopic.xp.toString()
-        tvNumberOfQuestion.text ="Trả lời đúng : "+ pTopic.numberQuestion.toString()
+        tvNumberOfQuestion.text ="Trả lời đúng : "+ pTopic.result_question_true.toString()
 
         customProgress.progress = pTopic.promotionProcess!!.toInt()
 

@@ -31,6 +31,12 @@ class TopicDetail {
     @SerializedName("statusFollow")
     @Expose
     var statusFollow: Int? = null
+
+    @SerializedName("result_question_true")
+    @Expose
+    var result_question_true: Int? = null
+
+
     @SerializedName("jump_wins")
     @Expose
     var jumpWins: Int? = null

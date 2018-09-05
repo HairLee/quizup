@@ -117,11 +117,9 @@ class SoloMatchBreakActivity : FragmentActivity() {
             txt_point.text = mQuestion!!.point
 
 
-            if(!mQuestion!!.topicImageUrl!!.isEmpty()){
-                Picasso.get()
-                        .load(mQuestion!!.topicImageUrl)
-                        .into(imv_topic)
-            }
+            Picasso.get()
+                    .load(PreferUtils().getAvatar(this))
+                    .into(imv_topic)
         }
     }
 

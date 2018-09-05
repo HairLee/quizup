@@ -75,6 +75,8 @@ interface RestService {
     @FormUrlEncoded
     abstract fun endGame(@Field("user_id") user_id: String,@Field("topic_id") topic_id: String,@Field("type") type: String,@Field("match_id") match_id: String): Call<RestData<JsonElement>>
 
+
+
     @GET("user/show-list-of-topics?")
     abstract fun getListHomeTopic(@Query("user_id") user_id: String): Call<RestData<List<Caterogy>>>
 
@@ -213,6 +215,11 @@ interface RestService {
     @POST("delete-history-match?")
     @FormUrlEncoded
     abstract fun removeHistory(@Field("match_id") match_id: Int): Call<RestData<JsonElement>>
+
+
+    @POST("post-send-answer-guess-word")
+    @FormUrlEncoded
+    abstract fun sendAnswerGuessWord(@Field("user_id") user_id: String,@Field("topic_id") topic_id: String,@Field("answer_id") answer_id: String,@Field("question_id") question_id: String,@Field("match_id") match_id: String, @Field("last_question") last_question: String): Call<RestData<JsonElement>>
 
 
     @POST("profile/set-follow-user?")

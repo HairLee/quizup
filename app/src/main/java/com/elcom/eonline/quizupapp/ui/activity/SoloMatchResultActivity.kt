@@ -68,7 +68,7 @@ class SoloMatchResultActivity : BaseActivityQuiz() {
     private fun updateLayout(result:Result){
         tvTitle.text = result.nameTopic
         txt_topic_title.text = result.nameTopic
-        Picasso.get().load(result.topicImageUrl).into(imvTopic)
+        Picasso.get().load(PreferUtils().getAvatar(this)).into(imvTopic)
         txt_coins.text = result.coins
         txt_point.text = result.point
         tvLevelConfirm.text = "Chuỗi thắng: "+result.current_win_string
