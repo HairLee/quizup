@@ -211,7 +211,7 @@ class SoloMatchWithImageActivity : FragmentActivity(), View.OnClickListener, Sol
     override fun answerTheQuestionSuccess(mData: AnswerQuestion) {
 
         ProgressDialogUtils.dismissProgressDialog()
-        if (mLastQuestion == "true") {
+        if (mLastQuestion == "true" && mData.correct == ConstantsApp.KEY_CORRECT_ANSWER) {
             goToResultActivity()
             return
         }
