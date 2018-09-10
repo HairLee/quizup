@@ -1,6 +1,7 @@
 package com.elcom.eonline.quizupapp.ui.activity
 
 import android.content.Intent
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.elcom.eonline.quizupapp.R
@@ -16,6 +17,23 @@ import kotlinx.android.synthetic.main.coin_and_ex_layout.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import com.facebook.share.model.ShareLinkContent
+import com.facebook.share.widget.ShareDialog
+import android.graphics.Bitmap
+import android.media.MediaScannerConnection
+import android.os.Environment
+import android.os.Environment.getExternalStorageDirectory
+import android.util.Log
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.util.*
+import com.facebook.share.model.SharePhotoContent
+import com.facebook.share.model.SharePhoto
+
+
+
 
 class SoloMatchResultActivity : BaseActivityQuiz() {
 
@@ -40,6 +58,10 @@ class SoloMatchResultActivity : BaseActivityQuiz() {
 //            setResult(ConstantsApp.RESULT_CODE_TO_STOP_GAME_FROM_QUIZUPACTIVITY )
 //            finish()
 //        }
+
+        lnShare.setOnClickListener {
+            takeScreenshot()
+        }
     }
 
     override fun initData() {
@@ -63,6 +85,47 @@ class SoloMatchResultActivity : BaseActivityQuiz() {
 
             }
         })
+    }
+
+
+    private fun takeScreenshot() {
+        val now = Date()
+        android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now)
+
+        try {
+            // image naming and path  to include sd card  appending name you choose for file
+            val mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg"
+
+            // create bitmap screen capture
+            val v1 = window.decorView.rootView
+            v1.isDrawingCacheEnabled = true
+            val bitmap = Bitmap.createBitmap(v1.drawingCache)
+            v1.isDrawingCacheEnabled = false
+
+            val imageFile = File(mPath)
+
+            val outputStream = FileOutputStream(imageFile)
+            val quality = 100
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream)
+            outputStream.flush()
+            outputStream.close()
+
+            if( bitmap != null){
+                val photo = SharePhoto.Builder()
+                        .setBitmap(bitmap)
+                        .setCaption("Share Facebook")
+                        .build()
+                val content = SharePhotoContent.Builder()
+                        .addPhoto(photo)
+                        .build()
+                ShareDialog.show(this,content)
+            }
+
+        } catch (e: Throwable) {
+            // Several error may come out with file handling or DOM
+            e.printStackTrace()
+        }
+
     }
 
     private fun updateLayout(result:Result){

@@ -67,6 +67,10 @@ class Introduction : Serializable {
     @Expose
     var level: String? = null
 
+    @SerializedName("level_current")
+    @Expose
+    var level_current: String? = null
+
     @SerializedName("point_next_level")
     @Expose
     var point_next_level: String? = null

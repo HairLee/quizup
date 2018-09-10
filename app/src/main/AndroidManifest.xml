@@ -54,11 +54,11 @@
         <activity
             android:name=".ui.activity.SoloMatchWithTextActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!--<activity-->
+            <!--android:name="com.facebook.FacebookActivity"-->
+            <!--android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"-->
+            <!--android:label="@string/app_name"-->
+            <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
         <activity
             android:name=".ui.activity.SoloQuestionIntro"
             android:screenOrientation="portrait" />
@@ -170,6 +170,19 @@
         <activity android:name=".ui.activity.AdmodVideoActivity" />
         <activity android:name=".ui.activity.singleplay.SoloWithImageChooseTextActivity" />
         <activity android:name=".ui.activity.CoinPaymentActivity"></activity>
+
+
+        <provider android:authorities="com.facebook.app.FacebookContentProvider287222165367861"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true"/>
+        <activity
+            tools:replace="android:theme"
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+          />
+
     </application>
 
 </manifest>

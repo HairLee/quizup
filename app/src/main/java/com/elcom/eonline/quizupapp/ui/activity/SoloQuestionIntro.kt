@@ -14,6 +14,7 @@ import com.elcom.eonline.quizupapp.db.model.GamePause
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.Introduction
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.admod.AdmodAds
 import com.elcom.eonline.quizupapp.ui.activity.singleplay.SoloWithImageChooseTextActivity
+import com.elcom.eonline.quizupapp.ui.dialog.CongratuationNewLevelDialog
 import com.elcom.eonline.quizupapp.ui.dialog.StopGameDialog
 import com.elcom.eonline.quizupapp.ui.listener.OnDialogYesNoListener
 import com.elcom.eonline.quizupapp.ui.listener.OnSocketInviteOpponentListener
@@ -179,8 +180,12 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
                                 .into(imv_topic)
                     }
 
+                    if(mIntroduction!!.level_current == mIntroduction!!.next_level){
+                        showNewLevelDialog()
+                    }
 
                     dismisProgressDialog()
+
                 } else {
                     Toast.makeText(baseContext,  getString(R.string.can_not_get_data), Toast.LENGTH_SHORT).show()
                     dismisProgressDialog()
@@ -243,6 +248,27 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
             val intent = Intent(this, AdmodVideoActivity::class.java)
             startActivityForResult(intent, ConstantsApp.REQUEST_CODE_FROM_QUESTION_INTRO_ACTIVITY )
         }
+    }
+
+
+    private fun showNewLevelDialog(){
+
+
+        val congratuationDialog = CongratuationNewLevelDialog(this,1, "", object  : OnDialogYesNoListener {
+
+            override fun clickNoAction() {
+
+            }
+
+            override fun clickYesAction() {
+
+
+            }
+
+
+        } )
+        congratuationDialog.show()
+
     }
 
 

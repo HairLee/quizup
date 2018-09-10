@@ -145,7 +145,7 @@ class SoloMatchBreakActivity : FragmentActivity(), RewardedVideoAdListener {
         // Use an activity context to get the rewarded video instance.
         mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this)
         mRewardedVideoAd.rewardedVideoAdListener = this
-
+        ProgressDialogUtils.showProgressDialog(this, 0, 0)
         mRewardedVideoAd.loadAd("ca-app-pub-7842886552548626/2863752478",
                 AdRequest.Builder().build())
 
@@ -160,6 +160,7 @@ class SoloMatchBreakActivity : FragmentActivity(), RewardedVideoAdListener {
     }
 
     override fun onRewardedVideoAdLoaded() {
+        ProgressDialogUtils.dismissProgressDialog()
         mRewardedVideoAd.show()
     }
 
@@ -172,7 +173,8 @@ class SoloMatchBreakActivity : FragmentActivity(), RewardedVideoAdListener {
     }
 
     override fun onRewarded(p0: RewardItem?) {
-        goToActivityAfterWatchingVideoAd()
+//        mRewardedVideoAd.destroy(this)
+//        goToActivityAfterWatchingVideoAd()
     }
 
     override fun onRewardedVideoStarted() {
@@ -180,6 +182,7 @@ class SoloMatchBreakActivity : FragmentActivity(), RewardedVideoAdListener {
     }
 
     override fun onRewardedVideoAdFailedToLoad(p0: Int) {
+        ProgressDialogUtils.dismissProgressDialog()
 
     }
 
