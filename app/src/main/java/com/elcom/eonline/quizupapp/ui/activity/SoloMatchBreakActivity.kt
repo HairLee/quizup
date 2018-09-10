@@ -14,6 +14,11 @@ import com.elcom.eonline.quizupapp.ui.network.RestData
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
 import com.elcom.eonline.quizupapp.utils.PreferUtils
 import com.elcom.eonline.quizupapp.utils.ProgressDialogUtils
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.reward.RewardItem
+import com.google.android.gms.ads.reward.RewardedVideoAd
+import com.google.android.gms.ads.reward.RewardedVideoAdListener
 import com.google.gson.JsonElement
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,7 +29,8 @@ import retrofit2.Call
 
 
 
-class SoloMatchBreakActivity : FragmentActivity() {
+class SoloMatchBreakActivity : FragmentActivity(), RewardedVideoAdListener {
+
 
 
     var mQuestion:Introduction? = null
@@ -123,21 +129,69 @@ class SoloMatchBreakActivity : FragmentActivity() {
         }
     }
 
+
+    private lateinit var mRewardedVideoAd: RewardedVideoAd
     private fun showVideoAdmod(){
 
         var admodCount = PreferUtils().getAdmodCount(this)
 
-        if(admodCount == 2){
+        if(admodCount == 10){
             Toast.makeText(this, " Hết số lần xem video", Toast.LENGTH_SHORT).show()
             return
         }
         admodCount++
         PreferUtils().setAdmodCount(this,admodCount)
+        MobileAds.initialize(this, "ca-app-pub-7842886552548626/2863752478")
+        // Use an activity context to get the rewarded video instance.
+        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this)
+        mRewardedVideoAd.rewardedVideoAdListener = this
 
-        val intent = Intent(this, AdmodVideoActivity::class.java)
-        startActivityForResult(intent,(ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY))
+        mRewardedVideoAd.loadAd("ca-app-pub-7842886552548626/2863752478",
+                AdRequest.Builder().build())
 
     }
+
+    override fun onRewardedVideoAdClosed() {
+        goToActivityAfterWatchingVideoAd()
+    }
+
+    override fun onRewardedVideoAdLeftApplication() {
+
+    }
+
+    override fun onRewardedVideoAdLoaded() {
+        mRewardedVideoAd.show()
+    }
+
+    override fun onRewardedVideoAdOpened() {
+
+    }
+
+    override fun onRewardedVideoCompleted() {
+
+    }
+
+    override fun onRewarded(p0: RewardItem?) {
+        goToActivityAfterWatchingVideoAd()
+    }
+
+    override fun onRewardedVideoStarted() {
+
+    }
+
+    override fun onRewardedVideoAdFailedToLoad(p0: Int) {
+
+    }
+
+    private fun goToActivityAfterWatchingVideoAd(){
+        val intent = Intent()
+        intent.putExtra(ConstantsApp.KEY_MINUS_GAME, "0")
+        setResult(ConstantsApp.RESULT_CODE_TO_CONTINUE_TO_PLAY_GAME_FROM_QUIZUPACTIVITY,intent)
+        finish()
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
+
 
     override fun onBackPressed() {
 //        super.onBackPressed()

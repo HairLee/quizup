@@ -1,5 +1,6 @@
 package com.elcom.eonline.quizupapp.ui.activity
 
+import android.hardware.fingerprint.FingerprintManager
 import android.util.Log
 import android.widget.Toast
 import com.elcom.eonline.quizupapp.R
