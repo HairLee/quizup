@@ -40,25 +40,8 @@ class LoginActivity : BaseActivity(), LoginView, View.OnClickListener {
 
     override fun initView() {
         imv_login_facebook.setOnClickListener(this)
+        imv_login_google.setOnClickListener(this)
         setupCallBackForLoginFacebookButton()
-
-
-
-//        val mData = Invention()
-//        mData.id = 1
-//        mData.myLevel = "15"
-//        mData.myName = "Ambition"
-//        mData.opLevel = "20"
-//        mData.timeCountDown = "5"
-//
-//        MangerDB.getInstance().insertInvention(this,mData)
-//
-//
-//        val pData =  MangerDB.getInstance().getInvention(this)
-//
-//        LogUtils.e("hailpt", "LoginActivity "+ pData.myName)
-
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -80,14 +63,11 @@ class LoginActivity : BaseActivity(), LoginView, View.OnClickListener {
 //            avi.hide()
             dismisProgressDialog()
             val account = completedTask.getResult(ApiException::class.java)
-            val intent = Intent(this,HomeActivity::class.java)
-            intent.putExtra("EMAIL", account.displayName)
-            startActivity(intent)
-            finish()
+            mLoginPresenter.loginWithFacebook(account!!.id!!,account.id!!)
+            PreferUtils().setFacebookId(baseContext,account.id!!)
         } catch (e: ApiException) {
             Log.w(TAG, "signInResult:failed code=" + e.statusCode)
         }
-
     }
 
     private fun setupCallBackForLoginFacebookButton(){
@@ -127,6 +107,12 @@ class LoginActivity : BaseActivity(), LoginView, View.OnClickListener {
                 R.id.imv_login_facebook-> {
                     btn_login_facebook.performClick()
                 }
+
+                R.id.imv_login_google -> {
+                    mLoginPresenter.loginWithGoogle()
+                }
+
+
             }
         }
     }

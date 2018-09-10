@@ -113,7 +113,6 @@ class SoloMatchResultActivity : BaseActivityQuiz() {
             if( bitmap != null){
                 val photo = SharePhoto.Builder()
                         .setBitmap(bitmap)
-                        .setCaption("Share Facebook")
                         .build()
                 val content = SharePhotoContent.Builder()
                         .addPhoto(photo)

@@ -37,6 +37,7 @@ class LoginInteractor(pLoginListener: LoginListener, pContext: Context) {
 
     private fun signInWithGoogle() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestIdToken("idToken")
                 .requestEmail()
                 .build()
         val signInIntent = mContext?.let { GoogleSignIn.getClient(it, gso).getSignInIntent() }
