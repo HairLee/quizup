@@ -192,6 +192,15 @@ class SoloMatchWithImageActivity : FragmentActivity(), View.OnClickListener, Sol
 
     }
 
+    private fun intentGoToResultActivity(){
+        val intent = Intent(baseContext, SoloMatchResultActivity::class.java)
+        intent.putExtra(ConstantsApp.KEY_SOLO_MATCH_ID,mMatchId)
+        intent.putExtra(ConstantsApp.KEY_QUESTION_ID,mTopicId)
+        startActivityForResult(intent, ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        pSoloMatchWithTextPresenter.endGame(baseContext,mTopicId,mMatchId)
+    }
+
     /*If the answer is wrong */
     private fun goToBreakActivityBecauseOfWrongAnswer(){
         val intent = Intent(this, SoloMatchBreakActivity::class.java)
@@ -213,6 +222,9 @@ class SoloMatchWithImageActivity : FragmentActivity(), View.OnClickListener, Sol
         ProgressDialogUtils.dismissProgressDialog()
         if (mLastQuestion == "true" && mData.correct == ConstantsApp.KEY_CORRECT_ANSWER) {
             goToResultActivity()
+            return
+        } else if(mLastQuestion == "true" &&  mData.correct != ConstantsApp.KEY_CORRECT_ANSWER) {
+            intentGoToResultActivity()
             return
         }
 
@@ -243,6 +255,8 @@ class SoloMatchWithImageActivity : FragmentActivity(), View.OnClickListener, Sol
             }
         }
     }
+
+
 
     /*Request Api Answer the question isn't Ok. Return the response */
     override fun answerTheQuestionFault() {

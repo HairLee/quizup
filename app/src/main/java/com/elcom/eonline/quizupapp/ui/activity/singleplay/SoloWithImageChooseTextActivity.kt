@@ -165,8 +165,11 @@ class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.on
 
     fun afterAnswerTheQuestion(isAnswer:Boolean){
         ProgressDialogUtils.dismissProgressDialog()
-        if (mLastQuestion == "true") {
+        if (mLastQuestion == "true" && isAnswer) {
             goToResultActivity()
+            return
+        } else if(mLastQuestion == "true" &&  !isAnswer) {
+            intentGoToResultActivity()
             return
         }
 
@@ -187,18 +190,22 @@ class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.on
             }
 
             override fun clickYesAction() {
-                val intent = Intent(baseContext, SoloMatchResultActivity::class.java)
-                intent.putExtra(ConstantsApp.KEY_SOLO_MATCH_ID,mMatchId)
-                intent.putExtra(ConstantsApp.KEY_QUESTION_ID,mTopicId)
-                startActivityForResult(intent, ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-                pSoloMatchWithTextPresenter.endGame(baseContext,mTopicId,mMatchId)
+                intentGoToResultActivity()
             }
 
 
         } )
         congratuationDialog.show()
 
+    }
+
+    private fun intentGoToResultActivity(){
+        val intent = Intent(baseContext, SoloMatchResultActivity::class.java)
+        intent.putExtra(ConstantsApp.KEY_SOLO_MATCH_ID,mMatchId)
+        intent.putExtra(ConstantsApp.KEY_QUESTION_ID,mTopicId)
+        startActivityForResult(intent, ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        pSoloMatchWithTextPresenter.endGame(baseContext,mTopicId,mMatchId)
     }
 
     private fun goBackToQuestionIntroActivityBecauseOfRightAnswer(){

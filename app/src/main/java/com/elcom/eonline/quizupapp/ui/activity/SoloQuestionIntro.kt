@@ -23,6 +23,12 @@ import com.elcom.eonline.quizupapp.ui.network.RestData
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
 import com.elcom.eonline.quizupapp.utils.LogUtils
 import com.elcom.eonline.quizupapp.utils.PreferUtils
+import com.elcom.eonline.quizupapp.utils.ProgressDialogUtils
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.reward.RewardItem
+import com.google.android.gms.ads.reward.RewardedVideoAd
+import com.google.android.gms.ads.reward.RewardedVideoAdListener
 import com.google.gson.JsonElement
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_solo_question_intro.*
@@ -33,18 +39,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
-
-    override fun onSomeoneInviteYouToPlayGame(resultQuestion: JSONObject) {
-        runOnUiThread {
-            val snack = Snackbar.make(lnRoot, "Someone invite you to play a game", Snackbar.LENGTH_SHORT)
-            val view = snack.getView()
-            val params = view.layoutParams as FrameLayout.LayoutParams
-            params.gravity = Gravity.BOTTOM
-            view.layoutParams = params
-            snack.show()
-        }
-    }
+class SoloQuestionIntro : BaseActivityQuiz(), RewardedVideoAdListener {
 
     private var mTopicId = ""
     private var mMatchId = ""
@@ -243,10 +238,15 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
 
     private fun showVideoAdmod(){
 
-        if(mDisplayVideoAdmod == 13){
+        if(mDisplayVideoAdmod == 5){
             mDisplayVideoAdmod = 0
-            val intent = Intent(this, AdmodVideoActivity::class.java)
-            startActivityForResult(intent, ConstantsApp.REQUEST_CODE_FROM_QUESTION_INTRO_ACTIVITY )
+            MobileAds.initialize(this, "ca-app-pub-7842886552548626/2863752478")
+            // Use an activity context to get the rewarded video instance.
+            mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this)
+            mRewardedVideoAd.rewardedVideoAdListener = this
+            ProgressDialogUtils.showProgressDialog(this, 0, 0)
+            mRewardedVideoAd.loadAd("ca-app-pub-7842886552548626/2863752478",
+                    AdRequest.Builder().build())
         }
     }
 
@@ -269,6 +269,35 @@ class SoloQuestionIntro : BaseActivityQuiz(), OnSocketInviteOpponentListener {
         } )
         congratuationDialog.show()
 
+    }
+
+
+    private lateinit var mRewardedVideoAd: RewardedVideoAd
+    override fun onRewardedVideoAdClosed() {
+    }
+
+    override fun onRewardedVideoAdLeftApplication() {
+    }
+
+    override fun onRewardedVideoAdLoaded() {
+        ProgressDialogUtils.dismissProgressDialog()
+        mRewardedVideoAd.show()
+    }
+
+    override fun onRewardedVideoAdOpened() {
+    }
+
+    override fun onRewardedVideoCompleted() {
+    }
+
+    override fun onRewarded(p0: RewardItem?) {
+    }
+
+    override fun onRewardedVideoStarted() {
+    }
+
+    override fun onRewardedVideoAdFailedToLoad(p0: Int) {
+        ProgressDialogUtils.dismissProgressDialog()
     }
 
 
