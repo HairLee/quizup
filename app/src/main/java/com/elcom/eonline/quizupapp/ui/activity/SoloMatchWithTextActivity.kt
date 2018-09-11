@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -224,26 +225,28 @@ class SoloMatchWithTextActivity : BaseActivityQuiz(), View.OnClickListener, Solo
             return
         }
 
-        if(mData.correct == ConstantsApp.KEY_CORRECT_ANSWER){
-            mp3Manage.playSong(this,1)
-        } else {
-            mp3Manage.playSong(this,0)
-        }
 
-//        if(PreferUtils().getSoundSetting(this)){
-//            if(mData.correct == ConstantsApp.KEY_CORRECT_ANSWER){
-//                mp3Manage.playSong(this,1)
-//            } else {
-//                mp3Manage.playSong(this,0)
-//            }
+        Log.e("hailpt"," Sound ==== "+PreferUtils().getSoundSetting(this))
+//        if(mData.correct == ConstantsApp.KEY_CORRECT_ANSWER){
+//            mp3Manage.playSong(this,1)
 //        } else {
-//            Utils.CustomButtom(mButtonList).enableButtonClick()
-//            if(mData.correct == ConstantsApp.KEY_CORRECT_ANSWER){
-//                goBackToQuestionIntroActivityBecauseOfRightAnswer()
-//            } else {
-//                goToBreakActivityBecauseOfWrongAnswer()
-//            }
+//            mp3Manage.playSong(this,0)
 //        }
+
+        if(PreferUtils().getSoundSetting(this)){
+            if(mData.correct == ConstantsApp.KEY_CORRECT_ANSWER){
+                mp3Manage.playSong(this,1)
+            } else {
+                mp3Manage.playSong(this,0)
+            }
+        } else {
+            Utils.CustomButtom(mButtonList).enableButtonClick()
+            if(mData.correct == ConstantsApp.KEY_CORRECT_ANSWER){
+                goBackToQuestionIntroActivityBecauseOfRightAnswer()
+            } else {
+                goToBreakActivityBecauseOfWrongAnswer()
+            }
+        }
     }
 
     override fun onMp3RightOrWrongAnswerFinished(pos: Int) {

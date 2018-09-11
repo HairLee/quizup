@@ -20,10 +20,7 @@ import com.elcom.eonline.quizupapp.ui.listener.OnMp3FinishListener
 import com.elcom.eonline.quizupapp.ui.network.RestClient
 import com.elcom.eonline.quizupapp.ui.network.RestData
 import com.elcom.eonline.quizupapp.ui.view.SoloMatchWithTextView
-import com.elcom.eonline.quizupapp.utils.ConstantsApp
-import com.elcom.eonline.quizupapp.utils.Mp3Manage
-import com.elcom.eonline.quizupapp.utils.PreferUtils
-import com.elcom.eonline.quizupapp.utils.ProgressDialogUtils
+import com.elcom.eonline.quizupapp.utils.*
 import com.google.gson.Gson
 import com.google.gson.JsonElement
 import com.squareup.picasso.Picasso
@@ -173,11 +170,21 @@ class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.on
             return
         }
 
-        if(isAnswer){
-            mp3Manage.playSong(this,1)
+        if(PreferUtils().getSoundSetting(this)){
+            if(isAnswer){
+                mp3Manage.playSong(this,1)
+            } else {
+                mp3Manage.playSong(this,0)
+            }
         } else {
-            mp3Manage.playSong(this,0)
+//            Utils.CustomButtom(mButtonList).enableButtonClick()
+            if(isAnswer){
+                goBackToQuestionIntroActivityBecauseOfRightAnswer()
+            } else {
+                goToBreakActivityBecauseOfWrongAnswer()
+            }
         }
+
     }
 
     private fun goToResultActivity(){

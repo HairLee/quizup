@@ -238,7 +238,7 @@ class SoloQuestionIntro : BaseActivityQuiz(), RewardedVideoAdListener {
 
     private fun showVideoAdmod(){
 
-        if(mDisplayVideoAdmod == 5){
+        if(mDisplayVideoAdmod == 15){
             mDisplayVideoAdmod = 0
             MobileAds.initialize(this, "ca-app-pub-7842886552548626/2863752478")
             // Use an activity context to get the rewarded video instance.
