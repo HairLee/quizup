@@ -12,7 +12,7 @@
     <string name="fb_login_protocol_scheme">fb2146066182338933</string>
     <string name="coin">Coins</string>
     <string name="experience">Ex</string>
-    <string name="can_not_get_data">Can not get data</string>
+    <string name="can_not_get_data">Không lấy được dữ liệu</string>
     <string name="banner_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="get_last_question_success">get last question success</string>
     <string name="intro_3">So tài kiến thức của bạn cùng hàng nghìn người chơi khác hàng ngày và nhận nhiều quà tặng hấp dẫn.</string>

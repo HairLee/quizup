@@ -23,7 +23,7 @@
         <Button
             android:textColor="@color/white"
             android:background="@drawable/radius_button_blue_bg_blue_srtoke_layout"
-            android:text="Cancel"
+            android:text="Thoát"
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/btn_ok"
             android:layout_alignParentBottom="true"
@@ -34,7 +34,7 @@
         <Button
             android:textColor="@color/white"
             android:background="@drawable/radius_button_blue_bg_blue_srtoke_layout"
-            android:text="Ok"
+            android:text="Đồng ý"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"

@@ -3,6 +3,8 @@ package com.elcom.eonline.quizupapp.ui.activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import com.elcom.eonline.quizupapp.ApplicationQuzup
@@ -113,8 +115,18 @@ class ChallengeInvitationDialogActivity : AppCompatActivity(), OnRejectInvitatio
     }
 
     override fun onRejectInvitationListener() {
-        Toast.makeText(this, "Hủy lời mời", Toast.LENGTH_SHORT).show()
+        runOnUiThreadA(Runnable { Toast.makeText(baseContext, "Hủy lời mời", Toast.LENGTH_SHORT).show() })
         finish()
+    }
+
+
+    private val mHandler = Handler()
+    fun runOnUiThreadA(runnable: Runnable) {
+        if (Thread.currentThread() === Looper.getMainLooper().thread) {
+            runnable.run()
+        } else {
+            mHandler.post(runnable)
+        }
     }
 
     private fun updateLayout(data:ChallengeInfo){
