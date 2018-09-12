@@ -11,30 +11,25 @@ import com.elcom.eonline.quizupapp.ui.activity.model.entity.SoloMatch
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.topicdetail.Topic
 import com.elcom.eonline.quizupapp.ui.activity.model.entity.response.topicdetail.TopicDetail
 import com.elcom.eonline.quizupapp.ui.activity.presenter.TopicDetailViewPresenter
+import com.elcom.eonline.quizupapp.ui.dialog.NotEnoughCoinDialog
+import com.elcom.eonline.quizupapp.ui.listener.OnDialogInvitationListener
 import com.elcom.eonline.quizupapp.ui.listener.OnSocketInviteOpponentListener
 import com.elcom.eonline.quizupapp.ui.view.TopicDetailView
 import com.elcom.eonline.quizupapp.utils.ConstantsApp
 import com.elcom.eonline.quizupapp.utils.PreferUtils
 import com.elcom.eonline.quizupapp.utils.ProgressDialogUtils
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.reward.RewardItem
+import com.google.android.gms.ads.reward.RewardedVideoAd
+import com.google.android.gms.ads.reward.RewardedVideoAdListener
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_topic_detail.*
 import kotlinx.android.synthetic.main.activity_topic_detail.view.*
 import org.json.JSONObject
 
-class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickListener, OnSocketInviteOpponentListener {
+class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickListener, RewardedVideoAdListener {
 
-
-
-    override fun onSomeoneInviteYouToPlayGame(resultQuestion: JSONObject) {
-        runOnUiThread {
-            val snack = Snackbar.make(rlRoot, "Someone invite you to play a game", Snackbar.LENGTH_SHORT)
-            val view = snack.getView()
-            val params = view.layoutParams as FrameLayout.LayoutParams
-            params.gravity = Gravity.BOTTOM
-            view.layoutParams = params
-            snack.show()
-        }
-    }
 
     private var mTopicId = ""
     private var mMatchId = ""
@@ -42,6 +37,7 @@ class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickLis
     private var mFavourite = "0"
     private var mLike = false
     private var mTotalLikes = 0
+    private var mTopic:TopicDetail? = null
     private var PLAY_GAME_TYPE = 0
 
     override fun getLayout(): Int {
@@ -58,16 +54,10 @@ class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickLis
         imvRank.setOnClickListener(this)
         tvArchiMore.setOnClickListener(this)
 
-        PreferUtils().setAdmodCount(this,0)
     }
 
     override fun initData() {
-        if (intent.hasExtra(ConstantsApp.KEY_TOPIC_ID)){
-            mTopicId = intent.getStringExtra(ConstantsApp.KEY_TOPIC_ID)
-        }
-        getTopicViewDetail()
 
-        setOnlineUser()
 
     }
 
@@ -79,9 +69,12 @@ class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickLis
 
     override fun onResume() {
         super.onResume()
-//        if( ConstantsApp.socketManage != null){
-//            ConstantsApp.socketManage.initToInventionFromFriend(this)
-//        }
+        if (intent.hasExtra(ConstantsApp.KEY_TOPIC_ID)){
+            mTopicId = intent.getStringExtra(ConstantsApp.KEY_TOPIC_ID)
+        }
+        getTopicViewDetail()
+
+        setOnlineUser()
     }
 
     override fun onClick(p0: View?) {
@@ -100,13 +93,23 @@ class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickLis
             }
 
             R.id.btnChallenge -> {
-                if(mTopicId != ""){
-                    PLAY_GAME_TYPE = ConstantsApp.PLAY_GAME_CHALLENGE
+                if(mTopic != null) {
+                    if(mTopicId != "" && ( mTopic!!.coins!! > 0 || mTopic!!.number_challegen!!.toInt() > 0)){
+                        PLAY_GAME_TYPE = ConstantsApp.PLAY_GAME_CHALLENGE
 //                    var  intent = Intent(applicationContext, ChallengeFindingRandomOpponentActivity::class.java)
-                    val  intent = Intent(applicationContext, ChallengeFromFriendsActivity::class.java)
-                    intent.putExtra(ConstantsApp.KEY_QUESTION_ID,mTopicId)
-                    startActivityForResult(intent, ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                        val  intent = Intent(applicationContext, ChallengeFromFriendsActivity::class.java)
+                        intent.putExtra(ConstantsApp.KEY_QUESTION_ID,mTopicId)
+                        startActivityForResult(intent, ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    } else {
+                        // Show dialog Have to watch video
+                        if(mTopic!!.number_view_video_get_challegen!!.toInt() > 0){
+                            showDialogNotEnoughCoin()
+                        } else {
+                            showDialogNotEnoughCoinAndFreeVideo()
+                        }
+
+                    }
                 }
             }
 
@@ -157,6 +160,7 @@ class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickLis
 
     override fun getTopicDetailSuccess(pTopic: TopicDetail) {
         ProgressDialogUtils.dismissProgressDialog()
+        mTopic = pTopic;
         mTotalLikes = pTopic.totalFollower!!.toInt()
         txt_topic_title.text = pTopic.name
 //        txt_like.text = mTotalLikes.toString() + " Followers"
@@ -237,13 +241,92 @@ class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickLis
         dismisProgressDialog()
     }
 
+    private fun showDialogNotEnoughCoin(){
+        val mChallengeGameDialog = NotEnoughCoinDialog(this, false, object : OnDialogInvitationListener {
+
+            override fun onInviteFriendToPlayGame() {
+                loadVideoAdmod()
+            }
+
+            override fun onCancelInviteFriendToPlayGame() {
+                startActivityForResult(Intent(this@TopicDetailActivity, CoinPaymentActivity::class.java),1111)
+            }
+
+        })
+        mChallengeGameDialog!!.show()
+    }
+
+    private fun showDialogNotEnoughCoinAndFreeVideo(){
+
+        val mChallengeGameDialog = NotEnoughCoinDialog(this, true, object : OnDialogInvitationListener {
+
+            override fun onInviteFriendToPlayGame() {
+                loadVideoAdmod()
+            }
+
+            override fun onCancelInviteFriendToPlayGame() {
+                startActivityForResult(Intent(this@TopicDetailActivity, CoinPaymentActivity::class.java),1111)
+            }
+
+        })
+        mChallengeGameDialog!!.show()
+
+    }
+
+    private fun loadVideoAdmod(){
+        MobileAds.initialize(this, "ca-app-pub-7842886552548626/2863752478")
+        // Use an activity context to get the rewarded video instance.
+        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this)
+        mRewardedVideoAd.rewardedVideoAdListener = this
+        ProgressDialogUtils.showProgressDialog(this, 0, 0)
+        mRewardedVideoAd.loadAd("ca-app-pub-7842886552548626/2863752478",
+                AdRequest.Builder().build())
+    }
+
+    private lateinit var mRewardedVideoAd: RewardedVideoAd
+    override fun onRewardedVideoAdClosed() {
+        goToChallengeActivity()
+    }
+
+    override fun onRewardedVideoAdLeftApplication() {
+    }
+
+    override fun onRewardedVideoAdLoaded() {
+        ProgressDialogUtils.dismissProgressDialog()
+        mRewardedVideoAd.show()
+    }
+
+    override fun onRewardedVideoAdOpened() {
+    }
+
+    override fun onRewardedVideoCompleted() {
+    }
+
+    override fun onRewarded(p0: RewardItem?) {
+
+    }
+
+    override fun onRewardedVideoStarted() {
+    }
+
+    override fun onRewardedVideoAdFailedToLoad(p0: Int) {
+        ProgressDialogUtils.dismissProgressDialog()
+    }
+
+    private fun goToChallengeActivity(){
+        PLAY_GAME_TYPE = ConstantsApp.PLAY_GAME_CHALLENGE
+        val  intent = Intent(applicationContext, ChallengeFromFriendsActivity::class.java)
+        intent.putExtra(ConstantsApp.KEY_QUESTION_ID,mTopicId)
+        startActivityForResult(intent, ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         if(ConstantsApp.socketManage != null){
             ConstantsApp.socketManage.sendOfflineTopicMyself(this,mTopicId)
         }
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

@@ -66,4 +66,17 @@ class Topic {
     @Expose
     var time_ago: String? = null
 
+
+    @SerializedName("play_with_avatar")
+    @Expose
+    var play_with_avatar: String? = null
+
+    @SerializedName("type")
+    @Expose
+    var type: String? = null
+
+    @SerializedName("result")
+    @Expose
+    var result: String? = null
+
 }

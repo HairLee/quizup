@@ -1,0 +1,104 @@
+
+
+<android.support.v7.widget.CardView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    card_view:cardCornerRadius="20dp"
+    card_view:cardElevation="13dp"
+    card_view:cardUseCompatPadding="false"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+
+        <RelativeLayout
+            android:id="@+id/rlTitle"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/radius_bg_purple_just_on_top_layout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Không đủ coin"
+                android:textColor="@color/white" />
+
+            <ImageView
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/imvClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:padding="10dp"
+                android:src="@drawable/ic_close" />
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Xem Video hay nạp coin để tiếp tục?"
+             android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/lnBotton"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="25dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnAccept"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+
+                android:layout_centerHorizontal="true"
+
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/btn_ok"
+                android:background="@drawable/radius_button_pink_bg_pink_srtoke_layout"
+                android:text="XEM VIDEO"
+                android:textColor="@color/white" />
+
+
+
+            <Button
+                android:id="@+id/btnReject"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+
+                android:layout_centerHorizontal="true"
+
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/btn_ok"
+                android:background="@drawable/radius_button_green_bg_green_srtoke_layout"
+                android:text="NẠP COIN"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+</android.support.v7.widget.CardView>
+
+
+

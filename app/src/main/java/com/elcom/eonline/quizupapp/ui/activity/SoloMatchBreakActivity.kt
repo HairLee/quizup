@@ -37,6 +37,7 @@ class SoloMatchBreakActivity : FragmentActivity(), RewardedVideoAdListener {
     private var mMatchId = ""
     private var mTopicId = ""
     private var mMinus = "0"
+    private var isLoadingVideoAdmod = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        supportActionBar!!.hide()
@@ -72,7 +73,12 @@ class SoloMatchBreakActivity : FragmentActivity(), RewardedVideoAdListener {
         }
 
         btnVideoAdmod.setOnClickListener {
-            showVideoAdmod()
+            if(isLoadingVideoAdmod){
+                showVideoAdmod()
+            } else {
+                Toast.makeText(this@SoloMatchBreakActivity, "Bạn đã hết lượt xem Video", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
 
@@ -113,6 +119,8 @@ class SoloMatchBreakActivity : FragmentActivity(), RewardedVideoAdListener {
     private fun updateLayout(result:Result){
         tvNextCoins.setText("TIẾP TỤC - "+mMinus)
         txt_stop_at.text = "+"+result.pointAnswer
+
+        isLoadingVideoAdmod = result.view_video_more_turn!!.toInt() > 0
     }
 
     private fun updateUI(){
@@ -133,14 +141,6 @@ class SoloMatchBreakActivity : FragmentActivity(), RewardedVideoAdListener {
     private lateinit var mRewardedVideoAd: RewardedVideoAd
     private fun showVideoAdmod(){
 
-        var admodCount = PreferUtils().getAdmodCount(this)
-
-        if(admodCount == 10){
-            Toast.makeText(this, " Hết số lần xem video", Toast.LENGTH_SHORT).show()
-            return
-        }
-        admodCount++
-        PreferUtils().setAdmodCount(this,admodCount)
         MobileAds.initialize(this, "ca-app-pub-7842886552548626/2863752478")
         // Use an activity context to get the rewarded video instance.
         mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this)

@@ -68,7 +68,6 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
         LogUtils.e("SocketManage","ChallengeFromFriendsActivity Someone invite you to play a game " + resultQuestion.toString())
         LogUtils.e("SocketManage","ChallengeFromFriendsActivity Someone invite you to play a game Id " + PreferUtils().getUserId(this))
 
-
         if (resultQuestion["challenge"] == "false"){
            if(mChallengeGameDialog != null && mChallengeGameDialog!!.isShowing){
                mChallengeGameDialog!!.dismiss()

@@ -50,4 +50,8 @@ class Result {
     @Expose
     var minus_coins: String? = null
 
+    @SerializedName("view_video_more_turn")
+    @Expose
+    var view_video_more_turn: String? = null
+
 }

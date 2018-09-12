@@ -116,15 +116,15 @@ class PreferUtils {
     }
 
 
-    fun setAdmodCount(context: Context, token: Int) {
-        val editor = context.getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE).edit()
-        editor.putInt(KEY_ADMOD_COUNT, token)
-        editor.commit()
-    }
-
-    fun getAdmodCount(context: Context): Int {
-        val preferences = context.getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE)
-        return preferences.getInt(KEY_ADMOD_COUNT,0)
-    }
+//    fun setAdmodCount(context: Context, token: Int) {
+//        val editor = context.getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE).edit()
+//        editor.putInt(KEY_ADMOD_COUNT, token)
+//        editor.commit()
+//    }
+//
+//    fun getAdmodCount(context: Context): Int {
+//        val preferences = context.getSharedPreferences(PREFER_NAME, Context.MODE_PRIVATE)
+//        return preferences.getInt(KEY_ADMOD_COUNT,0)
+//    }
 
 }

@@ -130,7 +130,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                 LinearLayoutManager layoutManager1 = new LinearLayoutManager(mContext);
                 layoutManager1.setOrientation(LinearLayoutManager.HORIZONTAL);
                 playingCellViewHolder.mRecyclerView.setLayoutManager(layoutManager1);
-                HomePlayingRecyclerAdapter adapter1 = new HomePlayingRecyclerAdapter(mList.get(0).getTopics());
+                HomePlayingRecyclerAdapter adapter1 = new HomePlayingRecyclerAdapter(mList.get(position).getTopics());
                 adapter1.SetOnItemClickListener(mItemClickListener);
                 playingCellViewHolder.mTitle.setText(mList.get(position).getName());
                 playingCellViewHolder.mRecyclerView.setAdapter(adapter1);
@@ -142,14 +142,14 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                 LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
                 layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                 cellViewHolder.mRecyclerView.setLayoutManager(layoutManager);
-                HomeFavouriteRecyclerAdapter adapter = new HomeFavouriteRecyclerAdapter(mList.get(1).getTopics());
+                HomeFavouriteRecyclerAdapter adapter = new HomeFavouriteRecyclerAdapter(mList.get(position).getTopics(), mList.get(position).getKeyValue());
                 adapter.SetOnItemClickListener(onFavorListListener);
                 cellViewHolder.mRecyclerView.setAdapter(adapter);
-                cellViewHolder.mTitle.setText(mList.get(1).getName());
+                cellViewHolder.mTitle.setText(mList.get(position).getName());
                 cellViewHolder.tvMore.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        onSeeMoreTopicsListener.onSeeMoreTopics(1);
+                        onSeeMoreTopicsListener.onSeeMoreTopics(position);
                     }
                 });
 
@@ -161,7 +161,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                 LinearLayoutManager layoutManager2 = new LinearLayoutManager(mContext);
                 layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
                 favouriteCellViewHolder.mRecyclerView.setLayoutManager(layoutManager2);
-                HomeFavouriteRecyclerAdapter favouriteTopicAdapter = new HomeFavouriteRecyclerAdapter(mList.get(2).getTopics());
+                HomeFavouriteRecyclerAdapter favouriteTopicAdapter = new HomeFavouriteRecyclerAdapter(mList.get(2).getTopics(),mList.get(2).getKeyValue());
                 favouriteTopicAdapter.SetOnItemClickListener(onFavorListListener);
                 favouriteCellViewHolder.mRecyclerView.setAdapter(favouriteTopicAdapter);
                 favouriteCellViewHolder.mTitle.setText(mList.get(2).getName());
@@ -192,7 +192,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
     @Override
     public int getItemCount() {
 
-        return 2;
+        return mList.size();
     }
 
     public void SetOnItemClickListener(final HomePlayingRecyclerAdapter.OnItemClickListener mItemClickListener) {
@@ -205,21 +205,6 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
 
     @Override
     public int getItemViewType(int position) {
-
-        switch (position){
-            case 0: {
-                return FAVOURITE_TOPIC;
-            }
-
-            case 1: {
-                return HISTORY_TOPIC;
-            }
-
-            case 2: {
-                return HISTORY_TOPIC;
-            }
-        }
-
         return HISTORY_TOPIC;
     }
 

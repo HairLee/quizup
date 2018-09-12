@@ -257,6 +257,10 @@ class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.on
 
     }
 
+    override fun onBackPressed() {
+
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY){

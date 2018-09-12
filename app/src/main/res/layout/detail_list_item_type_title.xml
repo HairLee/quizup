@@ -32,13 +32,34 @@
             android:layout_gravity="center"
             />
         <ImageView
-            android:visibility="gone"
+            android:visibility="invisible"
             android:padding="5dp"
             android:id="@+id/imvFavor"
             android:layout_alignParentRight="true"
             android:src="@drawable/favor_topic_ic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
+        <ImageView
+            android:visibility="invisible"
+            android:id="@+id/imvWorL"
+           android:layout_centerHorizontal="true"
+            android:src="@drawable/history_lost_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:visibility="invisible"
+            android:id="@+id/imvAva"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/defaut_avatar_ic"
+            android:layout_width="22dp"
+            android:layout_height="22dp" />
+
     </RelativeLayout>
 
 

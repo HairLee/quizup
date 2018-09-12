@@ -21,10 +21,12 @@ import java.util.List;
  */
 public class HomeFavouriteRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Topic> mList;
+    private int keyValue;
     private OnItemClickListener mItemClickListener;
 
-    public HomeFavouriteRecyclerAdapter(List<Topic> list) {
+    public HomeFavouriteRecyclerAdapter(List<Topic> list, int keyValue) {
         this.mList = list;
+        this.keyValue = keyValue;
     }
 
     private class CellViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
@@ -32,12 +34,16 @@ public class HomeFavouriteRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
         private TextView tvTopicTitle;
         private TextView txt_topic;
         private ImageView imvFavor;
+        private ImageView imvWorL;
+        private ImageView imvAva;
         private CellViewHolder(View itemView) {
             super(itemView);
             imvIconGame = (CircularImageView) itemView.findViewById(R.id.imv_game_icon);
             tvTopicTitle = (TextView)itemView.findViewById(R.id.txt_topic_title);
             txt_topic = (TextView)itemView.findViewById(R.id.txt_topic);
             imvFavor = itemView.findViewById(R.id.imvFavor);
+            imvWorL = itemView.findViewById(R.id.imvWorL);
+            imvAva = itemView.findViewById(R.id.imvAva);
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
         }
@@ -74,9 +80,12 @@ public class HomeFavouriteRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         switch (viewHolder.getItemViewType()) {
             default: {
+
+                Topic topic = mList.get(position);
+
                 CellViewHolder cellViewHolder = (CellViewHolder) viewHolder;
                 cellViewHolder.tvTopicTitle.setText(mList.get(position).getName());
-                cellViewHolder.txt_topic.setText(mList.get(position).getNumber_played() + " lượt chơi");
+//                cellViewHolder.txt_topic.setText(topic.getNumber_played() + " lượt chơi");
 
                 Picasso.get()
                         .load(mList.get(position).getUrl())
@@ -87,6 +96,35 @@ public class HomeFavouriteRecyclerAdapter extends RecyclerView.Adapter<RecyclerV
                 } else {
                     ((CellViewHolder) viewHolder).imvFavor.setVisibility(View.VISIBLE);
                 }
+
+                if(keyValue == 2 && topic.getType().equals("2")){
+                    cellViewHolder.imvWorL.setVisibility(View.VISIBLE);
+                    cellViewHolder.imvAva.setVisibility(View.VISIBLE);
+                    if(!topic.getPlay_with_avatar().equals("")){
+                        Picasso.get().load(topic.getPlay_with_avatar()).into(cellViewHolder.imvAva);
+                    }
+                    switch (topic.getResult()){
+
+                        case "W" :
+                            cellViewHolder.imvWorL.setBackgroundResource(R.drawable.history_win_ic);
+                            break;
+
+                        case "D" :
+                            cellViewHolder.imvWorL.setBackgroundResource(R.drawable.history_d_ic);
+                            break;
+
+                        case "L" :
+                            cellViewHolder.imvWorL.setBackgroundResource(R.drawable.history_lost_ic);
+                            break;
+
+                    }
+
+
+                } else {
+                    cellViewHolder.imvWorL.setVisibility(View.INVISIBLE);
+                    cellViewHolder.imvAva.setVisibility(View.INVISIBLE);
+                }
+
                 break;
             }
         }

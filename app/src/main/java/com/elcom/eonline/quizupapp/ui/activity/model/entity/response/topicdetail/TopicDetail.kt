@@ -36,6 +36,10 @@ class TopicDetail {
     @Expose
     var result_question_true: Int? = null
 
+    @SerializedName("coins")
+    @Expose
+    var coins: Int? = null
+
 
     @SerializedName("jump_wins")
     @Expose
@@ -58,5 +62,15 @@ class TopicDetail {
     @SerializedName("level")
     @Expose
     var level: String? = null
+
+
+    @SerializedName("number_challegen")
+    @Expose
+    var number_challegen: String? = null
+
+
+    @SerializedName("number_view_video_get_challegen")
+    @Expose
+    var number_view_video_get_challegen: String? = null
 
 }

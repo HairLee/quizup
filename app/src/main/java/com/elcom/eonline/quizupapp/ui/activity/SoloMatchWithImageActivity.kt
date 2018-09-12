@@ -267,7 +267,6 @@ class SoloMatchWithImageActivity : FragmentActivity(), View.OnClickListener, Sol
     override fun onFinishCountDown(listDemo: Boolean) {
         Utils.CustomButtom(mButtonList).unableButtonClick()
         pSoloMatchWithTextPresenter.answerTheQuestion(PreferUtils().getUserId(this), mTopicId, mQuestion!!.answer!![mWrongAnswer].getId().toString(), mQuestion!!.id!!, mMatchId, mLastQuestion )
-        mp3Manage.playSong(this,0)
         Toast.makeText(this,"Hết thời gian trả lời",Toast.LENGTH_SHORT).show()
     }
 
