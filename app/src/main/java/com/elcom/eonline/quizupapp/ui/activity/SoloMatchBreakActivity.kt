@@ -209,16 +209,6 @@ class SoloMatchBreakActivity : FragmentActivity(), RewardedVideoAdListener {
                     setResult(ConstantsApp.RESULT_CODE_TO_STOP_GAME_FROM_QUIZUPACTIVITY )
                     finish()
                 }
-
-                ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_OK -> {
-                    setResult(ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_OK)
-                    finish()
-                }
-
-                ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_CANCEL -> {
-                    setResult(ConstantsApp.RESULT_CODE_TO_STOP_GAME_FROM_QUIZUPACTIVITY)
-                    finish()
-                }
             }
         }
 

@@ -280,11 +280,6 @@ class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.on
                     setResult(ConstantsApp.RESULT_CODE_FROM_RIGHT_ANSWER_USING_COINS,intent)
                     finish()
                 }
-
-                ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_OK -> {
-                    setResult(ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_OK)
-                    finish()
-                }
             }
         }
 

@@ -312,10 +312,6 @@ class SoloMatchWithTextActivity : BaseActivityQuiz(), View.OnClickListener, Solo
                     finish()
                 }
 
-                ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_OK -> {
-                    setResult(ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_OK)
-                    finish()
-                }
             }
         }
 

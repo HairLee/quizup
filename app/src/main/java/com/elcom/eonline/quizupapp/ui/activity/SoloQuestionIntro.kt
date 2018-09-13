@@ -238,7 +238,7 @@ class SoloQuestionIntro : BaseActivityQuiz(), RewardedVideoAdListener {
 
     private fun showVideoAdmod(){
 
-        if(mDisplayVideoAdmod == 15){
+        if(mDisplayVideoAdmod == mDefaultDisplayVideoAdmod){
             mDisplayVideoAdmod = 0
             MobileAds.initialize(this, "ca-app-pub-7842886552548626/2863752478")
             // Use an activity context to get the rewarded video instance.
@@ -337,19 +337,7 @@ class SoloQuestionIntro : BaseActivityQuiz(), RewardedVideoAdListener {
                         showVideoAdmod()
                     }
 
-                    ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_OK -> {
-                        mMinus = "0"
-                        mQuestionNumber++
-                        mDisplayVideoAdmod = 0
-                        mType = 2
-                        btn_next.text = "BẮT ĐẦU CÂU "+ mQuestionNumber
-                        getIntroductionOfTheQuestion()
-                    }
 
-                    ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_CANCEL -> {
-                        setResult(ConstantsApp.RESULT_CODE_TO_STOP_GAME_FROM_QUIZUPACTIVITY)
-                        finish()
-                    }
                 }
             }
 

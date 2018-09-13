@@ -59,9 +59,6 @@ public class ConstantsApp {
     public static int REQUEST_CODE_FROM_QUESTION_INTRO_ACTIVITY = 102;
     public static int RESULT_CODE_FROM_RIGHT_ANSWER = 103;
     public static int RESULT_CODE_FROM_RIGHT_ANSWER_USING_COINS = 104;
-    public static int RESULT_CODE_FROM_ADMODS_VIDEO = 105;
-    public static int RESULT_CODE_FROM_ADMODS_VIDEO_OK = 1051;
-    public static int RESULT_CODE_FROM_ADMODS_VIDEO_CANCEL = 1050;
 
     public static String KEY_LIVE_CHALLENGE_VALUE= "KEY_LIVE_CHALLENGE_VALUE";
     public static String KEY_LIVE_CHALLENGE_ID_VALUE= "KEY_LIVE_CHALLENGE_ID_VALUE";

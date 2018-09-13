@@ -58,7 +58,7 @@ class AdmodVideoActivity : BaseActivityQuiz(), RewardedVideoAdListener {
 
     override fun onRewarded(p0: RewardItem?) {
         Toast.makeText(this, " onRewarded ", Toast.LENGTH_SHORT).show()
-        setResult(ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_OK)
+//        setResult(ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_OK)
         finish()
     }
 
@@ -68,7 +68,7 @@ class AdmodVideoActivity : BaseActivityQuiz(), RewardedVideoAdListener {
 
     override fun onRewardedVideoAdFailedToLoad(p0: Int) {
         Log.e("hailpt","onRewardedVideoAdFailedToLoad")
-        setResult(ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_CANCEL)
+//        setResult(ConstantsApp.RESULT_CODE_FROM_ADMODS_VIDEO_CANCEL)
         finish()
     }
 

@@ -33,7 +33,7 @@
         android:textStyle="bold"
         android:layout_marginTop="10dp"
         android:textSize="20sp"
-        android:text="BẠN CHIẾN THẮNG"
+        tools:text="BẠN CHIẾN THẮNG"
         android:textColor="#2DDCAC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -102,6 +102,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:visibility="gone"
                 android:layout_marginTop="3dp"
                 android:textColor="#48ffffff"
                 android:text="Chuyên gia"
@@ -156,6 +157,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:visibility="gone"
                 android:layout_marginTop="3dp"
                 android:textColor="#48ffffff"
                 android:text="Chuyên gia"
@@ -183,18 +185,30 @@
 
 
     <LinearLayout
-        android:visibility="gone"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:src="@drawable/challenge_result_list"
+            android:id="@+id/imvStalistic"
+            android:src="@drawable/challenge_result_stalistic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/imvShare"
+            android:src="@drawable/challenge_result_share"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
 
     <Button
+        android:id="@+id/btnPlayAgain"
         android:layout_marginTop="30dp"
         android:textColor="@color/white"
         android:text="CHƠI LẠI"
