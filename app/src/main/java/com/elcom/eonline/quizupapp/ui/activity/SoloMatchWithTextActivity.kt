@@ -217,7 +217,7 @@ class SoloMatchWithTextActivity : BaseActivityQuiz(), View.OnClickListener, Solo
     /* From 2 ~> Request Api Answer the question is Ok. Return the response */
     override fun answerTheQuestionSuccess(mData: AnswerQuestion) {
         ProgressDialogUtils.dismissProgressDialog()
-        if (mLastQuestion == "true" && mData.correct == ConstantsApp.KEY_CORRECT_ANSWER) {
+        if (mLastQuestion == "true"/* && mData.correct == ConstantsApp.KEY_CORRECT_ANSWER*/) {
             goToResultActivity()
             return
         } else if(mLastQuestion == "true" &&  mData.correct != ConstantsApp.KEY_CORRECT_ANSWER) {

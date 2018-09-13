@@ -49,6 +49,8 @@ public class ConstantsApp {
     public static String KEY_TYPE_OF_GAME= "KEY_TYPE_OF_GAME";
     public static String KEY_MINUS_GAME= "KEY_MINUS_GAME";
     public static String KEY_QUESTION_ID= "KEY_QUESTION_ID";
+    public static String KEY_IMAGE_TOPIC= "KEY_IMAGE_TOPIC";
+    public static String KEY_NAME_TOPIC= "KEY_NAME_TOPIC";
     public static String KEY_ANSWER_ID= "KEY_ANSWER_ID";
     public static String KEY_SOLO_MATCH_ID= "KEY_SOLO_MATCH_ID";
     public static String KEY_CHALLENGE_IS_OPPONENT= "KEY_CHALLENGE_IS_OPPONENT";

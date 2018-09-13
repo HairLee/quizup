@@ -33,6 +33,8 @@ class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickLis
 
     private var mTopicId = ""
     private var mMatchId = ""
+    private var mImageTopic = "p"
+    private var mNameOfTopic = ""
     private var mTopicDetailViewPresenter = TopicDetailViewPresenter(this)
     private var mFavourite = "0"
     private var mLike = false
@@ -99,6 +101,8 @@ class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickLis
 //                    var  intent = Intent(applicationContext, ChallengeFindingRandomOpponentActivity::class.java)
                         val  intent = Intent(applicationContext, ChallengeFromFriendsActivity::class.java)
                         intent.putExtra(ConstantsApp.KEY_QUESTION_ID,mTopicId)
+                        intent.putExtra(ConstantsApp.KEY_IMAGE_TOPIC,mImageTopic)
+                        intent.putExtra(ConstantsApp.KEY_NAME_TOPIC,mNameOfTopic)
                         startActivityForResult(intent, ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                     } else {
@@ -164,7 +168,10 @@ class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickLis
         mTotalLikes = pTopic.totalFollower!!.toInt()
         txt_topic_title.text = pTopic.name
 //        txt_like.text = mTotalLikes.toString() + " Followers"
-//        txt_topic_des.text = pTopic.description
+//        txt_topic_des.text = pTopic.descriptiona
+
+        mImageTopic = pTopic.url!!
+        mNameOfTopic = pTopic.name!!
         Picasso.get()
                 .load(pTopic.url)
                 .into(imvAvaTopic)
@@ -317,6 +324,8 @@ class TopicDetailActivity : BaseActivityQuiz(), TopicDetailView, View.OnClickLis
         PLAY_GAME_TYPE = ConstantsApp.PLAY_GAME_CHALLENGE
         val  intent = Intent(applicationContext, ChallengeFromFriendsActivity::class.java)
         intent.putExtra(ConstantsApp.KEY_QUESTION_ID,mTopicId)
+        intent.putExtra(ConstantsApp.KEY_IMAGE_TOPIC,mImageTopic)
+        intent.putExtra(ConstantsApp.KEY_NAME_TOPIC,mNameOfTopic)
         startActivityForResult(intent, ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }

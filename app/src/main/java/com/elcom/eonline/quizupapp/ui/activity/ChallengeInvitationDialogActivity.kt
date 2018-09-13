@@ -132,6 +132,7 @@ class ChallengeInvitationDialogActivity : AppCompatActivity(), OnRejectInvitatio
     private fun updateLayout(data:ChallengeInfo){
         if(data != null){
             Picasso.get().load(data.getUrl()).into(imvAva)
+            Picasso.get().load(data.getUrlTopic()).into(imvTopic)
             tvTopicName.text = data.getTopicName()
             tvMyName.text = data.getName()
         }

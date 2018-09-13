@@ -162,7 +162,7 @@ class SoloWithImageChooseTextActivity : BaseActivityQuiz(), ProgressTimerView.on
 
     fun afterAnswerTheQuestion(isAnswer:Boolean){
         ProgressDialogUtils.dismissProgressDialog()
-        if (mLastQuestion == "true" && isAnswer) {
+        if (mLastQuestion == "true" /*&& isAnswer*/) {
             goToResultActivity()
             return
         } else if(mLastQuestion == "true" &&  !isAnswer) {

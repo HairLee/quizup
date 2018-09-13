@@ -32,6 +32,8 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
 
 
     private var mTopicId = ""
+    private var mImageTopic = ""
+    private var mNameOfTopic = ""
     private var listdata = ArrayList<String>()
     val mAdapter =  ChallengeFromFriendsAdapter(listdata,this, this)
     override fun getLayout(): Int {
@@ -41,6 +43,8 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
     override fun initData() {
         if (intent.hasExtra(ConstantsApp.KEY_QUESTION_ID)){
             mTopicId = intent.getStringExtra(ConstantsApp.KEY_QUESTION_ID)
+            mImageTopic = intent.getStringExtra(ConstantsApp.KEY_IMAGE_TOPIC)
+            mNameOfTopic = intent.getStringExtra(ConstantsApp.KEY_NAME_TOPIC)
             (application as ApplicationQuzup).setOnRejectInvitationListener(this)
             if( ConstantsApp.socketManage != null){
                 ConstantsApp.socketManage.initToGetListOnline(this)
@@ -156,6 +160,7 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
 
         mChallengeGameDialog = ChallengeInventedFriendDialog(this, mOnlineList[position] as JSONObject, object : OnDialogInvitationListener {
 
+
             val mObject = mOnlineList[position] as JSONObject
             override fun onCancelInviteFriendToPlayGame() {
                 stopCountDownTimer()
@@ -190,10 +195,10 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
             myInfo.put("sendId", PreferUtils().getUserId(this))
             myInfo.put("toId", mObject["id"].toString() )
             myInfo.put("challenge", challenge)
-            myInfo.put("url", "url")
+            myInfo.put("url", mObject["avatar"])
             myInfo.put("name", PreferUtils().getName(this))
-            myInfo.put("topicName", "Thể Thao")
-            myInfo.put("urlTopic", "urlTopic")
+            myInfo.put("topicName", mNameOfTopic)
+            myInfo.put("urlTopic",mImageTopic)
             myInfo.put("userSendId", PreferUtils().getUserId(this))
         } catch (e: JSONException) {
 
