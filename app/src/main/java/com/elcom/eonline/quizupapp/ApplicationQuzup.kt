@@ -7,13 +7,11 @@ import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import com.elcom.eonline.quizupapp.ui.activity.ChallengeInvitationDialogActivity
+import com.elcom.eonline.quizupapp.ui.activity.ChallengeResultActivity
 import com.elcom.eonline.quizupapp.ui.activity.ChallengeWaitingToPlayGameActivity
 import com.elcom.eonline.quizupapp.ui.custom.SocketManage
 import com.elcom.eonline.quizupapp.ui.dialog.ChallengeInventedFriendDialog
-import com.elcom.eonline.quizupapp.ui.listener.OnRejectInvitationListener
-import com.elcom.eonline.quizupapp.ui.listener.OnSocketInviteOpponentListener
-import com.elcom.eonline.quizupapp.ui.listener.OnSocketListener
-import com.elcom.eonline.quizupapp.ui.listener.OnSocketSendChallengeInformationListener
+import com.elcom.eonline.quizupapp.ui.listener.*
 import com.elcom.eonline.quizupapp.utils.*
 import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsLogger
@@ -70,16 +68,24 @@ class ApplicationQuzup : Application(), OnSocketInviteOpponentListener, OnSocket
     override fun onResultQuestion(resultQuestion: JSONObject) {
 
     }
+    
+    
 
 
     var mChallengeGameDialog: ChallengeInventedFriendDialog? = null
     var mORejectInvitationListener: OnRejectInvitationListener? = null
+    var mOnFinishActivityListener: OnFinishActivityListener? = null
     override fun onSomeoneInviteYouToPlayGame(resultQuestion: JSONObject) {
         Log.e("SocketManage", "QuizUpApplication " + resultQuestion.toString())
 //        runOnUiThreadA(Runnable { Toast.makeText(baseContext, resultQuestion.toString(), Toast.LENGTH_SHORT).show() })
 
 
         if(resultQuestion["challenge"] == "true" && resultQuestion["userSendId"] == PreferUtils().getUserId(this)){
+
+            if(ApplicationLifecycleHandler.getCurrentActivityName() == "ui.activity.ChallengeResultActivity" && mOnFinishActivityListener != null ){
+                mOnFinishActivityListener!!.onFinishActivityListener()
+            }
+
             val intent = Intent(this,ChallengeWaitingToPlayGameActivity::class.java)
             intent.putExtra("data",resultQuestion.toString())
             intent.putExtra("accept","")
@@ -180,8 +186,9 @@ class ApplicationQuzup : Application(), OnSocketInviteOpponentListener, OnSocket
         mORejectInvitationListener = pOnRejectInvitationListener
     }
 
-
-
+    fun setOnFinishActivityListener(pOnFinishActivityListener:OnFinishActivityListener){
+        mOnFinishActivityListener = pOnFinishActivityListener
+    }
 
 
 }

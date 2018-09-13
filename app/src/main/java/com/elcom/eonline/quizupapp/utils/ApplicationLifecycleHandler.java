@@ -38,7 +38,7 @@ public class ApplicationLifecycleHandler implements Application.ActivityLifecycl
 
     }
 
-    public String getCurrentActivityName(){
+    public static String getCurrentActivityName(){
         return mActivityName;
     }
 

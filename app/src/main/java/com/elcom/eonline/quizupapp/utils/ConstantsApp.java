@@ -31,6 +31,7 @@ public class ConstantsApp {
     public static int START_ACTIVITY_TO_HISTORY = 102;
     public static int RESULT_CODE_TO_STOP_GAME_FROM_QUIZUPACTIVITY = 10;
     public static int RESULT_CODE_TO_CONTINUE_TO_PLAY_GAME_FROM_QUIZUPACTIVITY = 9;
+    public static int RESULT_CODE_FROM_CHALLENGE_RESULT = 103;
 
     public static final int RESULT_CODE_CROP_IMAGE = 4444;
     public static int REQUEST_CODE_START_FACEBOOK_LOGIN= 64206;

@@ -24,16 +24,21 @@ import java.util.*
 import android.R.attr.bitmap
 import android.net.Uri
 import android.provider.MediaStore.Images
+import com.elcom.eonline.quizupapp.ApplicationQuzup
+import com.elcom.eonline.quizupapp.ui.listener.OnFinishActivityListener
+import com.elcom.eonline.quizupapp.utils.ApplicationLifecycleHandler
 
 
+class ChallengeResultActivity : BaseActivityQuiz(), SocketManage.OnGetResultQuestion, OnFinishActivityListener {
 
-class ChallengeResultActivity : BaseActivityQuiz(), SocketManage.OnGetResultQuestion {
 
     private var isFromOpoonentOrYou = false // true = you -- false = opponent
-    var opAvatar = ""
-    var opName = ""
-    var topicId = ""
-    var matchId = ""
+    private var opAvatar = ""
+    private var opName = ""
+    private var topicId = ""
+    private var matchId = ""
+    private var sendId = ""
+    private var toId = ""
     override fun getLayout(): Int {
         return R.layout.activity_challenge_result
     }
@@ -50,10 +55,16 @@ class ChallengeResultActivity : BaseActivityQuiz(), SocketManage.OnGetResultQues
 
         imvStalistic.setOnClickListener {
             if(topicId != ""){
-                startActivityForResult(Intent(this,SoloMatchStatisticActivity::class.java).putExtra(ConstantsApp.KEY_SOLO_MATCH_ID,matchId).putExtra(ConstantsApp.KEY_QUESTION_ID,topicId), ConstantsApp.START_ACTIVITY_TO_PLAY_GAME_FROM_QUIZUPACTIVITY)
+                startActivityForResult(Intent(this,SoloMatchStatisticActivity::class.java).putExtra(ConstantsApp.KEY_SOLO_MATCH_ID,matchId).putExtra(ConstantsApp.KEY_QUESTION_ID,topicId), ConstantsApp.RESULT_CODE_FROM_CHALLENGE_RESULT)
             }
         }
+
+        btnPlayAgain.setOnClickListener {
+            Log.e("hailpt", " Current Activity == " +  ApplicationLifecycleHandler.getCurrentActivityName());
+            sendInviteOrAcceptInvite()
+        }
     }
+
     private fun takeScreenshot() {
         val now = Date()
         android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now)
@@ -113,8 +124,8 @@ class ChallengeResultActivity : BaseActivityQuiz(), SocketManage.OnGetResultQues
 
         if(intent.hasExtra(ConstantsApp.KEY_CHALLENGE_USER_ID)){
 
-            val sendId = intent.extras.getString(ConstantsApp.KEY_CHALLENGE_USER_ID)
-            val toId = intent.extras.getString(ConstantsApp.KEY_CHALLENGE_TO_ID)
+            sendId = intent.extras.getString(ConstantsApp.KEY_CHALLENGE_USER_ID)
+            toId = intent.extras.getString(ConstantsApp.KEY_CHALLENGE_TO_ID)
             val statusUserBot = intent.extras.getString(ConstantsApp.KEY_CHALLENGE_USER_BOT)
             topicId = intent.extras.getString(ConstantsApp.KEY_QUESTION_ID)
             matchId = intent.extras.getString(ConstantsApp.KEY_SOLO_MATCH_ID)
@@ -132,8 +143,31 @@ class ChallengeResultActivity : BaseActivityQuiz(), SocketManage.OnGetResultQues
                 getResultMatchDuel(sendId,toId,matchId,topicId,statusUserBot)
             }, 4000)
 
+
+            (application as ApplicationQuzup).setOnFinishActivityListener(this)
+
         }
 
+    }
+
+    fun sendInviteOrAcceptInvite(){
+        val myInfo = JSONObject()
+        try {
+            myInfo.put("topicId", topicId)
+            myInfo.put("sendId", PreferUtils().getUserId(this))
+            myInfo.put("toId", toId )
+            myInfo.put("challenge", "true")
+            myInfo.put("url", "url")
+            myInfo.put("name", PreferUtils().getName(this))
+            myInfo.put("topicName", "Thể Thao")
+            myInfo.put("urlTopic", "urlTopic")
+            myInfo.put("userSendId", PreferUtils().getUserId(this))
+        } catch (e: JSONException) {
+
+        }
+        ConstantsApp.socketManage.sendChallengeInformation(myInfo)
+
+        Log.e("hailpt", " ChallengeFromFriendsActivity sendInviteOrAcceptInvite "+ myInfo.toString())
     }
 
 
@@ -230,6 +264,12 @@ class ChallengeResultActivity : BaseActivityQuiz(), SocketManage.OnGetResultQues
 
         Log.e("hailpt"," getResultMatchDuel ~~> "+ data.toString())
 
+    }
+
+    override fun onFinishActivityListener() {
+        Log.e("hailpt"," onFinishActivityListener ~~> ")
+        setResult(ConstantsApp.RESULT_CODE_TO_STOP_GAME_FROM_QUIZUPACTIVITY)
+        finish()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -192,7 +192,7 @@ class ChallengeFromFriendsActivity : BaseActivityQuiz(), OnSocketGetOnlineListen
             myInfo.put("challenge", challenge)
             myInfo.put("url", "url")
             myInfo.put("name", PreferUtils().getName(this))
-            myInfo.put("topicName", "topicName")
+            myInfo.put("topicName", "Thể Thao")
             myInfo.put("urlTopic", "urlTopic")
             myInfo.put("userSendId", PreferUtils().getUserId(this))
         } catch (e: JSONException) {
