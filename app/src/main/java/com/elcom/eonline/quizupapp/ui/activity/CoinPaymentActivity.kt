@@ -36,7 +36,7 @@ class CoinPaymentActivity : BaseActivityQuiz(), OnItemClickListener {
 
         rcvFreeCoins.setOnClickListener {
             if(freeCoins != null){
-                buyCoin(freeCoins!!.getCoins()!!)
+                buyCoin(freeCoins!!.getCoins()!!, "1")
             }
 
         }
@@ -67,7 +67,7 @@ class CoinPaymentActivity : BaseActivityQuiz(), OnItemClickListener {
             RestClient().getInstance().getRestService().getCoinPayment().enqueue(object : Callback<RestData<Coin>> {
                 override fun onResponse(call: Call<RestData<Coin>>?, response: Response<RestData<Coin>>?) {
                     dismisProgressDialog()
-                   if(response?.body() != null){
+                   if(response?.body() != null && response.body().data!!.getActive() == 1){
                        val coin = response.body().data
                        tvCoinFreeName.text = coin!!.getFreeCoins()!!.getName()
                        tvCoinFreeDes.text = coin.getFreeCoins()!!.getDescription()
@@ -86,9 +86,9 @@ class CoinPaymentActivity : BaseActivityQuiz(), OnItemClickListener {
             })
     }
 
-    private fun buyCoin(coin:String){
+    private fun buyCoin(coin:String, type:String){
         showProgessDialog()
-        RestClient().getInstance().getRestService().postBuyCoin(coin).enqueue(object: Callback<RestData<JsonElement>>{
+        RestClient().getInstance().getRestService().postBuyCoin(coin,type).enqueue(object: Callback<RestData<JsonElement>>{
             override fun onFailure(call: Call<RestData<JsonElement>>?, t: Throwable?) {
                 dismisProgressDialog()
 
@@ -105,9 +105,9 @@ class CoinPaymentActivity : BaseActivityQuiz(), OnItemClickListener {
 
     override fun onItemClicked(position: Int) {
         if(buyCoins != null){
-            buyCoin(buyCoins!!.get(position).getCoins()!!)
+            buyCoin(buyCoins!!.get(position).getCoins()!!,"2" +
+                    "")
         }
     }
-
 
 }

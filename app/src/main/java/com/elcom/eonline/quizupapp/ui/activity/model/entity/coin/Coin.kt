@@ -12,7 +12,7 @@ class Coin {
 
     @SerializedName("active")
     @Expose
-    private var active: String? = null
+    private var active: Int? = null
     @SerializedName("free_coins")
     @Expose
     private var freeCoins: FreeCoins? = null
@@ -20,11 +20,11 @@ class Coin {
     @Expose
     private var buyCoins: List<BuyCoin>? = null
 
-    fun getActive(): String? {
+    fun getActive(): Int? {
         return active
     }
 
-    fun setActive(active: String) {
+    fun setActive(active: Int) {
         this.active = active
     }
 

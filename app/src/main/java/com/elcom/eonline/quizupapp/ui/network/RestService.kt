@@ -87,7 +87,7 @@ interface RestService {
 
     @POST("post-buy-coins")
     @FormUrlEncoded
-    abstract fun postBuyCoin(@Field("coins_number") coins_number: String): Call<RestData<JsonElement>>
+    abstract fun postBuyCoin(@Field("coins_number") coins_number: String,@Field("type") type: String): Call<RestData<JsonElement>>
 
     /*Introduction Of a question*/
     @GET("get-question-solo-match?")

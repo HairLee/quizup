@@ -91,7 +91,6 @@ class ApplicationQuzup : Application(), OnSocketInviteOpponentListener, OnSocket
             intent.putExtra("accept","")
             startActivity(intent)
             // Call Api to get question info and then send data from socket
-
         } else if (resultQuestion["challenge"] == "true" ){
             val intent = Intent(baseContext, ChallengeInvitationDialogActivity::class.java)
             intent.putExtra("resultQuestion",resultQuestion.toString())
